@@ -1,0 +1,18 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+
+    .success {
+        background-color: aquamarine;
+        color: black;
+        text-align: center;
+    }
+
+    .error {
+        background-color: indianred;
+        color: black;
+        text-align: center;
+    }
+}
