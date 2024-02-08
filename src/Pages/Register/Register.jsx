@@ -56,5 +56,8 @@ export default function Register() {
             <input type="password" name="password" id="password" onChange={e => setPassword(e.target.value)} />
             <button>Envoyer</button>
         </form>
+
+        // Redirect vers la page de login
+        // <Link to="/login">Se connecter</Link>
     )
 }

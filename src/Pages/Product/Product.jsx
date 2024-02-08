@@ -1,31 +1,29 @@
-import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export default function Product() {
-    const [product, setProduct] = useState({
-        options: []
-    })
-    const { id } = useParams()
+  const [product, setProduct] = useState({}); // Initialisez product en tant qu'objet
+  const { id } = useParams();
 
-    useEffect(() => {
-        fetch("http://localhost:3001/products/" + id)
-            .then(res => res.json())
-            .then(data => setProduct(data))
-    }, [])
-    return (
-        <>
-            <h1>{product.name}</h1>
-            <h2>{product.manufacturer}</h2>
-            <h3>{product.price} €</h3>
-            <p>Stock : {product.stock}</p>
-            <div>
-                Options :
-                <ul>
-                    {product.options.map((option) => (
-                        <li>{option}</li>
-                    ))}
-                </ul>
-            </div>
-        </>
-    )
+  useEffect(() => {
+    // Assurez-vous que l'id est défini avant d'effectuer la requête
+    if (id) {
+      fetch("http://localhost:3001/products/" + id)
+        .then((res) => res.json())
+        .then((data) => setProduct(data));
+    }
+  }, [id]); // Inclure id dans la liste de dépendances
+
+  console.log(product);
+
+  return (
+    <div className="main">
+      <h2>{product.name}</h2>
+      <p>{product.ref}</p>
+      <p>{product.brand}</p>
+      <p>{product.category}</p>
+      <p>{product.description}</p>
+      <p>{product.price} €</p>
+    </div>
+  );
 }
