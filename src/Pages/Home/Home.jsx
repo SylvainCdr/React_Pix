@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "./style.scss";
+import CustomersSlider from "../../Components/CustomersSlider/CustomersSlider";
 
 export default function Home() {
   const videoRef = useRef(null);
@@ -9,6 +10,8 @@ export default function Home() {
       videoRef.current.play();
     }
   }, []); // Le tableau vide signifie que cela ne s'exécute qu'une seule fois au montage du composant
+
+  const customers = ["chanel.png", "ratp.png", "SG.png", "vinci.png"];
 
   return (
     <div className="main">
@@ -70,7 +73,11 @@ export default function Home() {
             </p>
             <button>Nous contacter</button>
           </div>
-          </div>
+        </div>
+        <div className="section-3">
+         
+          <CustomersSlider customers={customers} />
+        </div>
       </div>
     </div>
   );
