@@ -49,7 +49,7 @@ export default function Home() {
               répondre à vos besoins. Profitez des conseils et services
               Pixecurity{" "}
             </p>
-            <button>Voir le catalogue</button>
+            <button>Voir le catalogue TEST </button>
           </div>
         </div>
 
