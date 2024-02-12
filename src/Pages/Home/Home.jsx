@@ -14,7 +14,7 @@ export default function Home() {
           {/* <h2>Notre force</h2> */}
           <p>
             La <strong>sécurité</strong> ne dépend plus de la force brute, mais
-            de <strong>l'intelligence</strong>. Chez <strong>Pixecurity</strong>
+            de <strong>l'intelligence</strong>. <br /> Chez <strong>Pixecurity</strong>
             , nous sommes les fournisseurs de systèmes de{" "}
             <strong>sûreté</strong> intelligents. <br />
             Notre <strong>mission</strong> : vous accompagner avec les{" "}
@@ -46,7 +46,7 @@ export default function Home() {
       </div>
 
       <div className="section-2">
-        <div className="section-2__force">
+        <div className="section-2__offer">
           <h2>Une offre pensée autrement</h2>
           <p>
             La protection de vos données personnelles certifiée Pixecurity c'est
