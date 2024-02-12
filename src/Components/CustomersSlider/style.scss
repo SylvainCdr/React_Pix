@@ -1,71 +1,72 @@
-
-
 @mixin white-gradient {
-	background: linear-gradient(to right,  rgb(63, 155, 221) 0%,rgba(255,255,255,0) 100%);
+  background: linear-gradient(
+    to right,
+    rgb(63, 155, 221) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 
 $animationSpeed: 30s;
 
 // Animation
 @keyframes scroll {
-	0% { transform: translateX(0); }
-	100% { transform: translateX(calc(-250px * 7))}
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-250px * 7));
+  }
 }
-
 
 // Styling
 .slider {
-	background: #fff;
-	box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
-	height: 100px;
-	margin: auto;
-	overflow:hidden;
-	position: relative;
-	width: 1440px;
-	
+  background: #fff;
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
+  height: 100px;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  width: 1440px;
 
-	
-	&::before,
-	&::after {
-		@include white-gradient;
-		content: "";
-		height: 100px;
-		position: absolute;
-		width: 200px;
-		z-index: 2;
-	}
-	
-	&::after {
-		right: 0;
-		top: 0;
-		transform: rotateZ(180deg);
-	}
+  &::before,
+  &::after {
+    @include white-gradient;
+    content: "";
+    height: 100px;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+  }
 
-	&::before {
-		left: 0;
-		top: 0;
-	}
-	
-	.slide-track {
-		animation: scroll $animationSpeed linear infinite;
-		display: flex;
-		width: calc(250px * 14);
-		margin: auto;
-	}
-	
-	.slide {
-		justify-content: center;
-		height: 90px;
-		width: 250px;
-		margin-left:5rem;
+  &::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+  }
 
+  &::before {
+    left: 0;
+    top: 0;
+  }
 
-		img {
-			text-align: center;
-			height: 100%;
-			width: 100%;
-			object-fit: contain;
-			
-		}
-	}
+  .slide-track {
+    animation: scroll $animationSpeed linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+    margin: auto;
+  }
+
+  .slide {
+    justify-content: center;
+    height: 90px;
+    width: 250px;
+    margin-left: 5rem;
+
+    img {
+      text-align: center;
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
 }
