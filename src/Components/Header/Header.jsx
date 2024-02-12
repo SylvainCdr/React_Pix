@@ -26,8 +26,10 @@ function Header() {
                 src="/assets/logo-dark.svg"
                 alt="logo"
               /> 
+              <p>Fournisseur de solutions <br />de sureté intelligentes</p>
             </NavLink>
           </div>
+          
           <ul onClick={burgerToggle}>
 
             {/* <li>

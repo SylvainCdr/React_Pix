@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import "./style.scss";
 import CustomersSlider from "../../Components/CustomersSlider/CustomersSlider";
 import Hero from "../../Components/Hero/Hero";
@@ -47,8 +47,7 @@ export default function Home() {
 
       <div className="section-2">
         <div className="section-2__force">
-          <h2>Notre force</h2>
-          <h3>Une offre pensée autrement</h3>
+          <h2>Une offre pensée autrement</h2>
           <p>
             La protection de vos données personnelles certifiée Pixecurity c'est
             : la fourniture d'outils électroniques, une plateforme de gestion de
@@ -59,10 +58,99 @@ export default function Home() {
             toute la haute chaine de valeur de la sureté. Pixecurity est le
             fournisseur de solutions de sureté 3.0
           </p>
-          <button>
+          {/* <button>
             <NavLink to="#">Notre process</NavLink>{" "}
-          </button>
+          </button> */}
         </div>
+
+        <div className="section-2__skills">
+          <div className="skills_card">
+            <img
+              src="https://www.svgrepo.com/show/144416/security-camera.svg"
+              alt=""
+            />
+            <h3>Vidéoprotection</h3>
+            <p>
+              L'analyse d'image doit permettre de gagner du temps et de
+              simplifier l'experience utilisateur sans être une usine à gaz.
+              Notre savoir faire nous permet de vous proposer les meilleurs
+              produits.{" "}
+            </p>
+            <a href="">EN SAVOIR PLUS</a>
+          </div>
+
+          <div className="skills_card">
+            <img
+              src="https://www.svgrepo.com/show/97887/search.svg"
+              alt=""
+            />
+            <h3>Analyse d'image</h3>
+            <p>
+              Protections des biens et des personnes, levée de doutes et bien
+              plus encore... Pixecurity sélectionne pour vous les meilleures
+              solutions du marché : Caméras visibles, thermiques, mobiles,
+              fish-eye...{" "}
+            </p>
+            <a href="">EN SAVOIR PLUS</a>
+          </div>
+
+          <div className="skills_card">
+            <img
+              src="https://www.svgrepo.com/show/5385/padlock.svg"
+              alt=""
+            />
+            <h3>Contrôle d'accès</h3>
+            <p>
+              Suivi, gestion, traçabilité, protection des personnes. Pixecurity
+              complète son offre pour vous proposer une solution globale avec
+              les leaders du marché.
+            </p>
+            <a href="">EN SAVOIR PLUS</a>
+          </div>
+
+          <div className="skills_card">
+            <img
+              src="https://www.svgrepo.com/show/474401/cloud-database.svg"
+              alt=""
+            />
+            <h3>Cloud et objets connectés</h3>
+            <p>
+              Tout objet connecté est aujourd'hui un capteur de sureté devient
+              exploitable depuis n'importe quelle interface utilisateur.
+              Pixecurity vous propose des solutions innovantes et intélligentes
+              permettant de les traiter.
+            </p>
+            <a href="">EN SAVOIR PLUS</a>
+          </div>
+
+          <div className="skills_card">
+            <img
+              src="https://www.svgrepo.com/show/135113/seatbelt.svg"
+              alt=""
+            />
+            <h3>Réseaux SI / Stockage</h3>
+            <p>
+              Le traitement, le transport et l'exploitation doivent être
+              garantis par une expertise métier. Les ingénieurs Pixecurity vous
+              assurent un dimensionnement optimal des réseaux, du stockage, des
+              ressources informatiques.
+            </p>
+            <a href="">EN SAVOIR PLUS</a>
+          </div>
+
+          <div className="skills_card">
+            <img src="https://www.svgrepo.com/show/35101/target.svg" alt="" />
+            <h3>Ingénierie</h3>
+            <p>
+              Notre équipe d'ingénieurs geeks vous propose un accompagnement
+              Niveau 2-Niveau 3 sur vos systèmes de sureté. Avant vente, suivi
+              de projet, mise en service, maintenance, livrables
+              documentaires...
+            </p>
+            <a href="">EN SAVOIR PLUS</a>
+          </div>
+        </div>
+
         <div className="section-2__contact">
           <h2>Contactez-nous</h2>
           <p>
