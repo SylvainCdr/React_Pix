@@ -4,7 +4,7 @@ import "./style.scss";
 function Footer() {
   return (
     <div className="footer">
-      <div className="col-4 m-3">
+      <div className="section-1">
         <img src="/assets/logo-dark.svg" alt="" />
         <p>
           Pixecurity est un fournisseur de solutions de sureté intelligentes :
@@ -12,8 +12,8 @@ function Footer() {
           des données, hypervision... et bien plus encore.
         </p>
       </div>
-      <div className="col-4 m-3">
-        <p>Plan du site </p>
+      <div className="section-2">
+        <h4>Plan du site </h4>
         <br />
         <ul>
           <li>Accueil</li>
@@ -24,8 +24,8 @@ function Footer() {
         </ul>
       </div>
 
-      <div className="col-4 m-3">
-        <p>Nous contacter </p>
+      <div className="section-3">
+        <h4>Nous contacter </h4>
         <br />
         <ul>
           <li>
