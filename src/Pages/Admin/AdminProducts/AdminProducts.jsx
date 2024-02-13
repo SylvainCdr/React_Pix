@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./style.scss";
 import Swal from "sweetalert2";
+import AdminProductForm from "../../../Components/AdminProductForm/AdminProductForm";
 
 export default function AdminProducts() {
   const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     fetch("http://localhost:3001/products")
@@ -56,11 +58,35 @@ export default function AdminProducts() {
 }
   )};
 
-  return (
-    <div className="admin-products">
-      <h1>ADMINISTRATION</h1>
-      <h2>Produits</h2>
+// creation de la fonction editProduct
+const editProduct = (id) => {
+  if (!id) {
+    console.error("ID is undefined or null");
+    return;
+  }
+  window.location.href = `/admin/edit-product/${id}`;
+};
 
+
+
+
+
+return (
+  <div className="admin-products">
+    <h1>ADMINISTRATION</h1>
+    <h2>Produits</h2>
+
+    {selectedProduct ? (  // Conditionally render AdminProductForm when a product is selected
+      <AdminProductForm
+        productToEdit={selectedProduct}
+        onSubmit={() => {
+          // Handle the form submission logic here
+          // This function will be called when the form is submitted in AdminProductForm
+          // You can perform the necessary update logic and then clear the selected product
+          setSelectedProduct(null);
+        }}
+      />
+    ) : (
       <table className="table">
         <thead>
           <tr>
@@ -87,7 +113,9 @@ export default function AdminProducts() {
               <td>{product.category}</td>
               <td>{product.price} €</td>
               <td>
-                <button className="btn btn-primary">Modifier</button>
+                <button onClick={() => {
+                    editProduct(product._id);
+                  }} className="btn btn-primary">Modifier</button>
               </td>
               <td>
                 <button
@@ -103,6 +131,7 @@ export default function AdminProducts() {
           ))}
         </tbody>
       </table>
+    )}
     </div>
   );
 }
