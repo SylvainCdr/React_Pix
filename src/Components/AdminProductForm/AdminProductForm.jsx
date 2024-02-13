@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./style.scss";
 
+
 export default function AdminProductForm({ onSubmit, productToEdit }) {
     const [name, setName] = useState("");
     const [ref, setRef] = useState("");
@@ -54,6 +55,7 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
                 type="text"
                 name="name"
                 id="name"
+                value={name} // on ajoute la valeur de l'input afin de pouvoir l'afficher/modifier dans le formulaire
                 onChange={(e) => setName(e.target.value)}
             />
             <label htmlFor="ref">Référence</label>
@@ -61,6 +63,7 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
                 type="text"
                 name="ref"
                 id="ref"
+                value={ref}
                 onChange={(e) => setRef(e.target.value)}
             />
             <label htmlFor="category">Catégorie</label>
@@ -68,6 +71,7 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
                 type="text"
                 name="category"
                 id="category"
+                value={category}
                 onChange={(e) => setCategory(e.target.value)}
             />
             <label htmlFor="brand">Marque</label>
@@ -75,6 +79,7 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
                 type="text"
                 name="brand"
                 id="brand"
+                value={brand}
                 onChange={(e) => setBrand(e.target.value)}
             />
             <label htmlFor="description">Description</label>
@@ -82,6 +87,7 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
                 type="text"
                 name="description"
                 id="description"
+                value={description}
                 onChange={(e) => setDescription(e.target.value)}
             />
             <label htmlFor="price">Prix</label>
@@ -89,6 +95,7 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
                 type="number"
                 name="price"
                 id="price"
+                value={price}
                 onChange={(e) => setPrice(e.target.value)}
             />
             <label htmlFor="image">URL de l'image</label>
@@ -96,6 +103,7 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
                 type="text"
                 name="image"
                 id="image"
+                value={image}
                 onChange={(e) => setImage(e.target.value)}
             />
             <button type="submit">{productToEdit ? "Modifier" : "Ajouter"}</button>        </form>

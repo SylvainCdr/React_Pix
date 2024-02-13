@@ -50,7 +50,7 @@ export default function AdminProducts() {
         text: "Le produit a été supprimé avec succès.",
         icon: "success",
         showConfirmButton: false,
-        timer: 1500, // Définissez ici le même délai que pour le timer initial
+        timer: 1800, // Définissez ici le même délai que pour le timer initial
         timerProgressBar: true,
       
     });
