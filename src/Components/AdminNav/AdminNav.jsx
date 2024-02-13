@@ -24,9 +24,6 @@ Produits
 <div class="card-body bg-dark">
 <p><a href="/admin/products">Liste des Produits </a></p>
 <p><a href="/admin/add-product"> Ajouter un Produit </a></p>
-{/* on ajoute un lien pour ajouter un produit */}
-
-
 
 </div>
 </article>
@@ -36,7 +33,7 @@ Produits
 Utilisateurs
 </div>
 <div class="card-body">
-<p><a href="#">Liste des Utilisateurs </a></p>
+<p><a href="/admin/users">Liste des Utilisateurs </a></p>
 <p><a href="#"> Ajouter un Utilisateur </a></p>
 </div>
 </article>

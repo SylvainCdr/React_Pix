@@ -1,0 +1,65 @@
+.admin-users {
+
+    margin-top: 8rem;
+
+    h1 {
+        text-align: center;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        font-family: 'Montserrat', sans-serif;
+        color: #007bff;
+        
+     
+     }
+       
+     h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 1.2rem;
+     }
+
+    table {
+        width: 100%; 
+        border-collapse: collapse;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 0.5rem;
+        background-color: #464646;
+        color: #fff;
+
+        thead {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        th, td {
+            
+            text-align: center;
+            padding: 1rem;
+        }
+
+        th {
+            font-size: 1.2rem;
+        }
+
+        td {
+            font-size: 1rem;
+        }
+
+        
+
+        tr:nth-child(even) {
+            background-color: #333;
+        }
+
+        tr:hover {
+            background-color: #555;
+        }
+
+    }
+
+
+
+}
