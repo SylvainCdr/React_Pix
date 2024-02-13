@@ -9,7 +9,7 @@ function Footer() {
         <p>
           Pixecurity est un fournisseur de solutions de sureté intelligentes :
           Vidéosurveillance, analyse d'image, contrôle d'accès, réseaux/stockage
-          des données, hypervision... et bien plus encore.
+          des données, hypervision...
         </p>
       </div>
       <div className="section-2">

@@ -9,7 +9,9 @@ import Product from "./Pages/Product/Product";
 import Contact from "./Pages/Contact/Contact";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
-import AddProduct from "./Pages/AddProduct/AddProduct";
+import AddProduct from "./Pages/Admin/AddProduct/AddProduct";
+import Dashboard from "./Pages/Admin/Dashboard/Dashboard";
+import AdminProducts from "./Pages/Admin/AdminProducts/AdminProducts";
 
 function App() {
   return (
@@ -22,10 +24,13 @@ function App() {
         <Route path="/Notre-expertise" element={<Expertise />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/product/:id" element={<Product />} />
-        <Route path="/product/add" element={<AddProduct />} />
+        <Route path="/admin/add-product" element={<AddProduct />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/admin/dashboard" element={<Dashboard />} />
+        <Route path="/admin/products" element={<AdminProducts />} />
+        
         </Route>
       </Routes>
     </BrowserRouter>
