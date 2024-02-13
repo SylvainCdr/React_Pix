@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./style.scss";
 
-export default function AdminProductForm() {
-    
+export default function AdminProductForm({ onSubmit, productToEdit }) {
     const [name, setName] = useState("");
     const [ref, setRef] = useState("");
     const [description, setDescription] = useState("");
@@ -11,9 +10,22 @@ export default function AdminProductForm() {
     const [price, setPrice] = useState(0);
     const [image, setImage] = useState("");
 
+    // Effet pour remplir le formulaire avec les données du produit à éditer
+    useEffect(() => {
+        if (productToEdit) {
+            setName(productToEdit.name || "");
+            setRef(productToEdit.ref || "");
+            setDescription(productToEdit.description || "");
+            setCategory(productToEdit.category || "");
+            setBrand(productToEdit.brand || "");
+            setPrice(productToEdit.price || 0);
+            setImage(productToEdit.image || "");
+        }
+    }, [productToEdit]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        // Construire l'objet produit
         let product = {
             name,
             ref,
@@ -22,30 +34,18 @@ export default function AdminProductForm() {
             brand,
             price,
             image,
+            
         };
 
-        try {
-            const response = await fetch("http://localhost:3001/products", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(product),
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-
-            const data = await response.json();
-            console.log(data);
-
-            // on redirige vers le dashboard
-            window.location.href = "/admin/products";
-        } catch (error) {
-            console.error("Fetch error:", error);
+         // Ajouter l'identifiant du produit si disponible
+         if (productToEdit && productToEdit._id) {
+            product._id = productToEdit._id;
         }
+
+        // Appeler la fonction de soumission fournie par le parent
+        onSubmit(product);
     };
+
 
     return (
         <form className="form" onSubmit={handleSubmit}>
@@ -98,8 +98,7 @@ export default function AdminProductForm() {
                 id="image"
                 onChange={(e) => setImage(e.target.value)}
             />
-            <button>Ajouter</button>
-        </form>
+            <button type="submit">{productToEdit ? "Modifier" : "Ajouter"}</button>        </form>
 
     );
 }
