@@ -10,10 +10,11 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
   const [newCategory, setNewCategory] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [newSubcategory, setNewSubcategory] = useState("");
-  const [selectedSubcategory, setSelectedSubcategory] = useState("");
+  const [selectedSubcategory, setSelectedSubcategory] =
+    useState("defaultSubcategory");
   const [brand, setBrand] = useState("");
   const [newBrand, setNewBrand] = useState("");
-  const [selectedBrand, setSelectedBrand] = useState("");
+  const [selectedBrand, setSelectedBrand] = useState("defaultBrand");
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
 
@@ -34,17 +35,27 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log("Avant ajout nouvelle sous-catégorie :", subcategory);
+
     // Construire l'objet produit
     let product = {
       name,
       ref,
       description,
       category: category === "newCategory" ? newCategory : category,
-      subcategory: subcategory === "newSubcategory" ? newSubcategory : subcategory,
-      brand: brand === "newBrand" ? newBrand : brand,
+      subcategory:
+        selectedSubcategory === "newSubcategory"
+          ? newSubcategory
+          : selectedSubcategory || subcategory,
+      brand: 
+      selectedBrand === "newBrand" 
+      ? newBrand 
+      : selectedBrand || brand,
       price,
       image,
     };
+
+    console.log("Après ajout nouvelle sous-catégorie :", product.subcategory);
 
     // Ajouter l'identifiant du produit si disponible
     if (productToEdit && productToEdit._id) {
@@ -73,7 +84,6 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
         value={ref}
         onChange={(e) => setRef(e.target.value)}
       />
-
       {/*------------------  DEBUT SELECT CATEGORIE  --------------------*/}
       <label htmlFor="category">Catégorie</label>
       <select
@@ -116,11 +126,11 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
       <select
         name="subcategory"
         id="subcategory"
-        value={selectedSubcategory || subcategory}
+        value={selectedSubcategory}
         onChange={(e) => {
           setSelectedSubcategory(e.target.value);
-          setSubcategory(e.target.value);
           if (e.target.value !== "newSubcategory") {
+            setSubcategory(e.target.value);
             setNewSubcategory(""); // Réinitialisez newSubcategory si une sous-catégorie existante est sélectionnée
           }
         }}
@@ -168,11 +178,13 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
         )}
 
         {/* Option pour écrire une nouvelle sous-catégorie */}
+        <option value="defaultSubcategory" disabled hidden>
+          Sélectionnez une sous-catégorie
+        </option>
         <option value="newSubcategory">
           Saisir une nouvelle sous-catégorie
         </option>
       </select>
-      {/* Si "newSubcategory" est sélectionné, affichez le champ de texte pour la nouvelle sous-catégorie */}
       {selectedSubcategory === "newSubcategory" && (
         <div>
           <label htmlFor="newSubcategoryInput">Nouvelle sous-catégorie</label>
@@ -200,35 +212,44 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
           }
         }}
       >
-
-
+        {/* Si la catégorie est "Cameras", affichez les options suivantes */}
+        {category === "Caméras" && (
           <>
             <option value="Bosch">Bosch</option>
             <option value="I-Pro">I-Pro</option>
             <option value="Vivotek">Vivotek</option>
+          </>
+        )}
+        {/* Si la catégorie est "Réseau", affichez les options suivantes */}
+        {category === "Réseau" && (
+          <>
             <option value="Zyxel">Zyxel</option>
             <option value="Cisco">Cisco</option>
-            <option value="Milestone">Millestone</option>
+          </>
+        )}
+        {/* Si la catégorie est "Logiciels", affichez les options suivantes */}
+        {category === "Logiciels" && (
+          <>
+            <option value="Milestone">Milestone</option>
             <option value="Briefcam">Briefcam</option>
             <option value="Technoaware">Technoaware</option>
             <option value="Nx Witness">Nx Witness</option>
+          </>
+        )}
+        {/* Si la catégorie est "Cameras", affichez les options suivantes */}
+        {category === "Autres" && (
+          <>
             <option value="Non spécifié">Non spécifié</option>
             <option value="Zyxel">Zyxel</option>
-        
           </>
-        
-
-      
-        
-
-     
-       
-
-        
+        )}
 
         {/* Option pour écrire une nouvelle catégorie */}
-        <option value="newBrand">Saisir une nouvelle marque</option>
-      </select>
+        <option value="defaultBrand" disabled hidden>
+    Sélectionnez une marque
+  </option>
+  <option value="newBrand">Saisir une nouvelle marque</option>
+</select>
       {/* Si "newCategory" est sélectionné, affichez le champ de texte pour la nouvelle catégorie */}
       {selectedBrand === "newBrand" && (
         <div>
