@@ -8,7 +8,7 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
   const [category, setCategory] = useState("");
   const [subcategory, setSubcategory] = useState("");
   const [newCategory, setNewCategory] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("defaultCategory");
   const [newSubcategory, setNewSubcategory] = useState("");
   const [selectedSubcategory, setSelectedSubcategory] =
     useState("defaultSubcategory");
@@ -105,7 +105,12 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
         <option value="Autres">Autres</option>
 
         {/* Option pour écrire une nouvelle catégorie */}
-        <option value="newCategory">Saisir une nouvelle catégorie</option>
+        <option value="defaultCategory" disabled hidden>
+          Sélectionnez une catégorie
+        </option>
+        <option value="newCategory">
+          Saisir une nouvelle catégorie
+        </option>
       </select>
       {/* Si "newCategory" est sélectionné, affichez le champ de texte pour la nouvelle catégorie */}
       {selectedCategory === "newCategory" && (
