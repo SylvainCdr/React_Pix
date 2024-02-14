@@ -34,15 +34,6 @@
             color: #fff;
         }
 
-        .img-td {
-            width: 20%;
-            
-        }
-        img {
-            width: 30%;
-            background-color: #fff;
-            border-radius: 8px;
-        }
 
         th, td {
             
@@ -55,6 +46,20 @@
 
         td {
             font-size: 1rem;
+            vertical-align: middle;
+            
+
+            img {
+               width: 7rem;
+               height: 7rem;
+               object-fit: cover;
+                background-color: #fff;
+                border-radius: 5px;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                -ms-border-radius: 5px;
+                -o-border-radius: 5px;
+}
         }
 
         

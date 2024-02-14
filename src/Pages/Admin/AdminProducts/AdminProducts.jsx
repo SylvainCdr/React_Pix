@@ -95,7 +95,7 @@ export default function AdminProducts() {
           <tbody>
             {products.map((product) => (
               <tr key={product._id}>
-                <td className="img-td">
+                <td >
                   <img src={product.image} alt="" />
                 </td>
                 <td>{product.name}</td>
