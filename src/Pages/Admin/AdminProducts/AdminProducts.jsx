@@ -82,9 +82,10 @@ export default function AdminProducts() {
             <tr>
               <th scope="col">Photo</th>
               <th scope="col">Nom</th>
-              <th scope="col">Ref</th>
-              <th scope="col">Marque</th>
+              <th scope="col">Réf</th>
               <th scope="col">Catégorie</th>
+              <th scope="col">Sous-catégorie</th>
+              <th scope="col">Marque</th>
               <th scope="col">Prix</th>
               <th scope="col">Actions</th>
               <th scope="col"></th>
@@ -99,8 +100,9 @@ export default function AdminProducts() {
                 </td>
                 <td>{product.name}</td>
                 <td>{product.ref}</td>
-                <td>{product.brand}</td>
                 <td>{product.category}</td>
+                <td>{product.subcategory}</td>
+                <td>{product.brand}</td>
                 <td>{product.price} €</td>
                 <td>
                   <button
