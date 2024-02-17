@@ -66,8 +66,9 @@ function EditProduct() {
 
     return (
         <div className="edit-product">
-            <h1>ADMINISTRATION</h1>
-            <h2>Modifier un produit</h2>
+          
+            <h1>ADMINISTRATION - 
+            <span> Modifier un produit</span></h1>
             <AdminProductForm
                 productToEdit={productToEdit}
                 onSubmit={(editedProduct) => handleEditProduct(editedProduct)}
