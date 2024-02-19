@@ -4,6 +4,7 @@ import "./style.scss";
 export default function AdminProductForm({ onSubmit, productToEdit }) {
   const [name, setName] = useState("");
   const [ref, setRef] = useState("");
+  const [presentation, setPresentation] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [subcategory, setSubcategory] = useState("");
@@ -30,8 +31,8 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
   const [detailsCapteur, setDetailsCapteur] = useState("");
   const [detailsResolution, setDetailsResolution] = useState("");
   const [detailsCouleur, setDetailsCouleur] = useState("");
-  const [detailsInfraRouge, setDetailsInfraRouge] = useState("");
-  const [detailsDistanceInfraRouge, setDetailsDistanceInfraRouge] =
+  const [detailsInfrarouge, setDetailsInfrarouge] = useState("");
+  const [detailsDistanceInfrarouge, setDetailsDistanceInfrarouge] =
     useState("");
   const [detailsIndiceProtection, setDetailsIndiceProtection] = useState("");
   const [detailsPuissance, setDetailsPuissance] = useState("");
@@ -44,12 +45,26 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
   const [detailsPoePlusPlus, setDetailsPoePlusPlus] = useState("");
   const [detailsConsommation, setDetailsConsommation] = useState("");
   const [detailsGarantie, setDetailsGarantie] = useState("");
+  const [detailsInterface, setDetailsInterface] = useState("");
+  const [detailsUsb, setDetailsUsb] = useState("");
+  const [detailsPortConsole, setDetailsPortConsole] = useState("");
+  const [detailsDebitVpn, setDetailsDebitVpn] = useState("");
+  const [detailsMaxTcp, setDetailsMaxTcp] = useState("");
+  const [detailsDebitFirewall, setDetailsDebitFirewall] = useState("");
+  const [detailsVitesse, setDetailsVitesse] = useState("");
+  const [detailsTypeWifi, setDetailsTypeWifi] = useState("");
+  const [detailsAntenne, setDetailsAntenne] = useState("");
+  const [detailsLan, setDetailsLan] = useState("");
+  const [detailsNebula, setDetailsNebula] = useState("");
+
+
 
   // Effet pour remplir le formulaire avec les données du produit à éditer
   useEffect(() => {
     if (productToEdit) {
       setName(productToEdit.name || "");
       setRef(productToEdit.ref || "");
+      setPresentation(productToEdit.presentation || "");
       setDescription(productToEdit.description || "");
       setCategory(productToEdit.category || "");
       setSubcategory(productToEdit.subcategory || "");
@@ -90,12 +105,12 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
       setDetailsCouleur(
         productToEdit.details ? productToEdit.details.couleur || "" : ""
       );
-      setDetailsInfraRouge(
-        productToEdit.details ? productToEdit.details.infraRouge || "" : ""
+      setDetailsInfrarouge(
+        productToEdit.details ? productToEdit.details.infrarouge || "" : ""
       );
-      setDetailsDistanceInfraRouge(
+      setDetailsDistanceInfrarouge(
         productToEdit.details
-          ? productToEdit.details.distanceInfraRouge || ""
+          ? productToEdit.details.distanceInfrarouge || ""
           : ""
       );
       setDetailsIndiceProtection(
@@ -133,6 +148,40 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
       setDetailsGarantie(
         productToEdit.details ? productToEdit.details.garantie || "" : ""
       );
+      setDetailsInterface(
+        productToEdit.details ? productToEdit.details.interface || "" : ""
+      );
+      setDetailsUsb(
+        productToEdit.details ? productToEdit.details.usb || "" : ""
+      );
+      setDetailsPortConsole(
+        productToEdit.details ? productToEdit.details.portConsole || "" : ""
+      );
+      setDetailsDebitVpn(
+        productToEdit.details ? productToEdit.details.debitVpn || "" : ""
+      );
+      setDetailsMaxTcp(
+        productToEdit.details ? productToEdit.details.maxTcp || "" : ""
+      );
+      setDetailsDebitFirewall(
+        productToEdit.details ? productToEdit.details.debitFirewall || "" : ""
+      );
+      setDetailsVitesse(
+        productToEdit.details ? productToEdit.details.vitesse || "" : ""
+      );
+      setDetailsTypeWifi(
+        productToEdit.details ? productToEdit.details.typeWifi || "" : ""
+      );
+      setDetailsAntenne(
+        productToEdit.details ? productToEdit.details.antenne || "" : ""
+      );
+      setDetailsLan(
+        productToEdit.details ? productToEdit.details.lan || "" : ""
+      );
+      setDetailsNebula(
+        productToEdit.details ? productToEdit.details.nebula || "" : ""
+      );
+
     }
   }, [productToEdit]);
 
@@ -145,6 +194,7 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
     let product = {
       name,
       ref,
+      presentation,
       description,
       category: category === "newCategory" ? newCategory : category,
       subcategory:
@@ -165,8 +215,8 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
       capteur: detailsCapteur,
       resolution: detailsResolution,
       couleur: detailsCouleur,
-      infraRouge: detailsInfraRouge,
-      distanceInfraRouge: detailsDistanceInfraRouge,
+      infrarouge: detailsInfrarouge,
+      distanceInfrarouge: detailsDistanceInfrarouge,
       indiceProtection: detailsIndiceProtection,
       puissance: detailsPuissance,
       installationExt: detailsInstallationExt,
@@ -178,6 +228,19 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
       poePlusPlus: detailsPoePlusPlus,
       consommation: detailsConsommation,
       garantie: detailsGarantie,
+      interface: detailsInterface,
+      usb: detailsUsb,
+      portConsole: detailsPortConsole,
+      debitVpn: detailsDebitVpn,
+      maxTcp: detailsMaxTcp,
+      debitFirewall: detailsDebitFirewall,
+      vitesse: detailsVitesse,
+      typeWifi: detailsTypeWifi,
+      antenne: detailsAntenne,
+      lan: detailsLan,
+      nebula: detailsNebula,
+
+
     };
 
     console.log("Après ajout nouvelle sous-catégorie :", product.subcategory);
@@ -396,9 +459,18 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
             </div>
           )}
           {/*------------------  FIN SELECT MARQUE  --------------------*/}
-          <label htmlFor="description">Description</label>
+          <label htmlFor="presentation">Présentation</label>
           <input
             type="text"
+            name="presentation"
+            id="presentation"
+            value={presentation}
+            onChange={(e) => setPresentation(e.target.value)}
+          />
+            
+          <label htmlFor="description">Description</label>
+          <input
+            type="text-area"
             name="description"
             id="description"
             value={description}
@@ -511,23 +583,23 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
             value={detailsCouleur}
             onChange={(e) => setDetailsCouleur(e.target.value)}
           />
-          <label htmlFor="detailsInfraRouge">Infra-rouge</label>
+          <label htmlFor="detailsInfrarouge">Infra-rouge</label>
           <input
             type="text"
-            name="detailsInfraRouge"
-            id="detailsInfraRouge"
-            value={detailsInfraRouge}
-            onChange={(e) => setDetailsInfraRouge(e.target.value)}
+            name="detailsInfrarouge"
+            id="detailsInfrarouge"
+            value={detailsInfrarouge}
+            onChange={(e) => setDetailsInfrarouge(e.target.value)}
           />
-          <label htmlFor="detailsDistanceInfraRouge">
+          <label htmlFor="detailsDistanceInfrarouge">
             Distance infra-rouge
           </label>
           <input
             type="text"
-            name="detailsDistanceInfraRouge"
-            id="detailsDistanceInfraRouge"
-            value={detailsDistanceInfraRouge}
-            onChange={(e) => setDetailsDistanceInfraRouge(e.target.value)}
+            name="detailsDistanceInfrarouge"
+            id="detailsDistanceInfrarouge"
+            value={detailsDistanceInfrarouge}
+            onChange={(e) => setDetailsDistanceInfrarouge(e.target.value)}
           />
           <label htmlFor="detailsIndiceProtection">Indice de protection</label>
           <input
@@ -558,8 +630,7 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
             value={detailsInstallationExt}
             onChange={(e) => setDetailsInstallationExt(e.target.value)}
           />
-        </div>
-        <div className="details-2">
+       
           <label htmlFor="detailsNbrePorts">Nombre de ports</label>
           <input
             type="text"
@@ -576,6 +647,8 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
             value={detailsRackable}
             onChange={(e) => setDetailsRackable(e.target.value)}
           />
+           </div>
+        <div className="details-2">
           <label htmlFor="detailsManageable">Manageable</label>
           <input
             type="text"
@@ -624,6 +697,95 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
             value={detailsGarantie}
             onChange={(e) => setDetailsGarantie(e.target.value)}
           />
+         <label htmlFor="detailsInterface">Interface</label>
+          <input
+            type="text"
+            name="detailsInterface"
+            id="detailsInterface"
+            value={detailsInterface}
+            onChange={(e) => setDetailsInterface(e.target.value)}
+          />
+          <label htmlFor="detailsUsb">Ports USB 3.0</label>
+          <input
+            type="text"
+            name="detailsUsb"
+            id="detailsUsb"
+            value={detailsUsb}
+            onChange={(e) => setDetailsUsb(e.target.value)}
+          />
+          <label htmlFor="detailsPortConsole">Port console</label>
+          <input
+            type="text"
+            name="detailsPortConsole"
+            id="detailsPortConsole"
+            value={detailsPortConsole}
+            onChange={(e) => setDetailsPortConsole(e.target.value)}
+          />
+          <label htmlFor="detailsDebitVpn">Débit VPN</label>
+          <input
+            type="text"
+            name="detailsDebitVpn"
+            id="detailsDebitVpn"
+            value={detailsDebitVpn}
+            onChange={(e) => setDetailsDebitVpn(e.target.value)}
+          />
+          <label htmlFor="detailsMaxTcp">Max. sesions simultanées TCP</label>
+          <input
+            type="text"
+            name="detailsMaxTcp"
+            id="detailsMaxTcp"
+            value={detailsMaxTcp}
+            onChange={(e) => setDetailsMaxTcp(e.target.value)}
+          />
+          <label htmlFor="detailsDebitFirewall">Débit du pare-feu</label>
+          <input
+            type="text"
+            name="detailsDebitFirewall"
+            id="detailsDebitFirewall"
+            value={detailsDebitFirewall}
+            onChange={(e) => setDetailsDebitFirewall(e.target.value)}
+          />
+          <label htmlFor="detailsVitesse">Vitesse</label>
+          <input
+            type="text"
+            name="detailsVitesse"
+            id="detailsVitesse"
+            value={detailsVitesse}
+            onChange={(e) => setDetailsVitesse(e.target.value)}
+          />
+          <label htmlFor="detailsTypeWifi">Type de Wifi</label>
+          <input
+            type="text"
+            name="detailsTypeWifi"
+            id="detailsTypeWifi"
+            value={detailsTypeWifi}
+            onChange={(e) => setDetailsTypeWifi(e.target.value)}
+          />
+          <label htmlFor="detailsAntenne">Antenne</label>
+          <input
+            type="text"
+            name="detailsAntenne"
+            id="detailsAntenne"
+            value={detailsAntenne}
+            onChange={(e) => setDetailsAntenne(e.target.value)}
+          />
+          <label htmlFor="detailsLan">LAN</label>
+          <input
+            type="text"
+            name="detailsLan"
+            id="detailsLan"
+            value={detailsLan}
+            onChange={(e) => setDetailsLan(e.target.value)}
+          />
+          <label htmlFor="detailsNebula">Nebula</label>
+          <input
+            type="text"
+            name="detailsNebula"
+            id="detailsNebula"
+            value={detailsNebula}
+            onChange={(e) => setDetailsNebula(e.target.value)}
+          />
+
         </div>
       </div>
       <div className="form-button">
