@@ -40,7 +40,7 @@ export default function Home() {
             répondre à vos besoins. Profitez des conseils et services Pixecurity{" "}
           </p>
           <button>
-            <NavLink to="/Produits">Voir le catalogue </NavLink>{" "}
+            <NavLink to="/Catalogue">Voir le catalogue </NavLink>{" "}
           </button>
         </div>
       </div>

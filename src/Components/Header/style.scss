@@ -11,7 +11,6 @@
   z-index: 1000;
   top: 0;
 
-
   .header__nav {
     margin: auto;
     width: 100%;
@@ -22,14 +21,12 @@
 
     .header__logo {
       display: flex;
-      
+
       cursor: pointer;
 
       img {
-      
         margin-left: 1rem;
         width: 11rem;
-    
       }
 
       p {
@@ -37,11 +34,8 @@
         font-size: 0.8rem;
         text-align: center;
         color: #d8f3ff;
-        
       }
     }
-
- 
 
     ul {
       display: flex;
@@ -63,9 +57,7 @@
         -moz-transform: scale(1.1);
         -ms-transform: scale(1.1);
         -o-transform: scale(1.1);
-}
-
- 
+      }
     }
 
     a {
@@ -76,96 +68,88 @@
         width: 2.5rem;
       }
     }
-}
-}
+  }
 
-.header__burgerMenu {
-  display: none;
-}
-
-
-// DEBUT ANIMATION SURVOL PARENTHESES
-
-.header__nav {
-
-li:before,  li:after
-{
-    position: absolute;
-    opacity: 0;
-    font-size: 25px;
-    top: 0px;
-    transition: all 0.3s;
-    color: #009fe3;;
-}
-
-
-li:before
-{
-    content: '[';
-    top : -0.5rem;
-    left: -1rem;
-    transform: translateX(10px);
-}
-
-li:after
-{
-    content: ']';
-    top : -0.5rem;
-    right: -1rem;
-    transform: translateX(-10px);
-}
-
-li:hover:before, li:hover:after
-{
-    opacity: 1;
-    transform: translateX(0px);
-}
-}
-// FIN ANIMATION SURVOL PARENTHESES
-
-
-
-
-@media screen and (max-width: 768px) {
-  span {
+  .header__burgerMenu {
     display: none;
-}
+  }
 
-// DEBUT MENU BURGER 
-.header__burgerMenu {
-  
-    display: flex;
-    margin-right: 55%;
-    font-size: 2rem;
-    cursor: pointer;
-    right: 0%;
-}
+  // DEBUT ANIMATION SURVOL PARENTHESES
 
-.header__burgerMenu:before {
-    content: "\2630";
-}
-ul {
-    position: fixed;
-    left: -110%;
-    top: 0;
-    flex-direction: column;
-    transition: 0.25s;
-    background-color: rgb(114, 114, 114);
-     z-index: 100;
-    
-    li {
-        padding: 0.3rem 0 ;
+  .header__nav {
+    li:before,
+    li:after {
+      position: absolute;
+      opacity: 0;
+      font-size: 25px;
+      top: 0px;
+      transition: all 0.3s;
+      color: #009fe3;
+    }
+
+    li:before {
+      content: "[";
+      top: -7px;
+      left: -1rem;
+      transform: translateX(10px);
+    }
+
+    li:after {
+      content: "]";
+      top: -7px;
+      right: -1rem;
+      transform: translateX(-10px);
+    }
+
+    li:hover:before,
+    li:hover:after {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+  // FIN ANIMATION SURVOL PARENTHESES
+
+  @media screen and (max-width: 768px) {
+    span {
+      display: none;
+    }
+
+    // DEBUT MENU BURGER
+    .header__burgerMenu {
+      display: flex;
+      margin-right: 55%;
+      font-size: 2rem;
+      cursor: pointer;
+      right: 0%;
+    }
+
+    .header__burgerMenu:before {
+      content: "\2630";
+    }
+    ul {
+      position: fixed;
+      left: -110%;
+      top: 0;
+      flex-direction: column;
+      transition: 0.25s;
+      background-color: rgb(114, 114, 114);
+      z-index: 100;
+
+      li {
+        padding: 0.3rem 0;
 
         &:hover {
-            background: #aaa9a9;
+          background: #aaa9a9;
         }
+      }
     }
+    .active .header__burgerMenu:before {
+      content: "\2715";
+    }
+    .active ul {
+      left: 0;
+    }
+  }
+
+  // FIN MENU BURGER
 }
-.active .header__burgerMenu:before {
-    content: "\2715";
-}
-.active ul{
-    left: 0;
-}
-}
-// FIN MENU BURGER

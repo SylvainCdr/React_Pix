@@ -48,9 +48,6 @@ function ShopNav() {
     }
   }, [categories]);
 
-  const convertToSlug = (text) => {
-    return text.toLowerCase().replace(/\s+/g, '-');
-  };
 
   return (
     <div className="shop-nav">
