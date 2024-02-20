@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
 import ShopNav from "../../../Components/ShopNav/ShopNav";
 
-
 function Catalogue() {
+
+  
   return (
     <div className="main-shop">
       <ShopNav />

@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import "./style.scss";
 import { NavLink } from "react-router-dom";
 
 function Header() {
-  const link1 = "#";
+
 
   // Creation fonction menu Burger
   let isBurgerOpen = false;
@@ -14,6 +14,8 @@ function Header() {
     isBurgerOpen = !isBurgerOpen;
   }
   // Fin fonction menu Burger
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
     
@@ -48,12 +50,18 @@ function Header() {
               <NavLink to="/Contact">Contact</NavLink>
             </li>
 
-            {/* je souhaite une icone de connexion et de panier */}
+            {/* icone user barré si pas loggé sinon icone user pour mon compte*/}
             <li>
-              <NavLink to="/login">
+            <NavLink to={isAuthenticated ? "/mon-compte" : "/login"}>
+              <i className="fa-regular fa-user"></i>
+            </NavLink>
+          </li>
+            {/* <li>
+              
+              <NavLink to="/register">
               <i class="fa-regular fa-user"></i>
               </NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink to="/panier">
               <i class="fa-solid fa-cart-shopping"></i>
