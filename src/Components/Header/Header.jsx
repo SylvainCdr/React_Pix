@@ -16,7 +16,7 @@ function Header() {
   // Fin fonction menu Burger
 
   return (
-    <>
+    
       <div className="header">
         <nav className="header__nav">
           {/* ON affiche le logo situé dans assets et on le redirige vers la page d'accueil */}
@@ -36,7 +36,7 @@ function Header() {
               <NavLink to="/">Accueil</NavLink>
             </li> */}
             <li>
-              <NavLink to="/Produits">Catalogue</NavLink>
+              <NavLink to="/Catalogue">Catalogue</NavLink>
             </li>
             <li>
               <NavLink to="/Notre-expertise">Notre expertise</NavLink>
@@ -47,20 +47,24 @@ function Header() {
             <li>
               <NavLink to="/Contact">Contact</NavLink>
             </li>
-            {/* <span>
-              <a href={link1} target="_blank" rel="noopener noreferrer">
-                <img
-                  src="https://img.icons8.com/?size=64&id=52539&format=png"
-                  alt="github"
-                />
-              </a>
-              
-            </span> */}
+
+            {/* je souhaite une icone de connexion et de panier */}
+            <li>
+              <NavLink to="/login">
+              <i class="fa-regular fa-user"></i>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/panier">
+              <i class="fa-solid fa-cart-shopping"></i>
+              </NavLink>
+            </li>
+            
           </ul>
           <div className="header__burgerMenu" onClick={burgerToggle}></div>
         </nav>
       </div>
-    </>
+    
   );
 }
 
