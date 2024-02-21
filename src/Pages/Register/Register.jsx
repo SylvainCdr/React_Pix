@@ -114,8 +114,6 @@ export default function Register() {
 
   return (
     <div className="register-container">
-    
-      
       <form className="register-form" onSubmit={handleSubmit}>
         <label htmlFor="firstName">Prénom</label>
         <input
@@ -139,7 +137,9 @@ export default function Register() {
           value={lastName}
           onChange={handleLastNameChange}
         />
-        {lastNameError && <span className="error-message">{lastNameError}</span>}
+        {lastNameError && (
+          <span className="error-message">{lastNameError}</span>
+        )}
 
         <label htmlFor="company">Entreprise (optionnel)</label>
         <input
@@ -169,7 +169,9 @@ export default function Register() {
           value={password}
           onChange={handlePasswordChange}
         />
-        {passwordError && <span className="error-message">{passwordError}</span>}
+        {passwordError && (
+          <span className="error-message">{passwordError}</span>
+        )}
 
         <button>Envoyer</button>
       </form>

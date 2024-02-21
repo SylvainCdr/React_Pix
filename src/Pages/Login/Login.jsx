@@ -34,9 +34,11 @@ export default function Login() {
     }
 
     return (
+
+        <div className="login-container">
         // J'ecoute l'evennement onSubmit qui s'execute quand on soumet le formulaire (que ce soit avec la touche entrée ou le bouton envoyer)
         // Et l'evennement appel ma fonction handleSubmit
-        <form className='login' onSubmit={handleSubmit}>
+        <form className='login-form' onSubmit={handleSubmit}>
             <label htmlFor="email">Email</label>
             {/* Pour chaques input, j'ecoute l'evennement onChange afin de mettre a jour ma variable en fonction de mon input */}
             {/* Ca permet d'avoir en temps réel le contenu de l'input dans ma variable correspondante */}
@@ -46,7 +48,8 @@ export default function Login() {
             <input type="email" name="email" id="email" onChange={e => setEmail(e.target.value)} />
             <label htmlFor="password">Mot de passe</label>
             <input type="password" name="password" id="password" onChange={e => setPassword(e.target.value)} />
-            <button>Envoyer</button>
+            <a href="#">Mot de passe oublié ? </a>
+            <button>Se connecter</button>
             {/* Par defaut, logged est false, quand le formulaire n'est pas encore envoyé */}
             {/* Donc tant que logged est false, on affiche pas la div */}
             {logged !== false && (
@@ -58,6 +61,13 @@ export default function Login() {
                     {logged ? `Bonjour ${logged.firstName} ${logged.lastName}` : "Identifiants incorrect"}
                 </div>
             )}
+        <a href="/register">Pas encore de compte ? S'enregistrer </a>
         </form>
+
+        <img src="./../../assets/logo-clear.svg" alt="" />
+
+
+
+        </div>
     )
 }
