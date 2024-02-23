@@ -11,7 +11,7 @@
   .products-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    gap: 1rem;
+    gap: 1.7rem;
     padding: 1rem;
 
     .product-card {
@@ -94,4 +94,38 @@
       }
     }
   }
+
+// RESPONSIVE
+
+
+  @media (max-width: 1024px) {
+    .products-grid {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+
+  // @media screen and (max-width: 900px) 
+
+  @media (max-width: 768px) {
+    .products-grid {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .products-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
 }
+
+
+
+
+// @media screen and (max-width: 1024px) 
+ 
+//  @media screen and (max-width: 900px) 
+
+//  @media screen and (max-width: 768px) 
+ 

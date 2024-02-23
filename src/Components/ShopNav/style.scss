@@ -1,8 +1,9 @@
 .shop-nav {
     margin-top: 8rem;
     width: 100%;
-    background-color: #30A6E6;
+    background-color: #afd7ed;
     height: 2.5rem;
+ 
  
     .dropdownmenuul,.dropdownmenuli
 {
@@ -19,7 +20,8 @@
     .dropdownmenu li {
         float: left;
         position: relative;
-        width:auto;
+        width:10rem;
+
     }
     .dropdownmenu a {
         background: #30A6E6;
@@ -62,4 +64,4 @@
     #submenu a {
         background-color:#343434;
     }
-}
+    }
