@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
 
-function ShopNav({ onSearchChange }) {
+
+function ShopNav() {
   const [categories, setCategories] = useState([]);
   const [subcategoriesMap, setSubcategoriesMap] = useState({});
-  const [search, setSearch] = useState("");
-  const [searching, setSearching] = useState(false);
-  const [searchResults, setSearchResults] = useState([]);
+  
 
   useEffect(() => {
     // Charger toutes les catégories
@@ -50,32 +49,7 @@ function ShopNav({ onSearchChange }) {
     }
   }, [categories]);
 
-  // créer une fonction pour gérer la recherche
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-
-    if (e.target.value.length > 0) {
-      setSearching(true);
-
-      // Rechercher des produits correspondant à la requête
-      fetch(`http://localhost:3001/search?query=${e.target.value}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setSearchResults(data);
-          setSearching(false);
-          // Passer les résultats de la recherche à l'extérieur du composant
-          onSearchChange(data);
-        })
-        .catch((error) => {
-          console.error("Erreur lors de la recherche de produits :", error);
-          setSearching(false);
-        });
-    } else {
-      setSearchResults([]);
-      // Passer les résultats de la recherche à l'extérieur du composant
-      onSearchChange([]);
-    }
-  };
+  
 
   return (
     <div className="shop-nav">
@@ -100,16 +74,7 @@ function ShopNav({ onSearchChange }) {
         </ul>
       </div>
 
-      <div className="search">
-        {/* barre de recherche pour rechercher des produits par nom ou marque et les afficher sous forme de carte*/}
-
-        <input
-          type="text"
-          placeholder="Rechercher un produit"
-          value={search}
-          onChange={handleSearch}
-        />
-      </div>
+   
     </div>
   );
 }
