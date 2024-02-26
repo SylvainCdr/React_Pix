@@ -76,7 +76,7 @@ const handleLogout = () => {
               <NavLink to="/">Accueil</NavLink>
             </li> */}
           <li>
-            <NavLink to="/Catalogue">Catalogue</NavLink>
+            <NavLink to="/Catalogue">Boutique</NavLink>
           </li>
           <li>
             <NavLink to="/Notre-expertise">Notre expertise</NavLink>

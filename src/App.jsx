@@ -4,7 +4,6 @@ import Template from "./Components/Template/Template";
 import Home from "./Pages/Home/Home";
 import AboutUs from "./Pages/AboutUs/AboutUs";
 import Expertise from "./Pages/Expertise/Expertise";
-import Product from "./Pages/Product/Product";
 import Contact from "./Pages/Contact/Contact";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
@@ -15,6 +14,7 @@ import EditProduct from "./Pages/Admin/EditProduct/EditProduct";
 import AdminUsers from "./Pages/Admin/AdminUsers/AdminUsers";
 import Catalogue from "./Pages/Shop/Main/Main"; 
 import Products from "./Pages/Shop/Products/Products";
+import Product from "./Pages/Shop/Product/Product";
 
 
 function App() {

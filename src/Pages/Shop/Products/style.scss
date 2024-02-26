@@ -13,15 +13,14 @@
 
   .products-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    gap: 1.7rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1.2rem;
     padding: 1rem;
 
     .product-card {
-      gap: 1.5rem;
       background-color: #fff;
       border-radius: 0.5rem;
-      box-shadow: 0.1rem 0.2rem 0.2rem 0rem rgba(217, 217, 217, 0.798);
+      box-shadow: 0.1rem 0.1rem 0.2rem 0rem rgba(217, 217, 217, 0.798);
       height: auto;
       padding: 0.5rem;
 

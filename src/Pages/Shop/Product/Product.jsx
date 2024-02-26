@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./style.scss";
-import { useHistory } from "react-router-dom";
+import ShopNav from "../../../Components/ShopNav/ShopNav";
+import Search from "../../../Components/Search/Search";
 
 export default function Product() {
   const [product, setProduct] = useState({}); // Initialisez product en tant qu'objet
   const { id } = useParams();
   const [suggestion, setSuggestion] = useState([]); // Initialisez suggestions en tant que tableau
+  const [searchResults, setSearchResults] = useState([]); // Initialisez searchResults en tant que tableau
 
   // Utilisez useEffect pour effectuer une requête à l'API
   useEffect(() => {
@@ -63,6 +65,11 @@ export default function Product() {
 
   return (
     <div className="product-container">
+<ShopNav />
+<Search setSearchResults={setSearchResults} />
+
+{searchResults.length === 0 && (
+  <div className="product-page">
       <div className="product-section1">
         <div className="product-img">
           <img src={product.image} alt={product.name} />
@@ -105,6 +112,7 @@ export default function Product() {
           <p className="ref">Référence : {product.ref}</p>
         </div>
       </div>
+     
 
       <div className="product-section2">
         <div className="product-details">
@@ -153,6 +161,12 @@ export default function Product() {
           </div>
         </div>
       </div>
+      </div>
+)}
+
+
     </div>
+    
   );
+        
 }

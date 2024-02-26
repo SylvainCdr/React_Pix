@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import slugify from "slugify";
 import "./style.scss";
 
 function Search({ setSearchResults }) {
@@ -35,9 +34,6 @@ function Search({ setSearchResults }) {
     }
   };
 
-
-
-
   return (
     <div className="search-container">
       <form onSubmit={handleSearch}>
@@ -51,19 +47,22 @@ function Search({ setSearchResults }) {
           <button type="submit">Rechercher</button>
         </div>
       </form>
-      
-
-
-
-              
 
       {searching && <p>Recherche en cours...</p>}
 
-       
+
+<div className="search-msg">
+        {/* // si résultats de recherche locaux n'est pas vide, afficher les résultats */}
+        {searchResultsLocal.length > 0 && (
+          <p>Résultats de recherche ({searchResultsLocal.length} produits) :</p> 
+        )}
+        </div>
+    
+
       <div className="search-results">
         {searchResultsLocal.map((result) => (
+          
           <div className="product-card" key={result.id}>
-            
             <div className="card-title">
               <h2>{result.name}</h2>
             </div>
@@ -73,25 +72,14 @@ function Search({ setSearchResults }) {
             </p>
             <p>{result.brand}</p>
             <div className="buttons">
-              <button className="button-see">
-                <Link
-                  to={`/shop/${slugify(result.category)}/${slugify(
-                    result.subcategory
-                  )}/${slugify(result.name)}`}
-                >
-                  Voir le produit
-                </Link>
-              </button>
-            
-
+          <Link to={`/product/${result._id}`}> <button className="button-see">
+               Voir
+              </button> </Link>
              
-
-         
-            
-
             </div>
           </div>
         ))}
+        
       </div>
     </div>
   );
