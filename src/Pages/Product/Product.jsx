@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./style.scss";
+import { useHistory } from "react-router-dom";
 
 export default function Product() {
   const [product, setProduct] = useState({}); // Initialisez product en tant qu'objet
@@ -130,27 +131,27 @@ export default function Product() {
         </div>
 
         <div className="product-suggestions">
-  <h3>Produits similaires</h3>
-  <div className="suggestions-grid">
-    {suggestion
-      .filter(
-        (item) =>
-          item.subcategory === product.subcategory &&
-          item.brand === product.brand
-      )
-      .slice(0, 4)
-      .map((item) => (
-        <div className="suggestions-img" key={item.id}>
-          <img src={item.image} alt={item.name} />
-          <div className="product-info">
-            <p>{item.name}</p>
-            <p>{item.price} €</p>
+          <h3>Produits similaires</h3>
+          <div className="suggestions-grid">
+            {suggestion
+              .filter(
+                (item) =>
+                  item.subcategory === product.subcategory &&
+                  item.brand === product.brand
+              )
+              .slice(0, 4)
+
+              .map((item) => (
+                <Link to={`/product/${item._id}`} key={item._id}>
+                  <div className="suggestions-products">
+                    <p className="name">{item.name}</p>
+                    <img src={item.image} alt={item.name} />
+                    <p className="price">{item.price} €</p>
+                  </div>
+                </Link>
+              ))}
           </div>
         </div>
-      ))}
-  </div>
-</div>
-
       </div>
     </div>
   );

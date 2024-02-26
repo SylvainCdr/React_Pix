@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
-import slugify from "slugify";
 
-function ShopNav() {
+function ShopNav({ onSearchChange }) {
   const [categories, setCategories] = useState([]);
   const [subcategoriesMap, setSubcategoriesMap] = useState({});
-
   const [search, setSearch] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
   const [searching, setSearching] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     // Charger toutes les catégories
@@ -65,6 +63,8 @@ function ShopNav() {
         .then((data) => {
           setSearchResults(data);
           setSearching(false);
+          // Passer les résultats de la recherche à l'extérieur du composant
+          onSearchChange(data);
         })
         .catch((error) => {
           console.error("Erreur lors de la recherche de produits :", error);
@@ -72,6 +72,8 @@ function ShopNav() {
         });
     } else {
       setSearchResults([]);
+      // Passer les résultats de la recherche à l'extérieur du composant
+      onSearchChange([]);
     }
   };
 
@@ -101,33 +103,13 @@ function ShopNav() {
       <div className="search">
         {/* barre de recherche pour rechercher des produits par nom ou marque et les afficher sous forme de carte*/}
 
-        {/* <input
+        <input
           type="text"
           placeholder="Rechercher un produit"
           value={search}
           onChange={handleSearch}
         />
-        {searching && <p>Recherche en cours...</p>}
-        <div className="search-results">
-          {searchResults.map((product) => (
-            <Link
-              to={`/Catalogue/${slugify(product.category)}/${slugify(
-                product.subcategory
-              )}/${product._id}`}
-              key={product._id}
-            >
-              <div className="search-result">
-                <img src={product.image} alt={product.name} />
-                <p>{product.name}</p>
-              </div>
-            </Link>
-          ))}
-        </div> */}
-
-        
       </div>
-
-
     </div>
   );
 }
