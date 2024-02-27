@@ -15,7 +15,7 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     fetch("http://localhost:3001/login", {
       method: "POST",
       headers: {
@@ -30,25 +30,7 @@ export default function Login() {
       .then((data) => {
         if (typeof data === "object") {
           setLogged(data);
-
-          //TEST
-          fetch("http://localhost:3001/check-auth", {
-            method: "GET",
-            credentials: "include",
-        })
-        .then((res) => res.json())
-        .then((data) => {
-            console.log("Réponse du serveur pour check-auth:", data);
-            setIsAuthenticated(!!data.user);
-        
-            if (data.user) {
-                setIsAdmin(data.user.role === "admin");
-            }
-        })
-        .catch((error) => console.log(error));
-        
-          //FIN TEST
-
+  
           // Utilisez SweetAlert pour afficher un message de bienvenue
           Swal.fire({
             title: `Bienvenue ${data.firstName}`,
@@ -57,7 +39,25 @@ export default function Login() {
             showConfirmButton: false,
             timer: 1700,
           });
-
+  
+          // Attendez un bref instant avant d'effectuer la deuxième requête
+          setTimeout(() => {
+            // Envoi de la requête pour vérifier l'état d'authentification
+            fetch("http://localhost:3001/check-auth", {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              credentials: "include",
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log("Data from check-auth:", data);
+                // Mettez à jour l'état d'authentification ici
+              })
+              .catch((error) => console.log(error));
+          }, 500);
+  
           navigate("/");
         } else {
           setLogged(false);
@@ -65,6 +65,19 @@ export default function Login() {
       })
       .catch((error) => console.log(error));
   };
+  
+
+
+          // // Utilisez SweetAlert pour afficher un message de bienvenue
+          // Swal.fire({
+          //   title: `Bienvenue `,
+          //   text: "Vous êtes maintenant connecté",
+          //   icon: "success",
+          //   showConfirmButton: false,
+          //   timer: 1700,
+          // });
+
+
   return (
     <div className="login-container">
       {/* // J'ecoute l'evennement onSubmit qui s'execute quand on soumet le formulaire (que ce soit avec la touche entrée ou le bouton envoyer)
