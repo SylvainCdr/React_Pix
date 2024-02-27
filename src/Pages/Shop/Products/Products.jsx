@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import "./style.scss";
 import ShopNav from "../../../Components/ShopNav/ShopNav";
-import slugify from "slugify";
 import Search from "../../../Components/Search/Search";
 
 const Products = () => {

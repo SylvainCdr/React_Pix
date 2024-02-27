@@ -1,8 +1,32 @@
 import React, { useState, useEffect } from "react";
 import "./style.scss";
 import { NavLink, useHistory } from "react-router-dom";
+import { useUser } from "../../Pages/appContext";
 
 function Header() {
+
+  const user = useUser();
+  console.log(user);
+
+const [isLogged, setIsLogged] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     setIsLogged(true);
+  //   }
+  //   const user = localStorage.getItem("user");
+  //   if (user) {
+  //     const userObj = JSON.parse(user);
+  //     if (userObj.role === "admin") {
+  //       setIsAdmin(true);
+  //     }
+  //   }
+  // }, []);
+
+
+
 
   // Creation fonction menu Burger
   let isBurgerOpen = false;
@@ -13,48 +37,6 @@ function Header() {
     isBurgerOpen = !isBurgerOpen;
   }
   // Fin fonction menu Burger
-
-  // Etat d'authentification
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [username, setUsername] = useState("");
-
-  // Vérifier si l'utilisateur est authentifié
-  useEffect(() => {
-    fetch("http://localhost:3001/check-auth", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setIsAuthenticated(data.isAuthenticated);
-        setIsAdmin(data.isAdmin);
-        setUsername(data.username);
-      });
-  }, []);
-
-
-
-
-const handleLogout = () => {
-    // Envoyer une requête de déconnexion au serveur
-    fetch("http://localhost:3001/logout", {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          // Mettre à jour l'état d'authentification après déconnexion réussie
-          setIsAuthenticated(false);
-        }
-      })
-      .catch((error) => console.log(error));
-  
-  };
 
 
   return (
@@ -72,9 +54,11 @@ const handleLogout = () => {
         </div>
 
         <ul onClick={burgerToggle}>
-          {/* <li>
-              <NavLink to="/">Accueil</NavLink>
-            </li> */}
+          <li>
+              <NavLink to="/login">Se Connecter</NavLink>
+            </li>
+
+            
           <li>
             <NavLink to="/Catalogue">Boutique</NavLink>
           </li>
@@ -88,46 +72,16 @@ const handleLogout = () => {
             <NavLink to="/Contact">Contact</NavLink>
           </li>
 
-      
- {/* Bouton Se Connecter / Mon Compte */}
- <li>
-          <NavLink
-            to={
-              isAuthenticated
-                ? isAdmin
-                  ? "/dashboard"
-                  : "/mon-compte"
-                : "/login"
-            }
-          >
-            {isAuthenticated ? (isAdmin ? "Dashboard" : "Mon Compte") : "Se Connecter"}
-          </NavLink>
-        </li>
+<li> Hello {user?.firstName} </li>
 
-        {/* Bouton Se Déconnecter (affiché uniquement si l'utilisateur est connecté) */}
-        
-          <li>
-            <button onClick={handleLogout}>Se Déconnecter</button>
-          </li>
-      
-
-    
-          {/* Afficher le message de bienvenue si l'utilisateur est connecté */}
-          {isAuthenticated && (
-            <li>
-              Bonjour, {username}!
-            </li>
-          )}
+{user.role === "admin" && (
+  <li>
+    <NavLink to="/admin/dashboard">Dashboard</NavLink>
+  </li>
+)}
 
 
 
-          
-
-          {/* <li>
-            <NavLink to="/panier">
-              <i class="fa-solid fa-cart-shopping"></i>
-            </NavLink>
-          </li> */}
         </ul>
         <div className="header__burgerMenu" onClick={burgerToggle}></div>
       </nav>
