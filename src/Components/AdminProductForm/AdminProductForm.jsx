@@ -256,7 +256,7 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="form">
+      <div className="admin-product-form">
         <div className="main-details">
           <label htmlFor="name">Nom</label>
           <input

@@ -16,7 +16,9 @@ import AdminUsers from "./Pages/Admin/AdminUsers/AdminUsers";
 import Catalogue from "./Pages/Shop/Main/Main";
 import Products from "./Pages/Shop/Products/Products";
 import Product from "./Pages/Shop/Product/Product";
+import EditUser from "./Pages/Admin/EditUser/EditUser";
 import { Provider } from "./Pages/appContext";
+
 
 // on importe le hook useLocalStorage pour stocker l'utilisateur dans le local storage
 import useLocalStorage from "use-local-storage";
@@ -48,10 +50,8 @@ function App() {
             <Route path="/admin/users" element={<AdminUsers />} />
             <Route path="/catalogue" element={<Catalogue />} />
             <Route path="/Catalogue/:category" element={<Products />} />
-            <Route
-              path="/Catalogue/:category/:subcategory"
-              element={<Products />}
-            />
+            <Route path="/Catalogue/:category/:subcategory" element={<Products />} />
+          <Route path="/admin/edit-user/:id" element={<EditUser />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -66,11 +66,13 @@ export default function Login() {
       } else {
         Cookies.set("token", data.token);
         setUser(data.user);
-        navigate("/");
+        navigate("/Catalogue");
         Swal.fire({
           icon: "success",
           title: "Connecté",
-          text: "Vous êtes connecté",
+          text: "Bienvenue sur Pixecurity !",
+          showConfirmButton: false,
+          timer: 2000,
         });
         setAuthenticated(true);
       }
@@ -111,9 +113,9 @@ export default function Login() {
         <a href="#">Mot de passe oublié ?</a>
         <button>Se connecter</button>
 
-        {authenticated && (
+        {/* {authenticated && (
           <button> Déconnexion</button>
-        )}
+        )} */}
 
         <a href="/register">Pas encore de compte ? S'enregistrer </a>
       </form>

@@ -2,31 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./style.scss";
 import { NavLink, useHistory } from "react-router-dom";
 import { useUser } from "../../Pages/appContext";
+import Swal from "sweetalert2";
 
 function Header() {
-
   const user = useUser();
   console.log(user);
-
-const [isLogged, setIsLogged] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (token) {
-  //     setIsLogged(true);
-  //   }
-  //   const user = localStorage.getItem("user");
-  //   if (user) {
-  //     const userObj = JSON.parse(user);
-  //     if (userObj.role === "admin") {
-  //       setIsAdmin(true);
-  //     }
-  //   }
-  // }, []);
-
-
-
 
   // Creation fonction menu Burger
   let isBurgerOpen = false;
@@ -38,6 +18,34 @@ const [isLogged, setIsLogged] = useState(false);
   }
   // Fin fonction menu Burger
 
+  const logout = () => {
+    // on supprime le user du localStorage
+    localStorage.removeItem("user");
+    // on supprime le cookie
+    //
+    document.cookie.split(";").forEach((c) => {
+      // on supprime le cookie en changeant la date d'expiration
+      document.cookie = c
+        .replace(/^ +/, "")
+        .replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
+      });
+      
+      
+      // alerte de déconnexion SweetAlert
+      Swal.fire({
+        title: "Déconnecté",
+        icon: "success",
+        text: "Pixecurity vous remercie pour votre visite !",
+        timer : 2000,
+        showConfirmButton: false,
+      });
+
+      setTimeout(() => {
+      // on redirige vers la page d'accueil
+      window.location.href = "/";
+    }
+    , 2000);
+    };
 
   return (
     <div className="header">
@@ -55,11 +63,6 @@ const [isLogged, setIsLogged] = useState(false);
 
         <ul onClick={burgerToggle}>
           <li>
-              <NavLink to="/login">Se Connecter</NavLink>
-            </li>
-
-            
-          <li>
             <NavLink to="/Catalogue">Boutique</NavLink>
           </li>
           <li>
@@ -72,16 +75,33 @@ const [isLogged, setIsLogged] = useState(false);
             <NavLink to="/Contact">Contact</NavLink>
           </li>
 
-<li> Hello {user?.firstName} </li>
+          {!user && (
+            <li>
+              <NavLink to="/login">Se Connecter</NavLink>
+            </li>
+          )}
 
-{user.role === "admin" && (
-  <li>
-    <NavLink to="/admin/dashboard">Dashboard</NavLink>
-  </li>
-)}
+          {user?.role === "user" && (
+            <li>
+              <NavLink to="/mon-compte">Mon compte</NavLink>
+            </li>
+          )}
 
+          {user?.role === "admin" && (
+            <li>
+              <NavLink to="/admin/dashboard">Administration</NavLink>
+            </li>
+          )}
 
+          {user && (
+            <li>
+              <a href="#" onClick={logout}>
+                Se déconnecter
+              </a>
+            </li>
+          )}
 
+          {/* utiliser un bouton toggle-off toggle-on pour la connexion et deconnexion */}
         </ul>
         <div className="header__burgerMenu" onClick={burgerToggle}></div>
       </nav>
