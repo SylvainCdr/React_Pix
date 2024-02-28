@@ -7,10 +7,10 @@ export default function AdminNav() {
         <div class="card-header bg-dark">Commandes</div>
         <div class="card-body bg-dark">
           <p>
-            <a href="/admin/products">Commandes en cours </a>
+            <a href="#">Commandes en cours </a>
           </p>
           <p>
-            <a href="/admin/add-product">Commandes finalisées</a>
+            <a href="#">Commandes finalisées</a>
           </p>
         </div>
       </article>

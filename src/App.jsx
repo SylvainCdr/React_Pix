@@ -17,7 +17,9 @@ import Catalogue from "./Pages/Shop/Main/Main";
 import Products from "./Pages/Shop/Products/Products";
 import Product from "./Pages/Shop/Product/Product";
 import EditUser from "./Pages/Admin/EditUser/EditUser";
+import UserAccount from "./Pages/Shop/UserAccount/UserAccount";
 import { Provider } from "./Pages/appContext";
+
 
 
 // on importe le hook useLocalStorage pour stocker l'utilisateur dans le local storage
@@ -52,6 +54,7 @@ function App() {
             <Route path="/Catalogue/:category" element={<Products />} />
             <Route path="/Catalogue/:category/:subcategory" element={<Products />} />
           <Route path="/admin/edit-user/:id" element={<EditUser />} />
+          <Route path="/mon-compte" element={<UserAccount />} />
           </Route>
         </Routes>
       </BrowserRouter>
