@@ -7,6 +7,12 @@ export default function AdminProducts() {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
+  const [categoryFilter, setCategoryFilter] = useState([]);
+  const [subcategoryFilter, setSubcategoryFilter] = useState([]);
+
+
+
+
   useEffect(() => {
     fetch("http://localhost:3001/products")
       .then((res) => res.json())
@@ -64,20 +70,117 @@ export default function AdminProducts() {
     window.location.href = `/admin/edit-product/${id}`;
   };
 
+
+ // Fonction pour mettre à jour les filtres de catégorie et sous-catégorie
+ const handleCategoryFilterChange = (category) => {
+  const updatedCategoryFilter = [...categoryFilter];
+  if (updatedCategoryFilter.includes(category)) {
+    // Si la catégorie est déjà dans le filtre, la retirer
+    updatedCategoryFilter.splice(updatedCategoryFilter.indexOf(category), 1);
+  } else {
+    // Sinon, l'ajouter au filtre
+    updatedCategoryFilter.push(category);
+  }
+  setCategoryFilter(updatedCategoryFilter);
+};
+
+const handleSubcategoryFilterChange = (subcategory) => {
+  const updatedSubcategoryFilter = [...subcategoryFilter];
+  if (updatedSubcategoryFilter.includes(subcategory)) {
+    // Si la sous-catégorie est déjà dans le filtre, la retirer
+    updatedSubcategoryFilter.splice(
+      updatedSubcategoryFilter.indexOf(subcategory),
+      1
+    );
+  } else {
+    // Sinon, l'ajouter au filtre
+    updatedSubcategoryFilter.push(subcategory);
+  }
+  setSubcategoryFilter(updatedSubcategoryFilter);
+};
+
+// Filtrer les produits en fonction des filtres sélectionnés
+const filteredProducts = products.filter((product) => {
+  // Si aucun filtre n'est sélectionné, afficher tous les produits
+  if (categoryFilter.length === 0 && subcategoryFilter.length === 0) {
+    return true;
+  }
+
+  // Vérifier si la catégorie du produit est dans le filtre de catégorie
+  const categoryMatch =
+    categoryFilter.length === 0 || categoryFilter.includes(product.category);
+
+  // Vérifier si la sous-catégorie du produit est dans le filtre de sous-catégorie
+  const subcategoryMatch =
+    subcategoryFilter.length === 0 ||
+    subcategoryFilter.includes(product.subcategory);
+
+  return categoryMatch && subcategoryMatch;
+});
+
+
+
+
+
   return (
     <div className="admin-products">
       <h1>ADMINISTRATION</h1>
       <h2>Produits</h2>
 
-      {selectedProduct ? (
-        <AdminProductForm
-          productToEdit={selectedProduct}
-          onSubmit={() => {
-            setSelectedProduct(null);
-          }}
-        />
-      ) : (
-        <table className="table">
+      <div className="admin-products-dashboard">
+
+        <div className="admin-products-aside">
+          <h3>Filtrer par Catégorie</h3>
+          {Array.from(new Set(products.map((product) => product.category))).map(
+            (category) => (
+              <div key={category}>
+                <input
+                  type="checkbox"
+                  id={`category-${category}`}
+                  checked={categoryFilter.includes(category)}
+                  onChange={() => handleCategoryFilterChange(category)}
+                />
+                <label htmlFor={`category-${category}`}>{category}</label>
+              </div>
+            )
+          )}
+
+          <h3>Filtrer par Sous-catégorie</h3>
+          {Array.from(
+            new Set(
+              products
+                .filter((product) =>
+                  categoryFilter.length === 0
+                    ? true
+                    : categoryFilter.includes(product.category)
+                )
+                .map((product) => product.subcategory)
+            )
+          ).map((subcategory) => (
+            <div key={subcategory}>
+              <input
+                type="checkbox"
+                id={`subcategory-${subcategory}`}
+                checked={subcategoryFilter.includes(subcategory)}
+                onChange={() => handleSubcategoryFilterChange(subcategory)}
+              />
+              <label htmlFor={`subcategory-${subcategory}`}>{subcategory}</label>
+            </div>
+          ))}
+        </div>
+      
+     
+
+         <div className="admin-products-display">
+          {selectedProduct ? (
+            <AdminProductForm
+              productToEdit={selectedProduct}
+              onSubmit={() => {
+                setSelectedProduct(null);
+              }}
+            />
+          ) : (
+            <table className="table">
           <thead>
             <tr>
               <th scope="col">Photo</th>
@@ -93,42 +196,44 @@ export default function AdminProducts() {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
-              <tr key={product._id}>
-                <td >
-                  <img src={product.image} alt="" />
-                </td>
-                <td>{product.name}</td>
-                <td>{product.ref}</td>
-                <td>{product.category}</td>
-                <td>{product.subcategory}</td>
-                <td>{product.brand}</td>
-                <td>{product.price} €</td>
-                <td>
-                  <button
-                    onClick={() => {
-                      editProduct(product._id);
-                    }}
-                    className="btn btn-primary"
-                  >
-                    Modifier
-                  </button>
-                </td>
-                <td>
-                  <button
-                    onClick={() => {
-                      deleteProduct(product._id);
-                    }}
-                    className="btn btn-danger"
-                  >
-                    Supprimer
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+                {filteredProducts.map((product) => (
+                  <tr key={product._id}>
+                    <td>
+                      <img src={product.image} alt="" />
+                    </td>
+                    <td>{product.name}</td>
+                    <td>{product.ref}</td>
+                    <td>{product.category}</td>
+                    <td>{product.subcategory}</td>
+                    <td>{product.brand}</td>
+                    <td>{product.price} €</td>
+                    <td>
+                      <button
+                        onClick={() => {
+                          editProduct(product._id);
+                        }}
+                        className="btn btn-primary"
+                      >
+                        Modifier
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        onClick={() => {
+                          deleteProduct(product._id);
+                        }}
+                        className="btn btn-danger"
+                      >
+                        Supprimer
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

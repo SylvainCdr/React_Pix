@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./style.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
+import { useUser } from "../../Pages/appContext";
+import Swal from "sweetalert2";
 
 function Header() {
-  const link1 = "#";
+  const user = useUser();
+  console.log(user);
 
   // Creation fonction menu Burger
   let isBurgerOpen = false;
@@ -15,52 +18,94 @@ function Header() {
   }
   // Fin fonction menu Burger
 
-  return (
-    <>
-      <div className="header">
-        <nav className="header__nav">
-          {/* ON affiche le logo situé dans assets et on le redirige vers la page d'accueil */}
-          <div className="header__logo">
-            <NavLink to="/">
-              <img
-                src="/assets/logo-dark.svg"
-                alt="logo"
-              /> 
-              <p>Fournisseur de solutions <br />de sureté intelligentes</p>
-            </NavLink>
-          </div>
-          
-          <ul onClick={burgerToggle}>
+  const logout = () => {
+    // on supprime le user du localStorage
+    localStorage.removeItem("user");
+    // on supprime le cookie
+    //
+    document.cookie.split(";").forEach((c) => {
+      // on supprime le cookie en changeant la date d'expiration
+      document.cookie = c
+        .replace(/^ +/, "")
+        .replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
+      });
+      
+      
+      // alerte de déconnexion SweetAlert
+      Swal.fire({
+        title: "Déconnecté",
+        icon: "success",
+        text: "Pixecurity vous remercie pour votre visite !",
+        timer : 2000,
+        showConfirmButton: false,
+      });
 
-            {/* <li>
-              <NavLink to="/">Accueil</NavLink>
-            </li> */}
+      setTimeout(() => {
+      // on redirige vers la page d'accueil
+      window.location.href = "/";
+    }
+    , 2000);
+    };
+
+  return (
+    <div className="header">
+      <nav className="header__nav">
+        {/* ON affiche le logo situé dans assets et on le redirige vers la page d'accueil */}
+        <div className="header__logo">
+          <NavLink to="/">
+            <img src="/assets/logo-dark.svg" alt="logo" />
+            <p>
+              Fournisseur de solutions <br />
+              de sureté intelligentes
+            </p>
+          </NavLink>
+        </div>
+
+        <ul onClick={burgerToggle}>
+          <li>
+            <NavLink to="/Catalogue">Boutique</NavLink>
+          </li>
+          <li>
+            <NavLink to="/Notre-expertise">Notre expertise</NavLink>
+          </li>
+          <li>
+            <NavLink to="/A-propos">A propos</NavLink>
+          </li>
+          <li>
+            <NavLink to="/Contact">Contact</NavLink>
+          </li>
+
+          {!user && (
             <li>
-              <NavLink to="/Produits">Catalogue</NavLink>
+              <NavLink to="/login">Se Connecter</NavLink>
             </li>
+          )}
+
+          {user?.role === "user" && (
             <li>
-              <NavLink to="/Notre-expertise">Notre expertise</NavLink>
+              <NavLink to="/mon-compte">Mon compte</NavLink>
             </li>
+          )}
+
+          {user?.role === "admin" && (
             <li>
-              <NavLink to="/A-propos">A propos</NavLink>
+              <NavLink to="/admin/dashboard">Administration</NavLink>
             </li>
+          )}
+
+          {user && (
             <li>
-              <NavLink to="/Contact">Contact</NavLink>
-            </li>
-            {/* <span>
-              <a href={link1} target="_blank" rel="noopener noreferrer">
-                <img
-                  src="https://img.icons8.com/?size=64&id=52539&format=png"
-                  alt="github"
-                />
+              <a href="#" onClick={logout}>
+                Se déconnecter
               </a>
-              
-            </span> */}
-          </ul>
-          <div className="header__burgerMenu" onClick={burgerToggle}></div>
-        </nav>
-      </div>
-    </>
+            </li>
+          )}
+
+          {/* utiliser un bouton toggle-off toggle-on pour la connexion et deconnexion */}
+        </ul>
+        <div className="header__burgerMenu" onClick={burgerToggle}></div>
+      </nav>
+    </div>
   );
 }
 
