@@ -52,14 +52,11 @@
       background: linear-gradient(to bottom right, #0f0f0f, #496d8e);
       display: flex;
       align-items: center;
-      border-radius: 0.3rem 5rem 0.3rem 5rem;
-      -webkit-border-radius: 0.3rem 5rem 0.3rem 5rem;
-      -moz-border-radius: 0.3rem 5rem 0.3rem 5rem;
-      -ms-border-radius: 0.3rem 5rem 0.3rem 5rem;
-      -o-border-radius: 0.3rem 5rem 0.3rem 5rem;
-      box-shadow:  1px 1px 3px 0px #424242;
-      p
-{
+      border-radius: 0.5rem;
+
+      box-shadow: 1px 1px 3px 0px #424242;
+
+      p {
         line-height: 1.6;
         font-size: 1.2rem;
         text-align: justify;
@@ -69,7 +66,7 @@
         margin: 1rem;
 
         strong {
-           color: #ace5fd;
+          color: #ace5fd;
           font-weight: 600;
         }
       }
@@ -79,21 +76,17 @@
   .section-1__shop {
     background-image: url("../../../public/assets/camera3.jpeg");
     background-size: cover;
-    border-radius: 5rem 0.3rem 5rem 0.3rem;
-    -webkit-border-radius: 5rem 0.3rem 5rem 0.3rem;
-    -moz-border-radius: 5rem 0.3rem 5rem 0.3rem;
-    -ms-border-radius: 5rem 0.3rem 5rem 0.3rem;
-    -o-border-radius: 5rem 0.3rem 5rem 0.3rem;
-    box-shadow:  1px 1px 3px 0px #424242;
+    border-radius: 0.5rem;
+    box-shadow: 1px 1px 3px 0px #424242;
     //clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
-    h2
-{
+
+    h2 {
       font-size: 2rem;
       margin: 0.5rem 0rem 0rem 3rem;
       color: #009fe3;
       font-family: "Montserrat", sans serif;
       font-weight: 600;
-      display : flex;
+      display: flex;
       text-shadow: rgb(70, 70, 70) 1px 1px 2px;
     }
 
@@ -107,16 +100,13 @@
   }
 
   .section-2 {
-
     .section-2__offer {
       h2 {
         margin-top: 5rem;
         margin-bottom: 1rem;
         margin-left: 1rem;
-        display : flex;
-
-
-      }  
+        display: flex;
+      }
 
       p {
         line-height: 1.6;
@@ -145,9 +135,8 @@
         -moz-border-radius: 1rem 1rem 1rem 1rem;
         -ms-border-radius: 1rem 1rem 1rem 1rem;
         -o-border-radius: 1rem 1rem 1rem 1rem;
-        box-shadow:  1px 1px 2px 1px #424242;
-        img
-{
+        box-shadow: 1px 1px 2px 1px #424242;
+        img {
           margin-top: 1rem;
           width: 5rem;
         }
@@ -175,7 +164,6 @@
             color: #f9f9f9;
           }
         }
-        
       }
     }
   }
