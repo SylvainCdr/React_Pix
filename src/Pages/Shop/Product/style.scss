@@ -50,14 +50,11 @@
         }
         .like {
           width: 10%;
-
-          a {
+i {
             font-size: 2rem;
-            color: #858585;
-
             &:hover {
               cursor: pointer;
-              color: #f86363;
+              scale: 1.1;
             }
           }
         }
