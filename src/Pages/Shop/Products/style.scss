@@ -14,43 +14,73 @@
   .products-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 1.2rem;
+    gap: 1rem;
     padding: 1rem;
 
     .product-card {
       background-color: #fff;
-      border-radius: 0.5rem;
+      border-radius: 0.3rem;
       box-shadow: 0.1rem 0.1rem 0.2rem 0rem rgba(217, 217, 217, 0.798);
       height: auto;
       padding: 0.5rem;
-
-      .card-title {
+      -webkit-border-radius: 0.3rem;
+      -moz-border-radius: 0.3rem;
+      -ms-border-radius: 0.3rem;
+      -o-border-radius: 0.3rem;
+      .card-title
+{
         height: 1.8rem;
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: #0066db;
-        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 500;
+        // text-align: center;
+        margin-bottom: 1.3rem;
+        
+
+      a {
+        text-decoration: none;
+        color: #0355b2;
+      }
+
+      a:hover {
+        color: #1d8ce6;
+      }
+
       }
 
       img {
+        // width: 100%;
+        // height : auto;
         width: 100%;
-        height : auto;
+        height: 20rem;
+        object-fit: cover;
+        
         
       }
-      p {
+      .card-brand {
         font-size: 1rem;
-        color: #011552;
-        margin-bottom: 0.5rem;
+        color: #646464;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
         font-weight: 600;
+        border-bottom: 0.1rem solid #d9d9d9;
       }
 
-      .card-price {
-        font-size: 1.2rem;
-        font-weight: 700;
-        color: #016e22;
-        margin-bottom: 0.5rem;
-        text-align: center;
+      .card-bottom {
+        width: 100%;
+        display: flex;
 
+      .card-price {
+        width : 50%;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #016e22;
+        padding-right: 2rem;
+        margin-bottom: 0.5rem;
+        
+        
+      
         span {
           font-size: 0.7rem;
           font-weight: 600;
@@ -58,51 +88,56 @@
         }
       }
 
-      .button-see {
-        width: 100%;
-        margin-bottom: 0.2rem;
-        padding: 0.5rem;
-        font-size: 1rem;
-        font-weight: 600;
-        color: #fff;
-        background-color: #0066db;
-        border: none;
-        border-radius: 0.5rem;
-        cursor: pointer;
-        transition: all 0.3s ease-in-out;
+.CTA {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  
+.heart { 
+ i {
+  font-size: 1.4rem;
+  color: #838485;
+  margin-right: 0.9rem;
+  cursor: pointer;
+}
 
-        a {
-          text-decoration: none;
-          color: #fff;
-        }
+i:hover {
+  color: #f74f4f;
+  scale: 1.1;
+}
+}
 
-        &:hover {
-          background-color: #0073ff;
-        }
-      }
+.cart {
+  i {
+    font-size: 1.4rem;
+    color: #838485;
+    margin-right: 0.8rem;
+    cursor: pointer;
+  }
 
-      .button-cart {
-        width: 100%;
+  i:hover {
+    color: #03b43e;
+    scale: 1.1;
+  }}
 
-        padding: 0.4rem;
-        font-size: 1rem;
-        font-weight: 600;
-        color: #fff;
-        background-color: #018a2f;
-        border: none;
-        border-radius: 0.5rem;
-        cursor: pointer;
-        transition: all 0.3s ease-in-out;
-      }
+
+
+}
+
+   
+
+    
     }
   }
+}
+
 
 // RESPONSIVE
 
 
   @media (max-width: 1024px) {
     .products-grid {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
     }
   }
 
@@ -110,13 +145,13 @@
 
   @media (max-width: 768px) {
     .products-grid {
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
     }
   }
 
   @media (max-width: 480px) {
     .products-grid {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
     }
   }
 

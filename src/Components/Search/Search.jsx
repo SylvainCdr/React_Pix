@@ -59,22 +59,24 @@ function Search({ setSearchResults }) {
         </div>
     
 
-      <div className="search-results">
+      <div className="search-grid">
         {searchResultsLocal.map((result) => (
           
           <div className="product-card" key={result.id}>
-            <div className="card-title">
-              <h2>{result.name}</h2>
-            </div>
             <img src={result.image} alt={result.name} className="card-img" />
+            <div className="card-title">
+            <Link to={`/product/${result._id}`}><h2>{result.name}</h2></Link>
+            </div>
+            <p className="card-brand">{result.brand}</p>
+            <div className="card-bottom">
             <p className="card-price">
               {result.price} € <span>TTC</span>
             </p>
-            <p>{result.brand}</p>
-            <div className="buttons">
-          <Link to={`/product/${result._id}`}> <button className="button-see">
-               Voir
-              </button> </Link>
+            <div className="CTA">
+                  <p className="heart"> <a href="#" ><i class="fa-solid fa-heart"></i> </a> </p>
+                 <p className="cart"> <a href="#" ><i class="fa-solid fa-cart-plus"></i></a> </p>
+                </div>
+  
              
             </div>
           </div>

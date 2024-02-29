@@ -47,21 +47,22 @@ const Products = () => {
           <div className="products-grid">
             {products.map((item) => (
               <div className="product-card" key={item._id}>
-                <div className="card-title">
-                  <h2>{item.name}</h2>
-                </div>
                 <img src={item.image} alt={item.name} className="card-img" />
+
+                <div className="card-title">
+                <Link to={`/product/${item._id}`}><h2>{item.name}</h2></Link>
+                </div>
+                <p className="card-brand">{item.brand}</p>
+
+<div className="card-bottom">
+
                 <p className="card-price">
                   {item.price} € <span>TTC</span>
                 </p>
-                <p>{item.brand}</p>
-                <div className="buttons">
-                  <button className="button-see">
-                    <Link to={`/product/${item._id}`}>Voir le produit</Link>
-                  </button>
-                  <button className="button-cart">
-                    <i className="fa-solid fa-cart-plus"></i>
-                  </button>
+                <div className="CTA">
+                  <p className="heart"> <a href="#" ><i class="fa-solid fa-heart"></i> </a> </p>
+                 <p className="cart"> <a href="#" ><i class="fa-solid fa-cart-plus"></i></a> </p>
+                </div>
                 </div>
               </div>
             ))}
