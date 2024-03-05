@@ -1,4 +1,60 @@
+// <div className='cart-container'>
+// <h1>Votre panier</h1>
+// <table>
+//   <thead>
+//     <tr>
+//       <th>Produit</th>
+//       <th>Référence</th>
+//       <th>Quantité</th>
+//       <th>Prix unitaire</th>
+//       <th>Prix total</th>
+//     </tr>
+//   </thead>
+//   <tbody>
+//     {cart.map((product, index) => (
+//       <tr key={index}>
+//         <td>{product.name}</td>
+//         <td>{product.ref}</td>
+//         <td>{product.quantity}</td>
+//         <td>{prices[index]}</td>
+//           <td>{product.quantity * prices[index]}</td>
+//       </tr>
+//     ))}
+//   </tbody>
+// </table>
+// </div>
+
+
 .cart-container {
     margin-top : 8rem ;
+    
+    h1 {
+        text-align : center ;
+        margin-bottom : 2rem ;
+    }
+
+    table {
+        width : 100% ;
+        border-collapse : collapse ;
+        margin : 0 auto ;
+        text-align : center ;
+        thead {
+            background-color : #636363 ;
+            tr {
+                th {
+                    padding : 1rem 0 ;
+                }
+            }
+        }
+        tbody {
+            tr {
+                td {
+                    padding : 1rem 0 ;
+                }
+            }
+        }
+    }
+
+    
     
 }
