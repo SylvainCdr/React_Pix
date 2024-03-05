@@ -7,11 +7,11 @@ const useCart = () => {
     const [cart, setCart] = useState([]);
     const [isAddingToCart, setIsAddingToCart] = useState(false);
 
-    const addToCart = async (userId, productId, productName, productPrice) => {
+    const addToCart = async (userId, productId, productName, productRef) => {
         try {
             setIsAddingToCart(true);
 
-            const response = await fetch(`http://localhost:3001/users/${userId}/add-cart`, {
+            const response = await fetch(`http://localhost:3001/users/${userId}/add-cart/${productId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -19,7 +19,7 @@ const useCart = () => {
                 body: JSON.stringify({
                     product_id: productId,
                     name: productName,
-                    price: productPrice
+                    ref : productRef,
                 })
             });
 

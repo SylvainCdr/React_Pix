@@ -5,7 +5,8 @@ import "./style.scss";
 import ShopNav from "../../../Components/ShopNav/ShopNav";
 import Search from "../../../Components/Search/Search";
 import Cart from "../../Shop/Cart/Cart";
-import useFavorites from "../../../Components/useFavorites";  
+import useFavorites from "../../../Components/useFavorites";
+import useCart from "../../../Components/useCart";
 
 export default function Product() {
   const [product, setProduct] = useState({});
@@ -17,6 +18,7 @@ export default function Product() {
   
   // Utilisez le hook useFavorites
   const { addToFavorites, removeFromFavorites, checkFavorite } = useFavorites();  
+  const { addToCart } = useCart();
 
    // Retrieve user data from local storage
    const userDataString = localStorage.getItem("user");
@@ -97,12 +99,7 @@ export default function Product() {
   }, [userId, id, checkFavorite]);
 
 
- 
 
-  const handleAddToCartClick = () => {
-    setCart([...cart, product]);
-    console.log('Produit ajouté au panier :', product);
-  };
 
   const handleToggleFavoritesClick = async () => {
     if (userId) {
@@ -117,6 +114,20 @@ export default function Product() {
       console.error("L'ID de l'utilisateur n'est pas disponible.");
     }
   };
+
+  const handleAddToCartClick = async () => {
+    if (userId) {
+      const added = await addToCart(userId, id, product.name, product.ref);
+      if (added) {
+        console.log("Produit ajouté au panier avec succès!");
+      } else {
+        console.error("Erreur lors de l'ajout du produit au panier");
+      }
+    } else {
+      console.error("L'ID de l'utilisateur n'est pas disponible.");
+    }
+  };
+
 
 
   return (
