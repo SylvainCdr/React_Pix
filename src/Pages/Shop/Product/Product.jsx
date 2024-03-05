@@ -13,6 +13,7 @@ export default function Product() {
   const [suggestion, setSuggestion] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [cart, setCart] = useState([]);
+  const [isInFavorites, setIsInFavorites] = useState(false);
   
   // Utilisez le hook useFavorites
   const { addToFavorites, removeFromFavorites, checkFavorite } = useFavorites();  
@@ -26,6 +27,43 @@ export default function Product() {
    // Extract user ID from the user data
    const userId = userData._id;
   console.log("ID de l'utilisateur:", userId);
+
+
+ // Créez un objet de correspondance pour mapper les clés de l'objet details à des libellés
+ const labelsMapping = {
+  dimensions: "Dimensions",
+  poids: "Poids",
+  temp: "Température",
+  megapixels: "Mégapixels",
+  distanceFocale: "Distance focale",
+  ouverture: "Ouverture",
+  angleVue: "Angle de vue",
+  imgSec: "Images par seconde",
+  capteur: "Capteur",
+  resolution: "Résolution",
+  couleur: "Couleur",
+  infrarouge: "Infrarouge",
+  distanceInfrarouge: "Distance infrarouge",
+  indiceProtection: "Indice de protection",
+  puissance: "Puissance",
+  installationExt: "Installation extérieure",
+  nbrePorts: "Nombre de ports",
+  rackable: "Rackable",
+  manageable: "Manageable",
+  poe: "PoE",
+  poePlus: "PoE+",
+  poePlusPlus: "PoE++",
+  consommation: "Consommation",
+  garantie: "Garantie",
+  vitesse: "Vitesse",
+  typeWifi: "Type de WiFi",
+  antenne: "Antenne",
+  lan: "LAN",
+  nebula: "Nebula",
+
+  // Ajoutez d'autres mappages au besoin
+};
+
 
   useEffect(() => {
     fetch("http://localhost:3001/products")
@@ -41,42 +79,7 @@ export default function Product() {
     }
   }, [id]);
 
-  // Créez un objet de correspondance pour mapper les clés de l'objet details à des libellés
-  const labelsMapping = {
-    dimensions: "Dimensions",
-    poids: "Poids",
-    temp: "Température",
-    megapixels: "Mégapixels",
-    distanceFocale: "Distance focale",
-    ouverture: "Ouverture",
-    angleVue: "Angle de vue",
-    imgSec: "Images par seconde",
-    capteur: "Capteur",
-    resolution: "Résolution",
-    couleur: "Couleur",
-    infrarouge: "Infrarouge",
-    distanceInfrarouge: "Distance infrarouge",
-    indiceProtection: "Indice de protection",
-    puissance: "Puissance",
-    installationExt: "Installation extérieure",
-    nbrePorts: "Nombre de ports",
-    rackable: "Rackable",
-    manageable: "Manageable",
-    poe: "PoE",
-    poePlus: "PoE+",
-    poePlusPlus: "PoE++",
-    consommation: "Consommation",
-    garantie: "Garantie",
-    vitesse: "Vitesse",
-    typeWifi: "Type de WiFi",
-    antenne: "Antenne",
-    lan: "LAN",
-    nebula: "Nebula",
 
-    // Ajoutez d'autres mappages au besoin
-  };
-
-  const [isInFavorites, setIsInFavorites] = useState(false);
 
   useEffect(() => {
     const fetchFavoriteStatus = async () => {

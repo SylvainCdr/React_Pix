@@ -68,7 +68,7 @@ const useFavorites = () => {
       setIsAddingToFavorites(true);
 
       const response = await fetch(
-        `http://localhost:3001/users/${userId}/remove-favorite/${productId}`,
+        `http://localhost:3001/users/${userId}/delete-favorite/${productId}`,
         {
           method: "DELETE",
         }
