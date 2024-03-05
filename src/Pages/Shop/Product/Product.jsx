@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./style.scss";
@@ -15,57 +14,57 @@ export default function Product() {
   const [searchResults, setSearchResults] = useState([]);
   const [cart, setCart] = useState([]);
   const [isInFavorites, setIsInFavorites] = useState(false);
-  
+
   // Utilisez le hook useFavorites
-  const { addToFavorites, removeFromFavorites, checkFavorite } = useFavorites();  
+  const { addToFavorites, removeFromFavorites, checkFavorite } = useFavorites();
   const { addToCart } = useCart();
+  const [quantity, setQuantity] = useState(1);
 
-   // Retrieve user data from local storage
-   const userDataString = localStorage.getItem("user");
 
-   // Parse the user data string to a JSON object
-   const userData = JSON.parse(userDataString);
- 
-   // Extract user ID from the user data
-   const userId = userData._id;
+  // Retrieve user data from local storage
+  const userDataString = localStorage.getItem("user");
+
+  // Parse the user data string to a JSON object
+  const userData = JSON.parse(userDataString);
+
+  // Extract user ID from the user data
+  const userId = userData._id;
   console.log("ID de l'utilisateur:", userId);
 
+  // Créez un objet de correspondance pour mapper les clés de l'objet details à des libellés
+  const labelsMapping = {
+    dimensions: "Dimensions",
+    poids: "Poids",
+    temp: "Température",
+    megapixels: "Mégapixels",
+    distanceFocale: "Distance focale",
+    ouverture: "Ouverture",
+    angleVue: "Angle de vue",
+    imgSec: "Images par seconde",
+    capteur: "Capteur",
+    resolution: "Résolution",
+    couleur: "Couleur",
+    infrarouge: "Infrarouge",
+    distanceInfrarouge: "Distance infrarouge",
+    indiceProtection: "Indice de protection",
+    puissance: "Puissance",
+    installationExt: "Installation extérieure",
+    nbrePorts: "Nombre de ports",
+    rackable: "Rackable",
+    manageable: "Manageable",
+    poe: "PoE",
+    poePlus: "PoE+",
+    poePlusPlus: "PoE++",
+    consommation: "Consommation",
+    garantie: "Garantie",
+    vitesse: "Vitesse",
+    typeWifi: "Type de WiFi",
+    antenne: "Antenne",
+    lan: "LAN",
+    nebula: "Nebula",
 
- // Créez un objet de correspondance pour mapper les clés de l'objet details à des libellés
- const labelsMapping = {
-  dimensions: "Dimensions",
-  poids: "Poids",
-  temp: "Température",
-  megapixels: "Mégapixels",
-  distanceFocale: "Distance focale",
-  ouverture: "Ouverture",
-  angleVue: "Angle de vue",
-  imgSec: "Images par seconde",
-  capteur: "Capteur",
-  resolution: "Résolution",
-  couleur: "Couleur",
-  infrarouge: "Infrarouge",
-  distanceInfrarouge: "Distance infrarouge",
-  indiceProtection: "Indice de protection",
-  puissance: "Puissance",
-  installationExt: "Installation extérieure",
-  nbrePorts: "Nombre de ports",
-  rackable: "Rackable",
-  manageable: "Manageable",
-  poe: "PoE",
-  poePlus: "PoE+",
-  poePlusPlus: "PoE++",
-  consommation: "Consommation",
-  garantie: "Garantie",
-  vitesse: "Vitesse",
-  typeWifi: "Type de WiFi",
-  antenne: "Antenne",
-  lan: "LAN",
-  nebula: "Nebula",
-
-  // Ajoutez d'autres mappages au besoin
-};
-
+    // Ajoutez d'autres mappages au besoin
+  };
 
   useEffect(() => {
     fetch("http://localhost:3001/products")
@@ -81,8 +80,6 @@ export default function Product() {
     }
   }, [id]);
 
-
-
   useEffect(() => {
     const fetchFavoriteStatus = async () => {
       if (userId && id) {
@@ -94,12 +91,9 @@ export default function Product() {
         }
       }
     };
-  
+
     fetchFavoriteStatus();
   }, [userId, id, checkFavorite]);
-
-
-
 
   const handleToggleFavoritesClick = async () => {
     if (userId) {
@@ -115,9 +109,10 @@ export default function Product() {
     }
   };
 
+  // ajout du panier en cliquant sur le bouton et en prenant compte de la quantité
   const handleAddToCartClick = async () => {
     if (userId) {
-      const added = await addToCart(userId, id, product.name, product.ref);
+      const added = await addToCart(userId, id, product.name, product.ref, quantity);
       if (added) {
         console.log("Produit ajouté au panier avec succès!");
       } else {
@@ -127,8 +122,6 @@ export default function Product() {
       console.error("L'ID de l'utilisateur n'est pas disponible.");
     }
   };
-
-
 
   return (
     <div className="product-container">
@@ -149,26 +142,38 @@ export default function Product() {
                 <p
                   className="like"
                   onClick={handleToggleFavoritesClick}
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: "pointer" }}
                 >
-                  <i className="fa-solid fa-heart" style={{ color: isInFavorites ? '#ed3f3f' : 'inherit' }}></i>
+                  <i
+                    className="fa-solid fa-heart"
+                    style={{ color: isInFavorites ? "#ed3f3f" : "inherit" }}
+                  ></i>
                 </p>
               </div>
               <h2>{product.name}</h2>
               <p className="brand">{product.brand}</p>
               <p className="presentation">{product.presentation}</p>
-
               {/* TODO : Chercher l'etat du stock dans Axonaut */}
               <p className="stock">En stock</p>
-
               <p className="livraison">
                 <i className="fa-solid fa-truck-fast"></i>Livraison en 72h
               </p>
-
-              <div className="add-to-cart">
-                <button onClick={handleAddToCartClick} className="add">Ajouter au panier</button>
+              {/* // bouton avec + - pour ajouter ou retirer des produits */}
+              <div className="quantity">
+                <button
+                  onClick={() => setQuantity(quantity - 1)}
+                  disabled={quantity === 1}
+                >
+                  -
+                </button>
+                <p>{quantity}</p>
+                <button onClick={() => setQuantity(quantity + 1)}>+</button>
               </div>
-
+              <div className="add-to-cart">
+                <button onClick={handleAddToCartClick} className="add">
+                  Ajouter au panier
+                </button>
+              </div>
               <p className="ref">Référence : {product.ref}</p>
             </div>
           </div>

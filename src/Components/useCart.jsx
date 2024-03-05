@@ -7,7 +7,9 @@ const useCart = () => {
     const [cart, setCart] = useState([]);
     const [isAddingToCart, setIsAddingToCart] = useState(false);
 
-    const addToCart = async (userId, productId, productName, productRef) => {
+    // const [quantity, setQuantity] = useState(1);
+
+    const addToCart = async (userId, productId, productName, productRef, quantity) => {
         try {
             setIsAddingToCart(true);
 
@@ -20,6 +22,7 @@ const useCart = () => {
                     product_id: productId,
                     name: productName,
                     ref : productRef,
+                    quantity: quantity
                 })
             });
 
