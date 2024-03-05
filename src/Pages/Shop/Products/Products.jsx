@@ -45,6 +45,9 @@ const Products = () => {
     fetchProducts();
   }, [location.pathname, category, subcategory]);
 
+
+  
+
   return (
     <div className="products-container">
       <ShopNav />
@@ -77,7 +80,6 @@ const Products = () => {
 const ProductCard = ({ product, userId, addToFavorites, removeFromFavorites, checkFavorite }) => {
   const [isInFavorites, setIsInFavorites] = useState(false);
 
-
   useEffect(() => {
     const fetchFavoriteStatus = async () => {
       if (userId) {
@@ -93,7 +95,6 @@ const ProductCard = ({ product, userId, addToFavorites, removeFromFavorites, che
     fetchFavoriteStatus();
   }, [userId, product._id, checkFavorite]);
 
-
   const handleToggleFavoritesClick = async () => {
     try {
       if (userId) {
@@ -102,8 +103,8 @@ const ProductCard = ({ product, userId, addToFavorites, removeFromFavorites, che
         } else {
           await addToFavorites(userId, product._id, product.name, product.price);
         }
-  
-        // Mettez à jour isInFavorites seulement après le succès de l'opération
+
+        // Mettez à jour isInFavorites après le succès de l'opération
         setIsInFavorites(!isInFavorites);
       } else {
         console.error("L'ID de l'utilisateur n'est pas disponible.");
@@ -130,7 +131,7 @@ const ProductCard = ({ product, userId, addToFavorites, removeFromFavorites, che
                   onClick={handleToggleFavoritesClick}
                   style={{ cursor: 'pointer' }}
                 >
-                  <i className="fa-solid fa-heart" style={{ color: isInFavorites ? '#ed3f3f' : '#838485;' }}></i>
+                  <i className="fa-solid fa-heart" style={{ color: isInFavorites ? '#ed3f3f' : '#838485' }}></i>
                 </p>
           <p className="cart"> <a href="#"><i className="fa-solid fa-cart-plus"></i></a> </p>
         </div>
