@@ -3,12 +3,25 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import "./style.scss";
 import ShopNav from "../../../Components/ShopNav/ShopNav";
 import Search from "../../../Components/Search/Search";
+import useFavorites from "../../../Components/useFavorites";
 
 const Products = () => {
   const { category, subcategory } = useParams();
   const [products, setProducts] = useState([]);
   const location = useLocation();
   const [searchResults, setSearchResults] = useState([]);
+  const { addToFavorites, removeFromFavorites, checkFavorite } = useFavorites();
+  const [userId, setUserId] = useState('');
+
+  useEffect(() => {
+    const userDataString = localStorage.getItem("user");
+    const userData = JSON.parse(userDataString);
+
+    if (userData && userData._id) {
+      setUserId(userData._id);
+      console.log("ID de l'utilisateur:", userData._id);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -38,37 +51,90 @@ const Products = () => {
       <Search setSearchResults={setSearchResults} />
 
       {searchResults.length === 0 && (
-       <div className="products">
+        <div className="products">
           <div className="products-title">
             <h1>{category} </h1>
           </div>
-           
 
           <div className="products-grid">
             {products.map((item) => (
-              <div className="product-card" key={item._id}>
-                <img src={item.image} alt={item.name} className="card-img" />
-
-                <div className="card-title">
-                <Link to={`/product/${item._id}`}><h2>{item.name}</h2></Link>
-                </div>
-                <p className="card-brand">{item.brand}</p>
-
-<div className="card-bottom">
-
-                <p className="card-price">
-                  {item.price} € <span>TTC</span>
-                </p>
-                <div className="CTA">
-                  <p className="heart"> <a href="#" ><i class="fa-solid fa-heart"></i> </a> </p>
-                 <p className="cart"> <a href="#" ><i class="fa-solid fa-cart-plus"></i></a> </p>
-                </div>
-                </div>
-              </div>
+              <ProductCard
+                key={item._id}
+                product={item}
+                userId={userId}
+                addToFavorites={addToFavorites}
+                removeFromFavorites={removeFromFavorites}
+                checkFavorite={checkFavorite}
+              />
             ))}
           </div>
         </div>
       )}
+    </div>
+  );
+};
+
+const ProductCard = ({ product, userId, addToFavorites, removeFromFavorites, checkFavorite }) => {
+  const [isInFavorites, setIsInFavorites] = useState(false);
+
+
+  useEffect(() => {
+    const fetchFavoriteStatus = async () => {
+      if (userId) {
+        try {
+          const isInFavs = await checkFavorite(userId, product._id);
+          setIsInFavorites(isInFavs);
+        } catch (error) {
+          console.error("Error in fetchFavoriteStatus:", error);
+        }
+      }
+    };
+
+    fetchFavoriteStatus();
+  }, [userId, product._id, checkFavorite]);
+
+
+  const handleToggleFavoritesClick = async () => {
+    try {
+      if (userId) {
+        if (isInFavorites) {
+          await removeFromFavorites(userId, product._id);
+        } else {
+          await addToFavorites(userId, product._id, product.name, product.price);
+        }
+  
+        // Mettez à jour isInFavorites seulement après le succès de l'opération
+        setIsInFavorites(!isInFavorites);
+      } else {
+        console.error("L'ID de l'utilisateur n'est pas disponible.");
+      }
+    } catch (error) {
+      console.error("Erreur lors de la gestion des favoris :", error);
+    }
+  };
+
+  return (
+    <div className="product-card">
+      <img src={product.image} alt={product.name} className="card-img" />
+      <div className="card-title">
+        <Link to={`/product/${product._id}`}><h2>{product.name}</h2></Link>
+      </div>
+      <p className="card-brand">{product.brand}</p>
+      <div className="card-bottom">
+        <p className="card-price">
+          {product.price} € <span>TTC</span>
+        </p>
+        <div className="CTA">
+        <p
+                  className="heart"
+                  onClick={handleToggleFavoritesClick}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <i className="fa-solid fa-heart" style={{ color: isInFavorites ? '#ed3f3f' : '#838485;' }}></i>
+                </p>
+          <p className="cart"> <a href="#"><i className="fa-solid fa-cart-plus"></i></a> </p>
+        </div>
+      </div>
     </div>
   );
 };
