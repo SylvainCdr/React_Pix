@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./style.scss";
 import { NavLink } from "react-router-dom";
 import useFavorites from "../../../Components/useFavorites";

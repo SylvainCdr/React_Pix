@@ -3,7 +3,9 @@ import './style.scss';
 import useCart from '../../../Components/useCart';
 
 export default function Cart() {
-  const { fetchCart, cart, prices, images } = useCart();
+  const { fetchCart, editQuantity, removeFromCart, cart, prices, images } = useCart();
+
+
 
   useEffect(() => {
     const userDataString = localStorage.getItem('user');
@@ -11,6 +13,10 @@ export default function Cart() {
     const userId = userData._id;
     fetchCart(userId);
   }, []);
+
+  
+
+
 
   return (
     <div className='cart-container'>
@@ -38,10 +44,30 @@ export default function Cart() {
             </div>
             <div className='product-price'>{prices[index]} €</div>
             <div className='product-quantity'>
-              <input type='number' value={product.quantity} min='1' readOnly />
+              <input
+                type='number'
+                value={product.quantity}
+                onChange={(e) => {
+                  const userDataString = localStorage.getItem('user');
+                  const userData = JSON.parse(userDataString);
+                  const userId = userData._id;
+                  editQuantity(userId, product.product_id, e.target.value);
+                }}
+              />
             </div>
             <div className='product-removal'>
-              <button className='remove-product'>Supprimer</button>
+
+              <button
+                className='remove-product'
+                onClick={() => {
+                  const userDataString = localStorage.getItem('user');
+                  const userData = JSON.parse(userDataString);
+                  const userId = userData._id;
+                  removeFromCart(userId, product.product_id);
+                }}
+              >
+                Supprimer
+              </button>
             </div>
             <div className='product-line-price'>{product.quantity * prices[index]} €</div>
           </div>

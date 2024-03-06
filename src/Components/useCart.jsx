@@ -68,7 +68,99 @@ const useCart = () => {
       });
   }, []);
 
-  return { cart, isAddingToCart, addToCart, fetchCart, prices, images };
+
+// route : router.put("/users/:id/edit-cart/:productId", addCart);
+
+// backend function : 
+// const editCart = async (req, res) => {
+//   const userId = req.params.id;
+//   const productId = req.params.productId;
+//   const { quantity } = req.body;
+
+//   try {
+//     const user = await User.findById(userId);
+
+//     if (!user) {
+//       return res.status(404).json({ message: "User not found" });
+//     }
+
+//     // Trouver l'index de l'élément dans le panier
+//     const cartIndex = user.cart.findIndex((item) => item.product_id.toString() === productId);
+
+//     if (cartIndex === -1) {
+//       return res.status(404).json({ message: "Product not found in the cart" });
+//     }
+
+//     // Mettre à jour la quantité dans le panier
+//     user.cart[cartIndex].quantity = quantity;
+
+//     // Mettre à jour la date de modification du panier
+//     user.cart[cartIndex].updated = Date.now();
+
+//     // Mettre à jour le document utilisateur avec la nouvelle version du panier
+//     await User.findOneAndUpdate(
+//       { _id: userId, "cart.product_id": productId },
+//       { $set: { "cart.$.quantity": quantity, "cart.$.updated": Date.now() } },
+//       { new: true }
+//     );
+
+//     res.json(user.cart);
+//   } catch (error) {
+//     console.error("Error updating cart:", error);
+//     res.status(500).json({ message: "Error updating cart" });
+//   }
+// };
+
+const editQuantity = (userId, productId, quantity) => {
+  fetch(`http://localhost:3001/users/${userId}/edit-cart/${productId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ quantity }),
+  })
+    .then((response) => {
+      if (response.ok) {
+        fetchCart(userId);
+      } else {
+        console.error('Error updating cart:', response.status);
+      }
+    })
+    .catch((error) => {
+      console.error('Network error while updating cart:', error);
+    });
 };
+
+
+
+
+// Suppression d'un produit du panier
+const removeFromCart = (userId, productId) => {
+  // Assuming that you have a backend API endpoint to handle cart removal
+  // Make a request to your backend to remove the product from the user's cart
+  fetch(`http://localhost:3001/users/${userId}/delete-cart/${productId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        // If the removal was successful, update the local cart state
+        setCart((prevCart) => prevCart.filter((product) => product.product_id !== productId));
+      } else {
+        console.error('Error removing product from cart:', response.status);
+      }
+    })
+    .catch((error) => {
+      console.error('Network error while removing product from cart:', error);
+    });
+};
+
+
+
+return { cart, isAddingToCart, addToCart, fetchCart, editQuantity, removeFromCart, prices, images };
+};
+
 
 export default useCart;

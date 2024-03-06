@@ -27,8 +27,8 @@ export default function Product() {
   // Parse the user data string to a JSON object
   const userData = JSON.parse(userDataString);
 
-  // Extract user ID from the user data
-  const userId = userData._id;
+  // Extraction de l'ID de l'utilisateur ou null si l'utilisateur n'est pas connecté
+  const userId = userData ? userData._id : null;
   console.log("ID de l'utilisateur:", userId);
 
   // Créez un objet de correspondance pour mapper les clés de l'objet details à des libellés
@@ -137,7 +137,7 @@ export default function Product() {
             <div className="product-description">
               <div className="price-like">
                 <p className="price">
-                  {product.price} €<span>TTC</span>
+                  {product.price} €<span>HT</span>
                 </p>
                 <p
                   className="like"
@@ -216,7 +216,7 @@ export default function Product() {
                       <div className="suggestions-products">
                         <p className="name">{item.name}</p>
                         <img src={item.image} alt={item.name} />
-                        <p className="price">{item.price} €</p>
+                        <p className="price">{item.price} € HT</p>
                       </div>
                     </Link>
                   ))}
