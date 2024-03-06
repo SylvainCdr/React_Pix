@@ -90,11 +90,29 @@ const useFavorites = () => {
     }
   };
 
+  const getFavorites = async (userId) => {
+    try {
+      const response = await fetch(`http://localhost:3001/users/${userId}/favorites`);
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Favorites Data:", data); // Add this line for debugging
+        return data;
+      } else {
+        console.error("Error fetching favorites:", response.statusText);
+        return [];
+      }
+    } catch (error) {
+      console.error("Error network issue during getFavorites:", error);
+      return [];
+    }
+  };
+
   return {
     addToFavorites,
     checkFavorite,
     isInFavorites,
     removeFromFavorites,
+    getFavorites,
   };
 };
 

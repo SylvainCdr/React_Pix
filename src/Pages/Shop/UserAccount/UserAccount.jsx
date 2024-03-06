@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style.scss";
 import { NavLink } from "react-router-dom";
+import useFavorites from "../../../Components/useFavorites";
 
 
 export default function UserAccount() {
 
-
-  
 
 
   return (
@@ -47,6 +46,9 @@ export default function UserAccount() {
         </div>
 
         <div className="user-dashboard">
+
+
+        
 
 
 

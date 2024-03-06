@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
+//Hook pour gérer le panier
 const useCart = () => {
   const [cart, setCart] = useState([]);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
+  const [prices, setPrices] = useState([]);
+  const [images, setImages] = useState([]);
 
+  // Ajout d'un produit au panier
   const addToCart = async (userId, productId, productName, productRef, quantity) => {
     try {
       setIsAddingToCart(true);
@@ -36,6 +40,7 @@ const useCart = () => {
     }
   };
 
+  // Récupération du panier actuel de l'utilisateur
   const fetchCart = async (userId) => {
     try {
       const response = await fetch(`http://localhost:3001/users/${userId}/cart`);
@@ -50,7 +55,20 @@ const useCart = () => {
     }
   };
 
-  return { cart, isAddingToCart, addToCart, fetchCart };
+  // Récupération des prix actuels des produits
+  useEffect(() => {
+    fetch('http://localhost:3001/products')
+      .then((res) => res.json())
+      .then((data) => {
+        setPrices(data.map((product) => product.price));
+        setImages(data.map((product) => product.image));
+      })
+      .catch((error) => {
+        console.error('Error fetching product prices:', error);
+      });
+  }, []);
+
+  return { cart, isAddingToCart, addToCart, fetchCart, prices, images };
 };
 
 export default useCart;
