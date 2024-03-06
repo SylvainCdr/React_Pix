@@ -158,7 +158,9 @@ export default function Product() {
               <p className="livraison">
                 <i className="fa-solid fa-truck-fast"></i>Livraison en 72h
               </p>
+              <div className="add-to-cart">
               {/* // bouton avec + - pour ajouter ou retirer des produits */}
+            
               <div className="quantity">
                 <button
                   onClick={() => setQuantity(quantity - 1)}
@@ -168,8 +170,8 @@ export default function Product() {
                 </button>
                 <p>{quantity}</p>
                 <button onClick={() => setQuantity(quantity + 1)}>+</button>
-              </div>
-              <div className="add-to-cart">
+                </div>
+          
                 <button onClick={handleAddToCartClick} className="add">
                   Ajouter au panier
                 </button>

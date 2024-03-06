@@ -87,6 +87,12 @@ function Header() {
             </li>
           )}
 
+          {user?.role === "user" && (
+            <li>
+              <NavLink to="/panier"><i class="fa-solid fa-cart-shopping"></i></NavLink>
+            </li>
+          )}
+
           {user?.role === "admin" && (
             <li>
               <NavLink to="/admin/dashboard">Administration</NavLink>
