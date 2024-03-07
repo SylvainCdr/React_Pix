@@ -4,22 +4,7 @@ import { useState, useEffect } from 'react';
 const useCart = () => {
   const [cart, setCart] = useState([]);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
-  const [prices, setPrices] = useState([]);
-  const [images, setImages] = useState([]);
 
-  
-  // Récupération des prix actuels des produits
-  useEffect(() => {
-    fetch('http://localhost:3001/products')
-      .then((res) => res.json())
-      .then((data) => {
-        setPrices(data.map((product) => product.price));
-        setImages(data.map((product) => product.image));
-      })
-      .catch((error) => {
-        console.error('Error fetching product prices:', error);
-      });
-  }, []);
 
 
 
@@ -65,11 +50,8 @@ const editQuantity = (userId, productId, quantity) => {
 
 
 
-  // Ajout d'un produit au panier
 // Ajout d'un produit au panier
-// Ajout d'un produit au panier
-// Ajout d'un produit au panier
-const addToCart = async (userId, productId, productName, productRef, quantity) => {
+const addToCart = async (userId, productId, productName, productRef, quantity, productPrice, productImage) => {
   try {
     setIsAddingToCart(true);
 
@@ -102,6 +84,8 @@ const addToCart = async (userId, productId, productName, productRef, quantity) =
           name: productName,
           ref: productRef,
           quantity: updatedCart[existingProductIndex].quantity,
+          price: productPrice,
+          image: productImage,
         }),
       });
     } else {
@@ -117,6 +101,8 @@ const addToCart = async (userId, productId, productName, productRef, quantity) =
           name: productName,
           ref: productRef,
           quantity: quantity,
+          price: productPrice,
+          image: productImage,
         }),
       });
 
@@ -166,7 +152,7 @@ const removeFromCart = (userId, productId) => {
 
 
 
-return { cart, isAddingToCart, addToCart, fetchCart, editQuantity, removeFromCart, prices, images };
+return { cart, isAddingToCart, addToCart, fetchCart, editQuantity, removeFromCart };
 };
 
 

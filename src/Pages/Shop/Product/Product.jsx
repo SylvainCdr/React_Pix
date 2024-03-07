@@ -112,7 +112,7 @@ export default function Product() {
   // ajout du panier en cliquant sur le bouton et en prenant compte de la quantité
   const handleAddToCartClick = async () => {
     if (userId) {
-      const added = await addToCart(userId, id, product.name, product.ref, quantity);
+      const added = await addToCart(userId, id, product.name, product.ref, quantity, product.price, product.image);
       if (added) {
         console.log("Produit ajouté au panier avec succès!");
       } else {

@@ -3,7 +3,7 @@ import './style.scss';
 import useCart from '../../../Components/useCart';
 
 export default function Cart() {
-  const { fetchCart, editQuantity, removeFromCart, cart, prices, images } = useCart();
+  const { fetchCart, editQuantity, removeFromCart, cart } = useCart();
 
 
 
@@ -35,14 +35,14 @@ export default function Cart() {
         {cart.map((product, index) => (
           <div className='product' key={index}>
             <div className='product-image'>
-              <img src={images[index]} alt="" />
+              <img src={product.image} alt="" />
             </div>
             <div className='product-details'>
               <div className='product-title'>{product.name}
               <p>Réf : {product.ref}</p></div>
               <p className='product-description'>{product.description}</p>
             </div>
-            <div className='product-price'>{prices[index]} €</div>
+            <div className='product-price'>{product.price} €</div>
             <div className='product-quantity'>
               <input
                 type='number'
@@ -69,7 +69,7 @@ export default function Cart() {
                 Supprimer
               </button>
             </div>
-            <div className='product-line-price'>{product.quantity * prices[index]} €</div>
+            <div className='product-line-price'>{product.quantity * product.price} €</div>
           </div>
         ))}
 
@@ -77,13 +77,13 @@ export default function Cart() {
           <div className='totals-item'>
             <label>Sous-total</label>
             <div className='totals-value' id='cart-subtotal'>
-              {cart.reduce((acc, product, index) => acc + product.quantity * prices[index], 0)} €
+              {cart.reduce((acc, product, index) => acc + product.quantity * product.price, 0)} €
             </div>
           </div>
           <div className='totals-item'>
             <label>TVA (20%)</label>
             <div className='totals-value' id='cart-tax'>
-              {(cart.reduce((acc, product, index) => acc + product.quantity * prices[index], 0) * 0.20).toFixed(2)} €
+              {(cart.reduce((acc, product, index) => acc + product.quantity * product.price, 0) * 0.20).toFixed(2)} €
             </div>
           </div>
           <div className='totals-item'>
@@ -94,8 +94,8 @@ export default function Cart() {
             <label>Total</label>
             <div className='totals-value' id='cart-total'>
               {(
-                cart.reduce((acc, product, index) => acc + product.quantity * prices[index], 0) +
-                cart.reduce((acc, product, index) => acc + product.quantity * prices[index], 0) * 0.20 +
+                cart.reduce((acc, product, index) => acc + product.quantity * product.price, 0) +
+                cart.reduce((acc, product, index) => acc + product.quantity * product.price, 0) * 0.20 +
                 9.90
               ).toFixed(2)} €
             </div>
