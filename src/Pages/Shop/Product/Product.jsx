@@ -20,16 +20,18 @@ export default function Product() {
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
 
-
   // Retrieve user data from local storage
   const userDataString = localStorage.getItem("user");
 
   // Parse the user data string to a JSON object
-  const userData = JSON.parse(userDataString);
-
-  // Extraction de l'ID de l'utilisateur ou null si l'utilisateur n'est pas connecté
+  const userData = JSON.parse(userDataString) ? JSON.parse(userDataString) : "";
   const userId = userData ? userData._id : null;
   console.log("ID de l'utilisateur:", userId);
+  const discount = userData.discount ? userData.discount : 0;
+  console.log("Discount:", discount);
+  const calculateDiscount = (price, discount) => {
+    return price - (price * discount) / 100;
+  };
 
   // Créez un objet de correspondance pour mapper les clés de l'objet details à des libellés
   const labelsMapping = {
@@ -112,7 +114,15 @@ export default function Product() {
   // ajout du panier en cliquant sur le bouton et en prenant compte de la quantité
   const handleAddToCartClick = async () => {
     if (userId) {
-      const added = await addToCart(userId, id, product.name, product.ref, quantity, product.price, product.image);
+      const added = await addToCart(
+        userId,
+        id,
+        product.name,
+        product.ref,
+        quantity,
+        product.price,
+        product.image
+      );
       if (added) {
         console.log("Produit ajouté au panier avec succès!");
       } else {
@@ -121,6 +131,30 @@ export default function Product() {
     } else {
       console.error("L'ID de l'utilisateur n'est pas disponible.");
     }
+  };
+
+  const calculateDiscountedPrice = () => {
+    if (userId && product.price && discount) {
+      const discountedPrice = calculateDiscount(product.price, discount);
+      return (
+        <p className="prices">
+          <span className="original-price">
+            {product.price.toFixed(2)} €
+          </span>
+          <span className="discounted-price">
+            {discountedPrice.toFixed(2)} € <span> TTC</span>
+          </span>
+        </p>
+      );
+    } else {
+      return (
+        <p className="price">
+          {product.price ? product.price.toFixed(2) : "00.00"} €{" "}
+          <span>TTC</span>
+        </p>
+      );
+    }
+
   };
 
   return (
@@ -136,9 +170,7 @@ export default function Product() {
             </div>
             <div className="product-description">
               <div className="price-like">
-                <p className="price">
-                  {product.price} €<span>HT</span>
-                </p>
+                <p className="prices">{calculateDiscountedPrice()} </p>
                 <p
                   className="like"
                   onClick={handleToggleFavoritesClick}
@@ -159,19 +191,19 @@ export default function Product() {
                 <i className="fa-solid fa-truck-fast"></i>Livraison en 72h
               </p>
               <div className="add-to-cart">
-              {/* // bouton avec + - pour ajouter ou retirer des produits */}
-            
-              <div className="quantity">
-                <button
-                  onClick={() => setQuantity(quantity - 1)}
-                  disabled={quantity === 1}
-                >
-                  -
-                </button>
-                <p>{quantity}</p>
-                <button onClick={() => setQuantity(quantity + 1)}>+</button>
+                {/* // bouton avec + - pour ajouter ou retirer des produits */}
+
+                <div className="quantity">
+                  <button
+                    onClick={() => setQuantity(quantity - 1)}
+                    disabled={quantity === 1}
+                  >
+                    -
+                  </button>
+                  <p>{quantity}</p>
+                  <button onClick={() => setQuantity(quantity + 1)}>+</button>
                 </div>
-          
+
                 <button onClick={handleAddToCartClick} className="add">
                   Ajouter au panier
                 </button>

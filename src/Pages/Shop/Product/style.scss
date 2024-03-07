@@ -37,16 +37,37 @@
         margin-bottom: 3rem;
         align-items: center;
 
-        .price {
+        .prices {
           width: 85%;
-          font-size: 1.9rem;
-          font-weight: 600;
-          color: rgb(0, 173, 92);
+
           span {
-            font-size: 1rem;
-            font-weight: 400;
-            margin-left: 0.5rem;
+            font-size: 0.6em;
+            font-weight: 600;
+            color: #858585;
           }
+          
+          .original-price {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #eb4545;
+            text-decoration: line-through;
+            margin-right: 1rem;
+          }
+          .discounted-price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #02b441;
+          }
+
+          .price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #02b441;
+          }
+
+
+
+
         }
         .like {
           width: 15%;

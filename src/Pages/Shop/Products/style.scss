@@ -78,14 +78,45 @@
         color: #016e22;
         padding-right: 2rem;
         margin-bottom: 0.5rem;
-        
-        
       
         span {
           font-size: 0.7rem;
           font-weight: 600;
           color: #595959;
         }
+      }
+
+      .card-prices {
+        display: flex;
+        width : 100%;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #016e22;
+        padding-right: 2rem;
+        margin-bottom: 0.5rem;
+
+        span {
+          font-size: 0.7rem;
+          font-weight: 600;
+          color: #595959;
+        }
+     
+        .original-price {
+          font-size: 1rem;
+          color: #f32222;
+          text-decoration: line-through;
+
+          margin-right: 0.5rem;
+        }
+
+        .discounted-price {
+          font-size: 1rem;
+          color: #016e22;
+          font-weight: 600;
+        }
+
+
       }
 
 .CTA {
