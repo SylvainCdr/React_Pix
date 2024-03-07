@@ -3,26 +3,34 @@ import { useState, useEffect } from 'react';
 //Hook pour gérer le panier
 const useCart = () => {
   const [cart, setCart] = useState([]);
+  const [isCartFetched, setIsCartFetched] = useState(false);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
+  const userDataString = localStorage.getItem('user');
+  const userData = JSON.parse(userDataString);
+  const userId = userData ? userData._id : null;
 
 
 
+ 
+  
 
-
-  // Récupération du panier actuel de l'utilisateur
-  const fetchCart = async (userId) => {
-    try {
-      const response = await fetch(`http://localhost:3001/users/${userId}/cart`);
-      if (response.ok) {
-        const data = await response.json();
-        setCart(data);
-      } else {
-        console.error('Réponse du serveur:', response.status);
-      }
-    } catch (error) {
-      console.error('Erreur réseau:', error);
+// Récupération du panier actuel de l'utilisateur
+// Récupération du panier actuel de l'utilisateur
+const fetchCart = async (userId) => {
+  try {
+    const response = await fetch(`http://localhost:3001/users/${userId}/cart`);
+    if (response.ok) {
+      const data = await response.json();
+      setCart(data);
+      setIsCartFetched(true);
+    } else {
+      console.error('Réponse du serveur:', response.status);
     }
-  };
+  } catch (error) {
+    console.error('Erreur réseau:', error);
+  }
+};
+
 
 
   
@@ -52,6 +60,9 @@ const editQuantity = (userId, productId, quantity) => {
 
 // Ajout d'un produit au panier
 const addToCart = async (userId, productId, productName, productRef, quantity, productPrice, productImage) => {
+
+
+
   try {
     setIsAddingToCart(true);
 
@@ -150,6 +161,13 @@ const removeFromCart = (userId, productId) => {
     });
 };
 
+
+// Effectuer la récupération du panier une seule fois
+useEffect(() => {
+  if (userId && !isCartFetched) {
+    fetchCart(userId);
+  }
+}, [userId, isCartFetched, fetchCart]);
 
 
 return { cart, isAddingToCart, addToCart, fetchCart, editQuantity, removeFromCart };
