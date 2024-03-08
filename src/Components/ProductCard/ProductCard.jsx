@@ -5,12 +5,25 @@ import "./style.scss";
 
 const ProductCard = ({
     product,
-    userId,
     addToFavorites,
     removeFromFavorites,
     checkFavorite,
   }) => {
     const [isInFavorites, setIsInFavorites] = useState(false);
+
+    const [userId, setUserId] = useState("");
+
+    useEffect(() => {
+      const userDataString = localStorage.getItem("user");
+      const userData = JSON.parse(userDataString);
+  
+      if (userData && userData._id) {
+        setUserId(userData._id);
+        console.log("ID de l'utilisateur:", userData._id);
+      }
+    }, []);
+  
+
   
     useEffect(() => {
       const fetchFavoriteStatus = async () => {
@@ -28,6 +41,7 @@ const ProductCard = ({
     }, [userId, product._id, checkFavorite]);
   
     const handleToggleFavoritesClick = async () => {
+      console.log("Trying to remove product with ID:", product._id);
       try {
         if (userId) {
           if (isInFavorites) {
@@ -37,7 +51,9 @@ const ProductCard = ({
               userId,
               product._id,
               product.name,
-              product.price
+              product.price,
+              product.ref,
+              product.image
             );
           }
   
@@ -56,6 +72,8 @@ const ProductCard = ({
   const userData = JSON.parse(userDataString) ? JSON.parse(userDataString) : "";
   const discount = userData.discount ? userData.discount : 0;
   console.log("Discount:", discount);
+
+
   
   // on crée une fonction pour calculer le prix après réduction
   const calculateDiscount = (price, discount) => {
@@ -82,6 +100,11 @@ const ProductCard = ({
         );
       }
     };
+
+
+
+
+    
   
     return (
       <div className="product-card">

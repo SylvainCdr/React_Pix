@@ -17,16 +17,7 @@ const Products = () => {
   const { addToFavorites, removeFromFavorites, checkFavorite } = useFavorites();
   const [userId, setUserId] = useState("");
 
-  useEffect(() => {
-    const userDataString = localStorage.getItem("user");
-    const userData = JSON.parse(userDataString);
-
-    if (userData && userData._id) {
-      setUserId(userData._id);
-      console.log("ID de l'utilisateur:", userData._id);
-    }
-  }, []);
-
+  
   useEffect(() => {
     const fetchProducts = async () => {
       const apiUrl = subcategory

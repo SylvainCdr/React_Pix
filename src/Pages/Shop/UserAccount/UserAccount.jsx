@@ -1,12 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./style.scss";
 import { NavLink } from "react-router-dom";
 import useFavorites from "../../../Components/useFavorites";
-
+import ProductCard from "../../../Components/ProductCard/ProductCard";
 
 export default function UserAccount() {
+  const userDataString = localStorage.getItem("user");
+  const userData = JSON.parse(userDataString);
+  const userId = userData._id;
+  const [products, setProducts] = useState([]);
+  const [selectedTab, setSelectedTab] = useState("infos");
+  const { getFavorites, removeFromFavorites } = useFavorites();
 
+  const handleTabClick = (tab) => {
+    setSelectedTab(tab);
+  };
 
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      const favorites = await getFavorites(userId);
+      console.log("Favorites Data:", favorites);
+      setProducts(favorites);
+    };
+    fetchFavorites();
+  }, [userId]);
+
+  const handleRemoveFromFavorites = async (productId) => {
+    console.log("Removing product with ID:", productId);
+
+    const response = await removeFromFavorites(userId, productId);
+
+    if (response) {
+      console.log("Product removed successfully from the server!");
+
+      // Utilisez un nouvel état en filtrant les produits avec le produit supprimé
+      setProducts(products.filter((product) => product._id !== productId));
+    } else {
+      console.log("Product removal failed!");
+    }
+  };
+  
+  
 
   return (
     <>
@@ -18,44 +52,40 @@ export default function UserAccount() {
           <aside className="user-account-nav">
             <h2>MENU</h2>
             <ul>
-              <li>
-                <NavLink to="/mon-compte" end activeClassName="active">
-                  Mes informations
-                </NavLink>
-              </li>
+              <NavLink activeClassName="active" onClick={() => handleTabClick("infos")}>
+                <li>Mes informations</li>
+              </NavLink>
 
-              <li>
-                <NavLink
-                  to="/mon-compte/produits-favoris"
-                  activeClassName="active"
-                >
-                  Mes Produits Favoris
-                </NavLink>
-              </li>
+              <NavLink activeClassName="active" onClick={() => handleTabClick("favoris")}>
+                <li>Mes Produits Favoris</li>
+              </NavLink>
 
-              <li>
-                <NavLink
-                  to="/mon-compte/mes-commandes"
-                  activeClassName="active"
-                >
-                  Mes commandes
-                </NavLink>
-              </li>
+              <NavLink activeClassName="active" onClick={() => handleTabClick("commandes")}>
+                <li>Mes commandes</li>
+              </NavLink>
             </ul>
           </aside>
         </div>
 
         <div className="user-dashboard">
-
-
-        
-
-
-
-
-
-
-
+          <h2>
+            {selectedTab === "infos" && "Mes informations"}
+            {selectedTab === "favoris" && "Mes produits favoris"}
+            {selectedTab === "commandes" && "Mes commandes"}
+          </h2>
+          {selectedTab === "favoris" && (
+            <div className="favorites-grid">
+               {products.map((item) => (
+            <ProductCard
+              key={item._id}
+              product={item}
+              userId={userId}
+              removeFromFavorites={handleRemoveFromFavorites}
+              checkFavorite={getFavorites}
+            />
+          ))}
+            </div>
+          )}
         </div>
       </div>
     </>

@@ -27,13 +27,15 @@ export default function Product() {
   const userData = JSON.parse(userDataString) ? JSON.parse(userDataString) : "";
   const userId = userData ? userData._id : null;
   console.log("ID de l'utilisateur:", userId);
+
+  // Retrieve discount from user data
   const discount = userData.discount ? userData.discount : 0;
   console.log("Discount:", discount);
   const calculateDiscount = (price, discount) => {
     return price - (price * discount) / 100;
   };
 
-  // Créez un objet de correspondance pour mapper les clés de l'objet details à des libellés
+  // Create a mapping object to map the product details keys to their corresponding labels
   const labelsMapping = {
     dimensions: "Dimensions",
     poids: "Poids",
@@ -64,10 +66,9 @@ export default function Product() {
     antenne: "Antenne",
     lan: "LAN",
     nebula: "Nebula",
-
-    // Ajoutez d'autres mappages au besoin
   };
 
+  
   useEffect(() => {
     fetch("http://localhost:3001/products")
       .then((res) => res.json())
@@ -102,7 +103,7 @@ export default function Product() {
       if (isInFavorites) {
         await removeFromFavorites(userId, id);
       } else {
-        await addToFavorites(userId, id, product.name, product.price);
+        await addToFavorites(userId, id, product.name, product.price, product.ref, product.image);
       }
 
       setIsInFavorites(!isInFavorites);

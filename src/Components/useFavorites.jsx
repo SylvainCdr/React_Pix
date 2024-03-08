@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback } from "react";
 
 const useFavorites = () => {
@@ -9,7 +8,9 @@ const useFavorites = () => {
     userId,
     productId,
     productName,
-    productPrice
+    productPrice,
+    productRef,
+    productImage
   ) => {
     try {
       setIsAddingToFavorites(true);
@@ -25,6 +26,8 @@ const useFavorites = () => {
             product_id: productId,
             name: productName,
             price: productPrice,
+            ref : productRef,
+            image: productImage,
           }),
         }
       );
@@ -66,20 +69,24 @@ const useFavorites = () => {
   const removeFromFavorites = async (userId, productId) => {
     try {
       setIsAddingToFavorites(true);
+      
+      
 
       const response = await fetch(
         `http://localhost:3001/users/${userId}/delete-favorite/${productId}`,
         {
           method: "DELETE",
+          
         }
-      );
-
-      if (response.ok) {
+        );
+        console.log("res", response)
+        
+        if (response.ok) {
+        
         console.log("Produit retiré des favoris avec succès!");
         setIsInFavorites(false);
         return true;
       } else {
-        console.error("Erreur lors du retrait du produit des favoris");
         return false;
       }
     } catch (error) {
@@ -110,7 +117,6 @@ const useFavorites = () => {
   return {
     addToFavorites,
     checkFavorite,
-    isInFavorites,
     removeFromFavorites,
     getFavorites,
   };
