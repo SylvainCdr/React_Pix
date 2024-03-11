@@ -168,7 +168,9 @@ export default function Product() {
         <div className="product-page">
           <div className="product-section1">
             <div className="product-img">
+              {discount !== 0 && <span className="discount-badge">-{discount}%</span>}  
               <img src={product.image} alt={product.name} />
+
             </div>
             <div className="product-description">
               <div className="price-like">

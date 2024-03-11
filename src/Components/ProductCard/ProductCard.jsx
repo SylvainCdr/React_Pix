@@ -109,7 +109,8 @@ const ProductCard = ({
     return (
       <div className="product-card">
         {discount !== 0 && <span className="discount-badge">-{discount}%</span>}  
-        <img src={product.image} alt={product.name} className="card-img"/>
+        <img src={product.image} alt={product.name} className="card-img" />
+        
         <div className="card-title">
           <Link to={`/product/${product._id}`}>
             <h2>{product.name}</h2>

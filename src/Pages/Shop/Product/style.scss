@@ -16,7 +16,8 @@
       -moz-border-radius: 0.7rem;
       -ms-border-radius: 0.7rem;
       -o-border-radius: 0.7rem;
-      height: 80vh;
+      height: 70vh;
+      object-fit: cover;
 
       img {
         width: 100%;
@@ -28,6 +29,19 @@
         -ms-border-radius: 0.7rem;
         -o-border-radius: 0.7rem;
         box-shadow: 0 0 5px 0 rgb(144, 144, 144);
+      }
+
+      .discount-badge {
+        position: absolute;
+        margin-top: 1.5rem;
+        margin-left: 1.5rem;
+        background-color: #0d8eff;
+        font-size: 1.4rem;
+        padding: 0.4rem 0.6rem;
+        font-weight: 600;
+        color: #fff;
+        border-radius: 0.3rem;
+        box-shadow: 0.1rem 0.1rem 0.2rem 0rem rgba(217, 217, 217, 0.798);
       }
     }
 
@@ -45,7 +59,7 @@
             font-weight: 600;
             color: #858585;
           }
-          
+
           .original-price {
             font-size: 1.2rem;
             font-weight: 500;
@@ -64,24 +78,17 @@
             font-weight: 600;
             color: #02b441;
           }
-
-
-
-
         }
         .like {
           width: 15%;
           i {
-
-              font-size: 2rem;
-              &:hover {
-                  cursor: pointer;
-                  scale: 1.1;
-                }
-              }
-              
+            font-size: 2rem;
+            &:hover {
+              cursor: pointer;
+              scale: 1.1;
             }
-           
+          }
+        }
       }
 
       h2 {
@@ -179,7 +186,7 @@
           background-color: #0c96d2;
           box-shadow: 0 0 5px 0 rgb(144, 144, 144);
           color: white;
-          width: 90%;
+          width: 70%;
           border: none;
           border-radius: 0.3rem;
           -webkit-border-radius: 0.3rem;
@@ -244,35 +251,31 @@
       }
 
       .suggestions-grid {
-        font-family: 'Roboto', sans-serif;
+        font-family: "Roboto", sans-serif;
         width: 100%;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: 2rem;
-       
 
         a {
           text-decoration: none;
         }
 
-
-       
-          img {
-            width: 100%;
-            height: 12rem;
-            // object-fit: cover;
-          }
-
-          .name {
-            height : 2rem
-          }
-
-          .price {
-            font-size: 1.3rem;
-            color: rgb(0, 173, 92);
-          }
+        img {
+          width: 100%;
+          height: 12rem;
+          // object-fit: cover;
         }
-      
+
+        .name {
+          height: 2rem;
+        }
+
+        .price {
+          font-size: 1.3rem;
+          color: rgb(0, 173, 92);
+        }
+      }
     }
   }
 }
