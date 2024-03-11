@@ -5,6 +5,7 @@ import ShopNav from "../../../Components/ShopNav/ShopNav";
 import Search from "../../../Components/Search/Search";
 import useFavorites from "../../../Components/useFavorites";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
+import useCart from "../../../Components/useCart";
 
 
 
@@ -15,6 +16,7 @@ const Products = () => {
   const location = useLocation();
   const [searchResults, setSearchResults] = useState([]);
   const { addToFavorites, removeFromFavorites, checkFavorite } = useFavorites();
+  const { addToCart } = useCart();
   const [userId, setUserId] = useState("");
 
   
@@ -60,6 +62,7 @@ const Products = () => {
                 addToFavorites={addToFavorites}
                 removeFromFavorites={removeFromFavorites}
                 checkFavorite={checkFavorite}
+                addToCart={addToCart}
               />
             ))}
           </div>

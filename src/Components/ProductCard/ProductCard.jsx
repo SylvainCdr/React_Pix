@@ -8,6 +8,9 @@ const ProductCard = ({
     addToFavorites,
     removeFromFavorites,
     checkFavorite,
+    addToCart,
+    id,
+    quantity,
   }) => {
     const [isInFavorites, setIsInFavorites] = useState(false);
 
@@ -101,6 +104,27 @@ const ProductCard = ({
       }
     };
 
+    const handleAddToCartClick = async () => {
+      if (userId) {
+        const added = await addToCart(
+          userId,
+          product._id,
+          product.name,
+          product.ref,
+          quantity = 1,
+          product.price,
+          product.image
+        );
+        if (added) {
+          console.log("Produit ajouté au panier avec succès!");
+        } else {
+          console.error("Erreur lors de l'ajout du produit au panier");
+        }
+      } else {
+        console.error("L'ID de l'utilisateur n'est pas disponible.");
+      }
+    }
+
 
 
 
@@ -133,9 +157,14 @@ const ProductCard = ({
               ></i>
             </p>
             <p className="cart">
-              <a href="#">
+              {/* <a href="#">
                 <i className="fa-solid fa-cart-plus"></i>
-              </a>
+              </a> */}
+              <i
+                className="fa-solid fa-cart-plus"
+                onClick={handleAddToCartClick}
+                style={{ cursor: "pointer" }}
+              ></i>
             </p>
           </div>
         </div>
