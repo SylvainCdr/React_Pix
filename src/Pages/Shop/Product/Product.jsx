@@ -6,6 +6,7 @@ import Search from "../../../Components/Search/Search";
 import Cart from "../../Shop/Cart/Cart";
 import useFavorites from "../../../Components/useFavorites";
 import useCart from "../../../Components/useCart";
+import ProductCard from "../../../Components/ProductCard/ProductCard";
 
 export default function Product() {
   const [product, setProduct] = useState({});
@@ -16,7 +17,7 @@ export default function Product() {
   const [isInFavorites, setIsInFavorites] = useState(false);
 
   // Utilisez le hook useFavorites
-  const { addToFavorites, removeFromFavorites, checkFavorite } = useFavorites();
+  const { addToFavorites, removeFromFavorites, checkFavorite, getFavorites } = useFavorites();
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
 
@@ -193,7 +194,6 @@ export default function Product() {
               </p>
               <div className="add-to-cart">
                 {/* // bouton avec + - pour ajouter ou retirer des produits */}
-
                 <div className="quantity">
                   <button
                     onClick={() => setQuantity(quantity - 1)}
@@ -248,11 +248,15 @@ export default function Product() {
                   .slice(0, 4)
                   .map((item) => (
                     <Link to={`/product/${item._id}`} key={item._id}>
-                      <div className="suggestions-products">
-                        <p className="name">{item.name}</p>
-                        <img src={item.image} alt={item.name} />
-                        <p className="price">{item.price} € HT</p>
-                      </div>
+                      {/* // Utilisez le composant ProductCard pour afficher les produits similaires
+                      on utilise le hook useFavorites pour gérer les favoris */}
+                      <ProductCard product={item}
+                        isInFavorites={isInFavorites}
+                        addToFavorites={addToFavorites}
+                        removeFromFavorites={removeFromFavorites}
+                        checkFavorite={checkFavorite}
+                        getFavorites={getFavorites}
+                      />
                     </Link>
                   ))}
               </div>

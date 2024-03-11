@@ -42,7 +42,7 @@ export default function Cart() {
               <p>Réf : {product.ref}</p></div>
               <p className='product-description'>{product.description}</p>
             </div>
-            <div className='product-price'>{product.price} €</div>
+            <div className='product-price'>{product.price.toFixed(2)} €</div>
             <div className='product-quantity'>
               <input
                 type='number'
@@ -69,7 +69,7 @@ export default function Cart() {
                 Supprimer
               </button>
             </div>
-            <div className='product-line-price'>{product.quantity * product.price} €</div>
+            <div className='product-line-price'>{(product.quantity * product.price).toFixed(2)} €</div>
           </div>
         ))}
 

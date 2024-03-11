@@ -255,20 +255,12 @@
           text-decoration: none;
         }
 
-        .suggestions-products {
-          background-color: white;
-          color: #414040;
-          text-align: center;
-          border-radius: 0.5rem;
-          font-weight: 700;
-          padding-top: 0.5rem;
-          padding-bottom: 0.5rem;
 
        
           img {
             width: 100%;
-            height: 15rem;
-            object-fit: cover;
+            height: 12rem;
+            // object-fit: cover;
           }
 
           .name {
@@ -280,7 +272,7 @@
             color: rgb(0, 173, 92);
           }
         }
-      }
+      
     }
   }
 }

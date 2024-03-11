@@ -10,7 +10,7 @@ export default function UserAccount() {
   const userId = userData._id;
   const [products, setProducts] = useState([]);
   const [selectedTab, setSelectedTab] = useState("infos");
-  const { getFavorites, removeFromFavorites } = useFavorites();
+  const { getFavorites, removeFromFavorites, checkFavorite, addToFavorites } = useFavorites();
 
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
@@ -76,13 +76,16 @@ export default function UserAccount() {
           {selectedTab === "favoris" && (
             <div className="favorites-grid">
                {products.map((item) => (
-            <ProductCard
-              key={item._id}
-              product={item}
-              userId={userId}
+              <ProductCard product = {item} key={item._id}
+              // handleRemoveFromFavorites={handleRemoveFromFavorites}
+             checkFavorite={getFavorites}
+              // removeFromFavorites={removeFromFavorites}
+              handleRemoveFromFavorites={removeFromFavorites}
               removeFromFavorites={handleRemoveFromFavorites}
-              checkFavorite={getFavorites}
-            />
+              
+              />
+
+
           ))}
             </div>
           )}

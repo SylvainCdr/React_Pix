@@ -85,7 +85,7 @@ const ProductCard = ({
         const discountedPrice = calculateDiscount(product.price, discount);
         return (
           <div className="card-prices">
-            <p className="original-price">{product.price} € </p>
+            <p className="original-price">{product.price.toFixed(2)} € </p>
             <p className="discounted-price">
               {discountedPrice.toFixed(2)} € <span>TTC</span>{" "}
             </p>
@@ -108,13 +108,16 @@ const ProductCard = ({
   
     return (
       <div className="product-card">
-        <img src={product.image} alt={product.name} className="card-img" />
+        {discount !== 0 && <span className="discount-badge">-{discount}%</span>}  
+        <img src={product.image} alt={product.name} className="card-img"/>
         <div className="card-title">
           <Link to={`/product/${product._id}`}>
             <h2>{product.name}</h2>
           </Link>
         </div>
-        <p className="card-brand">{product.brand}</p>
+        <p className="card-brand">{product.brand} 
+       
+        </p>
         <div className="card-bottom">
           {calculateDiscountedPrice()}
           <div className="CTA">
