@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./style.scss";
 import ProductCard from "../../Components/ProductCard/ProductCard";
 import useFavorites from "../../Components/useFavorites";
+import useCart from "../../Components/useCart";
 
 function Search({ setSearchResults }) {
   const [search, setSearch] = useState("");
@@ -10,6 +11,7 @@ function Search({ setSearchResults }) {
   const [searchResultsLocal, setSearchResultsLocal] = useState([]);
 
   const { addToFavorites, removeFromFavorites, checkFavorite } = useFavorites();
+  const { addToCart } = useCart();
 
   // créer une fonction pour gérer la recherche
   const handleSearch = (e) => {
@@ -70,6 +72,8 @@ function Search({ setSearchResults }) {
             addToFavorites={addToFavorites}
             removeFromFavorites={removeFromFavorites}
             checkFavorite={checkFavorite}
+            addToCart={addToCart}
+
 
           />
         ))}
