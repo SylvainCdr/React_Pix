@@ -3,17 +3,19 @@ import "./style.scss";
 import { NavLink, useNavigate } from "react-router-dom";
 import useFavorites from "../../../Components/useFavorites";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
+import useCart from "../../../Components/useCart";
 
 export default function UserAccount() {
   const userDataString = localStorage.getItem("user");
   const userData = JSON.parse(userDataString);
   const userId = userData._id;
-  const [selectedTab, setSelectedTab] = useState("infos");
+  const [selectedTab, setSelectedTab] = useState("favoris");
   const [products, setProducts] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const navigate = useNavigate();
 
-  const { getFavorites, removeFromFavorites, checkFavorite, addToFavorites } = useFavorites();
+  const { getFavorites, removeFromFavorites, checkFavorite, addToFavorites} = useFavorites();
+  const {addToCart } = useCart();
 
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
@@ -46,6 +48,9 @@ export default function UserAccount() {
     }
   };
 
+  
+
+
   return (
     <>
       <h1>Mon compte</h1>
@@ -58,17 +63,17 @@ export default function UserAccount() {
             <ul>
               <NavLink
                 activeClassName="active"
+                onClick={() => handleTabClick("favoris")}
+              >
+                <li>Mes Produits Favoris</li>
+              </NavLink>
+              <NavLink
+                activeClassName="active"
                 onClick={() => handleTabClick("infos")}
               >
                 <li>Mes informations</li>
               </NavLink>
 
-              <NavLink
-                activeClassName="active"
-                onClick={() => handleTabClick("favoris")}
-              >
-                <li>Mes Produits Favoris</li>
-              </NavLink>
 
               <NavLink
                 activeClassName="active"
@@ -82,8 +87,8 @@ export default function UserAccount() {
 
         <div className="user-dashboard">
           <h2>
-            {selectedTab === "infos" && "Mes informations"}
             {selectedTab === "favoris" && "Mes produits favoris"}
+            {selectedTab === "infos" && "Mes informations"}
             {selectedTab === "commandes" && "Mes commandes"}
           </h2>
 
@@ -92,14 +97,23 @@ export default function UserAccount() {
             {selectedTab === "infos" && (
               <div className="user-infos">
                 <p>
-                  <strong>Nom:</strong> {userData.lastname}
+                  <strong>Nom:</strong> {userData.lastName}
                 </p>
                 <p>
-                  <strong>Prénom:</strong> {userData.firstname}
+                  <strong>Prénom:</strong> {userData.firstName}
                 </p>
+                <p>Entreprise: {userData.company}</p>
                 <p>
                   <strong>Email:</strong> {userData.email}
                 </p>
+                <p> Date d'inscription: {userData.created.split("T")[0]}</p> 
+
+                {userData.discount !== 0 && (
+                  <p>
+                    <strong>Remise accordée :</strong> {userData.discount}%
+                  </p>
+                )}
+                
                 
               </div>
             )}
@@ -118,21 +132,11 @@ export default function UserAccount() {
                     <ProductCard
                       key={favorite.product_id}
                       product={product}
-                      isFavorite={true}
-                      onFavoriteClick={async () => {
-                        console.log("Trying to remove product with ID:", product._id);
-                        try {
-                          if (userId) {
-                            await removeFromFavorites(userId, product._id);
-                            setFavorites(favorites.filter((item) => item.product_id !== product._id));
-                          } else {
-                            console.error("L'ID de l'utilisateur n'est pas disponible.");
-                          }
-                        } catch (error) {
-                          console.error("Erreur lors de la gestion des favoris :", error);
-                        }
-                      }}
-                      onProductClick={handleProductClick}
+                      addToCart={addToCart}
+                      addToFavorites={addToFavorites}
+                      checkFavorite={checkFavorite}
+                      removeFromFavorites={removeFromFavorites}
+                      handleProductClick={handleProductClick}
                     />
                   );
                 })

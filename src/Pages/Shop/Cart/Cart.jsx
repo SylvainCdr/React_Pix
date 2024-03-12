@@ -77,7 +77,7 @@ export default function Cart() {
           <div className='totals-item'>
             <label>Sous-total</label>
             <div className='totals-value' id='cart-subtotal'>
-              {cart.reduce((acc, product, index) => acc + product.quantity * product.price, 0)} €
+              {cart.reduce((acc, product, index) => acc + product.quantity * product.price, 0).toFixed(2)} €
             </div>
           </div>
           <div className='totals-item'>

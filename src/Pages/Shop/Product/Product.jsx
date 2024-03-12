@@ -17,7 +17,8 @@ export default function Product() {
   const [isInFavorites, setIsInFavorites] = useState(false);
 
   // Utilisez le hook useFavorites
-  const { addToFavorites, removeFromFavorites, checkFavorite, getFavorites } = useFavorites();
+  const { addToFavorites, removeFromFavorites, checkFavorite, getFavorites } =
+    useFavorites();
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
 
@@ -69,7 +70,6 @@ export default function Product() {
     nebula: "Nebula",
   };
 
-  
   useEffect(() => {
     fetch("http://localhost:3001/products")
       .then((res) => res.json())
@@ -104,7 +104,14 @@ export default function Product() {
       if (isInFavorites) {
         await removeFromFavorites(userId, id);
       } else {
-        await addToFavorites(userId, id, product.name, product.price, product.ref, product.image);
+        await addToFavorites(
+          userId,
+          id,
+          product.name,
+          product.price,
+          product.ref,
+          product.image
+        );
       }
 
       setIsInFavorites(!isInFavorites);
@@ -140,9 +147,7 @@ export default function Product() {
       const discountedPrice = calculateDiscount(product.price, discount);
       return (
         <p className="prices">
-          <span className="original-price">
-            {product.price.toFixed(2)} €
-          </span>
+          <span className="original-price">{product.price.toFixed(2)} €</span>
           <span className="discounted-price">
             {discountedPrice.toFixed(2)} € <span> TTC</span>
           </span>
@@ -156,7 +161,6 @@ export default function Product() {
         </p>
       );
     }
-
   };
 
   return (
@@ -168,9 +172,10 @@ export default function Product() {
         <div className="product-page">
           <div className="product-section1">
             <div className="product-img">
-              {discount !== 0 && <span className="discount-badge">-{discount}%</span>}  
+              {discount !== 0 && (
+                <span className="discount-badge">-{discount}%</span>
+              )}
               <img src={product.image} alt={product.name} />
-
             </div>
             <div className="product-description">
               <div className="price-like">
@@ -252,7 +257,8 @@ export default function Product() {
                     <Link to={`/product/${item._id}`} key={item._id}>
                       {/* // Utilisez le composant ProductCard pour afficher les produits similaires
                       on utilise le hook useFavorites pour gérer les favoris */}
-                      <ProductCard product={item}
+                      <ProductCard
+                        product={item}
                         isInFavorites={isInFavorites}
                         addToFavorites={addToFavorites}
                         removeFromFavorites={removeFromFavorites}
