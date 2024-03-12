@@ -97,20 +97,20 @@ export default function UserAccount() {
             {selectedTab === "infos" && (
               <div className="user-infos">
                 <p>
-                  <strong>Nom:</strong> {userData.lastName}
+                 Nom : {userData.lastName}
                 </p>
                 <p>
-                  <strong>Prénom:</strong> {userData.firstName}
+                  Prénom : {userData.firstName}
                 </p>
-                <p>Entreprise: {userData.company}</p>
+                <p>Entreprise : {userData.company}</p>
                 <p>
-                  <strong>Email:</strong> {userData.email}
+                  Email : {userData.email}
                 </p>
-                <p> Date d'inscription: {userData.created.split("T")[0]}</p> 
+                <p> Date d'inscription : {userData.created.split("T")[0]}</p> 
 
                 {userData.discount !== 0 && (
                   <p>
-                    <strong>Remise accordée :</strong> {userData.discount}%
+                    Remise accordée : {userData.discount}%
                   </p>
                 )}
                 

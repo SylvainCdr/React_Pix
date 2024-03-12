@@ -1,7 +1,7 @@
 @mixin white-gradient {
   background: linear-gradient(
     to right,
-    rgb(63, 155, 221) 0%,
+    rgb(101, 101, 101) 0%,
     rgba(255, 255, 255, 0) 100%
   );
 }
@@ -20,13 +20,13 @@ $animationSpeed: 30s;
 
 // Styling
 .slider {
-  background: linear-gradient(to bottom right, #0f0f0f, #496d8e);
+  background: linear-gradient(to bottom right, #fbfbfb, #ffffff);
   box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
   height: 100px;
   margin: auto;
   overflow: hidden;
   position: relative;
-  width: 1440px;
+  width: 100%;
 
   &::before,
   &::after {
@@ -65,9 +65,9 @@ $animationSpeed: 30s;
     img {
       text-align: center;
       height: 100%;
+      padding: 0.4rem 0rem;
       width: 100%;
       object-fit: contain;
-    
-}
-}
+    }
+  }
 }

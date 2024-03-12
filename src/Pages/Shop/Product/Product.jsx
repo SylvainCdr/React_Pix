@@ -7,6 +7,7 @@ import Cart from "../../Shop/Cart/Cart";
 import useFavorites from "../../../Components/useFavorites";
 import useCart from "../../../Components/useCart";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
+import CardButton from "../../../Components/CartButton/CardButton";
 
 export default function Product() {
   const [product, setProduct] = useState({});
@@ -215,6 +216,13 @@ export default function Product() {
                 <button onClick={handleAddToCartClick} className="add">
                   Ajouter au panier
                 </button>
+{/* 
+<div onClick = {handleAddToCartClick} className="add">
+                <CardButton onClick={handleAddToCartClick} 
+                  quantity={quantity}
+                />
+                </div> */}
+
               </div>
               <p className="ref">Référence : {product.ref}</p>
             </div>
