@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import useFavorites from "../../../Components/useFavorites";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
 
@@ -8,8 +8,11 @@ export default function UserAccount() {
   const userDataString = localStorage.getItem("user");
   const userData = JSON.parse(userDataString);
   const userId = userData._id;
-  const [products, setProducts] = useState([]);
   const [selectedTab, setSelectedTab] = useState("infos");
+  const [products, setProducts] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+  const navigate = useNavigate();
+
   const { getFavorites, removeFromFavorites, checkFavorite, addToFavorites } = useFavorites();
 
   const handleTabClick = (tab) => {
@@ -17,30 +20,31 @@ export default function UserAccount() {
   };
 
   useEffect(() => {
-    const fetchFavorites = async () => {
-      const favorites = await getFavorites(userId);
-      console.log("Favorites Data:", favorites);
-      setProducts(favorites);
+    const fetchData = async () => {
+      try {
+        const [productsData, favoritesData] = await Promise.all([
+          fetch("http://localhost:3001/products").then((res) => res.json()),
+          getFavorites(userId),
+        ]);
+
+        setProducts(productsData);
+        setFavorites(favoritesData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
-    fetchFavorites();
+
+    fetchData();
   }, [userId]);
 
-  const handleRemoveFromFavorites = async (productId) => {
-    console.log("Removing product with ID:", productId);
+  const handleProductClick = (productId) => {
+    const product = products.find((item) => item._id === productId);
+    const product_id = product?.product_id;
 
-    const response = await removeFromFavorites(userId, productId);
-
-    if (response) {
-      console.log("Product removed successfully from the server!");
-
-      // Utilisez un nouvel état en filtrant les produits avec le produit supprimé
-      setProducts(products.filter((product) => product._id !== productId));
-    } else {
-      console.log("Product removal failed!");
+    if (product_id) {
+      navigate(`/product/${product_id}`);
     }
   };
-  
-  
 
   return (
     <>
@@ -52,15 +56,24 @@ export default function UserAccount() {
           <aside className="user-account-nav">
             <h2>MENU</h2>
             <ul>
-              <NavLink activeClassName="active" onClick={() => handleTabClick("infos")}>
+              <NavLink
+                activeClassName="active"
+                onClick={() => handleTabClick("infos")}
+              >
                 <li>Mes informations</li>
               </NavLink>
 
-              <NavLink activeClassName="active" onClick={() => handleTabClick("favoris")}>
+              <NavLink
+                activeClassName="active"
+                onClick={() => handleTabClick("favoris")}
+              >
                 <li>Mes Produits Favoris</li>
               </NavLink>
 
-              <NavLink activeClassName="active" onClick={() => handleTabClick("commandes")}>
+              <NavLink
+                activeClassName="active"
+                onClick={() => handleTabClick("commandes")}
+              >
                 <li>Mes commandes</li>
               </NavLink>
             </ul>
@@ -73,23 +86,68 @@ export default function UserAccount() {
             {selectedTab === "favoris" && "Mes produits favoris"}
             {selectedTab === "commandes" && "Mes commandes"}
           </h2>
-          {selectedTab === "favoris" && (
+
+        
+            
+            {selectedTab === "infos" && (
+              <div className="user-infos">
+                <p>
+                  <strong>Nom:</strong> {userData.lastname}
+                </p>
+                <p>
+                  <strong>Prénom:</strong> {userData.firstname}
+                </p>
+                <p>
+                  <strong>Email:</strong> {userData.email}
+                </p>
+                
+              </div>
+            )}
+
+{selectedTab === "favoris" && (
+          <div className="user-favorites">
+           
             <div className="favorites-grid">
-               {products.map((item) => (
-              <ProductCard product = {item} key={item._id}
-              // handleRemoveFromFavorites={handleRemoveFromFavorites}
-             checkFavorite={getFavorites}
-              // removeFromFavorites={removeFromFavorites}
-              handleRemoveFromFavorites={removeFromFavorites}
-              removeFromFavorites={handleRemoveFromFavorites}
-              
-              />
+              {favorites.length > 0 ? (
+                favorites.map((favorite) => {
+                  const product = products.find(
+                    (item) => item._id === favorite.product_id
+                  );
 
+                  return (
+                    <ProductCard
+                      key={favorite.product_id}
+                      product={product}
+                      isFavorite={true}
+                      onFavoriteClick={async () => {
+                        console.log("Trying to remove product with ID:", product._id);
+                        try {
+                          if (userId) {
+                            await removeFromFavorites(userId, product._id);
+                            setFavorites(favorites.filter((item) => item.product_id !== product._id));
+                          } else {
+                            console.error("L'ID de l'utilisateur n'est pas disponible.");
+                          }
+                        } catch (error) {
+                          console.error("Erreur lors de la gestion des favoris :", error);
+                        }
+                      }}
+                      onProductClick={handleProductClick}
+                    />
+                  );
+                })
+              ) : (
+                <p>Vous n'avez pas encore de produits favoris.</p>
+              )}
+            </div>  
 
-          ))}
             </div>
           )}
-        </div>
+          </div>
+
+
+
+     
       </div>
     </>
   );

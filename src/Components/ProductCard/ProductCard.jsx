@@ -125,9 +125,6 @@ const ProductCard = ({
       }
     }
 
-
-
-
     
   
     return (
@@ -157,9 +154,6 @@ const ProductCard = ({
               ></i>
             </p>
             <p className="cart">
-              {/* <a href="#">
-                <i className="fa-solid fa-cart-plus"></i>
-              </a> */}
               <i
                 className="fa-solid fa-cart-plus"
                 onClick={handleAddToCartClick}
