@@ -1,3 +1,23 @@
+@keyframes clickAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+  }
+}
+
 .product-container {
   margin-top: 8rem;
   margin-left: 1.5rem;
@@ -146,7 +166,6 @@
       }
 
       .add-to-cart {
-        
         display: flex;
         justify-content: center;
         height: 3rem;
@@ -155,7 +174,6 @@
 
         .quantity {
           display: flex;
-          justify-content: space-between;
           align-items: center;
           width: 30%;
           height: 3rem;
@@ -165,27 +183,39 @@
           -moz-border-radius: 0.3rem;
           -ms-border-radius: 0.3rem;
           -o-border-radius: 0.3rem;
-          padding: 0.8rem;
-          margin-right: 15%
+          padding: 0.9rem;
+          justify-content: space-between;
+          margin-right: 10%;
 
-          // button {
-          //   border: none;
-          //   font-size: 1.5rem;
-          //   font-weight: 600;
-          //   border-radius: 0.3rem;
-          //   -webkit-border-radius: 0.3rem;
-          //   -moz-border-radius: 0.3rem;
-          //   -ms-border-radius: 0.3rem;
-          //   -o-border-radius: 0.3rem;
+          .qty-btn {
+            width: 1.8rem;
+            height: 1.8rem;
+            font-size: 1.5rem;
+            color: #ffffff;
+            background-color: #0c96d2;
+            box-shadow: 0 0 4px 0 rgb(144, 144, 144);
+            border: none;
+            border-radius: 0.2rem;
+            -webkit-border-radius: 0.2rem;
+            -moz-border-radius: 0.2rem;
+            -ms-border-radius: 0.2rem;
+            -o-border-radius: 0.2rem;
 
-          //   &:hover {
-          //     cursor: pointer;
-          //   }
-          // }
+
+            &:hover 
+{
+              cursor: pointer;
+              background-color: #3ac0f9;
+            }
+            &:active {
+              animation: clickAnimation 0.5s ease;
+              -webkit-animation: clickAnimation 0.5s ease;
+            }
+          }
         }
         .add {
           background-color: #0c96d2;
-          box-shadow: 0 0 5px 0 rgb(144, 144, 144);
+          box-shadow: 0 0 4px 0 rgb(144, 144, 144);
           color: white;
           width: 70%;
           border: none;
@@ -198,6 +228,11 @@
           &:hover {
             cursor: pointer;
             background-color: #3ac0f9;
+          }
+
+          &:active {
+            animation: clickAnimation 0.5s ease;
+            -webkit-animation: clickAnimation 0.5s ease;
           }
         }
       }

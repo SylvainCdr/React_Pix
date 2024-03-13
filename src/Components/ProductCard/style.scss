@@ -1,3 +1,26 @@
+
+
+@keyframes clickAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.6);
+    -webkit-transform: scale(1.6);
+    -moz-transform: scale(1.6);
+    -ms-transform: scale(1.6);
+    -o-transform: scale(1.6);
+}
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+}
+}
+
+
 .product-card {
   background-color: #fff;
   border-radius: 0.3rem;
@@ -115,12 +138,17 @@
           font-size: 1.4rem;
           margin-right: 0.9rem;
           cursor: pointer;
-        }
 
+        }
         i:hover {
           color: #f74f4f;
           scale: 1.1;
         }
+        &:active {
+          animation: clickAnimation 0.5s ease;
+          -webkit-animation: clickAnimation 0.5s ease;
+}
+
       }
 
       .cart {
@@ -129,12 +157,31 @@
           color: #838485;
           margin-right: 0.8rem;
           cursor: pointer;
+
+          &:active {
+            animation: clickAnimation 0.3s ease;
+            -webkit-animation: clickAnimation 0.3s ease;
+}
         }
 
         i:hover {
           color: #03b43e;
           scale: 1.1;
+          
         }
+        // &:hover::after {
+        //   content: "Ajouter au panier";
+        //   position: absolute;
+        //   margin-top: -2rem;
+        //   margin-left: -4rem;
+        //   transform: translate(-50%, -50%);
+        //   background-color: rgba(0, 0, 0, 0.281);
+        //   color: white;
+        //   padding: 8px 16px;
+        //   border-radius: 4px;
+        //   font-size: 12px;
+        //   z-index: 1;
+        // }
       }
     }
   }

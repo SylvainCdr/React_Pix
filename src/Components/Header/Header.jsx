@@ -3,10 +3,19 @@ import "./style.scss";
 import { NavLink, useHistory } from "react-router-dom";
 import { useUser } from "../../Pages/appContext";
 import Swal from "sweetalert2";
+// import { useCart } from "../useCart";
 
 function Header() {
   const user = useUser();
   console.log(user);
+
+  // const { cart, fetchCart } = useCart();
+  // const [cartItemCount, setCartItemCount] = useState(0); // State pour le nombre d'articles dans le panier
+
+
+
+
+ 
 
   // Creation fonction menu Burger
   let isBurgerOpen = false;
@@ -28,24 +37,22 @@ function Header() {
       document.cookie = c
         .replace(/^ +/, "")
         .replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
-      });
-      
-      
-      // alerte de déconnexion SweetAlert
-      Swal.fire({
-        title: "Déconnecté",
-        icon: "success",
-        text: "Pixecurity vous remercie pour votre visite !",
-        timer : 2000,
-        showConfirmButton: false,
-      });
+    });
 
-      setTimeout(() => {
+    // alerte de déconnexion SweetAlert
+    Swal.fire({
+      title: "Déconnecté",
+      icon: "success",
+      text: "Pixecurity vous remercie pour votre visite !",
+      timer: 2000,
+      showConfirmButton: false,
+    });
+
+    setTimeout(() => {
       // on redirige vers la page d'accueil
       window.location.href = "/";
-    }
-    , 2000);
-    };
+    }, 2000);
+  };
 
   return (
     <div className="header">
@@ -87,12 +94,6 @@ function Header() {
             </li>
           )}
 
-          {user?.role === "user" && (
-            <li>
-              <NavLink to="/panier"><i class="fa-solid fa-cart-shopping"></i></NavLink>
-            </li>
-          )}
-
           {user?.role === "admin" && (
             <li>
               <NavLink to="/admin/dashboard">Administration</NavLink>
@@ -101,14 +102,24 @@ function Header() {
 
           {user && (
             <li>
-              <a href="#" onClick={logout}>
+              <a href="#" onClick={logout} className="logout">
                 Se déconnecter
               </a>
             </li>
           )}
 
+          {user?.role === "user" && (
+            <div className="cart">
+              <NavLink to="/panier">
+                <i class="fa-solid fa-cart-shopping"></i>
+                {/* {cartItemCount > 0 && <span className="badge">{cartItemCount}</span>} */}
+              </NavLink>
+            </div>
+          )}
+
           {/* utiliser un bouton toggle-off toggle-on pour la connexion et deconnexion */}
         </ul>
+
         <div className="header__burgerMenu" onClick={burgerToggle}></div>
       </nav>
     </div>
