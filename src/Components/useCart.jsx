@@ -9,16 +9,18 @@ const useCart = () => {
   const userData = JSON.parse(userDataString);
   const userId = userData ? userData._id : null;
 
-  // on compte le nombre d'articles dans le panier
-  // const [cartItemCount, setCartItemCount] = useState(0); // State pour le nombre d'articles dans le panier
 
-  // const count = () => {
-  //   let count = 0;
-  //   cart.forEach((product) => {
-  //     count += product.quantity;
-  //   });
-  //   setCartItemCount(count);
-  // };
+const [cartItemsCount, setCartItemsCount] = useState(0);
+
+useEffect(() => {
+  let count = 0;
+  cart.forEach((product) => {
+    count += product.quantity;
+  });
+  setCartItemsCount(count);
+}, [cart]);
+
+
 
 
 
@@ -180,7 +182,10 @@ useEffect(() => {
 }, [userId, isCartFetched, fetchCart]);
 
 
-return { cart, isAddingToCart, addToCart, fetchCart, editQuantity, removeFromCart};
+
+
+
+return { cart, isAddingToCart, addToCart, fetchCart, editQuantity, removeFromCart, cartItemsCount, setCartItemsCount};
 };
 
 

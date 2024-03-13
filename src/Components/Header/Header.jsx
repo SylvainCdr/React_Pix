@@ -3,16 +3,20 @@ import "./style.scss";
 import { NavLink, useHistory } from "react-router-dom";
 import { useUser } from "../../Pages/appContext";
 import Swal from "sweetalert2";
-// import { useCart } from "../useCart";
+import useCart from "../useCart";
 
 function Header() {
   const user = useUser();
   console.log(user);
 
-  // const { cart, fetchCart } = useCart();
-  // const [cartItemCount, setCartItemCount] = useState(0); // State pour le nombre d'articles dans le panier
+  
 
+  const { cartItemsCount, setCartItemsCount } = useCart();
+  const [itemsCount, setItemsCount] = useState(cartItemsCount);
 
+  useEffect(() => {
+    setItemsCount(cartItemsCount);
+  }, [cartItemsCount]);
 
 
  
@@ -112,12 +116,13 @@ function Header() {
             <div className="cart">
               <NavLink to="/panier">
                 <i class="fa-solid fa-cart-shopping"></i>
-                {/* {cartItemCount > 0 && <span className="badge">{cartItemCount}</span>} */}
+                
               </NavLink>
             </div>
           )}
 
           {/* utiliser un bouton toggle-off toggle-on pour la connexion et deconnexion */}
+          {cartItemsCount > 0 && <span className="badge">{cartItemsCount}</span>}
         </ul>
 
         <div className="header__burgerMenu" onClick={burgerToggle}></div>
