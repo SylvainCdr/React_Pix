@@ -10,8 +10,9 @@ const useCart = () => {
   const userId = userData ? userData._id : null;
 
 
+  // Compter le nombre total d'articles dans le panier
 const [cartItemsCount, setCartItemsCount] = useState(0);
-
+// Mettre à jour le nombre total d'articles dans le panier
 useEffect(() => {
   let count = 0;
   cart.forEach((product) => {
@@ -21,11 +22,14 @@ useEffect(() => {
 }, [cart]);
 
 
+// on calcule le montant total du panier
+const totalAmount = cart.reduce((acc, product) => acc + (product.quantity * product.price )* 1.20 + 9.90,0);
 
 
 
- 
-  
+
+
+
 
 // Récupération du panier actuel de l'utilisateur
 const fetchCart = async (userId) => {
@@ -72,8 +76,6 @@ const editQuantity = (userId, productId, quantity) => {
 
 // Ajout d'un produit au panier
 const addToCart = async (userId, productId, productName, productRef, quantity, productPrice, productImage) => {
-
-
 
   try {
     setIsAddingToCart(true);
@@ -145,11 +147,6 @@ const addToCart = async (userId, productId, productName, productRef, quantity, p
 
 
 
-
-
-
-
-
 // Suppression d'un produit du panier
 const removeFromCart = (userId, productId) => {
   // Assuming that you have a backend API endpoint to handle cart removal
@@ -185,7 +182,7 @@ useEffect(() => {
 
 
 
-return { cart, isAddingToCart, addToCart, fetchCart, editQuantity, removeFromCart, cartItemsCount, setCartItemsCount};
+return { cart, totalAmount, isAddingToCart, addToCart, fetchCart, editQuantity, removeFromCart, cartItemsCount, setCartItemsCount};
 };
 
 

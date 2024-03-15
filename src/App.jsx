@@ -19,6 +19,7 @@ import Product from "./Pages/Shop/Product/Product";
 import EditUser from "./Pages/Admin/EditUser/EditUser";
 import UserAccount from "./Pages/Shop/UserAccount/UserAccount";
 import Cart from "./Pages/Shop/Cart/Cart";
+import Order from "./Pages/Shop/Order/Order"; 
 import { Provider } from "./Pages/appContext";
 
 
@@ -58,6 +59,7 @@ function App() {
           <Route path="/admin/edit-user/:id" element={<EditUser />} />
           <Route path="/mon-compte" element={<UserAccount />} />
           <Route path="/panier" element={<Cart />} />
+          <Route path="/panier/commande" element={<Order />} />
           </Route>
         </Routes>
       </BrowserRouter>

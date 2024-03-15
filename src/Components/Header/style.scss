@@ -73,8 +73,8 @@
 
       .badge {
         background-color: #ffffff;
-        height: 1.6rem;
-        width: 1.6rem;
+        height: 1.4rem;
+        width: 1.4rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -83,6 +83,8 @@
         font-weight: 600;
         color: rgb(0, 103, 163);
         box-shadow: 0 0 2px rgba(255, 254, 254, 0.5);
+        position : relative;
+        margin-left: -0.5rem;
         
       }
    

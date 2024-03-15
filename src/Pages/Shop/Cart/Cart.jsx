@@ -1,11 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.scss';
 import useCart from '../../../Components/useCart';
+import { useNavigate } from 'react-router-dom';
 
 export default function Cart() {
   const { fetchCart, editQuantity, removeFromCart, cart } = useCart();
-
-
+  const navigate = useNavigate();
+  
+  const [subTotal, setSubTotal] = useState(0);
+  const [tax, setTax] = useState(0);
+  const [shippingCost, setShippingCost] = useState(9.90);
+  const [totalAmount, setTotalAmount] = useState(0);
 
   useEffect(() => {
     const userDataString = localStorage.getItem('user');
@@ -14,9 +19,16 @@ export default function Cart() {
     fetchCart(userId);
   }, []);
 
-  
+  useEffect(() => {
+    const calculatedSubTotal = cart.reduce((acc, product) => acc + product.quantity * product.price, 0);
+    setSubTotal(calculatedSubTotal);
+    setTax(calculatedSubTotal * 0.20);
+    setTotalAmount(calculatedSubTotal + calculatedSubTotal * 0.20 + shippingCost);
+  }, [cart]);
 
-
+  const handleOrder = () => {
+    navigate('./commande');
+  }
 
   return (
     <div className='cart-container'>
@@ -39,7 +51,7 @@ export default function Cart() {
             </div>
             <div className='product-details'>
               <div className='product-title'>{product.name}
-              <p>Réf : {product.ref}</p></div>
+                <p>Réf : {product.ref}</p></div>
               <p className='product-description'>{product.description}</p>
             </div>
             <div className='product-price'>{product.price.toFixed(2)} €</div>
@@ -56,7 +68,6 @@ export default function Cart() {
               />
             </div>
             <div className='product-removal'>
-
               <button
                 className='remove-product'
                 onClick={() => {
@@ -76,33 +87,23 @@ export default function Cart() {
         <div className='totals'>
           <div className='totals-item'>
             <label>Sous-total</label>
-            <div className='totals-value' id='cart-subtotal'>
-              {cart.reduce((acc, product, index) => acc + product.quantity * product.price, 0).toFixed(2)} €
-            </div>
+            <div className='totals-value' id='cart-subtotal'>{subTotal.toFixed(2)} €</div>
           </div>
           <div className='totals-item'>
             <label>TVA (20%)</label>
-            <div className='totals-value' id='cart-tax'>
-              {(cart.reduce((acc, product, index) => acc + product.quantity * product.price, 0) * 0.20).toFixed(2)} €
-            </div>
+            <div className='totals-value' id='cart-tax'>{tax.toFixed(2)} €</div>
           </div>
           <div className='totals-item'>
             <label>Frais de livraison</label>
-            <div className='totals-value' id='cart-shipping'>9.90 €</div>
+            <div className='totals-value' id='cart-shipping'>{shippingCost.toFixed(2)} €</div>
           </div>
           <div className='totals-item totals-item-total'>
             <label>Total</label>
-            <div className='totals-value' id='cart-total'>
-              {(
-                cart.reduce((acc, product, index) => acc + product.quantity * product.price, 0) +
-                cart.reduce((acc, product, index) => acc + product.quantity * product.price, 0) * 0.20 +
-                9.90
-              ).toFixed(2)} €
-            </div>
+            <div className='totals-value' id='cart-total'>{totalAmount.toFixed(2)} €</div>
           </div>
         </div>
 
-        <button className='checkout'>Commander</button>
+        <button onClick={handleOrder} className='checkout'>Commander</button>
       </div>
     </div>
   );

@@ -1,0 +1,41 @@
+.order-container {
+
+    margin-top : 8rem;
+
+    .customer-infos
+    {
+        height: 10rem;
+        border: 1px solid #e0e0e0;
+    }
+
+    .address-details {
+        height: 10rem;
+        border: 1px solid #e0e0e0;
+        display: flex;
+
+        .billing-address {
+            height: 100%;
+            width: 50%;
+            border: 1px solid #e0e0e0;
+        }
+        .shipping-address {
+            height: 100%;
+            width: 50%;
+            border: 1px solid #e0e0e0;
+        
+        
+    }
+
+}
+
+.payment-methods {
+    height: 10rem;
+    border: 1px solid #e0e0e0;
+}
+
+.payment-details {
+    height: 7rem;
+    border: 1px solid #e0e0e0;}
+
+
+}
