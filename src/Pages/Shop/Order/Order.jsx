@@ -1,58 +1,24 @@
 import React, { useState, useEffect } from "react";
 import "./style.scss";
 import useCart from "../../../Components/useCart";
+import Swal from "sweetalert2";
 
 export default function Order() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const { cart, totalAmount } = useCart();
 
-  //   const OrderSchema = new Schema({
-  //     // Création d'une référence à l'utilisateur qui a passé la commande
-  //     user: {
-  //       type: mongoose.Schema.Types.ObjectId,
-  //       ref: 'User',
-  //       required: true
-  //     },
-  //     // Création d'un objet pour stocker l'adresse de livraison
-  //     address: {
-  //       street: { type: String, required: true },
-  //       city: { type: String, required: true },
-  //       zip: { type: String, required: true },
-  //       country: { type: String, required: true },
-  //     },
-  //     // Création d'un objet pour stocker les produits commandés
-  //     items: [{
-  //       product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
-  //       quantity: { type: Number, required: true },
-  //       priceAtOrderTime: { type: Number, required: true },
-  //     }],
-  //     delivery: {
-  //       method: { type: String, required: true, enum: ['standard', 'express'] },
-  //       fee: { type: Number, default: 0 },
-  //     },
-  //     // Création d'une date de commande
-  //     orderDate: {
-  //       type: Date,
-  //       default: Date.now
-  //     },
-  //     // Création d'un statut pour la commande
-  //     status: {
-  //       type: String,
-  //       enum: ['pending', 'shipped', 'delivered'],
-  //       default: 'pending'
-  //     },
-  //     payment: {
-  //       totalAmount: { type: Number, required: true },
-  //       method: { type: String, required: true },
-  //       paid: { type: Boolean, default: false },
-  //     },
-  //     // Création d'un total pour la commande
-  //     total: { type: Number, required: true },
-  //   });
+  // Définir les champs de l'adresse de facturation et du numéro de téléphone dans l'état local
+  const [billingAddress, setBillingAddress] = useState({
+    street: "",
+    zip: "",
+    city: "",
+    country: "",
+  });
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const [order, setOrder] = useState({
     user: user._id,
-    address: { street: "", city: "", zip: "", country: "" },
+    deliveryAddress: { street: "", city: "", zip: "", country: "" },
     items: [],
     delivery: {
       method: "",
@@ -87,8 +53,8 @@ export default function Order() {
     if (["street", "city", "zip", "country"].includes(name)) {
       setOrder((prev) => ({
         ...prev,
-        address: {
-          ...prev.address,
+        deliveryAddress: {
+          ...prev.deliveryAddress,
           [name]: value,
         },
       }));
@@ -108,34 +74,103 @@ export default function Order() {
           method: value,
         },
       }));
+    } else if (name === "phone") {
+      setPhoneNumber(value);
+      // Mettre à jour l'état local user avec le numéro de téléphone
+      setUser((prevUser) => ({
+        ...prevUser,
+        phone: value,
+      }));
+    } else {
+      setUser((prevUser) => ({
+        ...prevUser,
+        [name]: value,
+      }));
+      // Envoyer une requête PUT pour mettre à jour l'utilisateur sur le serveur
+      const updatedUser = { ...user, [name]: value };
+      fetch(`http://localhost:3001/users/${user._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedUser),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to update user");
+          }
+        })
+        .catch((error) => {
+          console.error("Error updating user:", error);
+          // Gérer l'erreur, peut-être afficher un message à l'utilisateur
+        });
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3001/orders", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(order),
-      });
+      // Mettre à jour l'objet utilisateur avec l'adresse de facturation et le numéro de téléphone
+      const updatedUser = {
+        ...user,
+        billingAddress: billingAddress,
+        phone: phoneNumber,
+        // Conserver les valeurs existantes pour les autres champs de l'utilisateur
+        firstName: user.firstName,
+        lastName: user.lastName,
+        company: user.company,
+        email: user.email,
+        // Ajoutez d'autres champs de l'utilisateur si nécessaire
+      };
 
-      if (response.ok) {
-        alert("Commande passée avec succès !");
-        // Réinitialiser le formulaire après une commande réussie
-        setOrder({
-          ...order,
-          address: {
-            street: "",
-            city: "",
-            zip: "",
-            country: "",
+      // Envoyer une requête pour mettre à jour l'utilisateur sur le serveur
+      const updateUserResponse = await fetch(
+        `http://localhost:3001/users/${user._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
           },
-          deliveryMethod: "",
-          paymentMethod: "",
+          body: JSON.stringify(updatedUser),
+        }
+      );
+
+      if (updateUserResponse.ok) {
+        // Ensuite, envoyer la commande avec les détails mis à jour de l'utilisateur
+        const response = await fetch("http://localhost:3001/orders", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(order),
         });
+
+        if (response.ok) {
+          // Supprimer le panier de l'utilisateur une fois la commande soumise avec succès
+          const resetCartResponse = await fetch(
+            `http://localhost:3001/users/${user._id}/reset-cart`,
+            {
+              method: "PUT",
+            }
+          );
+
+          if (resetCartResponse.ok) {
+            // Afficher le message SweetAlert une fois la commande soumise et le panier réinitialisé avec succès
+            Swal.fire({
+              icon: "success",
+              title: "Commande validée avec succès !",
+              text: "Votre commande a été soumise avec succès.",
+              confirmButtonText: "OK",
+            }).then(() => {
+              // Rediriger vers la page de compte utilisateur
+              window.location.href = "/mon-compte"; // Modifiez l'URL de redirection selon votre structure de routage
+            });
+          } else {
+            throw new Error("Failed to reset cart");
+          }
+        } else {
+          throw new Error("Failed to submit order");
+        }
       } else {
         alert("Échec de la commande. Veuillez réessayer.");
       }
@@ -147,55 +182,61 @@ export default function Order() {
   return (
     <div className="order-container">
       <h1>Commande</h1>
+
       <form onSubmit={handleSubmit}>
-        <h2>Informations</h2>
+        <h2>
+          {" "}
+          <i class="fa-solid fa-user"></i> ETAPE 1 : Informations personnelles
+        </h2>
         <div className="customer-infos">
-          <div className="customer-details">
-            <div className="name">
-              Prénom :{" "}
-              <input
-                type="text"
-                name="firstName"
-                placeholder="Prénom"
-                value={user.firstName}
-                onChange={handleChange}
-              />
-              Nom :{" "}
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Nom"
-                value={user.lastName}
-                onChange={handleChange}
-              />
-              <input
-                type="text"
-                name="company"
-                placeholder="Entreprise"
-                value= {user.company}
-                onChange={handleChange}
-              />
-            </div>
+          <div className="details">
+            Prénom :{" "}
+            <input
+              type="text"
+              name="firstName"
+              placeholder="Prénom"
+              value={user.firstName}
+            />
+            Nom :{" "}
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Nom"
+              value={user.lastName}
+            />
+            Entreprise:{" "}
+            <input
+              type="text"
+              name="company"
+              placeholder="Entreprise"
+              value={user.company}
+            />
+          </div>
+
+          <div className="contact">
             Email :{" "}
             <input
               type="email"
               name="email"
               placeholder="Email"
               value={user.email}
-              onChange={handleChange}
             />
             Téléphone :{" "}
             <input
               type="text"
               name="phone"
-              placeholder="Téléphone"
-              value={user.phone}
+              placeholder="A renseigner"
+              // si la valeur phone est "non renseigné" alors on affiche un placeholer à renseigner
+              value={user.phone === "non renseigné" ? "" : user.phone}
               onChange={handleChange}
             />
           </div>
         </div>
 
-        <h2>Facturation & Livraison</h2>
+        <h2>
+          {" "}
+          <i class="fa-solid fa-house"></i> ETAPE 2 : Adresses
+        </h2>
         <div className="address-details">
           <div className="billing-address">
             <p>Adresse de facturation : </p>
@@ -203,63 +244,152 @@ export default function Order() {
               type="text"
               name="street"
               placeholder="Numéro et Rue"
-              value={order.address.street}
+              value={billingAddress.street}
+              onChange={(e) =>
+                setBillingAddress({ ...billingAddress, street: e.target.value })
+              }
+            />
+            <input
+              type="text"
+              name="zip"
+              placeholder="Code Postal"
+              value={billingAddress.zip}
+              onChange={(e) =>
+                setBillingAddress({ ...billingAddress, zip: e.target.value })
+              }
+            />
+            <input
+              type="text"
+              name="city"
+              placeholder="Ville"
+              value={billingAddress.city}
+              onChange={(e) =>
+                setBillingAddress({ ...billingAddress, city: e.target.value })
+              }
+            />
+
+            <select
+              name="country"
+              value={billingAddress.country}
+              onChange={(e) =>
+                setBillingAddress({
+                  ...billingAddress,
+                  country: e.target.value,
+                })
+              }
+            >
+              <option value="">Sélectionnez votre pays</option>
+              <option value="france">France</option>
+              <option value="belgique">Belgique</option>
+              <option value="suisse">Suisse</option>
+              <option value="luxembourg">Luxembourg</option>
+            </select>
+
+<div className="same-address">
+            <input
+              type="checkbox"
+              id="same-address"
+              name="same-address"
+              className="checkbox"
+              onChange={(e) => {
+                if (e.target.checked) {
+                  setOrder((prev) => ({
+                    ...prev,
+                    deliveryAddress: { ...billingAddress },
+                  }));
+                } else {
+                  setOrder((prev) => ({
+                    ...prev,
+                    deliveryAddress: {
+                      street: "",
+                      city: "",
+                      zip: "",
+                      country: "",
+                    },
+                  }));
+                }
+              }}
+            />
+            <label htmlFor="same-address">Adresse de livraison identique</label>
+            </div>
+
+            {/* input de type checkbox pour permettre à l'utilisateur de remplir les champs égal a la billingaddress  */}
+          </div>
+
+          <div className="delivery-address">
+            <p>Adresse de livraison : </p>
+            <input
+              type="text"
+              name="street"
+              placeholder="Numéro et Rue"
+              value={order.deliveryAddress.street}
               onChange={handleChange}
             />
             <input
               type="text"
               name="zip"
               placeholder="Code Postal"
-              value={order.address.zip}
+              value={order.deliveryAddress.zip}
               onChange={handleChange}
             />
             <input
               type="text"
               name="city"
               placeholder="Ville"
-              value={order.address.city}
+              value={order.deliveryAddress.city}
               onChange={handleChange}
             />
-            <input
-              type="text"
+
+            <select
               name="country"
-              placeholder="Pays"
-              value={order.address.country}
+              value={order.deliveryAddress.country}
               onChange={handleChange}
-            />
+            >
+              <option value="">Sélectionnez votre pays</option>
+              <option value="france">France</option>
+              <option value="belgique">Belgique</option>
+              <option value="suisse">Suisse</option>
+              <option value="luxembourg">Luxembourg</option>
+            </select>
           </div>
         </div>
 
-        <h2>Mode de livraison</h2>
-        <div className="delivery-options">
-          <select
-            name="deliveryMethod"
-            value={order.delivery.method}
-            onChange={handleChange}
-          >
-            <option value="">Sélectionnez le mode de livraison</option>
-            <option value="standard">Standard</option>
-            <option value="express">Express</option>
-          </select>
+        <div className="deliveryAndPayment">
+          <div className="delivery-options">
+            <h2>
+              <i class="fa-solid fa-truck"></i> ETAPE 3 : Mode de livraison{" "}
+            </h2>
+            <select
+              name="deliveryMethod"
+              value={order.delivery.method}
+              onChange={handleChange}
+            >
+              <option value="">Sélectionnez le mode de livraison</option>
+              <option value="standard">Standard</option>
+              <option value="express">Express</option>
+            </select>
+          </div>
+
+          <div className="payment-options">
+            <h2>
+              <i class="fa-regular fa-credit-card"></i> ETAPE 4 : Options de
+              paiement
+            </h2>
+
+            <select
+              name="paymentMethod"
+              value={order.payment.method}
+              onChange={handleChange}
+            >
+              <option value="">Sélectionnez le mode de paiement</option>
+              <option value="carte">Carte</option>
+              <option value="paypal">Paypal</option>
+              <option value="virement">Virement</option>
+            </select>
+          </div>
         </div>
 
-        <h2>Moyen de paiement</h2>
-        <div className="payment-options">
-          <p>Sélectionnez votre moyen de paiement</p>
-
-          <select
-            name="paymentMethod"
-            value={order.payment.method}
-            onChange={handleChange}
-          >
-            <option value="">Sélectionnez le mode de paiement</option>
-            <option value="carte">Carte</option>
-            <option value="paypal">Paypal</option>
-            <option value="virement">Virement</option>
-          </select>
-        </div>
-
-        <button type="submit">Valider la commande</button>
+        <button type="submit">Passer au paiement</button>
       </form>
     </div>
   );

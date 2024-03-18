@@ -13,9 +13,11 @@ export default function UserAccount() {
   const [products, setProducts] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const navigate = useNavigate();
+  const [orders, setOrders] = useState([]);
 
-  const { getFavorites, removeFromFavorites, checkFavorite, addToFavorites} = useFavorites();
-  const {addToCart } = useCart();
+  const { getFavorites, removeFromFavorites, checkFavorite, addToFavorites } =
+    useFavorites();
+  const { addToCart } = useCart();
 
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
@@ -42,85 +44,93 @@ export default function UserAccount() {
   const handleProductClick = (productId) => {
     const product = products.find((item) => item._id === productId);
     const product_id = product?.product_id;
-
     if (product_id) {
       navigate(`/product/${product_id}`);
     }
   };
 
-  
-
+  // Récupération des commandes comportant un champs avec l'id de l'utilisateur
+  useEffect(() => {
+    fetch(`http://localhost:3001/orders?userId=${userId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setOrders(data);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la récupération des commandes :", error);
+      });
+  }, [userId]);
 
   return (
-    <>
-      <h1>Mon compte</h1>
-      <p>Bienvenue sur votre compte</p>
+    <div className="user-account-container">
+      <div className="user-menu">
+        <aside className="user-account-nav">
+          <h2>MENU</h2>
+          <ul>
+            <NavLink
+              activeClassName="active"
+              onClick={() => handleTabClick("favoris")}
+            >
+              <li>Mes Produits Favoris</li>
+            </NavLink>
+            <NavLink
+              activeClassName="active"
+              onClick={() => handleTabClick("infos")}
+            >
+              <li>Mes informations</li>
+            </NavLink>
 
-      <div className="user-account-container">
-        <div className="user-menu">
-          <aside className="user-account-nav">
-            <h2>MENU</h2>
-            <ul>
-              <NavLink
-                activeClassName="active"
-                onClick={() => handleTabClick("favoris")}
-              >
-                <li>Mes Produits Favoris</li>
-              </NavLink>
-              <NavLink
-                activeClassName="active"
-                onClick={() => handleTabClick("infos")}
-              >
-                <li>Mes informations</li>
-              </NavLink>
+            <NavLink
+              activeClassName="active"
+              onClick={() => handleTabClick("commandes")}
+            >
+              <li>Mes commandes</li>
+            </NavLink>
+          </ul>
+        </aside>
+      </div>
 
+      <div className="user-dashboard">
+        <h3>
+          {selectedTab === "favoris" && "Mes produits favoris"}
+          {selectedTab === "infos" && "Mes informations"}
+          {selectedTab === "commandes" && "Mes commandes"}
+        </h3>
 
-              <NavLink
-                activeClassName="active"
-                onClick={() => handleTabClick("commandes")}
-              >
-                <li>Mes commandes</li>
-              </NavLink>
-            </ul>
-          </aside>
-        </div>
+        {selectedTab === "infos" && (
+          <div className="user-infos">
+            <div className="grid-infos">
+              <div className="perso">
+              <p>Nom : {userData.lastName}</p>
+              <p>Prénom : {userData.firstName}</p>
+              <p>Entreprise : {userData.company}</p>
+              <p>
+                {" "}
+                Date d'inscription :{" "}
+                {new Date(userData.created).toLocaleDateString()}
+              </p>
+              {userData.discount !== 0 && (
+                <p>Remise accordée : {userData.discount}%</p>
+              )}
+            </div>
+            <div className="address">
+              <p>Adresse : {userData.billingAddress.street}</p>
+              <p>Ville : {userData.billingAddress.city}</p>
+              <p>Code postal : {userData.billingAddress.zip}</p>
+              <p>Pays : {userData.billingAddress.country}</p>
+            </div>
+            <div className="contact">
+              <p>Email : {userData.email}</p>
+              <p>Téléphone : {userData.phone}</p>
+            </div>
+            </div>
+           <button><NavLink to="/edit-account">Modifier mes informations</NavLink></button> 
 
-        <div className="user-dashboard">
-          <h2>
-            {selectedTab === "favoris" && "Mes produits favoris"}
-            {selectedTab === "infos" && "Mes informations"}
-            {selectedTab === "commandes" && "Mes commandes"}
-          </h2>
+          </div>
+        )}
 
-        
-            
-            {selectedTab === "infos" && (
-              <div className="user-infos">
-                <p>
-                 Nom : {userData.lastName}
-                </p>
-                <p>
-                  Prénom : {userData.firstName}
-                </p>
-                <p>Entreprise : {userData.company}</p>
-                <p>
-                  Email : {userData.email}
-                </p>
-                <p> Date d'inscription : {userData.created.split("T")[0]}</p> 
-
-                {userData.discount !== 0 && (
-                  <p>
-                    Remise accordée : {userData.discount}%
-                  </p>
-                )}
-                
-                
-              </div>
-            )}
-
-{selectedTab === "favoris" && (
+        {selectedTab === "favoris" && (
           <div className="user-favorites">
-           
             <div className="favorites-grid">
               {favorites.length > 0 ? (
                 favorites.map((favorite) => {
@@ -143,16 +153,62 @@ export default function UserAccount() {
               ) : (
                 <p>Vous n'avez pas encore de produits favoris.</p>
               )}
-            </div>  
-
             </div>
-          )}
           </div>
+        )}
 
+        {selectedTab === "commandes" && (
+          <div className="user-orders">
+            {orders.length > 0 ? (
+              orders.map((order) => {
+                return (
+                  <div className="order" key={order._id}>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>N° de commande</th>
+                          <th>Date</th>
+                          <th>Produits</th>
+                          <th>Total</th>
+                          <th>Statut</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>{order._id}</td>
 
+                          <td>
+                            {order.orderDate
+                              ? new Date(order.orderDate).toLocaleDateString()
+                              : "Date inconnue"}
+                          </td>
 
-     
+                          <td>
+                            {order.items.map((product) => (
+                              <p key={product._id}>
+                                {product.name} <span>x {product.quantity}</span>
+                              </p>
+                            ))}
+                          </td>
+                          {/* // Calcul du total de la commande, on arrondi à 2 chiffres après la virgule */}
+                          <td> {order.totalAmount.toFixed(2)} € </td>
+                          <td>{order.status}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <NavLink to={`/order/${order._id}`}>
+                      {" "}
+                      Voir les détails
+                    </NavLink>
+                  </div>
+                );
+              })
+            ) : (
+              <p>Vous n'avez pas encore de commandes.</p>
+            )}
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
 }
