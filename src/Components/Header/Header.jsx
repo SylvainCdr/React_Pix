@@ -3,10 +3,25 @@ import "./style.scss";
 import { NavLink, useHistory } from "react-router-dom";
 import { useUser } from "../../Pages/appContext";
 import Swal from "sweetalert2";
+import useCart from "../useCart";
 
 function Header() {
   const user = useUser();
   console.log(user);
+
+  
+
+  const { cartItemsCount } = useCart();
+  const [itemsCount, setItemsCount] = useState(cartItemsCount);
+
+  // Mise à jour du nombre d'articles dans le panier
+  useEffect(() => {
+    setItemsCount(cartItemsCount);
+  }, [cartItemsCount]);
+
+
+
+ 
 
   // Creation fonction menu Burger
   let isBurgerOpen = false;
@@ -28,24 +43,22 @@ function Header() {
       document.cookie = c
         .replace(/^ +/, "")
         .replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
-      });
-      
-      
-      // alerte de déconnexion SweetAlert
-      Swal.fire({
-        title: "Déconnecté",
-        icon: "success",
-        text: "Pixecurity vous remercie pour votre visite !",
-        timer : 2000,
-        showConfirmButton: false,
-      });
+    });
 
-      setTimeout(() => {
+    // alerte de déconnexion SweetAlert
+    Swal.fire({
+      title: "Déconnecté",
+      icon: "success",
+      text: "Pixecurity vous remercie pour votre visite !",
+      timer: 2000,
+      showConfirmButton: false,
+    });
+
+    setTimeout(() => {
       // on redirige vers la page d'accueil
       window.location.href = "/";
-    }
-    , 2000);
-    };
+    }, 2000);
+  };
 
   return (
     <div className="header">
@@ -95,15 +108,25 @@ function Header() {
 
           {user && (
             <li>
-              <a href="#" onClick={logout}>
+              <a href="#" onClick={logout} className="logout">
                 Se déconnecter
               </a>
             </li>
           )}
 
+          {user?.role === "user" && (
+            <div className="cart">
+              <NavLink to="/panier">
+                <i className="fa-solid fa-cart-shopping"></i>
+                
+              </NavLink>
+            </div>
+          )}
+
           {/* utiliser un bouton toggle-off toggle-on pour la connexion et deconnexion */}
-        </ul>
+          {itemsCount > 0 && <span className="badge">{itemsCount}</span>} </ul>
         <div className="header__burgerMenu" onClick={burgerToggle}></div>
+
       </nav>
     </div>
   );

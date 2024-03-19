@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
+import ProductCard from "../../Components/ProductCard/ProductCard";
+import useFavorites from "../../Components/useFavorites";
+import useCart from "../../Components/useCart";
 
 function Search({ setSearchResults }) {
   const [search, setSearch] = useState("");
   const [searching, setSearching] = useState(false);
   const [searchResultsLocal, setSearchResultsLocal] = useState([]);
+
+  const { addToFavorites, removeFromFavorites, checkFavorite } = useFavorites();
+  const { addToCart } = useCart();
 
   // créer une fonction pour gérer la recherche
   const handleSearch = (e) => {
@@ -50,38 +56,27 @@ function Search({ setSearchResults }) {
 
       {searching && <p>Recherche en cours...</p>}
 
-
-<div className="search-msg">
-        {/* // si résultats de recherche locaux n'est pas vide, afficher les résultats */}
+     
+        {/* si résultats de recherche locaux n'est pas vide, afficher les résultats */}
         {searchResultsLocal.length > 0 && (
-          <p>Résultats de recherche ({searchResultsLocal.length} produits) :</p> 
+           <div className="search-msg">
+          <p>Résultats de recherche ({searchResultsLocal.length} produits) :</p>
+      </div>
         )}
-        </div>
-    
 
       <div className="search-grid">
         {searchResultsLocal.map((result) => (
-          
-          <div className="product-card" key={result.id}>
-            <img src={result.image} alt={result.name} className="card-img" />
-            <div className="card-title">
-            <Link to={`/product/${result._id}`}><h2>{result.name}</h2></Link>
-            </div>
-            <p className="card-brand">{result.brand}</p>
-            <div className="card-bottom">
-            <p className="card-price">
-              {result.price} € <span>TTC</span>
-            </p>
-            <div className="CTA">
-                  <p className="heart"> <a href="#" ><i class="fa-solid fa-heart"></i> </a> </p>
-                 <p className="cart"> <a href="#" ><i class="fa-solid fa-cart-plus"></i></a> </p>
-                </div>
-  
-             
-            </div>
-          </div>
+          <ProductCard
+            key={result._id}
+            product={result}
+            addToFavorites={addToFavorites}
+            removeFromFavorites={removeFromFavorites}
+            checkFavorite={checkFavorite}
+            addToCart={addToCart}
+
+
+          />
         ))}
-        
       </div>
     </div>
   );

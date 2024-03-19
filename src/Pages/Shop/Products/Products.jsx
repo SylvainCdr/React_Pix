@@ -3,13 +3,23 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import "./style.scss";
 import ShopNav from "../../../Components/ShopNav/ShopNav";
 import Search from "../../../Components/Search/Search";
+import useFavorites from "../../../Components/useFavorites";
+import ProductCard from "../../../Components/ProductCard/ProductCard";
+import useCart from "../../../Components/useCart";
+
+
 
 const Products = () => {
+
   const { category, subcategory } = useParams();
   const [products, setProducts] = useState([]);
   const location = useLocation();
   const [searchResults, setSearchResults] = useState([]);
+  const { addToFavorites, removeFromFavorites, checkFavorite } = useFavorites();
+  const { addToCart } = useCart();
+  const [userId, setUserId] = useState("");
 
+  
   useEffect(() => {
     const fetchProducts = async () => {
       const apiUrl = subcategory
@@ -38,33 +48,22 @@ const Products = () => {
       <Search setSearchResults={setSearchResults} />
 
       {searchResults.length === 0 && (
-       <div className="products">
+        <div className="products">
           <div className="products-title">
             <h1>{category} </h1>
           </div>
-           
 
           <div className="products-grid">
             {products.map((item) => (
-              <div className="product-card" key={item._id}>
-                <img src={item.image} alt={item.name} className="card-img" />
-
-                <div className="card-title">
-                <Link to={`/product/${item._id}`}><h2>{item.name}</h2></Link>
-                </div>
-                <p className="card-brand">{item.brand}</p>
-
-<div className="card-bottom">
-
-                <p className="card-price">
-                  {item.price} € <span>TTC</span>
-                </p>
-                <div className="CTA">
-                  <p className="heart"> <a href="#" ><i class="fa-solid fa-heart"></i> </a> </p>
-                 <p className="cart"> <a href="#" ><i class="fa-solid fa-cart-plus"></i></a> </p>
-                </div>
-                </div>
-              </div>
+              <ProductCard
+                key={item._id}
+                product={item}
+                userId={userId}
+                addToFavorites={addToFavorites}
+                removeFromFavorites={removeFromFavorites}
+                checkFavorite={checkFavorite}
+                addToCart={addToCart}
+              />
             ))}
           </div>
         </div>
@@ -72,5 +71,7 @@ const Products = () => {
     </div>
   );
 };
+
+
 
 export default Products;

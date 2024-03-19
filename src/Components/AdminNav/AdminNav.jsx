@@ -8,11 +8,9 @@ export default function AdminNav() {
         <div class="card-header bg-dark">Commandes</div>
         <div class="card-body bg-dark">
           <p>
-            <a href="#">Commandes en cours </a>
+            <a href="/admin/commandes">Listing des Commandes  </a>
           </p>
-          <p>
-            <a href="#">Commandes finalisées</a>
-          </p>
+        
         </div>
       </article>
 
