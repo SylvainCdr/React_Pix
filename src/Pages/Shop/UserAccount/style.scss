@@ -9,7 +9,7 @@
     .user-account-nav {
       width: 100%;
       height: 100vh;
-      background-color: rgb(51, 51, 51);
+      background-color: rgba(51, 51, 51, 0.425);
       border-radius: 0.5rem 0rem 0rem 0.5rem;
       -webkit-border-radius: 0.5rem 0rem 0rem 0.5rem;
       -moz-border-radius: 0.5rem 0rem 0rem 0.5rem;
@@ -46,7 +46,7 @@
 
   .user-dashboard {
     width: 80%;
-    background-color: rgb(74, 73, 73);
+    background-color: rgba(74, 73, 73, 0.408);
     border-radius: 0rem 0.5rem 0.5rem 0rem;
     -webkit-border-radius: 0rem 0.5rem 0.5rem 0rem;
     -moz-border-radius: 0rem 0.5rem 0.5rem 0rem;
@@ -105,8 +105,7 @@
         -ms-border-radius: 0.4rem;
         -o-border-radius: 0.4rem;
 
-        &:hover 
-{
+        &:hover {
           background-color: rgb(3, 106, 201);
         }
         a {
@@ -142,7 +141,7 @@
 
           img {
             align-items: start;
-            width: 100%;
+            width: 60%;
             height: 8rem;
             object-fit: cover;
             margin-right: 5%;
@@ -155,74 +154,52 @@
       width: 100%;
 
       .order {
-        //   <div className="user-orders">
-        //   {( orders.length > 0 ? (
-        //      orders.map((order) => {
-        //        return (
-        //          <div className="order" key={order._id}>
-        //            <table>
-        //              <thead>
-        //                <tr>
-        //                  <th>N° de commande</th>
-        //                  <th>Date</th>
-        //                  <th>Produits</th>
-        //                  <th>Total</th>
-        //                </tr>
-        //              </thead>
-        //              <tbody>
-        //                <tr>
-        //                  <td>{order._id}</td>
-        //                  <td>{order.orderDate.split("T")[0]}</td>
-        //                  <td>
-        //                    {order.items.map((product) => (
-        //                      <p key={product._id}>{product.name} <span>x {product.quantity}</span></p>
-        //                    ))}
-        //                  </td>
-        //                  <td>{order.totalAmount}€</td>
-        //                </tr>
-        //              </tbody>
-        //            </table>
-        //          </div>
-        //        );
-        //      }
-        //      )
-        //    ) : (
-        //      <p>Vous n'avez pas encore de commandes.</p>
-        //    ))}
-        //  </div>
+
+     
 
         table {
           width: 100%;
           border-collapse: collapse;
           margin-top: 2rem;
           margin-bottom: 0.5rem;
-          border: 1px solid black;
-          border-radius: 0.5rem;
-          -webkit-border-radius: 0.5rem;
-          -moz-border-radius: 0.5rem;
-          -ms-border-radius: 0.5rem;
-          -o-border-radius: 0.5rem;
 
           th {
             background-color: rgb(51, 51, 51);
             color: white;
             padding: 1rem;
-            border: 1px solid black;
+            border: 1px solid rgb(80, 79, 79);
           }
 
           td {
             padding: 1rem;
-            border: 1px solid black;
-            border-radius: 0.5rem;
-            -webkit-border-radius: 0.5rem;
-            -moz-border-radius: 0.5rem;
-            -ms-border-radius: 0.5rem;
-            -o-border-radius: 0.5rem;
+            border: 1px solid rgb(80, 79, 79);
 
             p {
               margin: 0;
             }
+
+        
+            button {
+              color: white;
+              width: 100%;
+              padding: 0.5rem;
+              margin: auto;
+              border: none;
+              background-color: rgb(39, 130, 235);
+              cursor: pointer;
+              transition: 0.3s;
+              border-radius: 0.3rem;
+              -webkit-border-radius: 0.3rem;
+              -moz-border-radius: 0.3rem;
+              -ms-border-radius: 0.3rem;
+              -o-border-radius: 0.3rem;
+              &:hover {
+                background-color: rgb(62, 155, 242);
+              }
+             
+            } 
           }
+          
         }
       }
     }

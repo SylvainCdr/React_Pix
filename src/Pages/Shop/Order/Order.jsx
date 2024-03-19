@@ -15,6 +15,7 @@ export default function Order() {
     country: "",
   });
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [company, setCompany] = useState("");
 
   const [order, setOrder] = useState({
     user: user._id,
@@ -81,6 +82,14 @@ export default function Order() {
         ...prevUser,
         phone: value,
       }));
+    } else if (name === "company") {
+      setCompany(value);
+      // Mettre à jour l'état local user avec le nom de la société
+      setUser((prevUser) => ({
+        ...prevUser,
+        company: value,
+      }));
+
     } else {
       setUser((prevUser) => ({
         ...prevUser,
@@ -110,19 +119,50 @@ export default function Order() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+
+       // Validation des champs obligatoires
+    if (
+      !user.firstName ||
+      !user.lastName ||
+      !user.email ||
+      !user.phone ||
+      !billingAddress.street ||
+      !billingAddress.zip ||
+      !billingAddress.city ||
+      !billingAddress.country ||
+      !order.deliveryAddress.street ||
+      !order.deliveryAddress.zip ||
+      !order.deliveryAddress.city ||
+      !order.deliveryAddress.country ||
+      !order.delivery.method ||
+      !order.payment.method
+    ) { 
+      // alet sweetalert pour afficher un message d'erreur
+      Swal.fire({
+        icon: "error",
+        title: "Erreur",
+        text: "Veuillez remplir tous les champs obligatoires",
+        // confirmButtonText: "OK",
+        timer: 2000,
+      });
+
+    }
+
       // Mettre à jour l'objet utilisateur avec l'adresse de facturation et le numéro de téléphone
       const updatedUser = {
         ...user,
         billingAddress: billingAddress,
-        phone: phoneNumber,
+        // Vérifiez si le numéro de téléphone est renseigné dans le formulaire, sinon gardez la valeur existante
+        phone: phoneNumber || user.phone,
+        // Vérifiez si le nom de la société est renseigné dans le formulaire, sinon gardez la valeur existante
+        company: user.company || company,
         // Conserver les valeurs existantes pour les autres champs de l'utilisateur
         firstName: user.firstName,
         lastName: user.lastName,
-        company: user.company,
         email: user.email,
         // Ajoutez d'autres champs de l'utilisateur si nécessaire
       };
-
+  
       // Envoyer une requête pour mettre à jour l'utilisateur sur le serveur
       const updateUserResponse = await fetch(
         `http://localhost:3001/users/${user._id}`,
@@ -210,6 +250,7 @@ export default function Order() {
               name="company"
               placeholder="Entreprise"
               value={user.company}
+              onChange={handleChange}
             />
           </div>
 

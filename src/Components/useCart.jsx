@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+
+
 
 //Hook pour gérer le panier
 const useCart = () => {
@@ -8,7 +10,7 @@ const useCart = () => {
   const userDataString = localStorage.getItem('user');
   const userData = JSON.parse(userDataString);
   const userId = userData ? userData._id : null;
-
+  
 
   // Compter le nombre total d'articles dans le panier
 const [cartItemsCount, setCartItemsCount] = useState(0);
@@ -22,8 +24,14 @@ useEffect(() => {
 }, [cart]);
 
 
-// on calcule le montant total du panier
+// // on va cherche le montant du discount dans le local storage
+// const discount = localStorage.getItem('discount');
+
+// // on calcul le montant total du panier en aplicant le discount si il existe
+// const totalAmount = cart.reduce((acc, product) => acc + (product.quantity * product.price),0) * (1 - discount / 100)* 1.20 + 9.90;
+
 const totalAmount = cart.reduce((acc, product) => acc + (product.quantity * product.price )* 1.20 + 9.90,0);
+
 
 
 
@@ -76,17 +84,21 @@ const editQuantity = (userId, productId, quantity) => {
 
 // Ajout d'un produit au panier
 const addToCart = async (userId, productId, productName, productRef, quantity, productPrice, productImage) => {
-
   try {
     setIsAddingToCart(true);
 
+    // Vérifier si l'utilisateur a une réduction
+    const discount = JSON.parse(localStorage.getItem('user')).discount;
+
+    // Calculer le prix du produit avec la réduction
+    const discountedPrice = productPrice - (productPrice * discount) / 100;
+
     // Vérifier si le produit existe déjà dans le panier
     const existingProductIndex = cart.findIndex(product => product.product_id === productId);
-    console.log('existingProductIndex:', existingProductIndex);
-    console.log('Cart before update:', cart);
 
     if (existingProductIndex !== -1) {
       console.log('Product already exists. Removing from cart...');
+
       // Si le produit existe, supprimer l'objet du panier
       await removeFromCart(userId, productId);
 
@@ -96,9 +108,8 @@ const addToCart = async (userId, productId, productName, productRef, quantity, p
 
       // Mettre à jour le panier localement
       setCart(updatedCart);
-      console.log('Cart after update:', updatedCart);
 
-      // Ajouter un nouvel objet avec la nouvelle quantité au panier côté serveur
+      // Ajouter un nouvel objet avec la nouvelle quantité au panier côté serveur avec le prix réduit
       await fetch(`http://localhost:3001/users/${userId}/add-cart/${productId}`, {
         method: 'POST',
         headers: {
@@ -109,13 +120,14 @@ const addToCart = async (userId, productId, productName, productRef, quantity, p
           name: productName,
           ref: productRef,
           quantity: updatedCart[existingProductIndex].quantity,
-          price: productPrice,
+          price: discountedPrice,
           image: productImage,
         }),
       });
     } else {
       console.log('Product does not exist. Adding to cart...');
-      // Si le produit n'existe pas, ajouter un nouvel objet au panier
+
+      // Si le produit n'existe pas, ajouter un nouvel objet au panier avec le prix réduit
       const response = await fetch(`http://localhost:3001/users/${userId}/add-cart/${productId}`, {
         method: 'POST',
         headers: {
@@ -126,7 +138,7 @@ const addToCart = async (userId, productId, productName, productRef, quantity, p
           name: productName,
           ref: productRef,
           quantity: quantity,
-          price: productPrice,
+          price: discountedPrice,
           image: productImage,
         }),
       });
@@ -144,6 +156,7 @@ const addToCart = async (userId, productId, productName, productRef, quantity, p
     setIsAddingToCart(false);
   }
 };
+
 
 
 

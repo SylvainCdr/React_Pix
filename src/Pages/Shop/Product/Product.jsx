@@ -7,6 +7,7 @@ import Cart from "../../Shop/Cart/Cart";
 import useFavorites from "../../../Components/useFavorites";
 import useCart from "../../../Components/useCart";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
+import Swal from "sweetalert2";
 
 export default function Product() {
   const [product, setProduct] = useState({});
@@ -116,7 +117,12 @@ export default function Product() {
 
       setIsInFavorites(!isInFavorites);
     } else {
-      console.error("L'ID de l'utilisateur n'est pas disponible.");
+      // Afficher un message SweetAlert indiquant à l'utilisateur de se connecter ou de s'inscrire
+      Swal.fire({
+        icon: 'info',
+        title: 'Pour ajouter un produit à vos favoris, veuillez vous connecter ou vous inscrire.',
+        showConfirmButton: true,
+      });
     }
   };
 
@@ -138,7 +144,14 @@ export default function Product() {
         console.error("Erreur lors de l'ajout du produit au panier");
       }
     } else {
-      console.error("L'ID de l'utilisateur n'est pas disponible.");
+// Afficher un message SweetAlert indiquant à l'utilisateur de se connecter ou de s'inscrire
+Swal.fire({
+  icon: 'info',
+  title: 'Pour ajouter un produit au panier, veuillez vous connecter ou vous inscrire.',
+  showConfirmButton: true,
+});
+      
+
     }
   };
 
@@ -157,7 +170,7 @@ export default function Product() {
       return (
         <p className="price">
           {product.price ? product.price.toFixed(2) : "00.00"} €{" "}
-          <span>TTC</span>
+          <span>HT</span>
         </p>
       );
     }

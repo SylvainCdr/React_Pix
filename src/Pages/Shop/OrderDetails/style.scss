@@ -1,0 +1,114 @@
+
+
+
+// <div className="order-details-container">
+// <h2>Détails de la commande</h2>
+// <div className="order-details">
+//     <div className="order-details-header">
+//         <h3>Commande n°{orderId}</h3>
+       
+//         <p> Date de la commande : {new Date(orderDate).toLocaleDateString()}</p>
+//         <p>Statut : {status}</p>
+//     </div>
+//     <div className="order-details-content">
+//         <div className="order-details-delivery">
+//             <h4>Livraison</h4>
+//             <p>Méthode de livraison : {deliveryMethod}</p>
+//             <p>Frais de livraison : {deliveryFee.toFixed(2)} €</p>
+//             <p>Adresse de livraison : {deliveryAddress.street}, {deliveryAddress.zip} {deliveryAddress.city}, {deliveryAddress.country}</p>
+//         </div>
+//         <div className="order-details-payment">
+//             <h4>Paiement</h4>
+//             <p>Méthode de paiement : {paymentMethod}</p>
+//             <p>Statut du paiement : {paid ? "Payé" : "Non payé"}</p>
+//         </div>
+//         <div className="order-details-items">
+//             <h4>Produits</h4>
+//             <ul>
+//                 {items.map((item) => (
+//                     <li key={item._id}>
+//                         <p>{item.name} - {item.quantity} x {item.priceAtOrderTime} CHF</p>
+//                     </li>
+//                 ))}
+//             </ul>
+//         </div>
+//         <div className="order-details-total">
+//             <h4>Total</h4>
+//             <p>Total de la commande : {totalAmount} CHF</p>
+//         </div>
+//     </div>
+// </div>
+// </div>
+
+.order-details-container {
+    margin-top: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+    h2 {
+        margin-bottom: 2rem;
+        font-size: 1.5rem;
+        background-color: #2074ea;
+        padding: 0.7rem;
+        border-radius: 0.3rem;
+    }
+    .order-details {
+        width: 80%;
+        background: linear-gradient(-45deg, rgba(110, 110, 110, 0.017) 0%, rgb(62, 62, 62) 50%, rgba(15, 15, 15, 0.295) 100%);
+        
+        border: 1px solid #414141;
+        padding: 1rem;
+        border-radius: 0.3rem;
+        -webkit-border-radius: 0.3rem;
+        -moz-border-radius: 0.3rem;
+        -ms-border-radius: 0.3rem;
+        -o-border-radius: 0.3rem;
+
+
+        .order-details-header
+{
+            display: flex;
+            font-size: 1.2rem;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 3rem;
+            border-bottom : 1px solid #414141;
+            h3 {
+                margin-top: 1rem;
+                margin-bottom: 2rem;
+            }
+            p {
+                margin-bottom: 2rem;
+            }
+        }
+        .order-details-content {
+            margin-top: 5rem;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+
+            
+            .order-details-delivery, .order-details-payment, .order-details-items, .order-details-total {
+                width: 23%;
+                h4 {
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    margin-bottom: 2rem;
+                    background-color: #0862e1;
+                    padding: 0.7rem;
+                    border-radius: 0.3rem;
+                    -webkit-border-radius: 0.3rem;
+                    -moz-border-radius: 0.3rem;
+                    -ms-border-radius: 0.3rem;
+                    -o-border-radius: 0.3rem;
+}
+                p {
+                    margin-bottom: 1.5rem;
+                }
+            }
+        }
+    }
+
+
+}

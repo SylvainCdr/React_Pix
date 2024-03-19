@@ -11,12 +11,12 @@ function Header() {
 
   
 
-  const { cartItemsCount, setCartItemsCount } = useCart();
-  const [itemsCount, setItemsCount] = useState(cartItemsCount);
+  const { cartItemsCount} = useCart();
+  // const [itemsCount, setItemsCount] = useState(cartItemsCount);
 
-  useEffect(() => {
-    setItemsCount(cartItemsCount);
-  }, [cartItemsCount]);
+  // useEffect(() => {
+  //   setItemsCount(cartItemsCount);
+  // }, [cartItemsCount]);
 
 
  
@@ -115,17 +115,16 @@ function Header() {
           {user?.role === "user" && (
             <div className="cart">
               <NavLink to="/panier">
-                <i class="fa-solid fa-cart-shopping"></i>
+                <i className="fa-solid fa-cart-shopping"></i>
                 
               </NavLink>
             </div>
           )}
 
           {/* utiliser un bouton toggle-off toggle-on pour la connexion et deconnexion */}
-          {cartItemsCount > 0 && <span className="badge">{cartItemsCount}</span>}
-        </ul>
-
+          {cartItemsCount > 0 && <span className="badge">{cartItemsCount}</span>}        </ul>
         <div className="header__burgerMenu" onClick={burgerToggle}></div>
+
       </nav>
     </div>
   );

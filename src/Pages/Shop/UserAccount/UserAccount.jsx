@@ -51,6 +51,8 @@ export default function UserAccount() {
 
   // Récupération des commandes comportant un champs avec l'id de l'utilisateur
   useEffect(() => {
+   
+
     fetch(`http://localhost:3001/orders?userId=${userId}`)
       .then((response) => response.json())
       .then((data) => {
@@ -68,20 +70,17 @@ export default function UserAccount() {
           <h2>MENU</h2>
           <ul>
             <NavLink
-              activeClassName="active"
+              className="active"
               onClick={() => handleTabClick("favoris")}
             >
               <li>Mes Produits Favoris</li>
             </NavLink>
-            <NavLink
-              activeClassName="active"
-              onClick={() => handleTabClick("infos")}
-            >
+            <NavLink className="active" onClick={() => handleTabClick("infos")}>
               <li>Mes informations</li>
             </NavLink>
 
             <NavLink
-              activeClassName="active"
+              className="active"
               onClick={() => handleTabClick("commandes")}
             >
               <li>Mes commandes</li>
@@ -101,31 +100,32 @@ export default function UserAccount() {
           <div className="user-infos">
             <div className="grid-infos">
               <div className="perso">
-              <p>Nom : {userData.lastName}</p>
-              <p>Prénom : {userData.firstName}</p>
-              <p>Entreprise : {userData.company}</p>
-              <p>
-                {" "}
-                Date d'inscription :{" "}
-                {new Date(userData.created).toLocaleDateString()}
-              </p>
-              {userData.discount !== 0 && (
-                <p>Remise accordée : {userData.discount}%</p>
-              )}
+                <p>Nom : {userData.lastName}</p>
+                <p>Prénom : {userData.firstName}</p>
+                <p>Entreprise : {userData.company}</p>
+                <p>
+                  {" "}
+                  Date d'inscription :{" "}
+                  {new Date(userData.created).toLocaleDateString()}
+                </p>
+                {userData.discount !== 0 && (
+                  <p>Remise accordée : {userData.discount}%</p>
+                )}
+              </div>
+              <div className="address">
+                <p>Adresse : {userData.billingAddress.street}</p>
+                <p>Ville : {userData.billingAddress.city}</p>
+                <p>Code postal : {userData.billingAddress.zip}</p>
+                <p>Pays : {userData.billingAddress.country}</p>
+              </div>
+              <div className="contact">
+                <p>Email : {userData.email}</p>
+                <p>Téléphone : {userData.phone}</p>
+              </div>
             </div>
-            <div className="address">
-              <p>Adresse : {userData.billingAddress.street}</p>
-              <p>Ville : {userData.billingAddress.city}</p>
-              <p>Code postal : {userData.billingAddress.zip}</p>
-              <p>Pays : {userData.billingAddress.country}</p>
-            </div>
-            <div className="contact">
-              <p>Email : {userData.email}</p>
-              <p>Téléphone : {userData.phone}</p>
-            </div>
-            </div>
-           <button><NavLink to="/edit-account">Modifier mes informations</NavLink></button> 
-
+            <button>
+              <NavLink to="/edit-account">Modifier mes informations</NavLink>
+            </button>
           </div>
         )}
 
@@ -171,6 +171,7 @@ export default function UserAccount() {
                           <th>Produits</th>
                           <th>Total</th>
                           <th>Statut</th>
+                          <th>Détails</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -193,13 +194,17 @@ export default function UserAccount() {
                           {/* // Calcul du total de la commande, on arrondi à 2 chiffres après la virgule */}
                           <td> {order.totalAmount.toFixed(2)} € </td>
                           <td>{order.status}</td>
+                          <td>
+                          <NavLink to={`/mon-compte/commande/${order._id}`}>
+                            <button>
+                              
+                                Voir
+                            </button>
+                              </NavLink>
+                          </td>
                         </tr>
                       </tbody>
                     </table>
-                    <NavLink to={`/order/${order._id}`}>
-                      {" "}
-                      Voir les détails
-                    </NavLink>
                   </div>
                 );
               })

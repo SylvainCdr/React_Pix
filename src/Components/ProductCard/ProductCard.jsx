@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
+import Swal from "sweetalert2";
 
 
 const ProductCard = ({
@@ -63,7 +64,12 @@ const ProductCard = ({
           // Mettez à jour isInFavorites après le succès de l'opération
           setIsInFavorites(!isInFavorites);
         } else {
-          console.error("L'ID de l'utilisateur n'est pas disponible.");
+          // Afficher un message SweetAlert indiquant à l'utilisateur de se connecter ou de s'inscrire
+          Swal.fire({
+            icon: 'info',
+            title: 'Pour ajouter un produit à vos favoris, veuillez vous connecter ou vous inscrire.',
+            showConfirmButton: true,
+          });
         }
       } catch (error) {
         console.error("Erreur lors de la gestion des favoris :", error);
@@ -90,7 +96,7 @@ const ProductCard = ({
           <div className="card-prices">
             <p className="original-price">{product.price.toFixed(2)} € </p>
             <p className="discounted-price">
-              {discountedPrice.toFixed(2)} € <span>TTC</span>{" "}
+              {discountedPrice.toFixed(2)} € <span>HT</span>{" "}
             </p>
           </div>
         );
@@ -121,7 +127,12 @@ const ProductCard = ({
           console.error("Erreur lors de l'ajout du produit au panier");
         }
       } else {
-        console.error("L'ID de l'utilisateur n'est pas disponible.");
+        // Afficher un message SweetAlert indiquant à l'utilisateur de se connecter ou de s'inscrire
+        Swal.fire({
+          icon: 'info',
+          title: 'Pour ajouter un produit au panier, veuillez vous connecter ou vous inscrire.',
+          showConfirmButton: true,
+        });
       }
     }
 
