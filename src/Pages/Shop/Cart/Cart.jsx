@@ -36,6 +36,21 @@ export default function Cart() {
     navigate("./commande");
   };
 
+  // Condition pour afficher un message si le panier est vide
+  if (cart.length === 0) {
+    return (
+      <div className="cart-container">
+        <h1>Panier</h1>
+        <div className="empty-cart-message">
+          <p>Vous n'avez pas encore de produits dans votre panier.</p>
+          <button onClick={() => navigate("/Catalogue")} className="shop-button">
+            Cliquez ici pour visiter la boutique en ligne
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="cart-container">
       <h1>Panier</h1>

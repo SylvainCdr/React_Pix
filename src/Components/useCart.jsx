@@ -1,7 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
 
-
-
 //Hook pour gérer le panier
 const useCart = () => {
   const [cart, setCart] = useState([]);
@@ -24,19 +22,7 @@ useEffect(() => {
 }, [cart]);
 
 
-// // on va cherche le montant du discount dans le local storage
-// const discount = localStorage.getItem('discount');
-
-// // on calcul le montant total du panier en aplicant le discount si il existe
-// const totalAmount = cart.reduce((acc, product) => acc + (product.quantity * product.price),0) * (1 - discount / 100)* 1.20 + 9.90;
-
 const totalAmount = cart.reduce((acc, product) => acc + (product.quantity * product.price )* 1.20 + 9.90,0);
-
-
-
-
-
-
 
 
 // Récupération du panier actuel de l'utilisateur
@@ -54,8 +40,6 @@ const fetchCart = async (userId) => {
     console.error('Erreur réseau:', error);
   }
 };
-
-
 
   
 

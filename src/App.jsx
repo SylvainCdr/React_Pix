@@ -21,6 +21,7 @@ import UserAccount from "./Pages/Shop/UserAccount/UserAccount";
 import Cart from "./Pages/Shop/Cart/Cart";
 import Order from "./Pages/Shop/Order/Order"; 
 import OrderDetails from "./Pages/Shop/OrderDetails/OrderDetails";
+import AdminOrders from "./Pages/Admin/AdminOrders/AdminOrders";
 import { Provider } from "./Pages/appContext";
 
 
@@ -62,6 +63,7 @@ function App() {
           <Route path="/panier" element={<Cart />} />
           <Route path="/panier/commande" element={<Order />} />
           <Route path="/mon-compte/commande/:id" element={<OrderDetails />} />
+          <Route path="/admin/commandes" element={<AdminOrders />} />
           </Route>
         </Routes>
       </BrowserRouter>
