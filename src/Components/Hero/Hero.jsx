@@ -16,7 +16,7 @@ export default function Hero() {
         <div className="hero">
         <div className="hero__video"></div>
         <video ref={videoRef} id="video-background" loop playsInline autoPlay>
-          <source src="assets/hero.mp4" type="video/mp4" />
+          <source src="assets/hero2.mp4" type="video/mp4" />
         </video>
         <div className="hero__title">
           <h1>

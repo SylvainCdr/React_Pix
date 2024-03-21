@@ -22,7 +22,8 @@ import Cart from "./Pages/Shop/Cart/Cart";
 import Order from "./Pages/Shop/Order/Order"; 
 import OrderDetails from "./Pages/Shop/OrderDetails/OrderDetails";
 import AdminOrders from "./Pages/Admin/AdminOrders/AdminOrders";
-import { Provider } from "./Pages/appContext";
+import { Provider, CartProvider } from "./Pages/appContext";
+
 
 
 
@@ -38,7 +39,7 @@ function App() {
   return (
     // <Provider> est un composant qui enveloppe toute l'application pour fournir un contexte partagé, ici l'utilisateur connecté
     <Provider value={{ user, setUser }}>
-
+<CartProvider>
       <BrowserRouter>
         <Routes>
           <Route element={<Template />}>
@@ -67,6 +68,8 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+
+      </CartProvider>
     </Provider>
   );
 }

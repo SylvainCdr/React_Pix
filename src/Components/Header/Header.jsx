@@ -3,21 +3,26 @@ import "./style.scss";
 import { NavLink, useHistory } from "react-router-dom";
 import { useUser } from "../../Pages/appContext";
 import Swal from "sweetalert2";
-import useCart from "../useCart";
+// import useCart from "../useCart";
+import { useCartContext } from "../../Pages/appContext";
 
 function Header() {
+  
   const user = useUser();
   console.log(user);
 
   
 
-  const { cartItemsCount } = useCart();
-  const [itemsCount, setItemsCount] = useState(cartItemsCount);
+  // const { cartItemsCount } = useCart();
+  // const [itemsCount, setItemsCount] = useState(cartItemsCount);
+
+  const { cart } = useCartContext();
+  const itemsCount = cart.length;
 
   // Mise à jour du nombre d'articles dans le panier
-  useEffect(() => {
-    setItemsCount(cartItemsCount);
-  }, [cartItemsCount]);
+  // useEffect(() => {
+  //   setItemsCount(cartItemsCount);
+  // }, [cartItemsCount]);
 
 
 
