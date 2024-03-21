@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./style.scss";
 import CustomersSlider from "../../Components/CustomersSlider/CustomersSlider";
 import Hero from "../../Components/Hero/Hero";
 import { NavLink } from "react-router-dom";
+import AOS from "aos";
 
 export default function Home() {
+
+useEffect(() => {
+    AOS.init({
+      duration: 2000,
+    });
+  }, []);
+
+
   return (
     <div className="main">
       <Hero />
@@ -39,9 +48,10 @@ export default function Home() {
             Nous proposons une sélection de produits spécialement pensés pour
             répondre à vos besoins. Profitez des conseils et services Pixecurity{" "}
           </p>
-          <button>
-            <NavLink to="/Catalogue">Voir le catalogue </NavLink>{" "}
-          </button>
+          
+          
+            <NavLink to="/Catalogue"><button role="button">Accéder à la Boutique  </button></NavLink>
+          
         </div>
       </div>
 
@@ -64,7 +74,7 @@ export default function Home() {
         </div>
 
         <div className="section-2__skills">
-          <div className="skills_card">
+          <div data-aos="zoom-in-down" className="skills_card">
             <img
               src="https://www.svgrepo.com/show/144416/security-camera.svg"
               alt=""
@@ -79,7 +89,7 @@ export default function Home() {
             <a href="">EN SAVOIR PLUS</a>
           </div>
 
-          <div className="skills_card">
+          <div data-aos="zoom-in-up" className="skills_card">
             <img
               src="https://www.svgrepo.com/show/97887/search.svg"
               alt=""
@@ -94,7 +104,7 @@ export default function Home() {
             <a href="">EN SAVOIR PLUS</a>
           </div>
 
-          <div className="skills_card">
+          <div data-aos="zoom-in-down" className="skills_card">
             <img
               src="https://www.svgrepo.com/show/5385/padlock.svg"
               alt=""
@@ -108,7 +118,7 @@ export default function Home() {
             <a href="">EN SAVOIR PLUS</a>
           </div>
 
-          <div className="skills_card">
+          <div data-aos="zoom-in-down" className="skills_card">
             <img
               src="https://www.svgrepo.com/show/474401/cloud-database.svg"
               alt=""
@@ -123,7 +133,7 @@ export default function Home() {
             <a href="">EN SAVOIR PLUS</a>
           </div>
 
-          <div className="skills_card">
+          <div data-aos="zoom-in-up" className="skills_card">
             <img
               src="https://www.svgrepo.com/show/135113/seatbelt.svg"
               alt=""
@@ -138,7 +148,7 @@ export default function Home() {
             <a href="">EN SAVOIR PLUS</a>
           </div>
 
-          <div className="skills_card">
+          <div data-aos="zoom-in-down" className="skills_card">
             <img src="https://www.svgrepo.com/show/35101/target.svg" alt="" />
             <h3>Ingénierie</h3>
             <p>
@@ -150,6 +160,7 @@ export default function Home() {
             <a href="">EN SAVOIR PLUS</a>
           </div>
         </div>
+
 
         <div className="section-2__contact">
           <h2>Contactez-nous</h2>

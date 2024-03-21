@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import useFavorites from "../../../Components/useFavorites";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
 import useCart from "../../../Components/useCart";
+import AOS from "aos";
 
 export default function UserAccount() {
   const userDataString = localStorage.getItem("user");
@@ -62,6 +63,10 @@ export default function UserAccount() {
         console.error("Erreur lors de la récupération des commandes :", error);
       });
   }, [userId]);
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
 
   return (
     <div className="user-account-container">
@@ -139,6 +144,8 @@ export default function UserAccount() {
                   );
 
                   return (
+                    
+                    <divd data-aos="fade-up-left">
                     <ProductCard
                       key={favorite.product_id}
                       product={product}
@@ -148,6 +155,7 @@ export default function UserAccount() {
                       removeFromFavorites={removeFromFavorites}
                       handleProductClick={handleProductClick}
                     />
+                    </divd>
                   );
                 })
               ) : (

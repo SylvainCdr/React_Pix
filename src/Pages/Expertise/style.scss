@@ -1,19 +1,120 @@
 .expertise-container {
-    margin-top: 8rem;
+  margin-top: 3rem;
 
-    * {
-        box-sizing: border-box;
+  .hero {
+    height: 60vh;
+
+    img {
+      // fondu sur l image
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.5);
+    }
+
+
+
+    .text {
+      width: 40%;
+      position: absolute;
+      top: 20%;
+      margin-left: 2rem;
+
+      h1 {
+        font-family: "Montserrat", sans-serif;
+        color: white;
+        text-shadow: 2px 2px 4px rgb(152, 152, 152);
+        font-size: 1rem;
+        line-height: 2.2rem;
+        font-weight: 500;
       }
-      
-      .item {
-        width: 200px;
-        height: 200px;
-        margin: 50px auto;
-        padding-top: 75px;
-        background: #ccc;
-        text-align: center;
-        color: #FFF;
-        font-size: 3em;
-      }
-      
+    }
+  }
+
+//   * {
+//     box-sizing: border-box;
+//   }
+
+
+
+h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  width: 100%;
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
 }
+.slides-section  {
+display: flex;
+margin-bottom: 12rem;
+
+
+.slide {
+    text-align: center;
+    width: 27%;
+    margin:auto;
+   
+  
+
+
+
+    img {
+      width: 20rem;
+      object-fit: cover;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+}
+
+h4 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    color: #2ab1ff;
+    
+}
+
+h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    color: #efefef;
+}
+
+p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 1rem;
+    color: #c0c0c0;
+    line-height: 1.5rem;
+}
+
+
+
+
+
+}
+}
+
+  .item {
+    width: 200px;
+    height: 200px;
+    margin: 50px auto;
+    padding-top: 75px;
+    background: #ccc;
+    text-align: center;
+    color: #fff;
+    font-size: 3em;
+  }
+}
+

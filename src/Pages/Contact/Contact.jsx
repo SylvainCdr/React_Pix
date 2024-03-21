@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.scss";
 import Swal from "sweetalert2";
+import AOS from "aos";
 
 function Contact() {
   // DECLARATION DES VARIABLES D'ETAT POUR LES CHAMPS DU FORMULAIRE
@@ -136,12 +137,19 @@ function Contact() {
     }
   };
 
+  // INITIALISATION DE AOS POUR ANIMER LES ELEMENTS DU FORMULAIRE
+    useEffect(() => {
+      AOS.init({
+        duration: 2300,
+      });
+    }, []);
+
   return (
     <div className="contact-container">
-      <h1>Contactez-nous</h1>
+      <div className="contact-header">
 
       {/* CARTE DE VISITE/CONTACT  */}
-      <div className="visitCard">
+      <div data-aos="flip-down" className="visit-card">
         <p>
         {/* <i class="fa-solid fa-shield-halved"></i>Pixecurity */}
         <img src="assets/logo-dark.svg" alt="" />
@@ -166,6 +174,7 @@ function Contact() {
         </p>
       </div>
 
+<div data-aos="flip-up" className="map">
       {/* CARTE GOOGLE MAPS */}
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2620.3192053317075!2d2.1426642!3d48.9474075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e661bf4bc8b7a5%3A0x530ca1d69735aaaf!2sPixecurity!5e0!3m2!1sen!2sfr!4v1707475449842!5m2!1sen!2sfr"
@@ -175,7 +184,10 @@ function Contact() {
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>
+</div>
+</div>
 
+<div className="contact-form">
       {/* DEBUT FORMULAIRE DE CONTACT  */}
       <form onSubmit={handleFormSubmit}>
         <label htmlFor="name">Nom :</label>
@@ -228,6 +240,7 @@ function Contact() {
           onChange={handleEmailChange}
         />
         {emailError && <span className="error-message">{emailError}</span>}
+        
 
         <label htmlFor="message">Message :</label>
         <textarea
@@ -243,7 +256,13 @@ function Contact() {
         <input type="submit" value="Envoyer" className="submitButton" />
       </form>
       {/* FIN FORMULAIRE DE CONTACT  */}
-    </div>
+      
+      </div>
+      </div>
+
+
+
+
   );
 }
 

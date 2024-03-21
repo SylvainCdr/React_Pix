@@ -155,25 +155,19 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 
 :root {
 
-      --sunset1:#e9f7fe;
+    
 
-      --sunset2:#d5e1fd;
+    --sunset1: #009fe3;
 
-      --sunset3:#c6d0fd;
+      --sunset2:#73c9ed;
 
-      --sunset4:#bec6fc;
+      --sunset3:#b4e1f2;
 
-      --sunset5:#bdc3fc;
+      --sunset4:#e1f3f6;
 
-      --sunset6:#bcc7fb;
+      --sunset5:#f7fcfb;
 
-      --sunset7:#a8b5fb;
-
-      --sunset8:#8b97fa;
-
-      --sunset9:#6772fa;
-
-      --sunset10:#3f48f9;
+      --sunset6:#ffffff;
       
    }
   
