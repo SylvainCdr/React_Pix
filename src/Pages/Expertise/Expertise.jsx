@@ -6,29 +6,63 @@ import AOS from "aos";
 function Expertise() {
   useEffect(() => {
     AOS.init({
-      duration: 2300,
+      duration: 2000,
     });
   }, []);
 
   return (
     <div className="expertise-container">
+
+{/* <h1>Des experts avant tout</h1> */}
+
       <div className="hero">
-        <img src="assets/security3.jpeg" alt="" />
+       
         <div className="text">
-          <h1>
-            La protection de vos données personnelles certifiée Pixecurity c'est
-            : <br />
-            la fourniture d'outils électroniques, une plateforme de gestion de
-            projets réalisée en propre pour faciliter l'interaction avec nos
-            experts, des développements spécifiques et sur mesure, la mise en
-            place de solutions cyber. Des certification de conformités délivrées
-            par nos consultants sur du compliance : <br /> <br />
-            Pixecurity couvre toute la haute chaine de valeur de la sureté.
-          </h1>
+          <p className="top">
+            La protection certifiée de vos données personnelles par Pixecurity
+      
+
+            représente bien plus qu'une simple sécurité : c'est une garantie
+            complète.{" "}
+          </p>
+          <p className="middle">
+            {" "}
+            Nous assurons cela grâce à :
+            <li>
+              Des outils électroniques de pointe, taillés sur mesure pour
+              répondre à vos besoins.
+            </li>
+            <li>
+              Une plateforme de gestion de projets élaborée en interne, offrant
+              une interaction aisée avec nos experts.
+            </li>
+            <li>
+              Des solutions de développement sur mesure, conçues spécialement
+              pour vous.
+            </li>
+            <li>
+              Des mesures de cybersécurité avancées pour une protection
+              optimale.
+            </li>
+            <li>
+              La délivrance de certifications de conformité par nos consultants
+              spécialisés.
+            </li>{" "}
+          </p>
+
+          <p className="bottom">
+            Avec Pixecurity, votre sûreté est entre de bonnes mains à chaque
+            étape, de la conception à la certification.
+          </p>
+        </div>
+        <div data-aos="flip-left" className="image">
+        <img
+          src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt=""
+        />
         </div>
       </div>
 
-      <h2>Vidéoprotection</h2>
       <div className="slides-section">
         <div className="slide" data-aos="fade-right">
           <img
@@ -47,6 +81,7 @@ function Expertise() {
         </div>
 
         <div className="slide" data-aos="slide-up">
+          <h2>Vidéoprotection</h2>
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/videoprotection.png"
             alt=""
@@ -76,7 +111,6 @@ function Expertise() {
         </div>
       </div>
 
-      <h2>Analyse d'image</h2>
       <div className="slides-section">
         <div className="slide" data-aos="fade-right">
           <img
@@ -93,6 +127,7 @@ function Expertise() {
         </div>
 
         <div className="slide" data-aos="slide-up">
+          <h2>Analyse d'image</h2>
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/analyse-image.png"
             alt=""
@@ -120,7 +155,6 @@ function Expertise() {
         </div>
       </div>
 
-      <h2>Contrôle d'accès</h2>
       <div className="slides-section">
         <div className="slide" data-aos="fade-right">
           <img
@@ -137,6 +171,7 @@ function Expertise() {
         </div>
 
         <div className="slide" data-aos="slide-up">
+          <h2>Contrôle d'accès</h2>
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/controle-acces.png"
             alt=""
@@ -165,7 +200,6 @@ function Expertise() {
         </div>
       </div>
 
-      <h2>Cloud et objets connectés</h2>
       <div className="slides-section">
         <div className="slide" data-aos="fade-right">
           <img
@@ -183,6 +217,7 @@ function Expertise() {
         </div>
 
         <div className="slide" data-aos="slide-up">
+          <h2>Cloud et objets connectés</h2>
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/cloud.png"
             alt=""
@@ -212,7 +247,56 @@ function Expertise() {
           </p>
         </div>
       </div>
-{/* 
+
+      <div className="slides-section">
+        <div className="slide" data-aos="fade-right">
+          <img
+            src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-reseaux.jpg"
+            alt=""
+          />
+          <h4>Réseaux</h4>
+          <h3>Un savoir-faire à la française</h3>
+          <p>
+            En physique : Pixecurity possède les plus hautes certifications
+            réseau (Cisco) permettant de vous garantir une sécurisation d'un
+            bout à l'autre de la chaîne jusqu'à vous amener vers des conformités
+            cyber-sécurité. En cloud : Pixecurity met un point d'honneur à
+            garantir la sécurisation des données de ses clients via un cloud
+            souverain (OVH).
+          </p>
+        </div>
+
+        <div className="slide" data-aos="slide-up">
+          <h2>réseaux, si, stockage</h2>
+          <img
+            src="https://www.pixecurity.com/wp-content/uploads/2021/04/reseau-stockage.png"
+            alt=""
+          />
+          <h4>Systèmes d'Information</h4>
+          <h3>L'environnement c'est vous</h3>
+          <p>
+            Toute la gestion de votre système d'information en serveur ou en
+            mode poste client est paramétrée et configurée selon vos pré-requis
+            (active directory, choix matériel).
+          </p>
+        </div>
+
+        <div className="slide" data-aos="fade-left">
+          <img
+            src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-stockage.jpg"
+            alt=""
+          />
+          <h4>Stockage</h4>
+          <h3>Vers l'infini et le Peta</h3>
+          <p>
+            Que ce soit en capacité ou en typologie de stockage (DAS, NAS, SAN),
+            sécurisation des RAID (1, 5, 10), redondance à chaud ou à froid
+            (miroir, grappe) Pixecurity certifie son expertise en la matière.
+          </p>
+        </div>
+      </div>
+
+      {/* 
       <div class="item" data-aos="fade-right">
         3
       </div>
@@ -250,8 +334,6 @@ function Expertise() {
       <div class="item" data-aos="fade-down">
         2
       </div> */}
-
-    
     </div>
   );
 }

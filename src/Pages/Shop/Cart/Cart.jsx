@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./style.scss";
 import useCart from "../../../Components/useCart";
 import { useNavigate } from "react-router-dom";
+import AOS from "aos";
 
 export default function Cart() {
   const { fetchCart, editQuantity, removeFromCart, cart } = useCart();
@@ -36,6 +37,10 @@ export default function Cart() {
     navigate("./commande");
   };
 
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
   // Condition pour afficher un message si le panier est vide
   if (cart.length === 0) {
     return (
@@ -52,7 +57,7 @@ export default function Cart() {
   }
 
   return (
-    <div className="cart-container">
+    <div  className="cart-container">
       <h1>Panier</h1>
 
       <div className="shopping-cart">

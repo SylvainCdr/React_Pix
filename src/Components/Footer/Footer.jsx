@@ -39,8 +39,9 @@ function Footer() {
             <i className="fa-solid fa-phone"></i>(+33) 1 39 60 98 82
           </li>
           <li>
-            <i className="fa-solid fa-location-dot"></i> 38 Rue Jean Mermoz
-            78600 Maisons-Laffitte
+            <i className="fa-solid fa-location-dot"></i> 38 Rue Jean Mermoz <br /> 78600 Maisons-Laffitte
+            
+           
           </li>
           <li>
             <i className="fa-brands fa-linkedin"></i>

@@ -6,6 +6,7 @@ import Search from "../../../Components/Search/Search";
 import useFavorites from "../../../Components/useFavorites";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
 import useCart from "../../../Components/useCart";
+import Aos from "aos";
 
 
 
@@ -41,6 +42,7 @@ const Products = () => {
 
     fetchProducts();
   }, [location.pathname, category, subcategory]);
+
 
   return (
     <div className="products-container">

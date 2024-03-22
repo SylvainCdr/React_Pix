@@ -119,7 +119,20 @@ function Header() {
             </li>
           )}
 
-          {user?.role === "user" && (
+          {/* {user?.role === "user" && (
+            <div className="cart">
+              <NavLink to="/panier">
+                <i className="fa-solid fa-cart-shopping"></i>
+                
+              </NavLink>
+            </div>
+          )} */}
+
+          {/* utiliser un bouton toggle-off toggle-on pour la connexion et deconnexion */}
+          {itemsCount > 0 && <span className="badge">{itemsCount}</span>} </ul>
+        <div className="header__burgerMenu" onClick={burgerToggle}></div>
+
+        {user?.role === "user" && (
             <div className="cart">
               <NavLink to="/panier">
                 <i className="fa-solid fa-cart-shopping"></i>
@@ -127,10 +140,6 @@ function Header() {
               </NavLink>
             </div>
           )}
-
-          {/* utiliser un bouton toggle-off toggle-on pour la connexion et deconnexion */}
-          {itemsCount > 0 && <span className="badge">{itemsCount}</span>} </ul>
-        <div className="header__burgerMenu" onClick={burgerToggle}></div>
 
       </nav>
     </div>

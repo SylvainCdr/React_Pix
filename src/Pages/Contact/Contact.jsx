@@ -146,10 +146,18 @@ function Contact() {
 
   return (
     <div className="contact-container">
-      <div className="contact-header">
+      <div className="contact-section">
 
       {/* CARTE DE VISITE/CONTACT  */}
       <div data-aos="flip-down" className="visit-card">
+
+<h2>Contactez-nous</h2>
+
+<h1>Let's Get In Touch</h1>
+
+<h3>Dites-nous qui vous êtes et expliquez nous votre problématique en quelques mots. Nous vous recontacterons dans les plus brefs délais pour lancer le projet.</h3>
+
+
         <p>
         {/* <i class="fa-solid fa-shield-halved"></i>Pixecurity */}
         <img src="assets/logo-dark.svg" alt="" />
@@ -187,7 +195,7 @@ function Contact() {
 </div>
 </div>
 
-<div className="contact-form">
+<div data-aos="flip-right" className="contact-form">
       {/* DEBUT FORMULAIRE DE CONTACT  */}
       <form onSubmit={handleFormSubmit}>
         <label htmlFor="name">Nom :</label>

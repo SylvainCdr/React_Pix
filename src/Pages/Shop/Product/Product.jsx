@@ -8,6 +8,7 @@ import useFavorites from "../../../Components/useFavorites";
 import useCart from "../../../Components/useCart";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
 import Swal from "sweetalert2";
+import AOS from "aos";
 
 export default function Product() {
   const [product, setProduct] = useState({});
@@ -176,6 +177,11 @@ Swal.fire({
     }
   };
 
+  // Initialiser AOS
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
   return (
     <div className="product-container">
       <ShopNav />
@@ -184,7 +190,7 @@ Swal.fire({
       {searchResults.length === 0 && (
         <div className="product-page">
           <div className="product-section1">
-            <div className="product-img">
+            <div data-aos="zoom-in-right" className="product-img">
               {discount !== 0 && (
                 <span className="discount-badge">-{discount}%</span>
               )}
@@ -194,7 +200,7 @@ Swal.fire({
               <div className="price-like">
                 <p className="prices">{calculateDiscountedPrice()} </p>
                 <p
-                  className="like"
+                  className="like" data-aos="zoom-in-left"
                   onClick={handleToggleFavoritesClick}
                   style={{ cursor: "pointer" }}
                 >

@@ -1,120 +1,129 @@
 .expertise-container {
-  margin-top: 3rem;
+
+  margin-top: 8rem;
 
   .hero {
-    height: 60vh;
+    // background avec linear gradient
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.8),
+        rgba(13, 117, 191, 0.8)
+      ),
+      url("https://images.unsplash.com/photo-1557683316-973673baf926?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80");
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 3rem 0;
 
-    img {
-      // fondu sur l image
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-      filter: brightness(0.5);
-    }
-
-
+    
 
     .text {
-      width: 40%;
-      position: absolute;
-      top: 20%;
+      width: 50%;
       margin-left: 2rem;
+      font-family: "Montserrat", sans-serif;
+      text-align: justify;
 
-      h1 {
-        font-family: "Montserrat", sans-serif;
-        color: white;
-        text-shadow: 2px 2px 4px rgb(152, 152, 152);
-        font-size: 1rem;
-        line-height: 2.2rem;
+      .top {
+        color: var(--sunset3);
+        text-shadow: 2px 2px 4px rgb(0, 0, 0);
+        font-size: 1.2rem;
+        line-height: 1.8rem;
         font-weight: 500;
+        margin-bottom: 1rem;
+      }
+
+      .middle {
+        color: var(--sunset6);
+        text-shadow: 2px 2px 4px rgb(0, 0, 0);
+        line-height: 1.5rem;
+        margin-bottom: 1rem;
+
+        li {
+          margin-left : 1rem;
+          
+        }
+      }
+
+      .bottom {
+        color: var(--sunset2);
+        text-shadow: 2px 2px 4px rgb(0, 0, 0);
+        font-size: 1.4rem;
+        line-height: 1.8rem;
+        font-weight: 500;
+      }
+    }
+    .image {
+      width: 40%;
+
+      img {
+        width: 100%;
       }
     }
   }
 
-//   * {
-//     box-sizing: border-box;
-//   }
 
-
-
-h2 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.5rem;
-  width: 100%;
+  h2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.5rem;
+    width: 100%;
     text-align: center;
     font-weight: 600;
     text-transform: uppercase;
-}
-.slides-section  {
-display: flex;
-margin-bottom: 12rem;
-
-
-.slide {
-    text-align: center;
-    width: 27%;
-    margin:auto;
-   
-  
-
-
-
-    img {
-      width: 20rem;
-      object-fit: cover;
-      border-radius: 50%;
-      -webkit-border-radius: 50%;
-      -moz-border-radius: 50%;
-      -ms-border-radius: 50%;
-      -o-border-radius: 50%;
-}
-
-h4 {
-    font-family: "Montserrat", sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-top: 1rem;
-    color: #2ab1ff;
-    
-}
-
-h3 {
-    font-family: "Montserrat", sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    margin-top: 1rem;
-    color: #efefef;
-}
-
-p {
-    font-family: "Montserrat", sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    margin-top: 1rem;
-    color: #c0c0c0;
-    line-height: 1.5rem;
-}
-
-
-
-
-
-}
-}
-
-  .item {
-    width: 200px;
-    height: 200px;
-    margin: 50px auto;
-    padding-top: 75px;
-    background: #ccc;
-    text-align: center;
-    color: #fff;
-    font-size: 3em;
   }
-}
+  .slides-section {
+    display: flex;
+    margin-bottom: 12rem;
 
+    .slide {
+      text-align: center;
+      width: 27%;
+      margin: auto;
+
+      img {
+        width: 20rem;
+        object-fit: cover;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+      }
+
+      h4 {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: 1rem;
+        color: #2ab1ff;
+      }
+
+      h3 {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        margin-top: 1rem;
+        color: #efefef;
+      }
+
+      p {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+        margin-top: 1rem;
+        color: #c0c0c0;
+        line-height: 1.5rem;
+      }
+    }
+  }
+
+  // .item {
+  //   width: 200px;
+  //   height: 200px;
+  //   margin: 50px auto;
+  //   padding-top: 75px;
+  //   background: #ccc;
+  //   text-align: center;
+  //   color: #fff;
+  //   font-size: 3em;
+  // }
+}
