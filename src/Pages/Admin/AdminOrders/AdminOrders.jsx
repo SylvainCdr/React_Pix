@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./style.scss";
 import AdminOrderModal from "../AdminOrderModal/AdminOrderModal";
+import { NavLink } from "react-router-dom";
+
 
 // const OrderSchema = new Schema({
 //     // Création d'une référence à l'utilisateur qui a passé la commande
@@ -79,10 +81,23 @@ export default function AdminOrders() {
     const handleDetails = (orderId) => {
         setSelectedOrderId(orderId);
     }
+    
+
+
+  
+
 
     return (
         <div className="admin-orders">
             <h1>Commandes</h1>
+
+            {/* Si aucune commande n'est trouvée, on affiche un message */}
+            {orders.length === 0 && <p>Aucune commande trouvée</p>}
+
+            {/* Tableau des commandes */}
+
+
+    
             <table>
                 <thead>
                     <tr>
@@ -105,13 +120,14 @@ export default function AdminOrders() {
                             <td>
                                 {/* Au clic sur "Détails", on appelle la fonction handleDetails avec l'ID de la commande */}
                                 <button onClick={() => handleDetails(order._id)}>Détails</button>
-                                <button>Modifier</button>
-                                <button>Supprimer</button>
+                            
+                                <NavLink to={`/admin/commande/modification/${order._id}`}><button>Modifier</button> </NavLink>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+                 
 
             {/* Le modal s'affiche seulement si selectedOrderId est défini */}
             {selectedOrderId && (
@@ -119,7 +135,7 @@ export default function AdminOrders() {
                    order={orders.find(order => order._id === selectedOrderId)}
                      user={users[selectedOrderId]}
                      onClose={() => setSelectedOrderId(null)}
-                     
+
                 />
             )}
         </div>
