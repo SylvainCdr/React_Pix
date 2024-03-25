@@ -3,6 +3,7 @@ import './style.scss';
 
 export default function AdminOrderModal({ order, user, onClose }) {
     const [products, setProducts] = useState([]);
+    const [userDetails, setUserDetails] = useState({});
 
     useEffect(() => {
         fetch(`http://localhost:3001/orders/${order._id}`)
@@ -10,14 +11,34 @@ export default function AdminOrderModal({ order, user, onClose }) {
             .then((data) => setProducts(data));
     }, [order]);
 
+  // on récupère les infos de l'utilisateur qui a passé la commande, notament la billingAddress
+    useEffect(() => {
+        fetch(`http://localhost:3001/users/${order.user}`)
+            .then((response) => response.json())
+            .then((data) => setUserDetails(data));
+    }
+    , [order]);
+
+    const [billingAddress, setBillingAddress] = useState({});
+    useEffect(() => {
+        fetch(`http://localhost:3001/users/${order.user}`)
+            .then((response) => response.json())
+            .then((data) => setBillingAddress(data.billingAddress));
+    }, [order]);
+
+
+
+
+
     return (
         <div className="admin-order-modal">
              <button className="close-button" onClick={onClose}>X</button>
         <h2>Commande n°{order._id}</h2>
         <h4>Date de commande : {new Date(order.orderDate).toLocaleDateString()}</h4>
         <h3>Statut de la commande : {order.status}</h3>
-        <h3>Client : {user?.company} ({user?.lastName} {user?.firstName})</h3>
-        <h4>Adresse de facturation : {user?.billingAddress.street}, {user?.billingAddress.zip} {user?.billingAddress.city}, {user?.billingAddress.country}</h4>
+        <h3>Client : {userDetails.lastName} {userDetails.firstName}</h3>
+        <h4>Entreprise : {userDetails.company}</h4>
+        <h4>Adresse de facturation : {billingAddress.street}, {billingAddress.zip} {billingAddress.city}, {billingAddress.country}</h4>
         <h4>Adresse de livraison : {order.deliveryAddress.street}, {order.deliveryAddress.zip} {order.deliveryAddress.city}, {order.deliveryAddress.country}</h4>
 
         <table>
