@@ -1,0 +1,54 @@
+.admin-order-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 800px;
+    background-color: #333333;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+
+    button.close-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        margin: 0.5rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    h4, h3 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+        thead {
+            background-color: #3e3e3e;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+            text-align: center;
+        }
+    }
+
+    p {
+        font-size: 1.2rem;
+        margin-top: 2rem;
+    }
+}

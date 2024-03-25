@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.scss";
-
+import AdminOrderModal from "../AdminOrderModal/AdminOrderModal";
 
 // const OrderSchema = new Schema({
 //     // Création d'une référence à l'utilisateur qui a passé la commande
@@ -52,8 +52,7 @@ export default function AdminOrders() {
 
     const [orders, setOrders] = useState([]);
     const [users, setUsers] = useState({});
-    const [orderDetails, setOrderDetails] = useState({});
-
+    const [selectedOrderId, setSelectedOrderId] = useState(null);
 
 
     useEffect(() => {
@@ -63,15 +62,11 @@ export default function AdminOrders() {
     }, []);
 
     useEffect(() => {
-        // Récupérer les ID des utilisateurs de chaque commande
         const userIds = orders.map(order => order.user);
-
-        // Pour chaque ID d'utilisateur, effectuer une requête pour récupérer les détails de l'utilisateur
         userIds.forEach(userId => {
             fetch(`http://localhost:3001/users/${userId}`)
                 .then((response) => response.json())
                 .then((userData) => {
-                    // Stocker les détails de l'utilisateur dans un objet avec l'ID de l'utilisateur comme clé
                     setUsers(prevUsers => ({
                         ...prevUsers,
                         [userId]: userData
@@ -80,16 +75,10 @@ export default function AdminOrders() {
         });
     }, [orders]);
 
-    // récupération des détails de la commmande 
-
-    const handleOrderClick = (orderId) => {
-        fetch(`http://localhost:3001/orders/${orderId}`)
-            .then((response) => response.json())
-            .then((data) => {
-                setOrderDetails(data);
-            });
-    };
-
+    // Au clic sur "Détails", on met à jour l'ID de la commande sélectionnée
+    const handleDetails = (orderId) => {
+        setSelectedOrderId(orderId);
+    }
 
     return (
         <div className="admin-orders">
@@ -110,12 +99,12 @@ export default function AdminOrders() {
                         <tr key={order._id}>
                             <td>{order._id}</td>
                             <td>{order.orderDate && new Date(order.orderDate).toLocaleDateString()}</td>
-                            {/* Afficher le nom de l'utilisateur en utilisant l'ID de l'utilisateur */}
                             <td> {users[order.user]?.company} ({users[order.user]?.lastName} {users[order.user]?.firstName}) </td>
                             <td>{order.totalAmount.toFixed(2)} €</td>
                             <td>{order.status}</td>
                             <td>
-                                <button onClick={() => handleOrderClick(order._id)}>Détails</button>
+                                {/* Au clic sur "Détails", on appelle la fonction handleDetails avec l'ID de la commande */}
+                                <button onClick={() => handleDetails(order._id)}>Détails</button>
                                 <button>Modifier</button>
                                 <button>Supprimer</button>
                             </td>
@@ -123,6 +112,16 @@ export default function AdminOrders() {
                     ))}
                 </tbody>
             </table>
+
+            {/* Le modal s'affiche seulement si selectedOrderId est défini */}
+            {selectedOrderId && (
+                <AdminOrderModal 
+                   order={orders.find(order => order._id === selectedOrderId)}
+                     user={users[selectedOrderId]}
+                     onClose={() => setSelectedOrderId(null)}
+                     
+                />
+            )}
         </div>
     );
 }
