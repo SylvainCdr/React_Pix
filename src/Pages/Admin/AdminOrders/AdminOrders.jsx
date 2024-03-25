@@ -1,82 +1,128 @@
-import React, {useState, useEffect} from "react";
-import style from "./style.scss";
+import React, { useState, useEffect } from "react";
+import "./style.scss";
+
+
+// const OrderSchema = new Schema({
+//     // Création d'une référence à l'utilisateur qui a passé la commande
+//     user: {
+//       type: mongoose.Schema.Types.ObjectId,
+//       ref: 'User',
+//       required: true
+//     },
+//     // Création d'un objet pour stocker l'adresse de livraison
+//     deliveryAddress: {
+//       street: { type: String, required: true },
+//       city: { type: String, required: true },
+//       zip: { type: String, required: true },
+//       country: { type: String, required: true },
+//     },
+//     // Création d'un objet pour stocker les produits commandés
+//     items: [{
+//       product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+//       name: { type: String, required: true },
+//       ref : { type: String, required: true },
+//       quantity: { type: Number, required: true },
+//       priceAtOrderTime: { type: Number, required: true },
+//     }],
+//     delivery: {
+//       method: { type: String, required: true, enum: ['standard', 'express'] },
+//       fee: { type: Number, default: 0 },
+//     },
+//     // Création d'une date de commande
+//     orderDate: {
+//       type: Date,
+//       default: Date.now
+
+//     },
+//     // Création d'un statut pour la commande
+//     status: {
+//       type: String,
+//       enum: ['pending', 'shipped', 'delivered'],
+//       default: 'pending'
+//     },
+//     payment: {
+//       method: { type: String, required: true },
+//       paid: { type: Boolean, default: false },
+//     },
+//     // Création d'un total pour la commande
+//       totalAmount: { type: Number, required: true },
+//   });
 
 export default function AdminOrders() {
 
-// on récupère toutes les commandes de la base de données
-// on les affiche dans un tableau
-// on peut les trier par date, par nom, par montant
-// on peut les filtrer par date
+    const [orders, setOrders] = useState([]);
+    const [users, setUsers] = useState({});
+    const [orderDetails, setOrderDetails] = useState({});
 
-const [orders, setOrders] = useState([]);
-const [filter, setFilter] = useState("all");
-const [sort, setSort] = useState("date");
 
-useEffect(() => {
-    fetch("localhost:3001/orders")
-        .then((response) => response.json())
-        .then((data) => setOrders(data));
-}, []);
 
-return (
+    useEffect(() => {
+        fetch("http://localhost:3001/allOrders")
+            .then((response) => response.json())
+            .then((data) => setOrders(data));
+    }, []);
 
-    <div class="admin-orders">
-        <h1>COMMANDES</h1>
+    useEffect(() => {
+        // Récupérer les ID des utilisateurs de chaque commande
+        const userIds = orders.map(order => order.user);
 
-        <div class="admin-orders-filter">
-            <label for="filter">Filtrer par date</label>
-            <select name="filter" id="filter" onChange={(e) => setFilter(e.target.value)}>
-                <option value="all">Toutes</option>
-                <option value="today">Aujourd'hui</option>
-                <option value="week">Cette semaine</option>
-                <option value="month">Ce mois</option>
-            </select>
-        </div>
+        // Pour chaque ID d'utilisateur, effectuer une requête pour récupérer les détails de l'utilisateur
+        userIds.forEach(userId => {
+            fetch(`http://localhost:3001/users/${userId}`)
+                .then((response) => response.json())
+                .then((userData) => {
+                    // Stocker les détails de l'utilisateur dans un objet avec l'ID de l'utilisateur comme clé
+                    setUsers(prevUsers => ({
+                        ...prevUsers,
+                        [userId]: userData
+                    }));
+                });
+        });
+    }, [orders]);
 
-        <table class="admin-orders-table">
-            <thead>
-                <tr>
-                    <th>Numéro</th>
-                    <th>Date</th>
-                    <th>Client</th>
-                    <th>Montant</th>
-                </tr>
-            </thead>
-            <tbody>
-                {orders
-                    .filter((order) => {
-                        if (filter === "today") {
-                            return order.date === new Date().toDateString();
-                        }
-                        if (filter === "week") {
-                            return order.date >= new Date().setDate(new Date().getDate() - 7);
-                        }
-                        if (filter === "month") {
-                            return order.date >= new Date().setMonth(new Date().getMonth() - 1);
-                        }
-                        return true;
-                    })
-                    .sort((a, b) => {
-                        if (sort === "date") {
-                            return new Date(b.date) - new Date(a.date);
-                        }
-                        if (sort === "name") {
-                            return a.client.localeCompare(b.client);
-                        }
-                        if (sort === "amount") {
-                            return b.amount - a.amount;
-                        }
-                    })
-                    .map((order) => (
-                        <tr>
-                            <td>{order.id}</td>
-                            <td>{order.date}</td>
-                            <td>{order.client}</td>
-                            <td>{order.amount}</td>
+    // récupération des détails de la commmande 
+
+    const handleOrderClick = (orderId) => {
+        fetch(`http://localhost:3001/orders/${orderId}`)
+            .then((response) => response.json())
+            .then((data) => {
+                setOrderDetails(data);
+            });
+    };
+
+
+    return (
+        <div className="admin-orders">
+            <h1>Commandes</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Numéro de commande</th>
+                        <th>Date</th>
+                        <th>Client</th>
+                        <th>Montant</th>
+                        <th>Statut</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {orders.map((order) => (
+                        <tr key={order._id}>
+                            <td>{order._id}</td>
+                            <td>{order.orderDate && new Date(order.orderDate).toLocaleDateString()}</td>
+                            {/* Afficher le nom de l'utilisateur en utilisant l'ID de l'utilisateur */}
+                            <td> {users[order.user]?.company} ({users[order.user]?.lastName} {users[order.user]?.firstName}) </td>
+                            <td>{order.totalAmount.toFixed(2)} €</td>
+                            <td>{order.status}</td>
+                            <td>
+                                <button onClick={() => handleOrderClick(order._id)}>Détails</button>
+                                <button>Modifier</button>
+                                <button>Supprimer</button>
+                            </td>
                         </tr>
                     ))}
-            </tbody>
-        </table>
-    </div>
-);
+                </tbody>
+            </table>
+        </div>
+    );
 }
