@@ -23,7 +23,7 @@ useEffect(() => {
 
       {searchResults.length === 0 && (
         <div  className="hero-shop">
-          <img src="assets/heroShop.png" alt="" />
+          <img data-aos="fade-down-left" src="assets/heroShop.png" alt="" />
 
           <div  className="hero-shop__title">
             <h2 >Vous voulez bénéficier de réductions exclusives ?</h2>

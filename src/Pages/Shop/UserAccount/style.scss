@@ -81,8 +81,17 @@
           border-right: 1px solid rgb(87, 87, 87);
           padding-right: 1rem;
 
+          h4 {
+            color: var(--sunset1);
+            padding-bottom: 2rem;
+            padding-top: 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+          }
+
           p {
-            margin: 0.5rem;
+            margin-top: 1.7rem;
           }
         }
 
@@ -91,26 +100,45 @@
         }
       }
 
-      button {
+      a {
+        text-decoration: none;
+        color: white;
+        margin: auto;
         width: 30%;
-        padding: 1rem;
-        margin: 1rem auto;
-        border: none;
-        background-color: rgb(0, 82, 183);
-        cursor: pointer;
-        transition: 0.3s;
-        border-radius: 0.4rem;
-        -webkit-border-radius: 0.4rem;
-        -moz-border-radius: 0.4rem;
-        -ms-border-radius: 0.4rem;
-        -o-border-radius: 0.4rem;
 
-        &:hover {
-          background-color: rgb(3, 106, 201);
-        }
-        a {
-          text-decoration: none;
+        button {
+          margin-top: 5rem;
+          text-align: center;
+          padding: 15px 30px;
+          transition: 0.5s;
+          background-size: 200% auto;
           color: white;
+          border-radius: 10px;
+          display: flex;
+          border: 0px;
+          font-weight: 600;
+          box-shadow: 0px 0px 14px -7px #121e37;
+          background-image: linear-gradient(
+            45deg,
+            #0651bb 0%,
+            #009fe3 51%,
+            #00438f 100%
+          );
+          cursor: pointer;
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+
+          &:hover {
+            background-position: right center;
+            /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+
+          &:active {
+            transform: scale(0.95);
+          }
         }
       }
     }
@@ -154,52 +182,77 @@
       width: 100%;
 
       .order {
-
-     
-
         table {
           width: 100%;
           border-collapse: collapse;
           margin-top: 2rem;
-          margin-bottom: 0.5rem;
+          vertical-align: baseline;
+          background: linear-gradient(
+            -45deg,
+            rgba(110, 110, 110, 0.017) 0%,
+            rgb(62, 62, 62) 50%,
+            rgba(15, 15, 15, 0.295) 100%
+          );
 
           th {
-            background-color: rgb(51, 51, 51);
+            background: linear-gradient(
+              -45deg,
+              rgba(110, 110, 110, 0.017) 0%,
+              rgb(62, 62, 62) 50%,
+              rgba(15, 15, 15, 0.295) 100%
+            );
+
             color: white;
             padding: 1rem;
-            border: 1px solid rgb(80, 79, 79);
+            border: 1px solid rgb(98, 98, 98);
           }
 
           td {
             padding: 1rem;
-            border: 1px solid rgb(80, 79, 79);
+            border: 1px solid rgb(98, 98, 98);
 
             p {
               margin: 0;
             }
 
-        
-            button {
+            a {
+              text-decoration: none;
               color: white;
-              width: 100%;
-              padding: 0.5rem;
-              margin: auto;
-              border: none;
-              background-color: rgb(39, 130, 235);
-              cursor: pointer;
-              transition: 0.3s;
-              border-radius: 0.3rem;
-              -webkit-border-radius: 0.3rem;
-              -moz-border-radius: 0.3rem;
-              -ms-border-radius: 0.3rem;
-              -o-border-radius: 0.3rem;
-              &:hover {
-                background-color: rgb(62, 155, 242);
+
+              button {
+                padding: 10px 30px;
+                transition: 0.5s;
+                background-size: 200% auto;
+                color: white;
+                border-radius: 10px;
+                display: flex;
+                border: 0px;
+                font-weight: 600;
+                box-shadow: 0px 0px 14px -7px #121e37;
+                background-image: linear-gradient(
+                  45deg,
+                  #0651bb 0%,
+                  #009fe3 51%,
+                  #00438f 100%
+                );
+                cursor: pointer;
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: manipulation;
+
+                &:hover {
+                  background-position: right center;
+                  /* change the direction of the change here */
+                  color: #fff;
+                  text-decoration: none;
+                }
+
+                &:active {
+                  transform: scale(0.95);
+                }
               }
-             
-            } 
+            }
           }
-          
         }
       }
     }

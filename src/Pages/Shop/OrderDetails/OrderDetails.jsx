@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./style.scss";
+import DeliveryTimeline from "../../../Components/DeliveryTimeline/DeliveryTimeline";
+import Aos from "aos";
 
 export default function OrderDetails() {
 
@@ -44,16 +46,21 @@ export default function OrderDetails() {
             });
     }, [orderId]);
 
+    useEffect(() => {
+        Aos.init({ duration: 1000 });
+    }, []);
+
     return (
 
-        <div className="order-details-container">
+        <div data-aos="flip-down" className="order-details-container">
             <h2>DETAILS DE COMMANDE </h2>
             <div className="order-details">
                 <div className="order-details-header">
                     <h3>Commande N° {orderId}</h3>
                    
                     <p> Date de la commande : {new Date(orderDate).toLocaleDateString()}</p>
-                    <p>Statut : {status}</p>
+                     {/* Intégration de la timeline */}
+            <DeliveryTimeline status={status} />
                 </div>
                 <div className="order-details-content">
                     <div className="order-details-delivery">

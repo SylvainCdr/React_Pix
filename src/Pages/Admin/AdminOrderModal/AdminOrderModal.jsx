@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './style.scss';
+import DeliveryTimeline from '../../../Components/DeliveryTimeline/DeliveryTimeline';
+
 
 export default function AdminOrderModal({ order, user, onClose }) {
     const [products, setProducts] = useState([]);
@@ -26,7 +28,7 @@ export default function AdminOrderModal({ order, user, onClose }) {
             .then((data) => setBillingAddress(data.billingAddress));
     }, [order]);
 
-
+ 
 
 
 
@@ -34,12 +36,18 @@ export default function AdminOrderModal({ order, user, onClose }) {
         <div className="admin-order-modal">
              <button className="close-button" onClick={onClose}>X</button>
         <h2>Commande n°{order._id}</h2>
+
+                 {/* Intégration de la timeline */}
+                 <DeliveryTimeline status={order.status} />
         <h4>Date de commande : {new Date(order.orderDate).toLocaleDateString()}</h4>
-        <h3>Statut de la commande : {order.status}</h3>
+        {/* <h3>Statut de la commande : {order.status}</h3> */}
         <h3>Client : {userDetails.lastName} {userDetails.firstName}</h3>
         <h4>Entreprise : {userDetails.company}</h4>
         <h4>Adresse de facturation : {billingAddress.street}, {billingAddress.zip} {billingAddress.city}, {billingAddress.country}</h4>
         <h4>Adresse de livraison : {order.deliveryAddress.street}, {order.deliveryAddress.zip} {order.deliveryAddress.city}, {order.deliveryAddress.country}</h4>
+
+
+
 
         <table>
             <thead>

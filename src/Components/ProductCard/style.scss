@@ -139,15 +139,15 @@
           margin-right: 0.9rem;
           cursor: pointer;
 
+          &:active {
+            animation: clickAnimation 0.3s ease;
+            -webkit-animation: clickAnimation 0.3s ease;
+}
         }
         i:hover {
           color: #f74f4f;
-          scale: 1.1;
+          scale: 1.2;
         }
-        &:active {
-          animation: clickAnimation 0.5s ease;
-          -webkit-animation: clickAnimation 0.5s ease;
-}
 
       }
 
@@ -166,7 +166,7 @@
 
         i:hover {
           color: #03b43e;
-          scale: 1.1;
+          scale: 1.2;
           
         }
         // &:hover::after {

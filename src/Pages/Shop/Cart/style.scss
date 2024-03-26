@@ -5,26 +5,6 @@
     padding : 1.5rem;
     margin-top: 8rem;
 
-    button {
-        padding: 0.5rem 1rem;
-        margin-top: 2rem;
-        border: none;
-        background-color: #3f92fe;
-        color: white;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        border-radius: 0.3rem;
-        -webkit-border-radius: 0.3rem;
-        -moz-border-radius: 0.3rem;
-        -ms-border-radius: 0.3rem;
-        -o-border-radius: 0.3rem;
-        
-        &:hover 
-{
-            background-color: #61b2fe;
-        }
-    }
 
     h1 {
         font-size: 2rem;
@@ -134,6 +114,7 @@ label {
   
     color : rgb(252, 44, 44);
     font-weight: 600;
+   
     
     
   }

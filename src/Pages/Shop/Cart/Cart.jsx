@@ -64,6 +64,7 @@ export default function Cart() {
         <div className="column-labels">
           <label className="product-image">Image</label>
           <label className="product-details">Produit</label>
+          {/* // si dicount alors on affiche le rabais */}
           <label className="product-price">Prix HT </label>
           {/* // si dicount alors on affiche le rabais */}
           <label className="product-quantity">Quantité</label>

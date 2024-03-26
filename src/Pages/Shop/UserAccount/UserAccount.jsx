@@ -5,6 +5,7 @@ import useFavorites from "../../../Components/useFavorites";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
 import useCart from "../../../Components/useCart";
 import AOS from "aos";
+import DeliveryTimeline from "../../../Components/DeliveryTimeline/DeliveryTimeline";
 
 export default function UserAccount() {
   const userDataString = localStorage.getItem("user");
@@ -102,9 +103,10 @@ export default function UserAccount() {
         </h3>
 
         {selectedTab === "infos" && (
-          <div className="user-infos">
+          <div data-aos="zoom-out-up" className="user-infos">
             <div className="grid-infos">
               <div className="perso">
+              <h4>Informations personnelles</h4>
                 <p>Nom : {userData.lastName}</p>
                 <p>Prénom : {userData.firstName}</p>
                 <p>Entreprise : {userData.company}</p>
@@ -118,19 +120,21 @@ export default function UserAccount() {
                 )}
               </div>
               <div className="address">
+                <h4>Adresse de facturation</h4>
                 <p>Adresse : {userData.billingAddress.street}</p>
                 <p>Ville : {userData.billingAddress.city}</p>
                 <p>Code postal : {userData.billingAddress.zip}</p>
                 <p>Pays : {userData.billingAddress.country}</p>
               </div>
               <div className="contact">
+              <h4>Informations de contact</h4>
                 <p>Email : {userData.email}</p>
                 <p>Téléphone : {userData.phone}</p>
               </div>
             </div>
-            <button>
-              <NavLink to="/edit-account">Modifier mes informations</NavLink>
-            </button>
+            
+              <NavLink to="/edit-account"><button>Modifier mes informations</button></NavLink>
+            
           </div>
         )}
 
@@ -145,7 +149,7 @@ export default function UserAccount() {
 
                   return (
                     
-                    <divd data-aos="fade-up-left">
+                    <div data-aos="fade-up-left">
                     <ProductCard
                       key={favorite.product_id}
                       product={product}
@@ -155,7 +159,7 @@ export default function UserAccount() {
                       removeFromFavorites={removeFromFavorites}
                       handleProductClick={handleProductClick}
                     />
-                    </divd>
+                    </div>
                   );
                 })
               ) : (
@@ -166,7 +170,7 @@ export default function UserAccount() {
         )}
 
         {selectedTab === "commandes" && (
-          <div className="user-orders">
+          <div data-aos="fade-up" className="user-orders">
             {orders.length > 0 ? (
               orders.map((order) => {
                 return (
@@ -178,9 +182,10 @@ export default function UserAccount() {
                           <th>Date</th>
                           <th>Produits</th>
                           <th>Total</th>
-                          <th>Statut</th>
+                          {/* <th>Statut</th> */}
                           <th>Détails</th>
                         </tr>
+                        {/* // ajout d'une ligne pour afficher la timeline */}
                       </thead>
                       <tbody>
                         <tr>
@@ -201,7 +206,7 @@ export default function UserAccount() {
                           </td>
                           {/* // Calcul du total de la commande, on arrondi à 2 chiffres après la virgule */}
                           <td> {order.totalAmount.toFixed(2)} € </td>
-                          <td>{order.status}</td>
+                          {/* <td>{order.status}</td> */}
                           <td>
                           <NavLink to={`/mon-compte/commande/${order._id}`}>
                             <button>
@@ -209,6 +214,11 @@ export default function UserAccount() {
                                 Voir
                             </button>
                               </NavLink>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colSpan="5">
+                            <DeliveryTimeline status={order.status} />
                           </td>
                         </tr>
                       </tbody>

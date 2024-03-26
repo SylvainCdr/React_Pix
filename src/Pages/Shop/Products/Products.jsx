@@ -44,6 +44,12 @@ const Products = () => {
   }, [location.pathname, category, subcategory]);
 
 
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
+
+
+
   return (
     <div className="products-container">
       <ShopNav />
@@ -57,6 +63,7 @@ const Products = () => {
 
           <div className="products-grid">
             {products.map((item) => (
+        
               <ProductCard
                 key={item._id}
                 product={item}
@@ -65,7 +72,8 @@ const Products = () => {
                 removeFromFavorites={removeFromFavorites}
                 checkFavorite={checkFavorite}
                 addToCart={addToCart}
-              />
+                />
+                
             ))}
           </div>
         </div>
