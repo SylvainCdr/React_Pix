@@ -11,7 +11,7 @@ useEffect(() => {
 , []);
 
     return (
-        <div data-aos="flip-up" className="delivery-timeline">
+        <div data-aos="flip-down" className="delivery-timeline">
             <div className={`timeline-item ${status === 'pending' ? 'active' : ''}`}>
                 <div className="timeline-circle">1</div>
                 <div className="timeline-content">

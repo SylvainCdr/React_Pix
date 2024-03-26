@@ -71,7 +71,7 @@ export default function EditOrders() {
 
     // alert sweet alert et redirection
     Swal.fire({
-      title: "Statut modifié avec succès !",
+      title: "Commande modifiée avec succès !",
       icon: "success",
       timer: 2000,
       showConfirmButton: false,
@@ -82,151 +82,153 @@ export default function EditOrders() {
 
   return (
     <div className="edit-order-container">
-      <h2>Modifier la commande n°{orderId}</h2>
+      <h2>Modification - Commande n°{orderId}</h2>
       <h3>
         Date de commande : {new Date(order.orderDate).toLocaleDateString()}
       </h3>
 
       <div className="edit-order-form">
         <div className="section-1">
-        <h4>
-          Client : {user.lastName} {user.firstName}
-        </h4>
-        <h4>Entreprise : {user.company}</h4>
-        <h4>Email : {user.email}</h4>
-        <h4>Téléphone : {user.phone}</h4>
+          <h4>
+            Client : {user.lastName} {user.firstName}
+          </h4>
+          <h4>Entreprise : {user.company}</h4>
+          <h4>Email : {user.email}</h4>
+          <h4>Téléphone : {user.phone}</h4>
 
-        <h4>Méthode de livraison : {delivery && delivery.method}</h4>
-        <h4>
-          Frais de livraison :{" "}
-          {delivery && delivery.fee && delivery.fee.toFixed(2)} €
-        </h4>
-        <h4>Méthode de paiement : {payment && payment.method}</h4>
-        <h4>
-          
-          Paiement :{" "}
-          {payment && payment.paid ? "Payé" : "En attente de paiement"}
-        </h4>
+          <h4>Méthode de livraison : {delivery && delivery.method}</h4>
+          <h4>
+            Frais de livraison :{" "}
+            {delivery && delivery.fee && delivery.fee.toFixed(2)} €
+          </h4>
+          <h4>Méthode de paiement : {payment && payment.method}</h4>
+          <h4>
+            Paiement :{" "}
+            {payment && payment.paid ? "Payé" : "En attente de paiement"}
+          </h4>
 
-        <h4>
-          Total de la commande :{" "}
-          {order && order.totalAmount && order.totalAmount.toFixed(2)} €
-        </h4>
-      </div>
-      
-
-      <form onSubmit={handleSubmit}>
-        <div className="section-2">
-          <h4>Adresse de facturation :</h4>
-          <label html="billingAddress">Numéro et rue</label>
-          <input
-            type="text"
-            id="billingAddress"
-            value={billingAddress && billingAddress.street}
-            onChange={(event) =>
-              setBillingAddress({
-                ...billingAddress,
-                street: event.target.value,
-              })
-            }
-          />
-          <label html="billingAddress">Code postal</label>
-          <input
-            type="text"
-            id="zip"
-            value={billingAddress && billingAddress.zip}
-            onChange={(event) =>
-              setBillingAddress({ ...billingAddress, zip: event.target.value })
-            }
-          />
-          <label html="billingAddress">Ville</label>
-          <input
-            type="text"
-            id="city"
-            value={billingAddress && billingAddress.city}
-            onChange={(event) =>
-              setBillingAddress({ ...billingAddress, city: event.target.value })
-            }
-          />
-          <label html="billingAddress">Pays</label>
-          <input
-            type="text"
-            id="country"
-            value={billingAddress && billingAddress.country}
-            onChange={(event) =>
-              setBillingAddress({
-                ...billingAddress,
-                country: event.target.value,
-              })
-            }
-            />
-            </div>
-        <div className="section-3">
-          <h4>Adresse de livraison :</h4>
-          <label html="deliveryAddress">Numéro et rue</label>
-          <input
-            type="text"
-            id="deliveryAddress"
-            value={deliveryAddress && deliveryAddress.street}
-            onChange={(event) =>
-              setDeliveryAddress({
-                ...deliveryAddress,
-                street: event.target.value,
-              })
-            }
-          />
-          <label html="deliveryAddress">Code postal</label>
-          <input
-            type="text"
-            id="zip"
-            value={deliveryAddress && deliveryAddress.zip}
-            onChange={(event) =>
-              setDeliveryAddress({
-                ...deliveryAddress,
-                zip: event.target.value,
-              })
-            }
-          />
-          <label html="deliveryAddress">Ville</label>
-          <input
-            type="text"
-            id="city"
-            value={deliveryAddress && deliveryAddress.city}
-            onChange={(event) =>
-              setDeliveryAddress({
-                ...deliveryAddress,
-                city: event.target.value,
-              })
-            }
-          />
-          <label html="deliveryAddress">Pays</label>
-          <input
-            type="text"
-            id="country"
-            value={deliveryAddress && deliveryAddress.country}
-            onChange={(event) =>
-              setDeliveryAddress({
-                ...deliveryAddress,
-                country: event.target.value,
-              })
-            }
-            />
+          <h4>
+            Total de la commande :{" "}
+            {order && order.totalAmount && order.totalAmount.toFixed(2)} €
+          </h4>
         </div>
-        
 
-        <label htmlFor="status">Statut de la commande</label>
-        <select
-          id="status"
-          value={status}
-          onChange={(event) => setStatus(event.target.value)}
-          >
-          <option value="pending">En attente</option>
-          <option value="shipped">Expédiée</option>
-          <option value="delivered">Livrée</option>
-        </select>
-        <button type="submit">Enregistrer</button>
-      </form>
-          </div>
+        <div className="section-2">
+          <form onSubmit={handleSubmit}>
+            <h4>Adresse de facturation :</h4>
+            <label html="billingAddress">Numéro et rue</label>
+            <input
+              type="text"
+              id="billingAddress"
+              value={billingAddress && billingAddress.street}
+              onChange={(event) =>
+                setBillingAddress({
+                  ...billingAddress,
+                  street: event.target.value,
+                })
+              }
+            />
+            <label html="billingAddress">Code postal</label>
+            <input
+              type="text"
+              id="zip"
+              value={billingAddress && billingAddress.zip}
+              onChange={(event) =>
+                setBillingAddress({
+                  ...billingAddress,
+                  zip: event.target.value,
+                })
+              }
+            />
+            <label html="billingAddress">Ville</label>
+            <input
+              type="text"
+              id="city"
+              value={billingAddress && billingAddress.city}
+              onChange={(event) =>
+                setBillingAddress({
+                  ...billingAddress,
+                  city: event.target.value,
+                })
+              }
+            />
+            <label html="billingAddress">Pays</label>
+            <input
+              type="text"
+              id="country"
+              value={billingAddress && billingAddress.country}
+              onChange={(event) =>
+                setBillingAddress({
+                  ...billingAddress,
+                  country: event.target.value,
+                })
+              }
+            />
+
+            <h4>Adresse de livraison :</h4>
+            <label html="deliveryAddress">Numéro et rue</label>
+            <input
+              type="text"
+              id="deliveryAddress"
+              value={deliveryAddress && deliveryAddress.street}
+              onChange={(event) =>
+                setDeliveryAddress({
+                  ...deliveryAddress,
+                  street: event.target.value,
+                })
+              }
+            />
+            <label html="deliveryAddress">Code postal</label>
+            <input
+              type="text"
+              id="zip"
+              value={deliveryAddress && deliveryAddress.zip}
+              onChange={(event) =>
+                setDeliveryAddress({
+                  ...deliveryAddress,
+                  zip: event.target.value,
+                })
+              }
+            />
+            <label html="deliveryAddress">Ville</label>
+            <input
+              type="text"
+              id="city"
+              value={deliveryAddress && deliveryAddress.city}
+              onChange={(event) =>
+                setDeliveryAddress({
+                  ...deliveryAddress,
+                  city: event.target.value,
+                })
+              }
+            />
+            <label html="deliveryAddress">Pays</label>
+            <input
+              type="text"
+              id="country"
+              value={deliveryAddress && deliveryAddress.country}
+              onChange={(event) =>
+                setDeliveryAddress({
+                  ...deliveryAddress,
+                  country: event.target.value,
+                })
+              }
+            />
+
+            <label className="h4" htmlFor="status">Statut de la commande</label>
+            <select
+              id="status"
+              value={status}
+              onChange={(event) => setStatus(event.target.value)}
+            >
+              <option value="pending">En attente</option>
+              <option value="shipped">Expédiée</option>
+              <option value="delivered">Livrée</option>
+            </select>
+            <button type="submit">Enregistrer</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
