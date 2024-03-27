@@ -135,7 +135,7 @@ table {
 
 body {
     font-family: 'Nunito', sans-serif;
-    max-width: 1440px;
+    /* max-width: 1440px; */
     margin: auto;
     /* background-color: rgb(30, 30, 30); */
     color: white;

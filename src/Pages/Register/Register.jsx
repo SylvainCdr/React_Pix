@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import "./style.scss";
+import { NavLink } from "react-router-dom";
+import Aos from "aos";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -112,69 +114,81 @@ export default function Register() {
       .catch((error) => console.log(error));
   };
 
+  //Aos
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
+
   return (
     <div className="register-container">
-      <form className="register-form" onSubmit={handleSubmit}>
-        <label htmlFor="firstName">Prénom</label>
-        <input
-          type="text"
-          name="firstName"
-          id="firstName"
-          required
-          value={firstName}
-          onChange={handleFirstNameChange}
-        />
-        {firstNameError && (
-          <span className="error-message">{firstNameError}</span>
-        )}
+      <div data-aos="fade-right" className="section-1">
+        <h1>Inscription </h1>
+        <p>Créez votre compte pour accéder à notre boutique</p>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="firstName">Prénom</label>
+          <input
+            type="text"
+            name="firstName"
+            id="firstName"
+            required
+            value={firstName}
+            onChange={handleFirstNameChange}
+          />
+          {firstNameError && (
+            <span className="error-message">{firstNameError}</span>
+          )}
 
-        <label htmlFor="lastName">Nom</label>
-        <input
-          type="text"
-          name="lastName"
-          id="lastName"
-          required
-          value={lastName}
-          onChange={handleLastNameChange}
-        />
-        {lastNameError && (
-          <span className="error-message">{lastNameError}</span>
-        )}
+          <label htmlFor="lastName">Nom</label>
+          <input
+            type="text"
+            name="lastName"
+            id="lastName"
+            required
+            value={lastName}
+            onChange={handleLastNameChange}
+          />
+          {lastNameError && (
+            <span className="error-message">{lastNameError}</span>
+          )}
 
-        <label htmlFor="company">Entreprise (optionnel)</label>
-        <input
-          type="text"
-          name="company"
-          id="company"
-          onChange={(e) => setCompany(e.target.value)}
-        />
+          <label htmlFor="company">Entreprise (optionnel)</label>
+          <input
+            type="text"
+            name="company"
+            id="company"
+            onChange={(e) => setCompany(e.target.value)}
+          />
 
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          required
-          value={email}
-          onChange={handleEmailChange}
-        />
-        {emailError && <span className="error-message">{emailError}</span>}
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            value={email}
+            onChange={handleEmailChange}
+          />
+          {emailError && <span className="error-message">{emailError}</span>}
 
-        <label htmlFor="password">Mot de passe</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          required
-          value={password}
-          onChange={handlePasswordChange}
-        />
-        {passwordError && (
-          <span className="error-message">{passwordError}</span>
-        )}
+          <label htmlFor="password">Mot de passe</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            required
+            value={password}
+            onChange={handlePasswordChange}
+          />
+          {passwordError && (
+            <span className="error-message">{passwordError}</span>
+          )}
 
-        <button>Envoyer</button>
-      </form>
+          <button>S'enregistrer</button>
+
+          <span>――――― OU ―――――</span>
+          <NavLink to="/login">Se connecter</NavLink>
+        </form>
+      </div>
 
       {errors && (
         <div className="validation-errors">
@@ -186,6 +200,13 @@ export default function Register() {
           </ul>
         </div>
       )}
+      <div  data-aos="fade-left" className="section-2">
+        <h2 data-aos="flip-left">Let's secure the future together</h2>
+        <NavLink to="/contact">
+          {" "}
+          <button>Un Projet ? Contactez-nous</button>
+        </NavLink>
+      </div>
     </div>
   );
 }

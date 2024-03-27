@@ -18,6 +18,7 @@ function Expertise() {
       <div className="hero">
        
         <div className="text">
+          <h1>Votre confidentialité, notre engagement : Pixecurity</h1>
           <p className="top">
             La protection certifiée de vos données personnelles par Pixecurity
       
@@ -56,10 +57,10 @@ function Expertise() {
           </p>
         </div>
         <div data-aos="flip-left" className="image">
-        <img
-          src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        {/* <img
+          src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt=""
-        />
+        /> */}
         </div>
       </div>
 

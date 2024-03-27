@@ -95,7 +95,7 @@ function Header() {
 
           {!user && (
             <li>
-              <NavLink to="/login">Se Connecter</NavLink>
+              <NavLink to="/register">Se Connecter</NavLink>
             </li>
           )}
 

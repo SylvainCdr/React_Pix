@@ -1,66 +1,84 @@
 .expertise-container {
+margin-top: 5rem;
 
-  margin-top: 8rem;
+.hero {
 
-  .hero {
-    // background avec linear gradient
-    background: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0.8),
-        rgba(13, 117, 191, 0.8)
-      ),
-      url("https://images.unsplash.com/photo-1557683316-973673baf926?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80");
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 3rem 0;
+  height: 60vh;
 
-    
+  display: flex;
+  background-image: url("../../../public/assets/etude.jpeg");
+  background-size: cover;
+  background-position: center;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+
+
+
 
     .text {
       width: 50%;
-      margin-left: 2rem;
-      font-family: "Montserrat", sans-serif;
+      padding: 2rem;
       text-align: justify;
+      align-items: justify;
+      align-self: justify;
+   
+      h1 {
+        font-family: "Montserrat", sans-serif;
+        color: var(--sunset1);
+        font-weight: 800;
+        text-shadow: 2px 2px 4px rgb(210, 210, 210);
+        font-size: 1.8rem;
+        line-height: 3rem;
+     
+        margin-bottom: 3rem;
+        padding-bottom: 1rem;
+        text-align: center;
+        border-bottom: 1px solid rgb(180, 180, 180);
+      }
 
       .top {
-        color: var(--sunset3);
-        text-shadow: 2px 2px 4px rgb(0, 0, 0);
-        font-size: 1.2rem;
+        color: rgb(87, 87, 87);
+       
+        font-size: 1.4rem;
         line-height: 1.8rem;
-        font-weight: 500;
-        margin-bottom: 1rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
       }
 
       .middle {
-        color: var(--sunset6);
-        text-shadow: 2px 2px 4px rgb(0, 0, 0);
+        color: black;
+        font-weight: 600 ;
         line-height: 1.5rem;
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
 
         li {
-          margin-left : 1rem;
-          
+          margin-left: 1rem;
         }
       }
 
       .bottom {
-        color: var(--sunset2);
-        text-shadow: 2px 2px 4px rgb(0, 0, 0);
+        color: rgb(84, 84, 84);
+        
         font-size: 1.4rem;
         line-height: 1.8rem;
-        font-weight: 500;
+        font-weight: 700;
       }
     }
     .image {
-      width: 40%;
+      width: 50%;
+      height: 100%;
+      
 
       img {
         width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
   }
-
 
   h2 {
     font-family: "Montserrat", sans-serif;

@@ -4,12 +4,14 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./style.scss";
 import Cookies from "js-cookie";
+import Aos from "aos";
 
 
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
 
 
 
@@ -86,11 +88,24 @@ export default function Login() {
     }
   };
 
+  //aos
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }
+  ,[]);
+
   return (
     <div className="login-container">
+
+      <div data-aos="fade-right" className="section-1">
+      <img src="./../../assets/logo-clear.svg" alt="" />
+      </div>
+      <div data-aos="fade-left" className="section-2">
+
+        <h1>Connexion</h1>
       {/* // J'ecoute l'evennement onSubmit qui s'execute quand on soumet le formulaire (que ce soit avec la touche entrée ou le bouton envoyer)
         // Et l'evennement appel ma fonction handleSubmit */}
-      <form className="login-form" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
         {/* Pour chaques input, j'ecoute l'evennement onChange afin de mettre a jour ma variable en fonction de mon input */}
         {/* Ca permet d'avoir en temps réel le contenu de l'input dans ma variable correspondante */}
@@ -110,17 +125,18 @@ export default function Login() {
           id="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <a href="#">Mot de passe oublié ?</a>
         <button>Se connecter</button>
+        <a href="#">Mot de passe oublié ?</a>
 
         {/* {authenticated && (
           <button> Déconnexion</button>
         )} */}
 
-        <a href="/register">Pas encore de compte ? S'enregistrer </a>
+      
+      
       </form>
+      </div>
 
-      <img src="./../../assets/logo-clear.svg" alt="" />
     </div>
   );
 }
