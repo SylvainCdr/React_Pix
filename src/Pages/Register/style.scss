@@ -8,8 +8,6 @@
     margin-top: 1rem;
     padding: 12px 30px;
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    //text-transform: uppercase;
     transition: 0.5s;
     background-size: 200% auto;
     color: white;
@@ -60,8 +58,9 @@ a {
   align-items: center;
 
   h1 {
-    font-size: 1.7rem;
-    font-weight: 600;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 2.5rem;
+    font-weight: 500;
     margin-bottom: 1rem;
     color: var(--sunset1);
     text-transform: uppercase;
@@ -160,6 +159,7 @@ a {
 
 
   h2 {
+    font-family: "Barlow Condensed", sans-serif;
     color: white;
     font-size: 3rem;
     font-weight: 600;

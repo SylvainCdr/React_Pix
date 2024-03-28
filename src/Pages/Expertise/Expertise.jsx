@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./style.scss";
 
 import AOS from "aos";
+import { NavLink } from "react-router-dom";
 
 function Expertise() {
   useEffect(() => {
@@ -12,60 +13,55 @@ function Expertise() {
 
   return (
     <div className="expertise-container">
-
-{/* <h1>Des experts avant tout</h1> */}
+      {/* <h1>Des experts avant tout</h1> */}
 
       <div className="hero">
-       
-        <div className="text">
-          <h1>Votre confidentialité, notre engagement : Pixecurity</h1>
-          <p className="top">
-            La protection certifiée de vos données personnelles par Pixecurity
-      
-
-            représente bien plus qu'une simple sécurité : c'est une garantie
-            complète.{" "}
-          </p>
-          <p className="middle">
-            {" "}
-            Nous assurons cela grâce à :
-            <li>
-              Des outils électroniques de pointe, taillés sur mesure pour
-              répondre à vos besoins.
-            </li>
-            <li>
-              Une plateforme de gestion de projets élaborée en interne, offrant
-              une interaction aisée avec nos experts.
-            </li>
-            <li>
-              Des solutions de développement sur mesure, conçues spécialement
-              pour vous.
-            </li>
-            <li>
-              Des mesures de cybersécurité avancées pour une protection
-              optimale.
-            </li>
-            <li>
-              La délivrance de certifications de conformité par nos consultants
-              spécialisés.
-            </li>{" "}
-          </p>
-
-          <p className="bottom">
+        <div data-aos="flip-down" className="title">
+          <h1>
+            Votre protection, notre engagement : <br />
+            Une sécurité complète
+          </h1>
+          <p className="description">
             Avec Pixecurity, votre sûreté est entre de bonnes mains à chaque
             étape, de la conception à la certification.
           </p>
+
+          <NavLink to="/contact">
+            <button> Décrouvrez notre process</button>
+          </NavLink>
+         
+        
         </div>
-        <div data-aos="flip-left" className="image">
-        {/* <img
-          src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt=""
-        /> */}
-        </div>
+
+
+       
       </div>
+      <div className="forces">
+            <li>
+            <i class="fa-regular fa-circle-check" data-aos="zoom-in"></i> Des outils électroniques de pointe, taillés sur mesure pour
+              répondre à vos besoins.
+            </li>
+            <li> <i class="fa-regular fa-circle-check" data-aos="zoom-in"></i>
+              Une plateforme de gestion de projets élaborée en interne, offrant
+              une interaction aisée avec nos experts.
+            </li>
+            <li><i class="fa-regular fa-circle-check" data-aos="zoom-in"></i>
+              Des solutions de développement sur mesure, conçues spécialement
+              pour vous.
+            </li>
+            <li><i class="fa-regular fa-circle-check" data-aos="zoom-in"></i>
+              Des mesures de cybersécurité avancées pour une protection
+              optimale.
+            </li>
+            <li><i class="fa-regular fa-circle-check" data-aos="zoom-in"></i>
+              La délivrance de certifications de conformité par nos consultants
+              spécialisés.
+            </li>
+          
+        </div>
 
       <div className="slides-section">
-        <div className="slide" data-aos="fade-right">
+        <div className="slide" data-aos="fade-up-right">
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-camera-visible.jpg"
             alt=""
@@ -98,7 +94,7 @@ function Expertise() {
           </p>
         </div>
 
-        <div className="slide" data-aos="fade-left">
+        <div className="slide" data-aos="fade-up-left">
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-camera-specifique.jpg"
             alt=""
@@ -113,7 +109,7 @@ function Expertise() {
       </div>
 
       <div className="slides-section">
-        <div className="slide" data-aos="fade-right">
+        <div className="slide" data-aos="fade-up-right">
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-analyse-temps-reel.jpg"
             alt=""
@@ -142,7 +138,7 @@ function Expertise() {
           </p>
         </div>
 
-        <div className="slide" data-aos="fade-left">
+        <div className="slide" data-aos="fade-up-left">
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-business-intelligence.jpg"
             alt=""
@@ -157,7 +153,7 @@ function Expertise() {
       </div>
 
       <div className="slides-section">
-        <div className="slide" data-aos="fade-right">
+        <div className="slide" data-aos="fade-up-right">
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-controle-acces.jpg"
             alt=""
@@ -186,7 +182,7 @@ function Expertise() {
           </p>
         </div>
 
-        <div className="slide" data-aos="fade-left">
+        <div className="slide" data-aos="fade-up-left">
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-full-integration.jpg"
             alt=""
@@ -202,7 +198,7 @@ function Expertise() {
       </div>
 
       <div className="slides-section">
-        <div className="slide" data-aos="fade-right">
+        <div className="slide" data-aos="fade-up-right">
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-cloud.jpg"
             alt=""
@@ -233,7 +229,7 @@ function Expertise() {
           </p>
         </div>
 
-        <div className="slide" data-aos="fade-left">
+        <div className="slide" data-aos="fade-up-left">
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-objets-connectes.jpg"
             alt=""
@@ -250,7 +246,7 @@ function Expertise() {
       </div>
 
       <div className="slides-section">
-        <div className="slide" data-aos="fade-right">
+        <div className="slide" data-aos="fade-up-right">
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-reseaux.jpg"
             alt=""
@@ -282,7 +278,7 @@ function Expertise() {
           </p>
         </div>
 
-        <div className="slide" data-aos="fade-left">
+        <div className="slide" data-aos="fade-up-left">
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-stockage.jpg"
             alt=""

@@ -19,7 +19,6 @@ useEffect(() => {
       <ShopNav />
       <Search setSearchResults={setSearchResults} />
 
-    
 
       {searchResults.length === 0 && (
         <div  className="hero-shop">
@@ -38,6 +37,11 @@ useEffect(() => {
           </div>
         </div>
       )}
+
+      <div className="products-carousel">
+
+        
+      </div>
     </div>
   );
 }

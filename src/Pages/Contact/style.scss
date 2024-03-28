@@ -19,22 +19,24 @@ justify-content: center;
 align-self: center;
 
 h2 {
+  font-family: "Barlow Condensed", sans-serif;
   color: var(--sunset1);
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 1rem;
-  // text-align: center;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
 }
 
 h1 {
+  font-family: "Barlow Condensed", sans-serif;
   color: var(--sunset6);
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   margin-bottom: 1rem;
  
   // text-align: center;
 }
 
 h3 {
+  
   font-size: 1.2rem;
   color: rgb(190, 190, 190);
   margin-bottom: 2rem;
@@ -93,8 +95,8 @@ h3 {
 
 width: 45%;
 display: flex;
-
 justify-content: center;
+
 
   
   form {
@@ -102,15 +104,14 @@ justify-content: center;
     display: flex;
     flex-direction: column;
     width: 100%;
-    // background avec gradient 
-    background: linear-gradient(45deg, #0c0c0c41 0%, #6363638b  51%, rgba(186, 186, 186, 0.401)  100%);
-    
+    background: linear-gradient(45deg, #0c0c0c17 0%, #6363635b  51%, rgba(186, 186, 186, 0.411)  100%);
     padding: 2rem;
     border-radius:0.3rem;
     -webkit-border-radius:0.3rem;
     -moz-border-radius:0.3rem;
     -ms-border-radius:0.3rem;
     -o-border-radius:0.3rem;
+    box-shadow: 1px 1px 3px var(--sunset3);
 
     label
     {
@@ -136,8 +137,6 @@ justify-content: center;
   .submitButton {
       padding: 15px 30px;
       text-align: center;
-      font-family: 'Montserrat', sans-serif;
-      //text-transform: uppercase;
       transition: 0.5s;
       background-size: 200% auto;
       color: white;

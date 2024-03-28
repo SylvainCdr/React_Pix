@@ -13,7 +13,7 @@
 
   .products-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 1rem;
     padding: 1rem;
    
@@ -25,7 +25,7 @@
 
   @media (max-width: 1024px) {
     .products-grid {
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }
 

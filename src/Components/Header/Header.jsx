@@ -72,10 +72,10 @@ function Header() {
         <div className="header__logo">
           <NavLink to="/">
             <img src="/assets/logo-dark.svg" alt="logo" />
-            <p>
+            {/* <p>
               Fournisseur de solutions <br />
               de sureté intelligentes
-            </p>
+            </p> */}
           </NavLink>
         </div>
 
