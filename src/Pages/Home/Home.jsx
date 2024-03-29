@@ -6,26 +6,25 @@ import { NavLink } from "react-router-dom";
 import AOS from "aos";
 
 export default function Home() {
-
-useEffect(() => {
+  useEffect(() => {
     AOS.init({
-      duration: 1000,
+      duration: 1500,
     });
   }, []);
 
-
   return (
-    <div className="main">
+    <div className="homepage-container">
       <Hero />
 
       <div className="section-1">
+        <div className="section-1__img">{/* <h2>Notre force</h2> */}</div>
+
         <div className="section-1__intro">
-          {/* <h2>Notre force</h2> */}
           <p>
             La <strong>sécurité</strong> ne dépend plus de la force brute, mais
-            de <strong>l'intelligence</strong>. <br /> Chez <strong>Pixecurity</strong>
-            , nous sommes les fournisseurs de systèmes de{" "}
-            <strong>sûreté</strong> intelligents. <br />
+            de <strong>l'intelligence</strong>. <br /> Chez{" "}
+            <strong>Pixecurity</strong>, nous sommes les fournisseurs de
+            systèmes de <strong>sûreté</strong> intelligents. <br />
             Notre <strong>mission</strong> : vous accompagner avec les{" "}
             <strong>meilleurs</strong> produits et des{" "}
             <strong>solutions</strong> sur-mesure, repensant la sécurité selon
@@ -40,24 +39,22 @@ useEffect(() => {
               sûreté. Pixecurity, votre fournisseur de solutions de sûreté 3.0,
               repense votre sécurité numérique */}
           </p>
+          <div data-aos="flip-down" className="icons">
+          <img src="../assets/icons/ico3.png" alt="" />
+          <img src="../assets/icons/ico2.png" alt="" />
+          <img src="../assets/icons/ico1.png" alt="" />
+          <img src="../assets/icons/ico4.png" alt="" />
         </div>
-
-        <div className="section-1__shop">
-          <h2>Découvrez nos produits</h2>
-          <p>
-            Nous proposons une sélection de produits spécialement pensés pour
-            répondre à vos besoins. Profitez des conseils et services Pixecurity{" "}
-          </p>
-          
-          
-            <NavLink to="/Catalogue"><button role="button">Accéder à la Boutique  </button></NavLink>
-          
         </div>
       </div>
 
       <div className="section-2">
         <div className="section-2__offer">
+          <div className="title">
           <h2>Une offre pensée autrement</h2>
+          {/* <img src="../assets/icons/idea.svg" alt="" /> */}
+          </div>
+          <div className="description">
           <p>
             La protection de vos données personnelles certifiée Pixecurity c'est
             : la fourniture d'outils électroniques, une plateforme de gestion de
@@ -68,6 +65,8 @@ useEffect(() => {
             toute la haute chaine de valeur de la sureté. Pixecurity est le
             fournisseur de solutions de sureté 3.0
           </p>
+          
+          </div>
           {/* <button>
             <NavLink to="#">Notre process</NavLink>{" "}
           </button> */}
@@ -90,10 +89,7 @@ useEffect(() => {
           </div>
 
           <div data-aos="zoom-in-up" className="skills_card">
-            <img
-              src="https://www.svgrepo.com/show/97887/search.svg"
-              alt=""
-            />
+            <img src="https://www.svgrepo.com/show/97887/search.svg" alt="" />
             <h3>Analyse d'image</h3>
             <p>
               Protections des biens et des personnes, levée de doutes et bien
@@ -105,10 +101,7 @@ useEffect(() => {
           </div>
 
           <div data-aos="zoom-in-down" className="skills_card">
-            <img
-              src="https://www.svgrepo.com/show/5385/padlock.svg"
-              alt=""
-            />
+            <img src="https://www.svgrepo.com/show/5385/padlock.svg" alt="" />
             <h3>Contrôle d'accès</h3>
             <p>
               Suivi, gestion, traçabilité, protection des personnes. Pixecurity
@@ -160,7 +153,6 @@ useEffect(() => {
             <a href="">EN SAVOIR PLUS</a>
           </div>
         </div>
-
 
         <div className="section-2__contact">
           <h2>Contactez-nous</h2>

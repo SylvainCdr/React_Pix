@@ -1,52 +1,52 @@
    // DEBUT ANIMATION MOUVEMENT IMG
 
-@keyframes wiggle {
-  0%, 5% {
-    transform: rotateZ(0);
-    -webkit-transform: rotateZ(0);
-    -moz-transform: rotateZ(0);
-    -ms-transform: rotateZ(0);
-    -o-transform: rotateZ(0);
-}
-  15% {
-    transform: rotateZ(-1deg);
-    -webkit-transform: rotateZ(-1deg);
-    -moz-transform: rotateZ(-1deg);
-    -ms-transform: rotateZ(-1deg);
-    -o-transform: rotateZ(-1deg);
-}
-  20% {
-    transform: rotateZ(4deg);
-    -webkit-transform: rotateZ(4deg);
-    -moz-transform: rotateZ(4deg);
-    -ms-transform: rotateZ(4deg);
-    -o-transform: rotateZ(4deg);
-}
-  25% {
-    transform: rotateZ(-4deg);
-    -webkit-transform: rotateZ(-4deg);
-    -moz-transform: rotateZ(-4deg);
-    -ms-transform: rotateZ(-4deg);
-    -o-transform: rotateZ(-4deg);
-}
-  30% {
-    transform: rotateZ(3deg);
-    -webkit-transform: rotateZ(3deg);
-    -moz-transform: rotateZ(3deg);
-    -ms-transform: rotateZ(3deg);
-    -o-transform: rotateZ(3deg);
-}
-  35% {
-    transform: rotateZ(-2deg);
-    -webkit-transform: rotateZ(-2deg);
-    -moz-transform: rotateZ(-2deg);
-    -ms-transform: rotateZ(-2deg);
-    -o-transform: rotateZ(-2deg);
-}
-  40%, 100% {
-    transform: rotateZ(0);
-  }
-}
+// @keyframes wiggle {
+//   0%, 5% {
+//     transform: rotateZ(0);
+//     -webkit-transform: rotateZ(0);
+//     -moz-transform: rotateZ(0);
+//     -ms-transform: rotateZ(0);
+//     -o-transform: rotateZ(0);
+// }
+//   15% {
+//     transform: rotateZ(-1deg);
+//     -webkit-transform: rotateZ(-1deg);
+//     -moz-transform: rotateZ(-1deg);
+//     -ms-transform: rotateZ(-1deg);
+//     -o-transform: rotateZ(-1deg);
+// }
+//   20% {
+//     transform: rotateZ(4deg);
+//     -webkit-transform: rotateZ(4deg);
+//     -moz-transform: rotateZ(4deg);
+//     -ms-transform: rotateZ(4deg);
+//     -o-transform: rotateZ(4deg);
+// }
+//   25% {
+//     transform: rotateZ(-4deg);
+//     -webkit-transform: rotateZ(-4deg);
+//     -moz-transform: rotateZ(-4deg);
+//     -ms-transform: rotateZ(-4deg);
+//     -o-transform: rotateZ(-4deg);
+// }
+//   30% {
+//     transform: rotateZ(3deg);
+//     -webkit-transform: rotateZ(3deg);
+//     -moz-transform: rotateZ(3deg);
+//     -ms-transform: rotateZ(3deg);
+//     -o-transform: rotateZ(3deg);
+// }
+//   35% {
+//     transform: rotateZ(-2deg);
+//     -webkit-transform: rotateZ(-2deg);
+//     -moz-transform: rotateZ(-2deg);
+//     -ms-transform: rotateZ(-2deg);
+//     -o-transform: rotateZ(-2deg);
+// }
+//   40%, 100% {
+//     transform: rotateZ(0);
+//   }
+// }
 // FIN ANIMATION MOUVEMENT IMG
 
 
