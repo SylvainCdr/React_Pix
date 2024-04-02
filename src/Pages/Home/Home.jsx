@@ -17,7 +17,7 @@ export default function Home() {
       <Hero />
 
       <div className="section-1">
-        <div className="section-1__img">{/* <h2>Notre force</h2> */}</div>
+        <div className="section-1__img"></div>
 
         <div className="section-1__intro">
           <p>
@@ -40,133 +40,147 @@ export default function Home() {
               repense votre sécurité numérique */}
           </p>
           <div data-aos="flip-down" className="icons">
-          <img src="../assets/icons/ico3.png" alt="" />
-          <img src="../assets/icons/ico2.png" alt="" />
-          <img src="../assets/icons/ico1.png" alt="" />
-          <img src="../assets/icons/ico4.png" alt="" />
-        </div>
+            <img src="../assets/icons/ico3.png" alt="" />
+            <img src="../assets/icons/ico2.png" alt="" />
+            <img src="../assets/icons/ico1.png" alt="" />
+            <img src="../assets/icons/ico4.png" alt="" />
+          </div>
         </div>
       </div>
 
       <div className="section-2">
         <div className="section-2__offer">
           <div className="title">
-          <h2>Une offre pensée autrement</h2>
-          {/* <img src="../assets/icons/idea.svg" alt="" /> */}
+            <h2>Une offre pensée autrement</h2>
           </div>
           <div className="description">
-          <p>
-            La protection de vos données personnelles certifiée Pixecurity c'est
-            : la fourniture d'outils électroniques, une plateforme de gestion de
-            projets réalisée en propre pour faciliter l'interaction avec nos
-            experts, des développements spécifiques et sur mesure, la mise en
-            place de solutions cyber. Des certifications de conformités
-            delivrées par nos consultants sur du compliance : Pixecurity couvre
-            toute la haute chaine de valeur de la sureté. Pixecurity est le
-            fournisseur de solutions de sureté 3.0
-          </p>
-          
+            <p>
+              La protection de vos données personnelles certifiée Pixecurity
+              c'est : la fourniture d'outils électroniques, une plateforme de
+              gestion de projets réalisée en propre pour faciliter l'interaction
+              avec nos experts, des développements spécifiques et sur mesure, la
+              mise en place de solutions cyber. Des certifications de
+              conformités delivrées par nos consultants sur du compliance :
+              Pixecurity couvre toute la haute chaine de valeur de la sureté.
+              Pixecurity est le fournisseur de solutions de sureté 3.0
+            </p>
           </div>
           {/* <button>
             <NavLink to="#">Notre process</NavLink>{" "}
           </button> */}
         </div>
-
-        <div className="section-2__skills">
-          <div data-aos="zoom-in-down" className="skills_card">
-            <img
-              src="https://www.svgrepo.com/show/144416/security-camera.svg"
-              alt=""
-            />
-            <h3>Vidéoprotection</h3>
-            <p>
-              L'analyse d'image doit permettre de gagner du temps et de
-              simplifier l'experience utilisateur sans être une usine à gaz.
-              Notre savoir faire nous permet de vous proposer les meilleurs
-              produits.{" "}
-            </p>
-            <a href="">EN SAVOIR PLUS</a>
-          </div>
-
-          <div data-aos="zoom-in-up" className="skills_card">
-            <img src="https://www.svgrepo.com/show/97887/search.svg" alt="" />
-            <h3>Analyse d'image</h3>
-            <p>
-              Protections des biens et des personnes, levée de doutes et bien
-              plus encore... Pixecurity sélectionne pour vous les meilleures
-              solutions du marché : Caméras visibles, thermiques, mobiles,
-              fish-eye...{" "}
-            </p>
-            <a href="">EN SAVOIR PLUS</a>
-          </div>
-
-          <div data-aos="zoom-in-down" className="skills_card">
-            <img src="https://www.svgrepo.com/show/5385/padlock.svg" alt="" />
-            <h3>Contrôle d'accès</h3>
-            <p>
-              Suivi, gestion, traçabilité, protection des personnes. Pixecurity
-              complète son offre pour vous proposer une solution globale avec
-              les leaders du marché.
-            </p>
-            <a href="">EN SAVOIR PLUS</a>
-          </div>
-
-          <div data-aos="zoom-in-down" className="skills_card">
-            <img
-              src="https://www.svgrepo.com/show/474401/cloud-database.svg"
-              alt=""
-            />
-            <h3>Cloud et objets connectés</h3>
-            <p>
-              Tout objet connecté est aujourd'hui un capteur de sureté devient
-              exploitable depuis n'importe quelle interface utilisateur.
-              Pixecurity vous propose des solutions innovantes et intélligentes
-              permettant de les traiter.
-            </p>
-            <a href="">EN SAVOIR PLUS</a>
-          </div>
-
-          <div data-aos="zoom-in-up" className="skills_card">
-            <img
-              src="https://www.svgrepo.com/show/135113/seatbelt.svg"
-              alt=""
-            />
-            <h3>Réseaux SI / Stockage</h3>
-            <p>
-              Le traitement, le transport et l'exploitation doivent être
-              garantis par une expertise métier. Les ingénieurs Pixecurity vous
-              assurent un dimensionnement optimal des réseaux, du stockage, des
-              ressources informatiques.
-            </p>
-            <a href="">EN SAVOIR PLUS</a>
-          </div>
-
-          <div data-aos="zoom-in-down" className="skills_card">
-            <img src="https://www.svgrepo.com/show/35101/target.svg" alt="" />
-            <h3>Ingénierie</h3>
-            <p>
-              Notre équipe d'ingénieurs geeks vous propose un accompagnement
-              Niveau 2-Niveau 3 sur vos systèmes de sureté. Avant vente, suivi
-              de projet, mise en service, maintenance, livrables
-              documentaires...
-            </p>
-            <a href="">EN SAVOIR PLUS</a>
-          </div>
-        </div>
-
-        <div className="section-2__contact">
-          <h2>Contactez-nous</h2>
-          <p>
-            Vous avez une question ? Vous souhaitez en savoir plus sur nos
-            services ? N'hésitez pas à nous contacter, nous serons ravis de vous
-            répondre.
-          </p>
-          <button>Nous contacter</button>
-        </div>
       </div>
       <div className="section-3">
-        <CustomersSlider />
+        <div data-aos="zoom-in-down" className="skills-card">
+          <img
+            src="https://www.svgrepo.com/show/144416/security-camera.svg"
+            alt=""
+          />
+          <h3>Vidéoprotection</h3>
+          <p>
+            L'analyse d'image doit permettre de gagner du temps et de simplifier
+            l'experience utilisateur sans être une usine à gaz. Notre savoir
+            faire nous permet de vous proposer les meilleurs produits.{" "}
+          </p>
+          <a href="">EN SAVOIR PLUS</a>
+        </div>
+
+        <div data-aos="zoom-in-up" className="skills-card">
+          <img src="https://www.svgrepo.com/show/97887/search.svg" alt="" />
+          <h3>Analyse d'image</h3>
+          <p>
+            Protections des biens et des personnes, levée de doutes et bien plus
+            encore... Pixecurity sélectionne pour vous les meilleures solutions
+            du marché : Caméras visibles, thermiques, mobiles, fish-eye...{" "}
+          </p>
+          <a href="">EN SAVOIR PLUS</a>
+        </div>
+
+        <div data-aos="zoom-in-down" className="skills-card">
+          <img src="https://www.svgrepo.com/show/5385/padlock.svg" alt="" />
+          <h3>Contrôle d'accès</h3>
+          <p>
+            Suivi, gestion, traçabilité, protection des personnes. Pixecurity
+            complète son offre pour vous proposer une solution globale avec les
+            leaders du marché.
+          </p>
+          <a href="">EN SAVOIR PLUS</a>
+        </div>
+
+        <div data-aos="zoom-in-down" className="skills-card">
+          <img
+            src="https://www.svgrepo.com/show/474401/cloud-database.svg"
+            alt=""
+          />
+          <h3>Cloud et objets connectés</h3>
+          <p>
+            Tout objet connecté est aujourd'hui un capteur de sureté devient
+            exploitable depuis n'importe quelle interface utilisateur.
+            Pixecurity vous propose des solutions innovantes et intélligentes
+            permettant de les traiter.
+          </p>
+          <a href="">EN SAVOIR PLUS</a>
+        </div>
+
+        <div data-aos="zoom-in-up" className="skills-card">
+          <img src="https://www.svgrepo.com/show/135113/seatbelt.svg" alt="" />
+          <h3>Réseaux SI / Stockage</h3>
+          <p>
+            Le traitement, le transport et l'exploitation doivent être garantis
+            par une expertise métier. Les ingénieurs Pixecurity vous assurent un
+            dimensionnement optimal des réseaux, du stockage, des ressources
+            informatiques.
+          </p>
+          <a href="">EN SAVOIR PLUS</a>
+        </div>
+
+        <div data-aos="zoom-in-down" className="skills-card">
+          <img src="https://www.svgrepo.com/show/35101/target.svg" alt="" />
+          <h3>Ingénierie</h3>
+          <p>
+            Notre équipe d'ingénieurs geeks vous propose un accompagnement
+            Niveau 2-Niveau 3 sur vos systèmes de sureté. Avant vente, suivi de
+            projet, mise en service, maintenance, livrables documentaires...
+          </p>
+          <a href="">EN SAVOIR PLUS</a>
+        </div>
       </div>
+
+      <div className="section-4">
+        <div className="section-4__text">
+          <h2>Qui sommes nous ?</h2>
+          <p>
+            Des ingénieurs avant-gardistes. Des experts 3.0, natifs du
+            numérique, spécialisés dans le BTP, les réseaux, les technologies du
+            bâtiment, et toujours à l'affût des dernières avancées
+            technologiques. Ce sont de véritables artisans de la sûreté,
+            déterminés à dénicher les solutions les plus adaptées à vos
+            exigences.
+          </p>
+          <NavLink to="/a-propos">
+            {" "}
+            <button>Notre équipe</button>{" "}
+          </NavLink>
+        </div>
+        <div className="section-4__img"></div>
+      </div>
+
+      <div className="section-5">
+        <div className="section-5__img">
+          <img src="../assets/partners.png" alt="" />
+        </div>
+        <div className="section-5__text">
+          <h2>Nos partenaires</h2>
+          <h3>L'excellence du marché à votre service</h3>
+          <p>
+            Qu'il s'agisse de caméras visibles, thermiques, de systèmes de
+            gestion vidéo, ou d'IP... Les ingénieurs de Pixecurity s'engagent à
+            sélectionner pour vous les produits les plus performants,
+            parfaitement adaptés à votre projet.
+          </p>
+        </div>
+      </div>
+      <CustomersSlider />
     </div>
   );
 }

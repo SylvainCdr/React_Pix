@@ -34,7 +34,7 @@ export default function Hero() {
           {/* <img src="../assets/hero.jpg" alt="hero" /> */}
           <h2 data-aos="fade-up"
      data-aos-duration="3000">Confiez votre sûreté à <br /> l'intelligence de Pixecurity</h2>
-          <Navlink to="/Catalogue"><button>Découvrir nos produits</button></Navlink>
+          <Navlink to="/contact"><button>Nous contacter</button></Navlink>
 
         </div>
         
