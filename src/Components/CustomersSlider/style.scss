@@ -1,10 +1,11 @@
-@mixin white-gradient {
-  background: linear-gradient(
-    to right,
-    rgb(58, 58, 58) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
+
+// @mixin white-gradient {
+//   background: linear-gradient(
+//     to right,
+//     rgb(58, 58, 58) 0%,
+//     rgba(255, 255, 255, 0) 100%
+//   );
+// }
 
 $animationSpeed: 30s;
 
@@ -20,7 +21,7 @@ $animationSpeed: 30s;
 
 // Styling
 .slider {
-  background: linear-gradient(to bottom right, #c9c9c942, #2893f08d);
+  background: linear-gradient(to bottom right, #c9c9c955, #359cf7db);
   box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
   height: 13em;
   margin: auto;
@@ -38,7 +39,7 @@ $animationSpeed: 30s;
 
   &::before,
   &::after {
-    @include white-gradient;
+    // @include white-gradient;
     content: "";
     height: 16em;
     position: absolute;

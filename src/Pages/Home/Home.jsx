@@ -4,6 +4,8 @@ import CustomersSlider from "../../Components/CustomersSlider/CustomersSlider";
 import Hero from "../../Components/Hero/Hero";
 import { NavLink } from "react-router-dom";
 import AOS from "aos";
+import CountUp from "../../Components/CountUp/CountUp";
+
 
 export default function Home() {
   useEffect(() => {
@@ -165,9 +167,21 @@ export default function Home() {
         <div className="section-4__img"></div>
       </div>
 
+      <CountUp />
+
       <div className="section-5">
         <div className="section-5__img">
-          <img src="../assets/partners.png" alt="" />
+          {/* <img src="../assets/partners.png" alt="" /> */}
+          {Array.from({ length: 12 }).map((_, index) => (
+          <div className="partners">
+            <img
+              key={index}
+              src={`../assets/suppliers/partner${index + 1}.png`}
+              alt=""
+            />
+            </div>
+          ))}
+
         </div>
         <div className="section-5__text">
           <h2>Nos partenaires</h2>
