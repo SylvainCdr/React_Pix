@@ -57,19 +57,30 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:3001/allOrders")
-      .then((res) => res.json())
-      .then((data) => {
-        const reversedData = data.reverse();
-        setNewOrders(data.slice(0, 6));
-        setTotalOrders(reversedData.length);
-        setAmountAverage(
-          data.reduce((acc, order) => acc + order.totalAmount, 0) / data.length
-        );
-        setConversionRate(data.length / totalUsers);
-      });
-    // on cherche le nom des utilisateurs pour chaque commande
+	fetch("http://localhost:3001/allOrders")
+	  .then((res) => res.json())
+	  .then((data) => {
+		const reversedData = data.reverse();
+		setNewOrders(reversedData.slice(0, 6));
+		setTotalOrders(reversedData.length);
+		setAmountAverage(
+		  data.reduce((acc, order) => acc + order.totalAmount, 0) / data.length
+		);
+		setConversionRate(data.length / totalUsers);
+  
+		// Chercher le nom des utilisateurs pour chaque commande
+		const userIds = data.map((order) => order.user);
+		Promise.all(userIds.map((userId) => fetch(`http://localhost:3001/users/${userId}`).then((res) => res.json())))
+		  .then((userNames) => {
+			const ordersWithNames = data.map((order, index) => ({
+			  ...order,
+			  userName: `${userNames[index].lastName} ${userNames[index].firstName}`,
+			}));
+			setNewOrders(ordersWithNames.slice(0, 6));
+		  });
+	  });
   }, [totalUsers]);
+  
 
   return (
     <div class="admin-dashboard-container">
@@ -132,16 +143,16 @@ export default function Dashboard() {
                 </tr>
               </thead>
               <tbody>
-                {newOrders.map((order) => (
-                  <tr key={order.id}>
-                    <td>{new Date(order.orderDate).toLocaleDateString()}</td>
-                    <td>{order._id}</td>
+  {newOrders.map((order) => (
+    <tr key={order.id}>
+      <td>{new Date(order.orderDate).toLocaleDateString()}</td>
+      <td>{order.userName}</td> {/* Utilisez le nom de l'utilisateur */}
+      <td>{order._id}</td>
+      <td>{order.totalAmount.toFixed(2)} €</td>
+    </tr>
+  ))}
+</tbody>
 
-                    <td>{order._id}</td>
-                    <td>{order.totalAmount.toFixed(2)} €</td>
-                  </tr>
-                ))}
-              </tbody>
             </table>
           </div>
         </div>
