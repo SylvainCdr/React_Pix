@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./style.scss";
 import useCart from "../../../Components/useCart";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import AOS from "aos";
 
 export default function Cart() {
@@ -48,9 +48,7 @@ export default function Cart() {
         <h1>Panier</h1>
         <div className="empty-cart-message">
           <p>Vous n'avez pas encore de produits dans votre panier.</p>
-          <button onClick={() => navigate("/Catalogue")} className="shop-button">
-            Cliquez ici pour visiter la boutique en ligne
-          </button>
+          <NavLink to="/catalogue"> <button>Visiter la boutique</button></NavLink>
         </div>
       </div>
     );

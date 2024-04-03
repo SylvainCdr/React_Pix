@@ -3,8 +3,8 @@ import "./style.scss";
 
 export default function AdminNav() {
   return (
-    <aside class="col-3">
-      <article class="card mb-3 bg-dark">
+    <aside class="col-2">
+      <article class="card mb-5 bg-dark">
         <div class="card-header bg-dark">Commandes</div>
         <div class="card-body bg-dark">
           <p>
@@ -14,7 +14,7 @@ export default function AdminNav() {
         </div>
       </article>
 
-      <article class="card mb-3 bg-dark">
+      <article class="card mb-5 bg-dark">
         <div class="card-header bg-dark">Produits</div>
         <div class="card-body bg-dark">
           <p>
@@ -26,7 +26,7 @@ export default function AdminNav() {
         </div>
       </article>
 
-      <article class="card mb-3 bg-dark">
+      <article class="card mb-5 bg-dark">
         <div class="card-header bg-dark">Opérations commerciales</div>
         <div class="card-body bg-dark">
           <p>
@@ -38,7 +38,7 @@ export default function AdminNav() {
         </div>
       </article>
 
-      <article class="card mb-3 bg-dark">
+      <article class="card mb-5 bg-dark">
         <div class="card-header">Utilisateurs</div>
         <div class="card-body">
           <p>

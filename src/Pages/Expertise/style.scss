@@ -1,9 +1,16 @@
 .expertise-container {
-  margin-top: 5rem;
+  margin-top: 4rem;
 
   .hero {
     height: 75vh;
-    background-image: url("../../../public/assets/security3.jpeg");
+    background: linear-gradient(
+      0deg,
+      #1c1c1cfe 3%,
+      rgba(10, 17, 30, 0.144) 20%,
+      rgba(59, 97, 167, 0.192),
+      50%,
+      rgba(122, 122, 122, 0) 94%
+    ),url("../../../public/assets/security3.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;

@@ -21,7 +21,7 @@ $animationSpeed: 30s;
 
 // Styling
 .slider {
-  background: linear-gradient(to bottom right, #c9c9c955, #359cf7db);
+  background: linear-gradient(to bottom right, #31313155, #73bdfe71);
   box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
   height: 13em;
   margin: auto;
@@ -29,12 +29,15 @@ $animationSpeed: 30s;
   width: 100%;
 
   h1 {
-    color: #fff;
-    font-size: 1.5rem;
-    font-weight: 400;
+    
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: var(--sunset1);
+    font-weight: 500;
     margin: 0;
     padding: 1rem 0rem 1.5rem 0rem;
     text-align: center;
+    letter-spacing: 1px;
   }
 
   &::before,
