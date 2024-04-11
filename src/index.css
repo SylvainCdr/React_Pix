@@ -168,7 +168,19 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
       --sunset5:#f7fcfb;
 
       --sunset6:#ffffff;
+
       
-   }
+
   
-  
+
+   --color1: #009fe3;
+
+   --color2 : rgb(255, 255, 255);
+
+   --color3 : rgb(64, 63, 63);
+
+   --color4 : rgb(0, 0, 0); 
+
+
+        
+}

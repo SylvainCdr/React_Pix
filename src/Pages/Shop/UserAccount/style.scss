@@ -1,5 +1,5 @@
 .user-account-container {
-  margin-top: 8rem;
+  margin-top: 4rem;
   width: 100%;
   display: flex;
 
@@ -8,7 +8,7 @@
 
     .user-account-nav {
       width: 100%;
-      height: 100vh;
+      height: 100%;
       background-color: rgba(87, 87, 87, 0.188);
       border-radius: 0.5rem 0rem 0rem 0.5rem;
       -webkit-border-radius: 0.5rem 0rem 0rem 0.5rem;
@@ -17,11 +17,12 @@
       -o-border-radius: 0.5rem 0rem 0rem 0.5rem;
 
       h2 {
-        color: white;
-        padding: 2rem;
+        padding: 1.9rem;
         text-align: center;
-        font-size: large;
+        font-size: 1.3em;
+        font-weight: 600;
         border-bottom: 1px solid rgb(87, 87, 87);
+        color : var(--sunset1);
       }
 
       li {
@@ -46,7 +47,7 @@
 
   .user-dashboard {
     width: 80%;
-    background-color: rgba(107, 106, 106, 0.229);
+    background-color: rgba(107, 106, 106, 0.202);
     border-radius: 0rem 0.5rem 0.5rem 0rem;
     -webkit-border-radius: 0rem 0.5rem 0.5rem 0rem;
     -moz-border-radius: 0rem 0.5rem 0.5rem 0rem;
@@ -59,6 +60,7 @@
       text-align: center;
       font-size: 1.5rem;
       border-bottom: 1px solid rgb(87, 87, 87);
+      color : var(--sunset1);
     }
 
     .user-infos {

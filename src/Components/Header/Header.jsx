@@ -7,26 +7,11 @@ import Swal from "sweetalert2";
 import { useCartContext } from "../../Pages/appContext";
 
 function Header() {
-  
   const user = useUser();
   console.log(user);
 
-  
-
-  // const { cartItemsCount } = useCart();
-  // const [itemsCount, setItemsCount] = useState(cartItemsCount);
-
   const { cart } = useCartContext();
   const itemsCount = cart.length;
-
-  // Mise à jour du nombre d'articles dans le panier
-  // useEffect(() => {
-  //   setItemsCount(cartItemsCount);
-  // }, [cartItemsCount]);
-
-
-
- 
 
   // Creation fonction menu Burger
   let isBurgerOpen = false;
@@ -92,25 +77,21 @@ function Header() {
           <li>
             <NavLink to="/Contact">Contact</NavLink>
           </li>
-
           {!user && (
             <li>
               <NavLink to="/register">Se Connecter</NavLink>
             </li>
           )}
-
           {user?.role === "user" && (
             <li>
               <NavLink to="/mon-compte">Mon compte</NavLink>
             </li>
           )}
-
           {user?.role === "admin" && (
             <li>
               <NavLink to="/admin/dashboard">Administration</NavLink>
             </li>
           )}
-
           {user && (
             <li>
               <a href="#" onClick={logout} className="logout">
@@ -118,7 +99,6 @@ function Header() {
               </a>
             </li>
           )}
-
           {/* {user?.role === "user" && (
             <div className="cart">
               <NavLink to="/panier">
@@ -127,20 +107,18 @@ function Header() {
               </NavLink>
             </div>
           )} */}
-
           {/* utiliser un bouton toggle-off toggle-on pour la connexion et deconnexion */}
-          {itemsCount > 0 && <span className="badge">{itemsCount}</span>} </ul>
+          {itemsCount > 0 && <span className="badge">{itemsCount}</span>}{" "}
+        </ul>
         <div className="header__burgerMenu" onClick={burgerToggle}></div>
 
         {user?.role === "user" && (
-            <div className="cart">
-              <NavLink to="/panier">
-                <i className="fa-solid fa-cart-shopping"></i>
-                
-              </NavLink>
-            </div>
-          )}
-
+          <div className="cart">
+            <NavLink to="/panier">
+              <i className="fa-solid fa-cart-shopping"></i>
+            </NavLink>
+          </div>
+        )}
       </nav>
     </div>
   );

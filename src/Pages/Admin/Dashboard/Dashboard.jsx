@@ -96,7 +96,7 @@ export default function Dashboard() {
             <h2>
               {" "}
               Taux de conversion (inscription/achat) :
-              <span>{conversionRate.toFixed(2) * 100} %</span>
+              <span>{(conversionRate*100).toFixed(2)} %</span>
             </h2>
             <h3>6 derniers utilisateurs inscrits : </h3>
             <table>
