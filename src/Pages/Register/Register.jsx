@@ -16,6 +16,7 @@ export default function Register() {
   const [passwordError, setPasswordError] = useState("");
   const [lastNameError, setLastNameError] = useState("");
   const [firstNameError, setFirstNameError] = useState("");
+ 
 
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isValidPassword = (password) =>
@@ -24,6 +25,7 @@ export default function Register() {
     );
   const isValidLastName = (name) => /^[a-zA-Z\s]{2,}$/.test(name);
   const isValidFirstName = (name) => /^[a-zA-Z\s]{2,}$/.test(name);
+
 
   const handleEmailChange = (e) => {
     const value = e.target.value;
@@ -61,6 +63,8 @@ export default function Register() {
     );
   };
 
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -69,7 +73,7 @@ export default function Register() {
       !isValidEmail(email) ||
       !isValidPassword(password) ||
       !isValidLastName(lastName) ||
-      !isValidFirstName(firstName)
+      !isValidFirstName(firstName) 
     ) {
       return; // Si les champs ne sont pas valides, arrêter ici
     }
@@ -183,18 +187,20 @@ export default function Register() {
             <span className="error-message">{passwordError}</span>
           )}
 
-          {/* case à cocher pour les CGV et la politique de confidentialité
-          <input type="checkbox" id="cgu" required />
+          {/* checkbox pour les CGV et la politique de confidentialité */}
+          <div className="cgv">
+          <input type="checkbox"  name="cgu"  id="cgu" required />
           <label htmlFor="cgu">
-            J'accepte les{" "}
-            <a href="/cgu" target="_blank">
+            J'accepte les 
+            <a href="/cgv" target="_blank">
               CGV
-            </a>{" "}
-            et la{" "}
-            <a href="/privacy" target="_blank">
+            </a>
+            et la
+            <a href="/rgpd" target="_blank">
               politique de confidentialité
             </a>
-          </label> */}
+          </label>
+          </div>
 
 
           <button>S'enregistrer</button>

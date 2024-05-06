@@ -105,7 +105,35 @@ a {
       -o-border-radius: 4px;
 }
 
+.cgv {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  
+  label {
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
+   
+  }
+
+  input {
+    margin-top: 0.2rem;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  a {
     
+    margin:0.3rem;
+    text-align: center;
+    border : 1px solid var(--sunset1);
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    color: white;
+  }
+}
+
   }
 
   .error-message {
@@ -124,7 +152,7 @@ a {
   }
 
   a {
-    font-family: 'Montserrat', sans-serif;
+    
     text-decoration: none;
     margin-top: 1.5rem;
     text-align: center;

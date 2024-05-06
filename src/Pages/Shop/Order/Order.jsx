@@ -194,6 +194,20 @@ export default function Order() {
             }
           );
 
+          // on envoi un email de confirmation de commande
+          const emailResponse = await fetch("http://localhost:3001/orderConfirmation", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+        clientEmail: user.email, // Utiliser user.email comme clientEmail
+        orderDetails: order, // Utiliser order comme orderDetails
+    }),
+});
+
+
+
           if (resetCartResponse.ok) {
             // Afficher le message SweetAlert une fois la commande soumise et le panier réinitialisé avec succès
             Swal.fire({
@@ -432,6 +446,10 @@ export default function Order() {
 
         <button type="submit">Passer au paiement</button>
       </form>
+
+
+
+
     </div>
   );
 }
