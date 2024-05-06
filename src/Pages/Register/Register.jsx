@@ -183,6 +183,20 @@ export default function Register() {
             <span className="error-message">{passwordError}</span>
           )}
 
+          {/* case à cocher pour les CGV et la politique de confidentialité
+          <input type="checkbox" id="cgu" required />
+          <label htmlFor="cgu">
+            J'accepte les{" "}
+            <a href="/cgu" target="_blank">
+              CGV
+            </a>{" "}
+            et la{" "}
+            <a href="/privacy" target="_blank">
+              politique de confidentialité
+            </a>
+          </label> */}
+
+
           <button>S'enregistrer</button>
 
           <span>――――― OU ―――――</span>

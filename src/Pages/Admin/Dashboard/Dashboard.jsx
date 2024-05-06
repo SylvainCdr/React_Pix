@@ -21,6 +21,8 @@ export default function Dashboard() {
   const [totalOrders, setTotalOrders] = useState(0);
   const [amountAverage, setAmountAverage] = useState(0);
   const [conversionRate, setConversionRate] = useState(0);
+  const [userFavorites, setUserFavorites] = useState([]);
+  const [topFavorites, setTopFavorites] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3001/users")
@@ -57,30 +59,76 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => {
-	fetch("http://localhost:3001/allOrders")
-	  .then((res) => res.json())
-	  .then((data) => {
-		const reversedData = data.reverse();
-		setNewOrders(reversedData.slice(0, 6));
-		setTotalOrders(reversedData.length);
-		setAmountAverage(
-		  data.reduce((acc, order) => acc + order.totalAmount, 0) / data.length
-		);
-		setConversionRate(data.length / totalUsers);
-  
-		// Chercher le nom des utilisateurs pour chaque commande
-		const userIds = data.map((order) => order.user);
-		Promise.all(userIds.map((userId) => fetch(`http://localhost:3001/users/${userId}`).then((res) => res.json())))
-		  .then((userNames) => {
-			const ordersWithNames = data.map((order, index) => ({
-			  ...order,
-			  userName: `${userNames[index].lastName} ${userNames[index].firstName}`,
-			}));
-			setNewOrders(ordersWithNames.slice(0, 6));
-		  });
-	  });
+    fetch("http://localhost:3001/allOrders")
+      .then((res) => res.json())
+      .then((data) => {
+        const reversedData = data.reverse();
+        setNewOrders(reversedData.slice(0, 6));
+        setTotalOrders(reversedData.length);
+        setAmountAverage(
+          data.reduce((acc, order) => acc + order.totalAmount, 0) / data.length
+        );
+        setConversionRate(data.length / totalUsers);
+
+        // Chercher le nom des utilisateurs pour chaque commande
+        const userIds = data.map((order) => order.user);
+        Promise.all(
+          userIds.map((userId) =>
+            fetch(`http://localhost:3001/users/${userId}`).then((res) =>
+              res.json()
+            )
+          )
+        ).then((userNames) => {
+          const ordersWithNames = data.map((order, index) => ({
+            ...order,
+            userName: `${userNames[index].lastName} ${userNames[index].firstName}`,
+          }));
+          setNewOrders(ordersWithNames.slice(0, 6));
+        });
+      });
   }, [totalUsers]);
-  
+
+  // on va chercher le top 6 des produits les plus likés,
+  // nous devons donc récupérer les favorites dans tous les objets utilisateurs
+  // puis les compter pour chaque produit
+  // puis les trier pour obtenir le top 6
+
+  useEffect(() => {
+    fetch("http://localhost:3001/users")
+      .then((res) => res.json())
+      .then((data) => {
+        let favorites = [];
+        data.forEach((user) => {
+          user.favorites.forEach((favorite) => {
+            favorites.push(favorite);
+          });
+        });
+        console.log("tous les favorites enregistrés:", favorites);
+
+        setUserFavorites(favorites);
+
+        // si plusieurs objects on le meme Name on les regroupe
+        const groupedFavorites = favorites.reduce((acc, favorite) => {
+          if (!acc[favorite.name]) {
+            acc[favorite.name] = 1;
+          } else {
+            acc[favorite.name]++;
+          }
+          return acc;
+        }, {});
+
+        console.log("groupedFavorites:", groupedFavorites);
+
+        // on trie les produits par nombre de likes
+        const sortedFavorites = Object.entries(groupedFavorites).sort(
+          (a, b) => b[1] - a[1]
+        );
+
+        console.log("sortedFavorites:", sortedFavorites);
+
+        setTopFavorites(sortedFavorites.slice(0, 6));
+      });
+  }, []);
 
   return (
     <div class="admin-dashboard-container">
@@ -96,7 +144,7 @@ export default function Dashboard() {
             <h2>
               {" "}
               Taux de conversion (inscription/achat) :
-              <span>{(conversionRate*100).toFixed(2)} %</span>
+              <span>{(conversionRate * 100).toFixed(2)} %</span>
             </h2>
             <h3>6 derniers utilisateurs inscrits : </h3>
             <table>
@@ -143,16 +191,16 @@ export default function Dashboard() {
                 </tr>
               </thead>
               <tbody>
-  {newOrders.map((order) => (
-    <tr key={order.id}>
-      <td>{new Date(order.orderDate).toLocaleDateString()}</td>
-      <td>{order.userName}</td> {/* Utilisez le nom de l'utilisateur */}
-      <td>{order._id}</td>
-      <td>{order.totalAmount.toFixed(2)} €</td>
-    </tr>
-  ))}
-</tbody>
-
+                {newOrders.map((order) => (
+                  <tr key={order.id}>
+                    <td>{new Date(order.orderDate).toLocaleDateString()}</td>
+                    <td>{order.userName}</td>{" "}
+                    {/* Utilisez le nom de l'utilisateur */}
+                    <td>{order._id}</td>
+                    <td>{order.totalAmount.toFixed(2)} €</td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </div>
         </div>
@@ -168,6 +216,24 @@ export default function Dashboard() {
             <h2>
               Total produits enregistrés : <span>{totalProducts}</span>
             </h2>
+            {/* <h2>Top 6 des produits les plus likés :</h2>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Produit</th>
+                  <th>Nombre de likes</th>
+                </tr>
+              </thead>
+              <tbody>
+                {topFavorites.map((favorite) => (
+                  <tr key={favorite[0]}>
+                    <td>{favorite[0]}</td>
+                    <td>{favorite[1]}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table> */}
           </div>
         </div>
       </div>

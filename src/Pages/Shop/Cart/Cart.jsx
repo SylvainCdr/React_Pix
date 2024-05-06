@@ -6,8 +6,8 @@ import AOS from "aos";
 
 export default function Cart() {
   const { fetchCart, editQuantity, removeFromCart, cart } = useCart();
+  
   const navigate = useNavigate();
-
   const [subTotal, setSubTotal] = useState(0);
   const [tax, setTax] = useState(0);
   const [shippingCost, setShippingCost] = useState(9.9);

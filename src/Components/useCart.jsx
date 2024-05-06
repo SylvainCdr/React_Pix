@@ -1,186 +1,140 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 
-//Hook pour gérer le panier
 const useCart = () => {
-  const [cart, setCart] = useState([]);
-  const [isCartFetched, setIsCartFetched] = useState(false);
-  const [isAddingToCart, setIsAddingToCart] = useState(false);
-  const userDataString = localStorage.getItem('user');
-  const userData = JSON.parse(userDataString);
-  const userId = userData ? userData._id : null;
-  
+  // États du panier
+  const [cart, setCart] = useState([]); // Contient les produits dans le panier
+  const [isCartFetched, setIsCartFetched] = useState(false); // Indique si le panier a été récupéré depuis le serveur
+  const [isAddingToCart, setIsAddingToCart] = useState(false); // Indique si un produit est en cours d'ajout au panier
 
-  // Compter le nombre total d'articles dans le panier
-const [cartItemsCount, setCartItemsCount] = useState(0);
-// Mettre à jour le nombre total d'articles dans le panier
-useEffect(() => {
-  let count = 0;
-  cart.forEach((product) => {
-    count += product.quantity;
-  });
-  setCartItemsCount(count);
-}, [cart]);
+  // Récupération de l'ID utilisateur depuis le stockage local
+  const userId = JSON.parse(localStorage.getItem('user'))?._id;
 
+  // État du nombre total d'articles dans le panier
+  const [cartItemsCount, setCartItemsCount] = useState(0);
 
-const totalAmount = cart.reduce((acc, product) => acc + (product.quantity * product.price )* 1.20 + 9.90,0);
+  // Calcul du montant total du panier
+  const totalAmount = cart.reduce((acc, product) => acc + (product.quantity * product.price) * 1.20 + 9.90, 0);
 
-
-// Récupération du panier actuel de l'utilisateur
-const fetchCart = async (userId) => {
-  try {
-    const response = await fetch(`http://localhost:3001/users/${userId}/cart`);
-    if (response.ok) {
-      const data = await response.json();
-      setCart(data);
-      setIsCartFetched(true);
-    } else {
-      console.error('Réponse du serveur:', response.status);
-    }
-  } catch (error) {
-    console.error('Erreur réseau:', error);
-  }
-};
-
-  
-
-const editQuantity = (userId, productId, quantity) => {
-  fetch(`http://localhost:3001/users/${userId}/edit-cart/${productId}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ quantity }),
-  })
-    .then((response) => {
+  // Fonction pour récupérer le panier depuis le serveur
+  const fetchCart = async (userId) => {
+    try {
+      const response = await fetch(`http://localhost:3001/users/${userId}/cart`);
       if (response.ok) {
-        fetchCart(userId);
+        const data = await response.json();
+        setCart(data);
+        setIsCartFetched(true);
       } else {
-        console.error('Error updating cart:', response.status);
+        console.error('Réponse du serveur:', response.status);
       }
-    })
-    .catch((error) => {
-      console.error('Network error while updating cart:', error);
-    });
-};
+    } catch (error) {
+      console.error('Erreur réseau:', error);
+    }
+  };
 
-
-
-
-// Ajout d'un produit au panier
-const addToCart = async (userId, productId, productName, productRef, quantity, productPrice, productImage) => {
-  try {
-    setIsAddingToCart(true);
-
-    // Vérifier si l'utilisateur a une réduction
-    const discount = JSON.parse(localStorage.getItem('user')).discount;
-
-    // Calculer le prix du produit avec la réduction
-    const discountedPrice = productPrice - (productPrice * discount) / 100;
-
-    // Vérifier si le produit existe déjà dans le panier
-    const existingProductIndex = cart.findIndex(product => product.product_id === productId);
-
-    if (existingProductIndex !== -1) {
-      console.log('Product already exists. Removing from cart...');
-
-      // Si le produit existe, supprimer l'objet du panier
-      await removeFromCart(userId, productId);
-
-      // Ajouter un nouvel objet avec la nouvelle quantité
-      const updatedCart = [...cart];
-      updatedCart[existingProductIndex].quantity += quantity;
-
-      // Mettre à jour le panier localement
-      setCart(updatedCart);
-
-      // Ajouter un nouvel objet avec la nouvelle quantité au panier côté serveur avec le prix réduit
-      await fetch(`http://localhost:3001/users/${userId}/add-cart/${productId}`, {
-        method: 'POST',
+  // Fonction pour modifier la quantité d'un produit dans le panier
+  const editQuantity = async (userId, productId, quantity) => {
+    try {
+      const response = await fetch(`http://localhost:3001/users/${userId}/edit-cart/${productId}`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
+        body: JSON.stringify({ quantity }),
+      });
+      if (response.ok) {
+        fetchCart(userId);
+      } else {
+        console.error('Erreur lors de la modification du panier:', response.status);
+      }
+    } catch (error) {
+      console.error('Erreur réseau lors de la modification du panier:', error);
+    }
+  };
+
+  // Fonction pour ajouter un produit au panier
+  const addToCart = async (userId, productId, productName, productRef, quantity, productPrice, productImage) => {
+    try {
+      setIsAddingToCart(true);
+      const discount = JSON.parse(localStorage.getItem('user'))?.discount;
+      const discountedPrice = productPrice - (productPrice * discount) / 100;
+      const existingProductIndex = cart.findIndex(product => product.product_id === productId);
+
+      let url = `http://localhost:3001/users/${userId}/add-cart/${productId}`;
+      let method = 'POST';
+      let body = {
+        product_id: productId,
+        name: productName,
+        ref: productRef,
+        quantity: quantity,
+        price: discountedPrice,
+        image: productImage,
+      };
+
+      if (existingProductIndex !== -1) {
+        await removeFromCart(userId, productId);
+        const updatedCart = [...cart];
+        updatedCart[existingProductIndex].quantity += quantity;
+        setCart(updatedCart);
+        url = `http://localhost:3001/users/${userId}/add-cart/${productId}`;
+        method = 'POST';
+        body = {
           product_id: productId,
           name: productName,
           ref: productRef,
           quantity: updatedCart[existingProductIndex].quantity,
           price: discountedPrice,
           image: productImage,
-        }),
-      });
-    } else {
-      console.log('Product does not exist. Adding to cart...');
+        };
+      }
 
-      // Si le produit n'existe pas, ajouter un nouvel objet au panier avec le prix réduit
-      const response = await fetch(`http://localhost:3001/users/${userId}/add-cart/${productId}`, {
-        method: 'POST',
+      const response = await fetch(url, {
+        method: method,
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          product_id: productId,
-          name: productName,
-          ref: productRef,
-          quantity: quantity,
-          price: discountedPrice,
-          image: productImage,
-        }),
+        body: JSON.stringify(body),
       });
 
       if (!response.ok) {
         console.error("Erreur lors de l'ajout du produit au panier");
       } else {
-        // Mettre à jour le panier localement
         fetchCart(userId);
       }
+    } catch (error) {
+      console.error('Erreur réseau:', error);
+    } finally {
+      setIsAddingToCart(false);
     }
-  } catch (error) {
-    console.error('Erreur réseau:', error);
-  } finally {
-    setIsAddingToCart(false);
-  }
-};
+  };
 
-
-
-
-// Suppression d'un produit du panier
-const removeFromCart = (userId, productId) => {
-  // Assuming that you have a backend API endpoint to handle cart removal
-  // Make a request to your backend to remove the product from the user's cart
-  fetch(`http://localhost:3001/users/${userId}/delete-cart/${productId}`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => {
+  // Fonction pour supprimer un produit du panier
+  const removeFromCart = async (userId, productId) => {
+    try {
+      const response = await fetch(`http://localhost:3001/users/${userId}/delete-cart/${productId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       if (response.ok) {
-        // If the removal was successful, update the local cart state
-        setCart((prevCart) => prevCart.filter((product) => product.product_id !== productId));
+        setCart(prevCart => prevCart.filter(product => product.product_id !== productId));
       } else {
-        console.error('Error removing product from cart:', response.status);
+        console.error('Erreur lors de la suppression du produit du panier:', response.status);
       }
-    })
-    .catch((error) => {
-      console.error('Network error while removing product from cart:', error);
-    });
+    } catch (error) {
+      console.error('Erreur réseau lors de la suppression du produit du panier:', error);
+    }
+  };
+
+  // Récupération du panier une seule fois au chargement du composant
+  useEffect(() => {
+    if (userId && !isCartFetched) {
+      fetchCart(userId);
+    }
+  }, [userId, isCartFetched]);
+
+  // Retourne les fonctions et états du hook
+  return { cart, totalAmount, isAddingToCart, addToCart, fetchCart, editQuantity, removeFromCart, cartItemsCount, setCartItemsCount };
 };
-
-
-// Effectuer la récupération du panier une seule fois
-useEffect(() => {
-  if (userId && !isCartFetched) {
-    fetchCart(userId);
-  }
-}, [userId, isCartFetched, fetchCart]);
-
-
-
-
-
-return { cart, totalAmount, isAddingToCart, addToCart, fetchCart, editQuantity, removeFromCart, cartItemsCount, setCartItemsCount};
-};
-
 
 export default useCart;

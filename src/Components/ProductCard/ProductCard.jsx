@@ -17,6 +17,7 @@ const ProductCard = ({
 
   const [userId, setUserId] = useState("");
 
+  // on récupère l'id de l'utilisateur à partir du stockage local
   useEffect(() => {
     const userDataString = localStorage.getItem("user");
     const userData = JSON.parse(userDataString);
@@ -27,6 +28,7 @@ const ProductCard = ({
     }
   }, []);
 
+  // on vérifie si le produit est dans les favoris de l'utilisateur
   useEffect(() => {
     const fetchFavoriteStatus = async () => {
       if (userId) {
@@ -42,6 +44,7 @@ const ProductCard = ({
     fetchFavoriteStatus();
   }, [userId, product._id, checkFavorite]);
 
+  // on crée une fonction pour gérer l'ajout et la suppression des favoris
   const handleToggleFavoritesClick = async () => {
     console.log("Trying to remove product with ID:", product._id);
     try {
@@ -62,7 +65,7 @@ const ProductCard = ({
         // Mettez à jour isInFavorites après le succès de l'opération
         setIsInFavorites(!isInFavorites);
       } else {
-        // Afficher un message SweetAlert indiquant à l'utilisateur de se connecter ou de s'inscrire
+        // Si l'user n'est pas authentifié alors afficher un message SweetAlert indiquant à l'utilisateur de se connecter ou de s'inscrire
         Swal.fire({
           icon: "info",
           title:
@@ -86,6 +89,7 @@ const ProductCard = ({
     return price - (price * discount) / 100;
   };
 
+  // on crée une fonction pour calculer le prix après réduction si l'utilisateur authentifié possède une réduction
   const calculateDiscountedPrice = () => {
     if (userId && product.price && discount) {
       const discountedPrice = calculateDiscount(product.price, discount);
@@ -99,13 +103,15 @@ const ProductCard = ({
       );
     } else {
       return (
+        // Si l'utilisateur n'est pas authentifié ou si le produit n'a pas de prix remisé, afficher le prix normal
         <span className="card-price">
-          {product.price ? product.price.toFixed(2) : "00.00"} €<span>TTC</span>
+          {product.price ? product.price.toFixed(2) : "00.00"} €<span> HT</span>
         </span>
       );
     }
   };
 
+// on crée une fonction pour ajouter un produit au panier
   const handleAddToCartClick = async () => {
     if (userId) {
       const added = await addToCart(

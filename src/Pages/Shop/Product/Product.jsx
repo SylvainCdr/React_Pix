@@ -163,7 +163,7 @@ Swal.fire({
         <p className="prices">
           <span className="original-price">{product.price.toFixed(2)} €</span>
           <span className="discounted-price">
-            {discountedPrice.toFixed(2)} € <span> TTC</span>
+            {discountedPrice.toFixed(2)} € <span> HT</span>
           </span>
         </p>
       );

@@ -19,10 +19,13 @@ export function useUser() {
   return user;
 }
 
+// Hook pour récupérer le token de l'utilisateur connecté
 const CartContext = createContext();
 
+// Hook pour récupérer le panier
 export const useCartContext = () => useContext(CartContext);
 
+// Provider pour le panier
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 

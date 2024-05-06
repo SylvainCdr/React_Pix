@@ -21,7 +21,7 @@ function Contact() {
   // MISE EN PLACE DES REGEX POUR VERIFIER LES CHAMPS DU FORMULAIRE
   const isValidLastname = (name) => /^[a-zA-Z\s]{2,}$/.test(name);
   const isValidFirstname = (name) => /^[a-zA-Z\s]{2,}$/.test(name);
-  const isValidCompany = (name) => /^[a-zA-Z\s]{2,}$/.test(name);
+  // const isValidCompany = (name) => /^[a-zA-Z\s]{2,}$/.test(name);
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isValidMessage = (message) => message.length >= 15;
 
@@ -46,15 +46,22 @@ function Contact() {
     );
   };
 
+  // const handleCompanyChange = (e) => {
+  //   const value = e.target.value;
+  //   setCompany(value);
+  //   setCompanyError(
+  //     isValidCompany(value)
+  //       ? ""
+  //       : "Société invalide (au moins 2 caractères alphabétiques)"
+  //   );
+  // };
+
   const handleCompanyChange = (e) => {
     const value = e.target.value;
     setCompany(value);
-    setCompanyError(
-      isValidCompany(value)
-        ? ""
-        : "Société invalide (au moins 2 caractères alphabétiques)"
-    );
+    
   };
+  
 
   const handleEmailChange = (e) => {
     const value = e.target.value;
@@ -78,7 +85,6 @@ function Contact() {
     if (
       !isValidLastname(lastname) ||
       !isValidFirstname(firstname) ||
-      !isValidCompany(company) ||
       !isValidEmail(email) ||
       !isValidMessage(message)
     ) {
@@ -155,7 +161,8 @@ function Contact() {
 
 <h1>Let's Get In Touch</h1>
 
-<h3>Dites-nous qui vous êtes et expliquez nous votre problématique en quelques mots. Nous vous recontacterons dans les plus brefs délais pour lancer le projet.</h3>
+<h3>Dites-nous qui vous êtes et expliquez nous votre problématique en quelques mots. 
+  Nous vous recontacterons dans les plus brefs délais pour lancer le projet.</h3>
 
 
         <p>
@@ -226,12 +233,12 @@ function Contact() {
           <span className="error-message">{firstnameError}</span>
         )}
 
-        <label htmlFor="company">Entreprise :</label>
+        <label htmlFor="company">Entreprise (optionnel):</label>
         <input
           type="text"
           id="company"
           name="company"
-          required
+          // required
           value={company}
           onChange={handleCompanyChange}
         />
@@ -249,7 +256,6 @@ function Contact() {
         />
         {emailError && <span className="error-message">{emailError}</span>}
         
-
         <label htmlFor="message">Message :</label>
         <textarea
           id="message"
@@ -264,16 +270,11 @@ function Contact() {
         <input type="submit" value="Envoyer" className="submitButton" />
       </form>
       {/* FIN FORMULAIRE DE CONTACT  */}
-      
+    
       </div>
       </div>
-
-
-
-
   );
 }
-
 export default Contact;
 
 // TO DO : Utiliser emailJS pour envoyer les mails depuis le formulaire de contact

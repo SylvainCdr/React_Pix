@@ -25,10 +25,6 @@ import AdminOrders from "./Pages/Admin/AdminOrders/AdminOrders";
 import EditOrders from "./Pages/Admin/EditOrders/EditOrders";
 import { Provider, CartProvider } from "./Pages/appContext";
 
-
-
-
-
 // on importe le hook useLocalStorage pour stocker l'utilisateur dans le local storage
 import useLocalStorage from "use-local-storage";
 function App() {
