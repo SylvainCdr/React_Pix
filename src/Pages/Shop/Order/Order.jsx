@@ -194,7 +194,7 @@ export default function Order() {
             }
           );
 
-          // on envoi un email de confirmation de commande
+          // Envoi d'un email de confirmation de commande
           const emailResponse = await fetch("http://localhost:3001/orderConfirmation", {
     method: "POST",
     headers: {
@@ -203,6 +203,10 @@ export default function Order() {
     body: JSON.stringify({
         clientEmail: user.email, // Utiliser user.email comme clientEmail
         orderDetails: order, // Utiliser order comme orderDetails
+        userFirstName: user.firstName, // Utiliser user.firstName comme userFirstName
+        userLastName: user.lastName, // Utiliser user.lastName comme userLastName
+        
+
     }),
 });
 
