@@ -2,21 +2,17 @@ import "./style.scss";
 
 export default function AboutUs() {
   return (
-
     <div className="aboutUs-container">
       <div className="team">
         
-
-        <div className="team">
-          
           <h1>Qui sommes-nous ?</h1>
 
-<h2>
-  Des ingénieurs avant tout. Des ingénieurs 3.0 même. Digital natives,
-  branchés BTP, réseaux, technologies appliquées aux batiments, veille
-  technologique... Bref, de vrais dealers de solutions de sureté prêts à
-  tout pour trouver les bons produits adaptés à vos besoins.
-</h2>
+          <h2>
+            Des ingénieurs avant tout. Des ingénieurs 3.0 même. Digital natives,
+            branchés BTP, réseaux, technologies appliquées aux batiments, veille
+            technologique... Bref, de vrais dealers de solutions de sureté prêts
+            à tout pour trouver les bons produits adaptés à vos besoins.
+          </h2>
           <ul className="auto-grid" role="list">
             <li>
               <a href="https://swop.link/cool" className="profile">
@@ -139,7 +135,7 @@ export default function AboutUs() {
               </a>
             </li>
           </ul>
-        </div>
+        
       </div>
     </div>
   );
