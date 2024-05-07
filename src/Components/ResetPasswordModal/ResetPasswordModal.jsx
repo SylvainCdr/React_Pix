@@ -4,8 +4,9 @@ import "./style.scss";
 
 const PasswordResetModal = ({ show, onClose, onResetPassword }) => {
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleReset = () => {
+  const handleReset = async () => {
     if (!email) {
       Swal.fire({
         icon: "error",
@@ -14,7 +15,27 @@ const PasswordResetModal = ({ show, onClose, onResetPassword }) => {
       });
       return;
     }
-    onResetPassword(email);
+
+    setIsLoading(true);
+    try {
+      await onResetPassword(email);
+      Swal.fire({
+        icon: "success",
+        title: "Succès",
+        text: "Un e-mail de réinitialisation de mot de passe a été envoyé.",
+      });
+      setEmail(""); // Efface l'e-mail après l'envoi réussi
+      onClose(); // Ferme le modal après l'envoi réussi
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Une erreur est survenue lors de l'envoi de la demande de réinitialisation.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -33,7 +54,9 @@ const PasswordResetModal = ({ show, onClose, onResetPassword }) => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button className="btn-send" onClick={handleReset}>Envoyer</button>
+        <button className="btn-send" onClick={handleReset} disabled={isLoading}>
+          {isLoading ? "Envoi en cours..." : "Envoyer"}
+        </button>
       </div>
     </div>
   );
