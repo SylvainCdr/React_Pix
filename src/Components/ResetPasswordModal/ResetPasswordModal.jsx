@@ -6,12 +6,27 @@ const PasswordResetModal = ({ show, onClose, onResetPassword }) => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  const validateEmail = (email) => {
+    // Expression régulière pour valider le format de l'e-mail
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleReset = async () => {
     if (!email) {
       Swal.fire({
         icon: "error",
         title: "Champ vide",
         text: "Veuillez saisir votre adresse e-mail.",
+      });
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      Swal.fire({
+        icon: "error",
+        title: "Format d'e-mail invalide",
+        text: "Veuillez saisir une adresse e-mail valide.",
       });
       return;
     }
