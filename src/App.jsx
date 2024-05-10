@@ -25,6 +25,7 @@ import AdminOrders from "./Pages/Admin/AdminOrders/AdminOrders";
 import EditOrders from "./Pages/Admin/EditOrders/EditOrders";
 import RGPD from "./Pages/RGPD/RGPD";
 import CGV from "./Pages/CGV/CGV";
+import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import { Provider, CartProvider } from "./Pages/appContext";
 
 // on importe le hook useLocalStorage pour stocker l'utilisateur dans le local storage
@@ -67,6 +68,8 @@ function App() {
           <Route path="/admin/commande/modification/:id" element={<EditOrders />} />
           <Route path="/rgpd" element={<RGPD />} />
           <Route path="/cgv" element={<CGV />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+
           </Route>
         </Routes>
       </BrowserRouter>

@@ -195,7 +195,7 @@ export default function Order() {
           );
 
           // Envoi d'un email de confirmation de commande
-          const emailResponse = await fetch("http://localhost:3001/orderConfirmation", {
+          const emailResponse = await fetch("http://localhost:3001/order-confirmation", {
     method: "POST",
     headers: {
         "Content-Type": "application/json",
@@ -217,7 +217,7 @@ export default function Order() {
             Swal.fire({
               icon: "success",
               title: "Commande validée avec succès !",
-              text: "Votre commande a été soumise avec succès.",
+              text: "Un email de confirmation de commande a été envoyé.",
               confirmButtonText: "OK",
             }).then(() => {
               // Rediriger vers la page de compte utilisateur

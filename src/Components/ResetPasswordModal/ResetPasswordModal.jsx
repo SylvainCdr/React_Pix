@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import "./style.scss";
 
-const PasswordResetModal = ({ show, onClose, onResetPassword }) => {
+const PasswordResetModal = ({ show, onClose, onResetPassword, checkEmail }) => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -11,6 +11,24 @@ const PasswordResetModal = ({ show, onClose, onResetPassword }) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
+
+  const checkEmailExists = async (email) => {
+    try {
+      const response = await fetch("http://localhost:3001/check-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+      return response;
+    } catch (error) {
+      console.error(error);
+      throw new Error("Erreur lors de la vérification de l'e-mail");
+    }
+  };
+  
+  
 
   const handleReset = async () => {
     if (!email) {
@@ -21,7 +39,7 @@ const PasswordResetModal = ({ show, onClose, onResetPassword }) => {
       });
       return;
     }
-
+  
     if (!validateEmail(email)) {
       Swal.fire({
         icon: "error",
@@ -30,9 +48,18 @@ const PasswordResetModal = ({ show, onClose, onResetPassword }) => {
       });
       return;
     }
-
+  
     setIsLoading(true);
     try {
+      const response = await checkEmailExists(email);
+      if (response.status === 404) {
+        Swal.fire({
+          icon: "error",
+          title: "Utilisateur non trouvé",
+          text: "Aucun compte n'est associé à cet e-mail.",
+        });
+        return;
+      }
       await onResetPassword(email);
       Swal.fire({
         icon: "success",
@@ -52,6 +79,8 @@ const PasswordResetModal = ({ show, onClose, onResetPassword }) => {
       setIsLoading(false);
     }
   };
+  
+  
 
   return (
     <div className={`resetPasswordModal ${show ? "show" : ""}`}>
@@ -63,7 +92,7 @@ const PasswordResetModal = ({ show, onClose, onResetPassword }) => {
         <p>
           Veuillez saisir votre e-mail pour réinitialiser votre mot de passe :
         </p>
-        <input
+        <input className="email-input"
           type="email"
           placeholder="Entrez votre e-mail"
           value={email}
