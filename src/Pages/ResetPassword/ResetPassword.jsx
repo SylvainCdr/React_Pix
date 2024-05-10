@@ -111,7 +111,7 @@ export default function ResetPassword() {
             window.location.replace("/login");
             }
         , 3000);
-        
+
     } catch (error) {
       console.error(
         "Erreur lors de la réinitialisation du mot de passe :",
@@ -146,7 +146,7 @@ export default function ResetPassword() {
 
           <label htmlFor="confirmPassword">Confirmer le mot de passe</label>
           <input type="password" name="confirmPassword" id="confirmPassword" />
-          <button type="submit">Réinitialiser le mot de passe</button>
+          <button type="submit"> Envoyer </button>
         </form>
       </div>
     </div>
