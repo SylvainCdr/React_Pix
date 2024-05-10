@@ -68,7 +68,7 @@ function App() {
           <Route path="/admin/commande/modification/:id" element={<EditOrders />} />
           <Route path="/rgpd" element={<RGPD />} />
           <Route path="/cgv" element={<CGV />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
 
           </Route>
         </Routes>
