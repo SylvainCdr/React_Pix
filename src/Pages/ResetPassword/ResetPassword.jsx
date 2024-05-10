@@ -49,6 +49,10 @@ export default function ResetPassword() {
                     newPassword: newPassword,
                 }),
             });
+
+            // alert success
+            alert("Mot de passe réinitialisé avec succès");
+            
     
             if (!response.ok) {
                 // Gérer les cas où la réinitialisation du mot de passe échoue
