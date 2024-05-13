@@ -15,14 +15,14 @@ export default function AboutUs() {
           </h2>
           <ul className="auto-grid" role="list">
             <li>
-              <a href="https://swop.link/cool" className="profile">
+              <div className="profile">
                 <h2 className="profile__name">Yann DUCHET</h2>
                 <p>CEO</p>
                 <img
                   alt="Anita Simmons"
                   src="https://www.pixecurity.com/wp-content/uploads/2022/04/Yann.png"
                 />
-              </a>
+              </div>
             </li>
             <li>
               <a href="https://swop.link/cool" className="profile">

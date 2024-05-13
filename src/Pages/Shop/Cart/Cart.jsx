@@ -99,16 +99,20 @@ export default function Cart() {
             )}
             {/* <div className='product-price'>{product.price.toFixed(2)} €</div> */}
             <div className="product-quantity">
-              <input
-                type="number"
-                value={product.quantity}
-                onChange={(e) => {
-                  const userDataString = localStorage.getItem("user");
-                  const userData = JSON.parse(userDataString);
-                  const userId = userData._id;
-                  editQuantity(userId, product.product_id, e.target.value);
-                }}
-              />
+            <input
+  type="number"
+  value={product.quantity}
+  onChange={(e) => {
+    const newValue = parseInt(e.target.value);
+    // Vérifier si la nouvelle valeur est supérieure ou égale à zéro
+    if (newValue >= 0) {
+      const userDataString = localStorage.getItem("user");
+      const userData = JSON.parse(userDataString);
+      const userId = userData._id;
+      editQuantity(userId, product.product_id, newValue);
+    }
+  }}
+/>
             </div>
             <div className="product-removal">
               <button
