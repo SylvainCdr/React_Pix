@@ -3,6 +3,7 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import "./style.scss";
 import ShopNav from "../../../Components/ShopNav/ShopNav";
 import Search from "../../../Components/Search/Search";
+import ShopAside from "../../../Components/ShopAside/ShopAside";
 import useFavorites from "../../../Components/useFavorites";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
 import useCart from "../../../Components/useCart";
@@ -57,10 +58,11 @@ const Products = () => {
 
       {searchResults.length === 0 && (
         <div className="products">
+<ShopAside setFilteredProducts={setProducts} subcategory={subcategory} />
           <div className="products-title">
-            <h1>{category} </h1>
+            {/* <h1>{category} </h1> */}
           </div>
-
+ 
           <div className="products-grid">
             {products.map((item) => (
         
@@ -76,6 +78,7 @@ const Products = () => {
                 
             ))}
           </div>
+          
         </div>
       )}
     </div>
