@@ -58,6 +58,7 @@ function ShopNav() {
   // Fonction pour ouvrir ou fermer le menu déroulant d'une sous-catégorie
   const toggleSubcategory = (subcategory) => {
     setOpenSubcategory(openSubcategory === subcategory ? null : subcategory);
+    setOpenCategory(null); // Fermer le dropdown de la catégorie lorsqu'on clique sur une sous-catégorie
   };
 
   // Modification de l'ordre des catégories
