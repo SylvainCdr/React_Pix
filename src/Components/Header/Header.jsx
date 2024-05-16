@@ -66,7 +66,7 @@ function Header() {
 
         <ul onClick={burgerToggle}>
           <li>
-            <NavLink to="/Catalogue">Boutique</NavLink>
+            <NavLink to="/Catalogue" className="shop">Boutique</NavLink>
           </li>
           <li>
             <NavLink to="/Notre-expertise">Notre expertise</NavLink>
