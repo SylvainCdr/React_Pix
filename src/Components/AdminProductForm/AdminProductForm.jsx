@@ -18,8 +18,9 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
   const [selectedBrand, setSelectedBrand] = useState("defaultBrand");
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
+  const [pdf, setPdf] = useState("");
 
-  // on test si le produit à éditer est bien récupéré
+  // Caractéristiques 2ndaires
   const [detailsDimensions, setDetailsDimensions] = useState("");
   const [detailsPoids, setDetailsPoids] = useState("");
   const [detailsTemp, setDetailsTemp] = useState("");
@@ -71,7 +72,8 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
       setBrand(productToEdit.brand || "");
       setPrice(productToEdit.price || 0);
       setImage(productToEdit.image || "");
-      // on test si le produit à éditer est bien récupéré
+      setPdf(productToEdit.pdf || "");
+      // Caractéristiques 2ndaires
       setDetailsDimensions(
         productToEdit.details ? productToEdit.details.dimensions || "" : ""
       );
@@ -181,6 +183,7 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
       setDetailsNebula(
         productToEdit.details ? productToEdit.details.nebula || "" : ""
       );
+    
 
     }
   }, [productToEdit]);
@@ -204,6 +207,7 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
       brand: selectedBrand === "newBrand" ? newBrand : selectedBrand || brand,
       price,
       image,
+      pdf,
       dimensions: detailsDimensions,
       poids: detailsPoids,
       temp: detailsTemp,
@@ -492,6 +496,16 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
             value={image}
             onChange={(e) => setImage(e.target.value)}
           />
+
+          <label htmlFor="pdf">URL du PDF</label>
+          <input
+            type="text"
+            name="pdf"
+            id="pdf"
+            value={pdf}
+            onChange={(e) => setPdf(e.target.value)}
+          />
+          
         </div>
         <div className="details-1">
           <label htmlFor="detailsDimensions">Dimensions</label>
@@ -785,6 +799,8 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
             value={detailsNebula}
             onChange={(e) => setDetailsNebula(e.target.value)}
           />
+
+
 
         </div>
       </div>

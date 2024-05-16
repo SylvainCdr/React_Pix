@@ -280,10 +280,32 @@
       }
     }
 
+    .pdf-link {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      height: 2rem;
+      font-size: 1.1em;
+      font-weight: 500;
+      margin-top: 2.5rem;
+
+      i {
+        font-size: 1.7rem;
+        color: #ff5157;
+        margin-left: 0.8rem;
+      }
+
+    }
+
+    &hover {
+      cursor: pointer;
+      scale: 1.1;
+}
+
     .product-suggestions {
       margin-bottom: 1em;
       h3 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         font-weight: 600;
         margin-bottom: 1rem;
       }

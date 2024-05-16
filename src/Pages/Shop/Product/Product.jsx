@@ -214,9 +214,9 @@ Swal.fire({
               <p className="brand">{product.brand}</p>
               <p className="presentation">{product.presentation}</p>
               {/* TODO : Chercher l'etat du stock dans Axonaut */}
-              <p className="stock">En stock</p>
+              <p className="stock">Sur commande</p>
               <p className="livraison">
-                <i className="fa-solid fa-truck-fast"></i>Livraison en 72h
+                <i className="fa-solid fa-truck-fast"></i> Livraison sous 2 à 3 semaines
               </p>
               <div className="add-to-cart">
                 {/* // bouton avec + - pour ajouter ou retirer des produits */}
@@ -259,11 +259,20 @@ Swal.fire({
                             <td>{labelsMapping[key] || key}</td>
                             {/* Affichez la valeur */}
                             <td>{product.details[key]}</td>
+                      
                           </tr>
                         )
                     )}
                 </tbody>
               </table>
+            
+              {product.pdf && (
+                <a href={product.pdf} download target = "_blank" className="pdf-link" >
+                 Fiche technique <i class="fa-solid fa-file-pdf"></i>
+                  
+                </a>
+              )}
+
             </div>
 
             <div className="product-suggestions">
