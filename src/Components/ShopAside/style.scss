@@ -1,37 +1,52 @@
 .shopAside-container {
-    width: 15%;
-    background-color: rgba(75, 75, 75, 0.493);
-    margin: 1rem;
-    padding: 1rem;
-    border-radius: 0.3rem;
-    -webkit-border-radius: 0.3rem;
-    -moz-border-radius: 0.3rem;
-    -ms-border-radius: 0.3rem;
-    -o-border-radius: 0.3rem;
+  width: 15%;
+  background-color: rgba(200, 205, 207, 0.682);
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  -webkit-border-radius: 0.3rem;
+  -moz-border-radius: 0.3rem;
+  -ms-border-radius: 0.3rem;
+  -o-border-radius: 0.3rem;
 
-    h2 {
-        color: white;
-        // text-align: center;
-        background-color: var(--sunset1);
-        padding: 0.4em;
-        font-size: 1.1rem;
-        margin-bottom: 1rem;
-        border-radius: 0.3em;
-        -webkit-border-radius: 0.3em;
-        -moz-border-radius: 0.3em;
-        -ms-border-radius: 0.3em;
-        -o-border-radius: 0.3em;
-}
+  h2 {
+    color: white;
+    // text-align: center;
+    background-color: var(--sunset1);
+    padding: 0.4em;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    -ms-border-radius: 0.3em;
+    -o-border-radius: 0.3em;
+  }
 
-
-.brand-filter, .price-filter, .megapixels-filter, .imgSec-filter, .color-filter, .infrarouge-filter, .distanceInfrarouge-filter {
+  .brand-filter,
+  .price-filter,
+  .megapixels-filter,
+  .imgSec-filter,
+  .color-filter,
+  .infrarouge-filter,
+  .distanceInfrarouge-filter,
+  .installationExt-filter {
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
-}
 
+    label,
+    span,
+    li {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+      color: #333;
+    }
 
-
-
-
+    checkbox,
+    input {
+      margin-right: 0.5rem;
+    }
+  }
 }
