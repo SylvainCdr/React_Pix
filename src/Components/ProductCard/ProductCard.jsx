@@ -147,7 +147,14 @@ const ProductCard = ({
   return (
     <div className="product-card">
       {discount !== 0 && <span className="discount-badge">-{discount}%</span>}
-      <img src={product.image} alt={product.name} className="card-img" />
+      {product.image.startsWith("http") ? (
+                        <img src={product.image} alt="" />
+                      ) : (
+                        <img
+                          src={`http://localhost:3001${product.image}`}
+                          alt=""
+                        />
+                      )}
 
       <div className="card-title">
         <Link to={`/product/${product._id}`}>

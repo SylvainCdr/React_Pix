@@ -36,6 +36,13 @@
       -ms-border-radius: 4px;
       -o-border-radius: 4px;
     }
+
+    .image-preview {
+      display: flex;
+      width: 10em;
+      height : 10em;
+      object-fit: cover;
+    }
   }
 
   .details-1,

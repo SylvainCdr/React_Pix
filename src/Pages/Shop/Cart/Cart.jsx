@@ -73,7 +73,14 @@ export default function Cart() {
         {cart.map((product, index) => (
           <div className="product" key={index}>
             <div className="product-image">
-              <img src={product.image} alt="" />
+            <img
+                src={
+                  product.image && product.image.startsWith("http")
+                    ? product.image
+                    : `http://localhost:3001${product.image}`
+                }
+                alt={product.name}
+              />
             </div>
             <div className="product-details">
               <div className="product-title">

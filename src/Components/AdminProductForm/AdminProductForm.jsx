@@ -18,6 +18,7 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
   const [selectedBrand, setSelectedBrand] = useState("defaultBrand");
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
+  const [imageFile, setImageFile] = useState(null); // Ajout d'un état pour le fichier d'image
   const [pdf, setPdf] = useState("");
 
   // Caractéristiques 2ndaires
@@ -72,6 +73,7 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
       setBrand(productToEdit.brand || "");
       setPrice(productToEdit.price || 0);
       setImage(productToEdit.image || "");
+      setImageFile(null); // Réinitialisez l'image pour éviter de l'afficher à nouveau
       setPdf(productToEdit.pdf || "");
       // Caractéristiques 2ndaires
       setDetailsDimensions(
@@ -188,6 +190,16 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
     }
   }, [productToEdit]);
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImageFile(file);
+    setImage(URL.createObjectURL(file));
+  };
+
+
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -207,6 +219,7 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
       brand: selectedBrand === "newBrand" ? newBrand : selectedBrand || brand,
       price,
       image,
+      imageFile,
       pdf,
       dimensions: detailsDimensions,
       poids: detailsPoids,
@@ -249,6 +262,30 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
 
     console.log("Après ajout nouvelle sous-catégorie :", product.subcategory);
 
+
+
+// Télécharger l'image si un fichier est sélectionné
+if (imageFile) {
+  const formData = new FormData();
+  formData.append('file', imageFile);
+  formData.append('fileName', imageFile.name); // Utilisez `imageFile.name` comme nom de fichier
+  console.log(imageFile.name);
+
+  try {
+    const response = await fetch("http://localhost:3001/upload", {
+      method: "POST",
+      body: formData,
+    });
+    const data = await response.json();
+    product.image = data.url;
+  } catch (error) {
+    console.error("Erreur lors de l'upload de l'image:", error);
+    return;
+  }
+}
+
+
+   
     // Ajouter l'identifiant du produit si disponible
     if (productToEdit && productToEdit._id) {
       product._id = productToEdit._id;
@@ -488,6 +525,9 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
+           <label htmlFor="imageFile">Image:</label>
+        <input type="file" accept="image/*" onChange={handleImageChange} />
+
           <label htmlFor="image">URL de l'image</label>
           <input
             type="text"
@@ -495,7 +535,8 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
             id="image"
             value={image}
             onChange={(e) => setImage(e.target.value)}
-          />
+            />
+            {image && <img src={image} alt="Preview" className="image-preview" />}
 
           <label htmlFor="pdf">URL du PDF</label>
           <input

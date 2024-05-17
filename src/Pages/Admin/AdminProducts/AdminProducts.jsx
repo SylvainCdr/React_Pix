@@ -10,9 +10,6 @@ export default function AdminProducts() {
   const [categoryFilter, setCategoryFilter] = useState([]);
   const [subcategoryFilter, setSubcategoryFilter] = useState([]);
 
-
-
-
   useEffect(() => {
     fetch("http://localhost:3001/products")
       .then((res) => res.json())
@@ -70,57 +67,52 @@ export default function AdminProducts() {
     window.location.href = `/admin/edit-product/${id}`;
   };
 
+  // Fonction pour mettre à jour les filtres de catégorie et sous-catégorie
+  const handleCategoryFilterChange = (category) => {
+    const updatedCategoryFilter = [...categoryFilter];
+    if (updatedCategoryFilter.includes(category)) {
+      // Si la catégorie est déjà dans le filtre, la retirer
+      updatedCategoryFilter.splice(updatedCategoryFilter.indexOf(category), 1);
+    } else {
+      // Sinon, l'ajouter au filtre
+      updatedCategoryFilter.push(category);
+    }
+    setCategoryFilter(updatedCategoryFilter);
+  };
 
- // Fonction pour mettre à jour les filtres de catégorie et sous-catégorie
- const handleCategoryFilterChange = (category) => {
-  const updatedCategoryFilter = [...categoryFilter];
-  if (updatedCategoryFilter.includes(category)) {
-    // Si la catégorie est déjà dans le filtre, la retirer
-    updatedCategoryFilter.splice(updatedCategoryFilter.indexOf(category), 1);
-  } else {
-    // Sinon, l'ajouter au filtre
-    updatedCategoryFilter.push(category);
-  }
-  setCategoryFilter(updatedCategoryFilter);
-};
+  const handleSubcategoryFilterChange = (subcategory) => {
+    const updatedSubcategoryFilter = [...subcategoryFilter];
+    if (updatedSubcategoryFilter.includes(subcategory)) {
+      // Si la sous-catégorie est déjà dans le filtre, la retirer
+      updatedSubcategoryFilter.splice(
+        updatedSubcategoryFilter.indexOf(subcategory),
+        1
+      );
+    } else {
+      // Sinon, l'ajouter au filtre
+      updatedSubcategoryFilter.push(subcategory);
+    }
+    setSubcategoryFilter(updatedSubcategoryFilter);
+  };
 
-const handleSubcategoryFilterChange = (subcategory) => {
-  const updatedSubcategoryFilter = [...subcategoryFilter];
-  if (updatedSubcategoryFilter.includes(subcategory)) {
-    // Si la sous-catégorie est déjà dans le filtre, la retirer
-    updatedSubcategoryFilter.splice(
-      updatedSubcategoryFilter.indexOf(subcategory),
-      1
-    );
-  } else {
-    // Sinon, l'ajouter au filtre
-    updatedSubcategoryFilter.push(subcategory);
-  }
-  setSubcategoryFilter(updatedSubcategoryFilter);
-};
+  // Filtrer les produits en fonction des filtres sélectionnés
+  const filteredProducts = products.filter((product) => {
+    // Si aucun filtre n'est sélectionné, afficher tous les produits
+    if (categoryFilter.length === 0 && subcategoryFilter.length === 0) {
+      return true;
+    }
 
-// Filtrer les produits en fonction des filtres sélectionnés
-const filteredProducts = products.filter((product) => {
-  // Si aucun filtre n'est sélectionné, afficher tous les produits
-  if (categoryFilter.length === 0 && subcategoryFilter.length === 0) {
-    return true;
-  }
+    // Vérifier si la catégorie du produit est dans le filtre de catégorie
+    const categoryMatch =
+      categoryFilter.length === 0 || categoryFilter.includes(product.category);
 
-  // Vérifier si la catégorie du produit est dans le filtre de catégorie
-  const categoryMatch =
-    categoryFilter.length === 0 || categoryFilter.includes(product.category);
+    // Vérifier si la sous-catégorie du produit est dans le filtre de sous-catégorie
+    const subcategoryMatch =
+      subcategoryFilter.length === 0 ||
+      subcategoryFilter.includes(product.subcategory);
 
-  // Vérifier si la sous-catégorie du produit est dans le filtre de sous-catégorie
-  const subcategoryMatch =
-    subcategoryFilter.length === 0 ||
-    subcategoryFilter.includes(product.subcategory);
-
-  return categoryMatch && subcategoryMatch;
-});
-
-
-
-
+    return categoryMatch && subcategoryMatch;
+  });
 
   return (
     <div className="admin-products">
@@ -128,7 +120,6 @@ const filteredProducts = products.filter((product) => {
       <h2>Produits</h2>
 
       <div className="admin-products-dashboard">
-
         <div className="admin-products-aside">
           <h3>Filtrer par Catégorie</h3>
           {Array.from(new Set(products.map((product) => product.category))).map(
@@ -164,14 +155,14 @@ const filteredProducts = products.filter((product) => {
                 checked={subcategoryFilter.includes(subcategory)}
                 onChange={() => handleSubcategoryFilterChange(subcategory)}
               />
-              <label htmlFor={`subcategory-${subcategory}`}>{subcategory}</label>
+              <label htmlFor={`subcategory-${subcategory}`}>
+                {subcategory}
+              </label>
             </div>
           ))}
         </div>
-      
-     
 
-         <div className="admin-products-display">
+        <div className="admin-products-display">
           {selectedProduct ? (
             <AdminProductForm
               productToEdit={selectedProduct}
@@ -181,25 +172,33 @@ const filteredProducts = products.filter((product) => {
             />
           ) : (
             <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">Photo</th>
-              <th scope="col">Nom</th>
-              <th scope="col">Réf</th>
-              <th scope="col">Catégorie</th>
-              <th scope="col">Sous-catégorie</th>
-              <th scope="col">Marque</th>
-              <th scope="col">Prix</th>
-              <th scope="col">Actions</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
+              <thead>
+                <tr>
+                  <th scope="col">Photo</th>
+                  <th scope="col">Nom</th>
+                  <th scope="col">Réf</th>
+                  <th scope="col">Catégorie</th>
+                  <th scope="col">Sous-catégorie</th>
+                  <th scope="col">Marque</th>
+                  <th scope="col">Prix</th>
+                  <th scope="col">Actions</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
                 {filteredProducts.map((product) => (
                   <tr key={product._id}>
                     <td>
-                      <img src={product.image} alt="" />
+                      {/* on affiche soit l'image stockée sur le serveur, soit l'url de l'image si elle est stockée sur un site externe */}
+                      {product.image.startsWith("http") ? (
+                        <img src={product.image} alt="" />
+                      ) : (
+                        <img
+                          src={`http://localhost:3001${product.image}`}
+                          alt=""
+                        />
+                      )}
                     </td>
                     <td>{product.name}</td>
                     <td>{product.ref}</td>

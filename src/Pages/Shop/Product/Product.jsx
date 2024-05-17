@@ -18,6 +18,7 @@ export default function Product() {
   const [cart, setCart] = useState([]);
   const [isInFavorites, setIsInFavorites] = useState(false);
 
+
   // Utilisez le hook useFavorites
   const { addToFavorites, removeFromFavorites, checkFavorite, getFavorites } =
     useFavorites();
@@ -194,7 +195,16 @@ Swal.fire({
               {discount !== 0 && (
                 <span className="discount-badge">-{discount}%</span>
               )}
-              <img src={product.image} alt={product.name} />
+
+              <img
+                src={
+                  product.image && product.image.startsWith("http")
+                    ? product.image
+                    : `http://localhost:3001${product.image}`
+                }
+                alt={product.name}
+              />
+
             </div>
             <div className="product-description">
               <div className="price-like">
