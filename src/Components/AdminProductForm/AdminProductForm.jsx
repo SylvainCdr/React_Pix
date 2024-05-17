@@ -75,6 +75,9 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
       setImage(productToEdit.image || "");
       setImageFile(null); // Réinitialisez l'image pour éviter de l'afficher à nouveau
       setPdf(productToEdit.pdf || "");
+      setSelectedCategory(productToEdit.category || "defaultCategory");
+      setSelectedSubcategory(productToEdit.subcategory || "defaultSubcategory");
+      setSelectedBrand(productToEdit.brand || "defaultBrand");
       // Caractéristiques 2ndaires
       setDetailsDimensions(
         productToEdit.details ? productToEdit.details.dimensions || "" : ""
@@ -190,6 +193,7 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
     }
   }, [productToEdit]);
 
+  // Gérer le changement de l'image
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setImageFile(file);
@@ -197,9 +201,7 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
   };
 
 
-
-
-
+// Gérer la soumission du formulaire
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -211,12 +213,9 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
       ref,
       presentation,
       description,
-      category: category === "newCategory" ? newCategory : category,
-      subcategory:
-        selectedSubcategory === "newSubcategory"
-          ? newSubcategory
-          : selectedSubcategory || subcategory,
-      brand: selectedBrand === "newBrand" ? newBrand : selectedBrand || brand,
+      category: selectedCategory === "newCategory" ? newCategory : selectedCategory,
+      subcategory: selectedSubcategory === "newSubcategory" ? newSubcategory : selectedSubcategory,
+      brand: selectedBrand === "newBrand" ? newBrand : selectedBrand,
       price,
       image,
       imageFile,
