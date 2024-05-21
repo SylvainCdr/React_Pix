@@ -66,20 +66,20 @@ function Header() {
 
         <ul onClick={burgerToggle}>
           <li>
-            <NavLink to="/Catalogue" className="shop">Boutique</NavLink>
+            <NavLink to="/boutique" className="shop">Boutique</NavLink>
           </li>
           <li>
-            <NavLink to="/Notre-expertise">Notre expertise</NavLink>
+            <NavLink to="/notre-expertise">Notre expertise</NavLink>
           </li>
           <li>
-            <NavLink to="/A-propos">A propos</NavLink>
+            <NavLink to="/a-propos">A propos</NavLink>
           </li>
           <li>
-            <NavLink to="/Contact">Contact</NavLink>
+            <NavLink to="/contact">Contact</NavLink>
           </li>
           {!user && (
             <li>
-              <NavLink to="/register">Se Connecter</NavLink>
+              <NavLink to="/inscription">Se Connecter</NavLink>
             </li>
           )}
           {user?.role === "user" && (

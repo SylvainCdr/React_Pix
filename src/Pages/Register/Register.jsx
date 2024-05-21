@@ -111,7 +111,7 @@ export default function Register() {
             title: "Inscription réussie!",
             text: "Vous pouvez maintenant vous connecter.",
           }).then(() => {
-            window.location.href = "/login";
+            window.location.href = "/connexion";
           });
         }
       })
@@ -206,7 +206,7 @@ export default function Register() {
           <button>S'enregistrer</button>
 
           <span>――――― OU ―――――</span>
-          <NavLink to="/login">Se connecter</NavLink>
+          <NavLink to="/connexion">Se connecter</NavLink>
         </form>
       </div>
 

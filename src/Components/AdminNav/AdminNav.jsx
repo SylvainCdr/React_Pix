@@ -18,10 +18,10 @@ export default function AdminNav() {
         <div class="card-header bg-dark">Produits</div>
         <div class="card-body bg-dark">
           <p>
-            <a href="/admin/products">Liste des Produits </a>
+            <a href="/admin/produits">Liste des Produits </a>
           </p>
           <p>
-            <a href="/admin/add-product"> Ajouter un Produit </a>
+            <a href="/admin/produits/ajout"> Ajouter un Produit </a>
           </p>
         </div>
       </article>
@@ -42,7 +42,7 @@ export default function AdminNav() {
         <div class="card-header">Utilisateurs</div>
         <div class="card-body">
           <p>
-            <a href="/admin/users">Liste des Utilisateurs </a>
+            <a href="/admin/utilisateurs">Liste des Utilisateurs </a>
           </p>
           {/* <p><a href="#">Articles suivis par utilisateur</a></p> */}
         </div>

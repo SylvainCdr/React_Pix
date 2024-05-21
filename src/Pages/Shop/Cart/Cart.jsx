@@ -48,7 +48,7 @@ export default function Cart() {
         <h1>Panier</h1>
         <div className="empty-cart-message">
           <p>Vous n'avez pas encore de produits dans votre panier.</p>
-          <NavLink to="/catalogue"> <button>Visiter la boutique</button></NavLink>
+          <NavLink to="/boutique"> <button>Visiter la boutique</button></NavLink>
         </div>
       </div>
     );

@@ -31,7 +31,7 @@ useEffect(() => {
               Nous vous recontacterons dans les plus brefs délais pour définir
               votre discount
             </p>
-            <Link to="/register">
+            <Link to="/inscription">
               <button>S'inscrire</button>
             </Link>
           </div>

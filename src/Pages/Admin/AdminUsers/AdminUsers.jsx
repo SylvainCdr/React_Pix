@@ -115,7 +115,7 @@ const deleteUser = (id) => {
                        
 
 
-                      <NavLink to={`/admin/edit-user/${user._id}`}><button class="btn btn-primary" >Modifier</button></NavLink>
+                      <NavLink to={`/admin/utilisateurs/modification/${user._id}`}><button class="btn btn-primary" >Modifier</button></NavLink>
 
                         <td>
                             <button class="btn btn-danger" onClick={() => deleteUser(user._id)}>Supprimer</button>

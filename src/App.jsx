@@ -43,32 +43,39 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<Template />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/A-propos" element={<AboutUs />} />
-            <Route path="/Notre-expertise" element={<Expertise />} />
-            <Route path="/Contact" element={<Contact />} />
-            <Route path="/product/:id" element={<Product />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/admin/dashboard" element={<Dashboard />} />
-            <Route path="/admin/products" element={<AdminProducts />} />
-            <Route path="/admin/add-product" element={<AddProduct />} />
-            <Route path="/admin/edit-product/:id" element={<EditProduct />} />
-            <Route path="/admin/users" element={<AdminUsers />} />
-            <Route path="/catalogue" element={<Catalogue />} />
-            <Route path="/Catalogue/:category" element={<Products />} />
-            <Route path="/Catalogue/:category/:subcategory" element={<Products />} />
-          <Route path="/admin/edit-user/:id" element={<EditUser />} />
-          <Route path="/mon-compte" element={<UserAccount />} />
-          <Route path="/panier" element={<Cart />} />
-          <Route path="/panier/commande" element={<Order />} />
-          <Route path="/mon-compte/commande/:id" element={<OrderDetails />} />
+
+          <Route path="/" element={<Home />} />
+          <Route path="/a-propos" element={<AboutUs />} />
+          <Route path="/notre-expertise" element={<Expertise />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/boutique/produit/:id" element={<Product />} />
+          <Route path="/contact" element={<Contact />} />
+          
+          <Route path="/connexion" element={<Login />} />
+          <Route path="/inscription" element={<Register />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
+
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/produits" element={<AdminProducts />} />
+          <Route path="/admin/produits/ajout" element={<AddProduct />} />
+          <Route path="/admin/produits/modification/:id" element={<EditProduct />} />
+          <Route path="/admin/utilisateurs" element={<AdminUsers />} />
+          <Route path="/admin/utilisateurs/modification/:id" element={<EditUser />} />
           <Route path="/admin/commandes" element={<AdminOrders />} />
           <Route path="/admin/commande/modification/:id" element={<EditOrders />} />
+
+          <Route path="/boutique" element={<Catalogue />} />
+          <Route path="/boutique/:category" element={<Products />} />
+          <Route path="/boutique/:category/:subcategory" element={<Products />} />
+
+          <Route path="/panier" element={<Cart />} />
+          <Route path="/panier/commande" element={<Order />} />
+
+          <Route path="/mon-compte" element={<UserAccount />} />
+          <Route path="/mon-compte/commande/:id" element={<OrderDetails />} />
+
           <Route path="/rgpd" element={<RGPD />} />
           <Route path="/cgv" element={<CGV />} />
-          <Route path="/reset-password/:token" element={<ResetPassword />} />
 
           </Route>
         </Routes>

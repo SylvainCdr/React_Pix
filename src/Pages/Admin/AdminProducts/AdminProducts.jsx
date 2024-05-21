@@ -64,7 +64,7 @@ export default function AdminProducts() {
       console.error("ID is undefined or null");
       return;
     }
-    window.location.href = `/admin/edit-product/${id}`;
+    window.location.href = `/admin/produits/modification/${id}`;
   };
 
   // Fonction pour mettre à jour les filtres de catégorie et sous-catégorie

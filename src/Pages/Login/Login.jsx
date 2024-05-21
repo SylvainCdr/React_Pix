@@ -69,7 +69,7 @@ export default function Login() {
         // Stockage du token dans les cookies
         Cookies.set("token", data.token);
         setUser(data.user);
-        navigate("/Catalogue");
+        navigate("/boutique");
         Swal.fire({
           icon: "success",
           title: "Connecté",

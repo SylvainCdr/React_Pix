@@ -79,7 +79,7 @@ function ShopNav() {
               {subcategoriesMap[category]?.map((subcategory) => (
                 <li key={subcategory}>
                   <Link
-                    to={`/Catalogue/${category}/${subcategory}`}
+                    to={`/boutique/${category}/${subcategory}`}
                     onClick={() => toggleSubcategory(subcategory)}
                     className={openSubcategory === subcategory ? "active" : ""}
                   >
@@ -89,7 +89,7 @@ function ShopNav() {
               ))}
               {/* création d'une li pour tous les produits de chaque catégorie */}
               <li>
-                <Link to={`/Catalogue/${category}`}>Tous les produits</Link>
+                <Link to={`/boutique/${category}`}>Tous les produits</Link>
               </li>
             </ul>
           </li>
