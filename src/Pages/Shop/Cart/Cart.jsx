@@ -111,8 +111,8 @@ export default function Cart() {
   value={product.quantity}
   onChange={(e) => {
     const newValue = parseInt(e.target.value);
-    // Vérifier si la nouvelle valeur est supérieure ou égale à zéro
-    if (newValue >= 0) {
+    // Vérifier si la nouvelle valeur est supérieure ou égale à 1
+    if (newValue >= 1) {
       const userDataString = localStorage.getItem("user");
       const userData = JSON.parse(userDataString);
       const userId = userData._id;

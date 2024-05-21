@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, CSSProperties } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import "./style.scss";
 import ShopNav from "../../../Components/ShopNav/ShopNav";
@@ -7,12 +7,9 @@ import ShopAside from "../../../Components/ShopAside/ShopAside";
 import useFavorites from "../../../Components/useFavorites";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
 import useCart from "../../../Components/useCart";
-import Aos from "aos";
-
-
+import PropagateLoader from "react-spinners/PropagateLoader";
 
 const Products = () => {
-
   const { category, subcategory } = useParams();
   const [products, setProducts] = useState([]);
   const location = useLocation();
@@ -21,9 +18,18 @@ const Products = () => {
   const { addToCart } = useCart();
   const [userId, setUserId] = useState("");
 
-  
+  const override = {
+    size: "15px",
+    margin: "0 auto",
+    borderColor: "red",
+  };
+
+  const [loading, setLoading] = useState(true);
+  const [color, setColor] = useState("#ff9c3fc0");
+
   useEffect(() => {
     const fetchProducts = async () => {
+      setLoading(true); // Set loading to true before starting the fetch
       const apiUrl = subcategory
         ? `http://localhost:3001/products?category=${encodeURIComponent(
             category
@@ -38,34 +44,43 @@ const Products = () => {
         setProducts(data);
       } catch (error) {
         console.error("Erreur lors de la récupération des produits :", error);
+      } finally {
+        setLoading(false); // Set loading to false after the fetch is done
       }
     };
 
     fetchProducts();
   }, [location.pathname, category, subcategory]);
 
-
-  useEffect(() => {
-    Aos.init({ duration: 1000 });
-  }, []);
-
-
-
   return (
     <div className="products-container">
       <ShopNav />
+
       <Search setSearchResults={setSearchResults} />
+
+      {loading && (
+        <div className="sweet-loading">
+          <PropagateLoader
+            color={color}
+            loading={loading}
+            cssOverride={override}
+            size={20}
+            aria-label="Grid Loader"
+            data-testid="loader"
+          />
+        </div>
+      )}
 
       {searchResults.length === 0 && (
         <div className="products">
-<ShopAside setFilteredProducts={setProducts} subcategory={subcategory} category={category} />
-          <div className="products-title">
-            {/* <h1>{category} </h1> */}
-          </div>
- 
+          <ShopAside
+            setFilteredProducts={setProducts}
+            subcategory={subcategory}
+            category={category}
+          />
+
           <div className="products-grid">
             {products.map((item) => (
-        
               <ProductCard
                 key={item._id}
                 product={item}
@@ -74,17 +89,13 @@ const Products = () => {
                 removeFromFavorites={removeFromFavorites}
                 checkFavorite={checkFavorite}
                 addToCart={addToCart}
-                />
-                
+              />
             ))}
           </div>
-          
         </div>
       )}
     </div>
   );
 };
-
-
 
 export default Products;
