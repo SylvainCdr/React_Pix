@@ -54,53 +54,28 @@
     .product-description {
       padding-right: 5em;
 
-      .price-like {
+      .like {
         display: flex;
-        margin-bottom: 3rem;
+        margin-bottom: 1.5rem;
         align-items: center;
 
-        .prices {
-          width: 85%;
-
-          span {
-            font-size: 0.6em;
-            font-weight: 600;
-            color: #858585;
-          }
-
-          .original-price {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: #eb4545;
-            text-decoration: line-through;
-            margin-right: 1rem;
-          }
-          .discounted-price {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #02b441;
-          }
-
-          .price {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #02b441;
-          }
-        }
-        .like {
-          width: 15%;
-          color: #646363;
-          i {
-            font-size: 2rem;
-            &:hover {
-              cursor: pointer;
-              scale: 1.1;
-            }
+        width: 80%;
+        color: #646363;
+        display: flex;
+        justify-content: flex-end;
+        i {
+          font-size: 2rem;
+          &:hover {
+            cursor: pointer;
+            scale: 1.1;
           }
         }
       }
+    
+        
+     
 
-      h2 {
+      h1 {
         font-size: 1.5rem;
         font-weight: 600;
         margin-bottom: 1.5rem;
@@ -153,32 +128,64 @@
         margin-top: 3rem;
       }
 
-      .add-to-cart {
+      .price-addToCart {
         display: flex;
+        width: 100%;
         justify-content: center;
-        height: 3rem;
-        font-size: 1.3rem;
+        height: 2.8rem;
         font-weight: 500;
+
+        .price {
+          .prices {
+            margin-right: 2rem;
+  
+            span {
+              font-size: 0.6em;
+              font-weight: 600;
+              color: #858585;
+            }
+  
+            .original-price {
+              font-size: 1.2rem;
+              font-weight: 500;
+              color: #eb4545;
+              text-decoration: line-through;
+              margin-right: 1rem;
+            }
+            .discounted-price {
+              font-size: 1.5rem;
+              font-weight: 600;
+              color: #02b441;
+            }
+  
+            .price {
+              font-size: 1.5rem;
+              font-weight: 600;
+              color: #02b441;
+            }
+          }
+        }
 
         .quantity {
           display: flex;
           align-items: center;
           width: 25%;
-          height: 3rem;
           border: 1px solid #414040;
           border-radius: 0.3rem;
           -webkit-border-radius: 0.3rem;
           -moz-border-radius: 0.3rem;
           -ms-border-radius: 0.3rem;
           -o-border-radius: 0.3rem;
-          padding: 0.9rem;
+          padding: 0.5rem;
           justify-content: space-between;
-          margin-right: 10%;
+          margin-right:3rem;
+          font-size: 1.2rem;
 
-          .qty-btn {
-            width: 1.8rem;
+
+          .qty-input {
+            width: 1.6rem;
             height: 1.8rem;
-            font-size: 1.5rem;
+            font-size: 1.7rem;
             color: #ffffff;
             background-color: #0c96d2;
             box-shadow: 0 0 4px 0 rgb(144, 144, 144);
@@ -201,12 +208,9 @@
         }
 
         .add {
-          // margin: 1rem 1rem 2rem 3rem;
-          padding: 12px 40px;
+          padding: 15px 25px;
           text-align: center;
           align-self: center;
-
-          // text-transform: uppercase;
           transition: 0.5s;
           background-size: 200% auto;
           color: white;

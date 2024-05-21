@@ -207,8 +207,8 @@ Swal.fire({
 
             </div>
             <div className="product-description">
-              <div className="price-like">
-                <p className="prices">{calculateDiscountedPrice()} </p>
+             
+                {/* <p className="prices">{calculateDiscountedPrice()} </p> */}
                 <p
                   className="like" data-aos="zoom-in-left"
                   onClick={handleToggleFavoritesClick}
@@ -219,8 +219,8 @@ Swal.fire({
                     style={{ color: isInFavorites ? "#ed3f3f" : "inherit" }}
                   ></i>
                 </p>
-              </div>
-              <h2>{product.name}</h2>
+              
+              <h1>{product.name}</h1>
               <p className="brand">{product.brand}</p>
               <p className="presentation">{product.presentation}</p>
               {/* TODO : Chercher l'etat du stock dans Axonaut */}
@@ -228,19 +228,22 @@ Swal.fire({
               <p className="livraison">
                 <i className="fa-solid fa-truck-fast"></i> Livraison sous 2 à 3 semaines
               </p>
-              <div className="add-to-cart">
+              <div className="price-addToCart">
                 {/* // bouton avec + - pour ajouter ou retirer des produits */}
+                <div className="price">
+                <p className="prices">{calculateDiscountedPrice()} </p>
+                </div>
                 <div className="quantity">
                   <button
                     onClick={() => setQuantity(quantity - 1)}
                     disabled={quantity === 1}
-                    className="qty-btn"
+                    className="qty-input"
                   >
                     -
                   </button>
                   <p>{quantity}</p>
                   <button onClick={() => setQuantity(quantity + 1)}
-                  className="qty-btn">+</button>
+                  className="qty-input">+</button>
                 </div>
 
                 <button onClick={handleAddToCartClick} className="add">
