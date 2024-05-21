@@ -58,7 +58,7 @@ const Products = () => {
 
       {searchResults.length === 0 && (
         <div className="products">
-<ShopAside setFilteredProducts={setProducts} subcategory={subcategory} />
+<ShopAside setFilteredProducts={setProducts} subcategory={subcategory} category={category} />
           <div className="products-title">
             {/* <h1>{category} </h1> */}
           </div>
