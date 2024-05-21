@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./style.scss";
 
-export default function ShopAside({ setFilteredProducts, subcategory }) {
+export default function ShopAside({ setFilteredProducts, subcategory, category}) {
   const [brands, setBrands] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
@@ -24,16 +24,21 @@ export default function ShopAside({ setFilteredProducts, subcategory }) {
   useEffect(() => {
     const fetchProductsAndBrands = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:3001/products?subcategory=${encodeURIComponent(
-            subcategory
-          )}`
-        );
+        let url = `http://localhost:3001/products?`;
+        if (subcategory) {
+          url += `subcategory=${encodeURIComponent(subcategory)}&`;
+        }
+        if (category) {
+          url += `category=${encodeURIComponent(category)}&`;
+        }
+  
+        const response = await fetch(url);
         const data = await response.json();
-
+  
         if (!data.length) {
           return; // Si aucun produit n'est retourné, ne rien faire
         }
+        
 
         const uniqueBrands = [...new Set(data.map((product) => product.brand))];
         setBrands(uniqueBrands);
@@ -88,6 +93,8 @@ export default function ShopAside({ setFilteredProducts, subcategory }) {
         );
         setInstallationExtValues(uniqueInstallationExt);
 
+        
+
         setSelectedBrands([]);
         setSelectedMegapixels([]);
         setSelectedImgSec([]);
@@ -101,7 +108,7 @@ export default function ShopAside({ setFilteredProducts, subcategory }) {
     };
 
     fetchProductsAndBrands();
-  }, [subcategory]);
+  }, [subcategory, category]);
 
   useEffect(() => {
     let filtered = allProducts;

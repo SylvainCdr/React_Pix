@@ -87,6 +87,10 @@ function ShopNav() {
                   </Link>
                 </li>
               ))}
+              {/* création d'une li pour tous les produits de chaque catégorie */}
+              <li>
+                <Link to={`/Catalogue/${category}`}>Tous les produits</Link>
+              </li>
             </ul>
           </li>
         ))}
