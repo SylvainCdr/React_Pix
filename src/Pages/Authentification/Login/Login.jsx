@@ -1,11 +1,11 @@
-import { useAppContext } from "../appContext";
+import { useAppContext } from "../../appContext";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./style.scss";
 import Cookies from "js-cookie";
 import Aos from "aos";
-import PasswordResetModal from "../../Components/ResetPasswordModal/ResetPasswordModal";
+import PasswordResetModal from "../../../Components/ResetPasswordModal/ResetPasswordModal";
 
 export default function Login() {
   // J'importe le hook useNavigate de react-router-dom

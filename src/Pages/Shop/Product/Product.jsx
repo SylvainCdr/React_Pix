@@ -299,9 +299,7 @@ Swal.fire({
                   )
                   .slice(0, 4)
                   .map((item) => (
-                    <Link to={`/product/${item._id}`} key={item._id}>
-                      {/* // Utilisez le composant ProductCard pour afficher les produits similaires
-                      on utilise le hook useFavorites pour gérer les favoris */}
+                   
                       <ProductCard
                         product={item}
                         isInFavorites={isInFavorites}
@@ -310,7 +308,7 @@ Swal.fire({
                         checkFavorite={checkFavorite}
                         getFavorites={getFavorites}
                       />
-                    </Link>
+                   
                   ))}
               </div>
             </div>

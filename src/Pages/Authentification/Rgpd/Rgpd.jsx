@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.scss";
 
-export default function RGPD() {
+export default function Rgpd() {
   return (
     <div className="rgpd-container">   
       <h1>Politique de Confidentialité</h1>

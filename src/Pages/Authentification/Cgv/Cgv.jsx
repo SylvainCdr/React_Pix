@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.scss";
 
-export default function CGV() {
+export default function Cgv() {
   return (
     <div className="cgv-container">
       <h1>Conditions générales de vente Pixecurity </h1>
