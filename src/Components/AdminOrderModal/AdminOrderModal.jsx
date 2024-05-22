@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './style.scss';
-import DeliveryTimeline from '../../../Components/DeliveryTimeline/DeliveryTimeline';
+import DeliveryTimeline from '../DeliveryTimeline/DeliveryTimeline';
 
 
 export default function AdminOrderModal({ order, user, onClose }) {

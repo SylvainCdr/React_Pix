@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.scss";
-import AdminOrderModal from "../AdminOrderModal/AdminOrderModal";
+import AdminOrderModal from "../../../Components/AdminOrderModal/AdminOrderModal";
 import { NavLink } from "react-router-dom";
 
 // const OrderSchema = new Schema({

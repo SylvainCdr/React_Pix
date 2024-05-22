@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./style.scss";
 
-export default function CountUp() {
+export default function HomepageCountUp() {
   const animationDuration = 5000;
   const frameDuration = 1000 / 60;
   const totalFrames = Math.round(animationDuration / frameDuration);

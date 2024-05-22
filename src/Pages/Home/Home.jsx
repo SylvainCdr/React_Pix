@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import "./style.scss";
-import CustomersSlider from "../../Components/HomepageCustomersSlider/CustomersSlider";
-import Hero from "../../Components/HomepageHero/Hero";
+import HomepageCustomersSlider from "../../Components/HomepageCustomersSlider/HomepageCustomersSlider";
+import Hero from "../../Components/HomepageHero/HomepageHero";
 import { NavLink } from "react-router-dom";
 import AOS from "aos";
-import CountUp from "../../Components/CountUp/CountUp";
-import Partners from "../../Components/Partners/Partners";
+import HomepageCountUp from "../../Components/HomepageCountUp/HomepageCountUp";
+import HomepagePartners from "../../Components/HomepagePartners/HomepagePartners";
 
 
 export default function Home() {
@@ -168,11 +168,11 @@ export default function Home() {
         <div className="section-4__img"></div>
       </div>
 
-      <CountUp />
+      <HomepageCountUp />
 
-<Partners />
+<HomepagePartners />
   
-      <CustomersSlider />
+      <HomepageCustomersSlider />
     </div>
   );
 }

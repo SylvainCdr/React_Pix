@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.scss";
 
-export default function CustomersSlider() {
+export default function HomepageCustomersSlider() {
   const images = ["aphp.png", "argenteuil.png", "channel.png", "coquide.png", "dps.png", "foliateam.png", "foncia.png", "genelec.png", "itq.png", "ministere-aff.png", "ministere-int.png", "ministere-just.png", "onet.png", "pml.png", "primion.png", "securitas.png", "terideal.png"]
 
   return (

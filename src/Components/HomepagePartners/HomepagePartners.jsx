@@ -2,7 +2,7 @@ import React from "react";
 import "./style.scss";
 import { NavLink } from "react-router-dom";
 
-export default function Partners() {
+export default function HomepagePartners() {
 
 
     return (

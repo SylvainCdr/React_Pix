@@ -3,7 +3,7 @@ import "./style.scss";
 import { NavLink as Navlink } from "react-router-dom";
 import AOS from "aos";
 
-export default function Hero() {
+export default function HomepageHero() {
   const videoRef = useRef(null);
 
   // useEffect(() => {
