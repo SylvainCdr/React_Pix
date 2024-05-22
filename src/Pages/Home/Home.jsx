@@ -20,7 +20,9 @@ export default function Home() {
       <Hero />
 
       <div className="section-1">
-        <div className="section-1__img"></div>
+        <div className="section-1__img">
+          <video src="../../assets "></video>
+        </div>
 
         <div className="section-1__intro">
           <p>
