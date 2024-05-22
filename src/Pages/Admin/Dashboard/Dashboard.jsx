@@ -3,15 +3,6 @@ import React, { useState, useEffect } from "react";
 import AdminNav from "../../../Components/AdminNav/AdminNav";
 
 export default function Dashboard() {
-  // on cherche les 10 derniers utilisateurs inscrits
-  // on les affiche dans une liste
-  // on affiche le nombre total d'utilisateurs inscrits
-  // on affiche le nombre total de commandes passées
-  // on affiche le nombre total de produits enregistrés
-  // on affiche le nombre total de catégories enregistrées
-  // on affiche le nombre total de commentaires enregistrés
-  // on affiche le nombre total de messages reçus
-
   const [newUsers, setNewUsers] = useState([]);
   const [totalUsers, setTotalUsers] = useState(0);
   const [totalProducts, setTotalProducts] = useState(0);
@@ -132,18 +123,22 @@ export default function Dashboard() {
 
   return (
     <div class="admin-dashboard-container">
-      <AdminNav />
-
+      <div className="admin-nav">
+        <AdminNav />
+      </div>
       <div className="admin-dashboard">
         <h1>ESPACE ADMINISTRATION</h1>
         <div className="top">
           <div className="recap-users">
             <h2>
-              Total utilisateurs inscrits : <span>{totalUsers}</span>
+              Total utilisateurs inscrits : <br />
+              <br />
+              <span>{totalUsers}</span>
             </h2>
             <h2>
               {" "}
-              Taux de conversion (inscription/achat) :
+              Taux de conversion (inscription/achat) :<br />
+              <br />
               <span>{(conversionRate * 100).toFixed(2)} %</span>
             </h2>
             <h3>6 derniers utilisateurs inscrits : </h3>
@@ -171,11 +166,13 @@ export default function Dashboard() {
 
           <div className="recap-orders">
             <h2>
-              Total commandes passées : <span>{totalOrders} </span>
+              Total commandes passées : <br />
+              <br />
+              <span>{totalOrders} </span>
             </h2>
             <h2>
-              {" "}
-              Montant moyen des commandes :{" "}
+              Montant moyen des commandes :<br />
+              <br />
               <span>{amountAverage.toFixed(2)} €</span>
             </h2>
 
@@ -195,8 +192,7 @@ export default function Dashboard() {
                   <tr key={order.id}>
                     <td>{new Date(order.orderDate).toLocaleDateString()}</td>
                     <td>{order.userName}</td>{" "}
-                    {/* Utilisez le nom de l'utilisateur */}
-                    <td>{order._id}</td>
+                    <td>{order._id.slice(0, 6)}...</td>
                     <td>{order.totalAmount.toFixed(2)} €</td>
                   </tr>
                 ))}
@@ -207,33 +203,20 @@ export default function Dashboard() {
         <div className="bottom">
           <div className="recap-products">
             <h2>
-              Total catégories enregistrées : <span>{totalCategories}</span>
+              Total catégories enregistrées :<br />
+              <br />
+              <span>{totalCategories}</span>
             </h2>
             <h2>
-              Total sous-catégories enregistrées :{" "}
+              Total sous-catégories enregistrées :<br />
+              <br />
               <span>{totalSubCategories}</span>
             </h2>
             <h2>
-              Total produits enregistrés : <span>{totalProducts}</span>
+              Total produits enregistrés : <br />
+              <br />
+              <span>{totalProducts}</span>
             </h2>
-            {/* <h2>Top 6 des produits les plus likés :</h2>
-
-            <table>
-              <thead>
-                <tr>
-                  <th>Produit</th>
-                  <th>Nombre de likes</th>
-                </tr>
-              </thead>
-              <tbody>
-                {topFavorites.map((favorite) => (
-                  <tr key={favorite[0]}>
-                    <td>{favorite[0]}</td>
-                    <td>{favorite[1]}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table> */}
           </div>
         </div>
       </div>

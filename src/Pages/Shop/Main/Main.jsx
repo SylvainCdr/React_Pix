@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
 import ShopNav from "../../../Components/ShopNav/ShopNav";
-import Search from "../../../Components/Search/Search";
+import ShopSearch from "../../../Components/ShopSearch/ShopSearch";
 import Aos from "aos";
 
 
@@ -17,7 +17,7 @@ useEffect(() => {
   return (
     <div  className="main-shop">
       <ShopNav />
-      <Search setSearchResults={setSearchResults} />
+      <ShopSearch setSearchResults={setSearchResults} />
 
 
       {searchResults.length === 0 && (

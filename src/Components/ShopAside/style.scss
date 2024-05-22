@@ -1,5 +1,5 @@
 .shopAside-container {
-  width: 15em;
+  width: 15%;
   background-color: rgba(200, 205, 207, 0.682);
   margin: 1em;
   padding: 0.5em;
@@ -53,8 +53,29 @@
 
 @media screen and (max-width: 1024px) {
   .shopAside-container {
-    width: 10em;
+    width: 7em;
+
+    h2 {
+      font-size: 0.9rem;
+    } 
+
+    .brand-filter,
+    .price-filter,
+    .megapixels-filter,
+    .imgSec-filter,
+    .color-filter,
+    .infrarouge-filter,
+    .distanceInfrarouge-filter,
+    .installationExt-filter {
+      label,
+      span,
+      li {
+        font-size: 0.8rem;
+      }
+    }
+
   }
+
 }
 
 

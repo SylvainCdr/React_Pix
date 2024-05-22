@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./style.scss";
 import ShopNav from "../../../Components/ShopNav/ShopNav";
-import Search from "../../../Components/Search/Search";
+import ShopSearch from "../../../Components/ShopSearch/ShopSearch";
 import Cart from "../../Shop/Cart/Cart";
 import useFavorites from "../../../Components/useFavorites";
 import useCart from "../../../Components/useCart";
@@ -186,7 +186,7 @@ Swal.fire({
   return (
     <div className="product-container">
       <ShopNav />
-      <Search setSearchResults={setSearchResults} />
+      <ShopSearch setSearchResults={setSearchResults} />
 
       {searchResults.length === 0 && (
         <div className="product-page">

@@ -25,114 +25,114 @@ export default function AboutUs() {
               </div>
             </li>
             <li>
-              <a href="https://swop.link/cool" className="profile">
+              <div className="profile">
                 <h2 className="profile__name">Kenza GAUTHIAM</h2>
                 <p>Commerciale</p>
                 <img
                   alt="Profile shot for Celina Harris"
                   src="https://www.pixecurity.com/wp-content/uploads/2022/03/Kenza.png"
                 />
-              </a>
+             </div>
             </li>
             <li>
-              <a href="https://swop.link/cool" className="profile">
+            <div className="profile">
                 <h2 className="profile__name">Fabrice VALLEE</h2>
                 <p>Commercial grands comptes</p>
                 <img
                   alt="Profile shot for Ruby Morris"
                   src="https://www.pixecurity.com/wp-content/uploads/2023/02/Fabrice.png"
                 />
-              </a>
+             </div>
             </li>
             <li>
-              <a href="https://swop.link/cool" className="profile">
+              <div className="profile">
                 <h2 className="profile__name">Yanis MEBARKI</h2>
                 <p>Commercial</p>
                 <img
                   alt="Profile shot for Nicholas Castro"
                   src="https://www.pixecurity.com/wp-content/uploads/2022/06/Yanis.png"
                 />
-              </a>
+              </div>
             </li>
             <li>
-              <a href="https://swop.link/cool" className="profile">
+              <div className="profile">
                 <h2 className="profile__name">Adrien JOANNY</h2>
                 <p>Ingénieur Systèmes & Réseaux</p>
                 <img
                   alt="Profile shot for Marc Dixon"
                   src="https://www.pixecurity.com/wp-content/uploads/2022/03/Adri-J.png"
                 />
-              </a>
+              </div>
             </li>
             <li>
-              <a href="https://swop.link/cool" className="profile">
+              <div className="profile">
                 <h2 className="profile__name">Adrien DESDOITS</h2>
                 <p>Technicien Systèmes & Réseaux</p>
                 <img
                   alt="Profile shot for Chad"
                   src="https://www.pixecurity.com/wp-content/uploads/2022/03/Adri-D.png"
                 />
-              </a>
+              </div>
             </li>
             <li>
-              <a href="https://swop.link/cool" className="profile">
+              <div className="profile">
                 <h2 className="profile__name">Mathieu PACREAU</h2>
                 <p>Technicien supérieur Systèmes & Réseaux</p>
                 <img
                   alt="Profile shot for Chad"
                   src="https://www.pixecurity.com/wp-content/uploads/2022/03/Mathieu.png"
                 />
-              </a>
+              </div>
             </li>
             <li>
-              <a href="https://swop.link/cool" className="profile">
+              <div className="profile">
                 <h2 className="profile__name">Aziz ARJDAL</h2>
                 <p>Technicien Systèmes & Réseaux</p>
                 <img
                   alt="Profile shot for Chad"
                   src="https://www.pixecurity.com/wp-content/uploads/2023/02/Aziz.png"
                 />
-              </a>
+              </div>
             </li>
             <li>
-              <a href="https://swop.link/cool" className="profile">
+              <div className="profile">
                 <h2 className="profile__name">Élodie TENEUR</h2>
                 <p>Technicienne supérieur Systèmes & Réseaux</p>
                 <img
                   alt="Profile shot for Chad"
                   src="https://www.pixecurity.com/wp-content/uploads/2022/11/Elodie.png"
                 />
-              </a>
+              </div>
             </li>
             <li>
-              <a href="https://swop.link/cool" className="profile">
+              <div className="profile">
                 <h2 className="profile__name">Anaelle SOUHAUT</h2>
                 <p>Chargée d'affaires</p>
                 <img
                   alt="Profile shot for Chad"
                   src="https://www.pixecurity.com/wp-content/uploads/2022/03/Anaelle.png"
                 />
-              </a>
+              </div>
             </li>
             <li>
-              <a href="https://swop.link/cool" className="profile">
+              <div className="profile">
                 <h2 className="profile__name">Dyhia LAGA</h2>
                 <p>Chargée d'étude avant-vente</p>
                 <img
                   alt="Profile shot for Chad"
                   src="https://www.pixecurity.com/wp-content/uploads/2023/02/Dyhia.png"
                 />
-              </a>
+              </div>
             </li>
             <li>
-              <a href="https://swop.link/cool" className="profile">
+              <div className="profile">
                 <h2 className="profile__name">Jessica FILIALI</h2>
                 <p>Assistante de direction</p>
                 <img
                   alt="Profile shot for Chad"
                   src="https://www.pixecurity.com/wp-content/uploads/2022/11/Jessica.png"
                 />
-              </a>
+              </div>
             </li>
           </ul>
         

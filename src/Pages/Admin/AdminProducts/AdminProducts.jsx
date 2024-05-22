@@ -116,8 +116,8 @@ export default function AdminProducts() {
 
   return (
     <div className="admin-products">
-      <h1>ADMINISTRATION</h1>
-      <h2>Produits</h2>
+       <h1>ADMINISTRATION - 
+            <span> Produits </span></h1>
 
       <div className="admin-products-dashboard">
         <div className="admin-products-aside">

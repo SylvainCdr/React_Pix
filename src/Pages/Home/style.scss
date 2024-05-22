@@ -244,49 +244,5 @@
     }
   }
 
-  .section-5 {
-    width: 100%;
-    display: flex;
-    margin-bottom: 3em;
-    margin-top: 3em;
-    align-items: center;
-    justify-content: center;
-
-    .section-5__img {
-      width: 50%;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1em;
-
-
-      .partners {
-        img {
-          width: 100%;
-        }
-      }
-    }
-
-    .section-5__text {
-      width: 30%;
-      margin-left: 7em;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-
-      h3 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 1em;
-      }
-
-      p {
-        line-height: 1.4;
-        font-size: 1.2rem;
-        font-weight: 500;
-        text-align: justify;
-        color: #e6e4e4;
-        margin-bottom: 1em;
-      }
-    }
-  }
+ 
 }

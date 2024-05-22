@@ -69,8 +69,8 @@ const deleteUser = (id) => {
     return (
         <div className="admin-users">
 
-        <h1>ADMINISTRATION</h1>
-        <h2>Utilisateurs</h2>
+<h1>ADMINISTRATION - 
+            <span> Utilisateurs </span></h1>
 
 {selectedUser ? (
     <AdminUserForm

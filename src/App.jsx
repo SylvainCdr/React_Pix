@@ -26,6 +26,7 @@ import AdminOrders from "./Pages/Admin/AdminOrders/AdminOrders";
 import EditOrders from "./Pages/Admin/EditOrders/EditOrders";
 import Rgpd from "./Pages/Authentification/Rgpd/Rgpd";
 import Cgv from "./Pages/Authentification/Cgv/Cgv";
+import Partners from "./Pages/Partners/Partners";
 import { Provider, CartProvider } from "./Pages/appContext";
 
 // on importe le hook useLocalStorage pour stocker l'utilisateur dans le local storage
@@ -67,6 +68,7 @@ function App() {
               <Route path="/mon-compte/commande/:id" element={<OrderDetails />} />
               <Route path="/rgpd" element={<Rgpd />} />
               <Route path="/cgv" element={<Cgv />} />
+              <Route pathe="/partenaires" element={<Partners />} />
             </Route>
           </Routes>
         </BrowserRouter>

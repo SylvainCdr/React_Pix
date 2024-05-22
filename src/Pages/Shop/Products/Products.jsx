@@ -2,7 +2,7 @@ import React, { useState, useEffect, CSSProperties } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import "./style.scss";
 import ShopNav from "../../../Components/ShopNav/ShopNav";
-import Search from "../../../Components/Search/Search";
+import ShopSearch from "../../../Components/ShopSearch/ShopSearch";
 import ShopAside from "../../../Components/ShopAside/ShopAside";
 import useFavorites from "../../../Components/useFavorites";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
@@ -56,7 +56,7 @@ const Products = () => {
     <div className="products-container">
       <ShopNav />
 
-      <Search setSearchResults={setSearchResults} />
+      <ShopSearch setSearchResults={setSearchResults} />
 
       {loading && (
         <div className="sweet-loading">

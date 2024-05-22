@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
-import ProductCard from "../../Components/ProductCard/ProductCard";
-import useFavorites from "../../Components/useFavorites";
-import useCart from "../../Components/useCart";
+import ProductCard from "../ProductCard/ProductCard";
+import useFavorites from "../useFavorites";
+import useCart from "../useCart";
 
-function Search({ setSearchResults }) {
+function ShopSearch({ setSearchResults }) {
   const [search, setSearch] = useState("");
   const [searching, setSearching] = useState(false);
   const [searchResultsLocal, setSearchResultsLocal] = useState([]);
@@ -82,4 +82,4 @@ function Search({ setSearchResults }) {
   );
 }
 
-export default Search;
+export default ShopSearch;

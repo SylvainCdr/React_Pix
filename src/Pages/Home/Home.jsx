@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import "./style.scss";
-import CustomersSlider from "../../Components/CustomersSlider/CustomersSlider";
-import Hero from "../../Components/Hero/Hero";
+import CustomersSlider from "../../Components/HomepageCustomersSlider/CustomersSlider";
+import Hero from "../../Components/HomepageHero/Hero";
 import { NavLink } from "react-router-dom";
 import AOS from "aos";
 import CountUp from "../../Components/CountUp/CountUp";
+import Partners from "../../Components/Partners/Partners";
 
 
 export default function Home() {
@@ -169,31 +170,8 @@ export default function Home() {
 
       <CountUp />
 
-      <div className="section-5">
-        <div className="section-5__img">
-          {/* <img src="../assets/partners.png" alt="" /> */}
-          {Array.from({ length: 12 }).map((_, index) => (
-          <div className="partners">
-            <img
-              key={index}
-              src={`../assets/suppliers/partner${index + 1}.png`}
-              alt=""
-            />
-            </div>
-          ))}
-
-        </div>
-        <div className="section-5__text">
-          <h2>Nos partenaires</h2>
-          <h3>L'excellence du marché à votre service</h3>
-          <p>
-            Qu'il s'agisse de caméras visibles, thermiques, de systèmes de
-            gestion vidéo, ou d'IP... Les ingénieurs de Pixecurity s'engagent à
-            sélectionner pour vous les produits les plus performants,
-            parfaitement adaptés à votre projet.
-          </p>
-        </div>
-      </div>
+<Partners />
+  
       <CustomersSlider />
     </div>
   );
