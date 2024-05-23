@@ -52,16 +52,16 @@ useEffect(() => {
 
   
 
-      <div className="partners">
+      <div className="partners-section2">
         {partners.map((partner, index) => (
           <div
             key={index}
-            className={`partner ${index % 2 === 0 ? "left" : "right"}`}
+            className={`partner-logo ${index % 2 === 0 ? "left" : "right"}`}
           >
             <a href={partner.website} target="_blank" rel="noreferrer">
               <img data-aos="flip-down" src={partner.logo} alt={partner.name} />
             </a>
-            <div className="partner-text">
+            <div className="partner-info">
               <h2>{partner.name}</h2>
               <p>{partner.description}</p>
               <a href={partner.website} target="_blank" rel="noreferrer">
