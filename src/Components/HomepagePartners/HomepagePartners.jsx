@@ -5,8 +5,8 @@ import { partners } from "../../Components/HomepagePartners/PartnersData";
 
 export default function HomepagePartners() {
   return (
-    <div className="partners-container">
-      <div className="partners-img">
+    <div className="homepagePartners-container">
+      <div className="partners-logo">
         {partners.map((partner, index) => (
           <a key={index} href={partner.website} target="_blank" rel="noreferrer">
             <img src={partner.logo} alt={partner.name} />
