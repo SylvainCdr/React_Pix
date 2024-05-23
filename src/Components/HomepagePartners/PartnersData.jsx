@@ -57,7 +57,7 @@ export const partners = [
   },
   {
     name: "Comnet",
-    logo: "assets/partnersLogo/comnet.webp",
+    logo: "assets/partnersLogo/comnet.png",
     website: "https://acresecurity.com/fr/secure-communications-networking-and-server-solutions",
     description:
       "ComNet by ACRE est un leader mondial dans le domaine des communications et des réseaux pour les applications de sécurité critique. Leur gamme de produits comprend des solutions robustes pour la transmission de données vidéo, audio et de données série sur des réseaux IP et fibre optique. Avec une expertise reconnue dans la conception et la fabrication de produits fiables et sécurisés, ComNet by ACRE offre des solutions de connectivité essentielles pour les systèmes de sécurité, de surveillance et de contrôle d'accès. En tant que partenaire de confiance, ComNet by ACRE permet aux organisations du monde entier de maintenir des réseaux de communication efficaces et sécurisés, garantissant ainsi la continuité des opérations et la protection des biens et des personnes.",
