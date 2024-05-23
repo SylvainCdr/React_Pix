@@ -68,7 +68,7 @@ function App() {
               <Route path="/mon-compte/commande/:id" element={<OrderDetails />} />
               <Route path="/rgpd" element={<Rgpd />} />
               <Route path="/cgv" element={<Cgv />} />
-              <Route pathe="/partenaires" element={<Partners />} />
+              <Route path="/partenaires" element={<Partners />} />
             </Route>
           </Routes>
         </BrowserRouter>
