@@ -1,5 +1,12 @@
 export const partners = [
   {
+    name: "Vivotek",
+    logo: "assets/partnersLogo/vivotek.png",
+    website: "https://www.vivotek.com/",
+    description:
+    "VIVOTEK Inc. est un fournisseur mondial de premier plan dans le domaine des solutions de sécurité IP et de surveillance. Depuis sa fondation en 2000, VIVOTEK s'est imposée comme une référence en matière de qualité et d'innovation technologique, offrant des produits et des solutions de surveillance de pointe pour un large éventail d'applications, allant des petites entreprises aux infrastructures critiques.",
+  },
+  {
     name: "i-PRO",
     logo: "assets/partnersLogo/ipro.png",
     website: "https://www.i-pro.com/",
@@ -12,13 +19,6 @@ export const partners = [
     website: "https://www.boschsecurity.com/fr/fr/",
     description:
     "Bosch Security Systems est un leader mondial dans le domaine des technologies de sécurité et de communication. Fort de décennies d'innovation et d'expertise, Bosch fournit des solutions complètes et intégrées qui répondent aux besoins de sécurité les plus exigeants, que ce soit pour les infrastructures critiques, les bâtiments commerciaux, les institutions publiques ou les résidences privées.",
-  },
-  {
-    name: "Vivotek",
-    logo: "assets/partnersLogo/vivotek.png",
-    website: "https://www.vivotek.com/",
-    description:
-    "VIVOTEK Inc. est un fournisseur mondial de premier plan dans le domaine des solutions de sécurité IP et de surveillance. Depuis sa fondation en 2000, VIVOTEK s'est imposée comme une référence en matière de qualité et d'innovation technologique, offrant des produits et des solutions de surveillance de pointe pour un large éventail d'applications, allant des petites entreprises aux infrastructures critiques.",
   },
   {
     name: "milestone systems",

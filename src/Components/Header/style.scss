@@ -84,18 +84,27 @@
         -ms-transform: scale(1.1);
         -o-transform: scale(1.1);
       }
-    }
 
-    a {
-      color: white;
-      text-decoration: none;
-      img {
-        margin: 0.3rem;
-        width: 2.5rem;
+      a {
+        color: white;
+        text-decoration: none;
+        img {
+          margin: 0.3rem;
+          width: 2.5rem;
+        }
       }
+      .shop {
+        background-color: var(--sunset1);
+        padding: 0.3em 0.5em;
+        box-shadow: 0 0 4px rgba(255, 254, 254, 0.5);
+        border-radius: 0.3rem;
+        -webkit-border-radius: 0.3rem;
+        -moz-border-radius: 0.3rem;
+        -ms-border-radius: 0.3rem;
+        -o-border-radius: 0.3rem;
+}
     }
   }
-  
 
   .cart {
     margin-right: 2em;
@@ -113,8 +122,7 @@
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
 
-    a
-{
+    a {
       width: 100%;
       font-size: 1.3rem;
       color: white;
@@ -131,13 +139,11 @@
   }
 
   @media screen and (max-width: 1024px) {
-
-
     // span {
     //   display: none;
     // }
     .header__nav {
-     justify-content: flex-end;
+      justify-content: flex-end;
     }
 
     // DEBUT MENU BURGER
@@ -188,9 +194,7 @@
     }
 
     .cart {
-
-justify-content: flex-end;
-
+      justify-content: flex-end;
     }
   }
 
