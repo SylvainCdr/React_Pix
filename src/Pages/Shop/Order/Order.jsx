@@ -239,6 +239,8 @@ export default function Order() {
 
   return (
     <div className="order-container">
+
+      <div className="order-page">
       <h1>Commande</h1>
 
       <form onSubmit={handleSubmit}>
@@ -453,7 +455,7 @@ export default function Order() {
 
 
 
-
+      </div>
     </div>
   );
 }

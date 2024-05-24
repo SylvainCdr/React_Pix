@@ -72,7 +72,7 @@ function Header() {
             <NavLink to="/notre-expertise">Notre expertise</NavLink>
           </li>
           <li>
-            <NavLink to="/a-propos">A propos</NavLink>
+            <NavLink to="/a-propos">Qui sommes-nous ?</NavLink>
           </li>
           <li>
             <NavLink to="/contact">Contact</NavLink>

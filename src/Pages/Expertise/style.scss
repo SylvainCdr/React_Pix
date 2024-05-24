@@ -4,14 +4,26 @@
   .hero {
   
     height: 65vh;
+
+    // background: linear-gradient(
+    //   0deg,
+    //   #1c1c1cfb 3%,
+    //   rgba(10, 17, 30, 0.144) 20%,
+    //   rgba(59, 97, 167, 0.192),
+    //   50%,
+    //   rgba(122, 122, 122, 0) 94%
+    // ),url("../../../public/assets/security3.jpeg");
+
     background: linear-gradient(
-      0deg,
-      #1c1c1cfe 3%,
-      rgba(10, 17, 30, 0.144) 20%,
+      90deg,
+      #1c1c1cfb 10%,
+      rgba(10, 17, 30, 0.87) 35%,
       rgba(59, 97, 167, 0.192),
-      50%,
-      rgba(122, 122, 122, 0) 94%
-    ),url("../../../public/assets/security3.jpeg");
+      60%,
+      rgba(122, 122, 122, 0.055) 94%
+    ),url("../../../public/assets/us.jpeg");
+
+
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
@@ -21,14 +33,14 @@
     width: 100%;
 
     .title {
-      width: 40%;
+      width: 30%;
       margin-left: 10rem;
 
       h1 {
 
         color: var(--sunset1);
         font-weight: 500;
-        font-size: 2.2em;
+        font-size: 2.1em;
         line-height: 2.5rem;
         margin-bottom: 2rem;
       }

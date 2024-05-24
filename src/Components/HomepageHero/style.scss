@@ -62,43 +62,43 @@
         right: 6%;
         position: absolute;
 
-        button {
-          padding: 16px 50px;
-          text-align: center;
-          font-size: 1.2em;
-          transition: 0.5s;
-          background-size: 200% auto;
-          color: white;
-          border-radius: 10px;
-          display: block;
-          border: 0px;
-          font-weight: 600;
-          box-shadow: 0px 0px 14px -7px #121e37;
-          background-image: linear-gradient(
-            45deg,
-            #0651bb 0%,
-            #009fe3 51%,
-            #00438f 100%
-          );
-          cursor: pointer;
-          user-select: none;
-          -webkit-user-select: none;
-          touch-action: manipulation;
+  //       button {
+  //         padding: 16px 50px;
+  //         text-align: center;
+  //         font-size: 1.2em;
+  //         transition: 0.5s;
+  //         background-size: 200% auto;
+  //         color: white;
+  //         border-radius: 10px;
+  //         display: block;
+  //         border: 0px;
+  //         font-weight: 600;
+  //         box-shadow: 0px 0px 14px -7px #121e37;
+  //         background-image: linear-gradient(
+  //           45deg,
+  //           #0651bb 0%,
+  //           #009fe3 51%,
+  //           #00438f 100%
+  //         );
+  //         cursor: pointer;
+  //         user-select: none;
+  //         -webkit-user-select: none;
+  //         touch-action: manipulation;
 
-          &:hover {
-            background-position: right center;
-            /* change the direction of the change here */
-            color: #fff;
-            text-decoration: none;
-          }
+  //         &:hover {
+  //           background-position: right center;
+  //           /* change the direction of the change here */
+  //           color: #fff;
+  //           text-decoration: none;
+  //         }
 
-          &:active {
-            transform: scale(0.95);
-          }
-        }
+  //         &:active {
+  //           transform: scale(0.95);
+  //         }
+  //       }
       }
-    }
-  }
+     }
+   }
 
 //media queries
 @media (max-width: 1024px) {

@@ -1,8 +1,10 @@
 .user-account-container {
-  margin-top: 4rem;
   width: 100%;
   display: flex;
-  min-height: 75vh;
+  min-height: 100vh;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-top: 6.5em;
 
   .user-menu {
     width: 20%;
@@ -48,7 +50,7 @@
 
   .user-dashboard {
     width: 80%;
-    background-color: rgba(107, 106, 106, 0.202);
+    background-color: rgba(107, 106, 106, 0.219);
     border-radius: 0rem 0.5rem 0.5rem 0rem;
     -webkit-border-radius: 0rem 0.5rem 0.5rem 0rem;
     -moz-border-radius: 0rem 0.5rem 0.5rem 0rem;

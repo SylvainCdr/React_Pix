@@ -21,7 +21,6 @@ export default function Home() {
 
       <div className="section-1">
         <div className="section-1__img">
-          <video src="../../assets "></video>
         </div>
 
         <div className="section-1__intro">
@@ -70,9 +69,6 @@ export default function Home() {
               Pixecurity est le fournisseur de solutions de sureté 3.0
             </p>
           </div>
-          {/* <button>
-            <NavLink to="#">Notre process</NavLink>{" "}
-          </button> */}
         </div>
       </div>
       <div className="section-3">

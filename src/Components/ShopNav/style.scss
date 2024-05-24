@@ -1,4 +1,3 @@
-
 .shopNav-container {
   margin-top: 5.5rem;
   width: 100%;
@@ -12,21 +11,17 @@
     list-style: none;
 
     li:hover {
-      
       .dropdown-menu {
         display: block;
         max-height: 9999px;
       }
     }
-
-
   }
 
   .dropdown {
     float: left;
     position: relative;
     width: 10em;
-   
 
     label {
       background: #30a6e6;
@@ -48,12 +43,9 @@
       }
 
       &:hover {
-        background: #df4b05;
+        background: #174af1;
       }
-
     }
-
-  
 
     input[type="checkbox"] {
       position: absolute;
@@ -61,7 +53,6 @@
       width: 100%;
       height: 100%;
       cursor: pointer;
-    
 
       &:checked ~ .dropdown-menu {
         display: block;
@@ -71,7 +62,6 @@
       &:checked + label:before {
         transform: rotate(-180deg);
       }
-   
     }
 
     .dropdown-menu {
@@ -89,7 +79,6 @@
       -ms-transition: max-height 0.6s ease-out;
       -o-transition: max-height 0.6s ease-out;
     }
-  
   }
 
   .dropdown a {
@@ -102,7 +91,7 @@
     transition: background-color 0.25s ease;
 
     &:hover {
-      background-color: #df4b05;
+      background: #174af1;
     }
   }
 }
@@ -111,7 +100,7 @@
   .shopNav-container {
     .dropdown {
       width: 6.6em;
-    font-size: 0.8em;
+      font-size: 0.8em;
     }
 
     .dropdown-menu {

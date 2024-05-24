@@ -220,13 +220,13 @@ export default function Register() {
           </ul>
         </div>
       )}
-      <div  data-aos="fade-left" className="section-2">
+      {/* <div  data-aos="fade-left" className="section-2">
         <h2 data-aos="flip-left">Let's secure the future together</h2>
         <NavLink to="/contact">
           {" "}
           <button>Un Projet ? Contactez-nous</button>
         </NavLink>
-      </div>
+      </div> */}
     </div>
   );
 }
