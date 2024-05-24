@@ -32,7 +32,7 @@ const Partners = () => {
           </p>
         </div>
 
-        <div className="partner-img"></div>
+        <div data-aos="fade-left" className="partner-img"></div>
       </div>
 
       {partners.map((partner, index) => (
@@ -45,7 +45,7 @@ const Partners = () => {
               <img data-aos="zoom-in" src={partner.logo} alt={partner.name} />
             </a>
           </div>
-          <div data-aos="flip-down" className="partner-info">
+          <div  className="partner-info">
             {/* <h2>{partner.name}</h2> */}
             <p>{partner.description}</p>
             <a href={partner.website} target="_blank" rel="noreferrer">

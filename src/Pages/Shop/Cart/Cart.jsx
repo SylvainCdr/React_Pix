@@ -56,6 +56,7 @@ export default function Cart() {
 
   return (
     <div  className="cart-container">
+      <div className="cart">
       <h1>Panier</h1>
 
       <div className="shopping-cart">
@@ -174,6 +175,7 @@ export default function Cart() {
           Commander
         </button>
       </div>
+    </div>
     </div>
   );
 }

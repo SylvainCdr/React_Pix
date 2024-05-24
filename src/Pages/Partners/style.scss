@@ -3,10 +3,12 @@
   display: flex;
   flex-direction: column;
 
+
   .partners-section1 {
     display: flex;
     justify-content: center;
     padding-bottom: 5em;
+    padding-left: 10em;
 
     .partners-intro {
       padding: 2em 0em 0em 2em;
@@ -16,22 +18,22 @@
 
       h1 {
         font-size: 2rem;
-        font-weight: 600;
+        font-weight: 500;
         margin-bottom: 0.5em;
         text-transform: uppercase;
         color: var(--sunset1);
       }
 
       p {
-        font-size: 1.1rem;
+        font-size: 1rem;
         line-height: 1.4em;
         margin-bottom: 0.8em;
-        font-weight: 500;
         text-align: justify;
       }
     }
 
     .partner-img {
+      
       width: 40%;
       background: linear-gradient(
           90deg,
@@ -54,9 +56,9 @@
   .partners-section2 {
     display: flex;
     justify-content: center;
-    padding: 3em 10em;
-    width: 100%;
+    max-width: 1440px;
     border-bottom: 1px solid #757575b9;
+    margin : 3rem auto;
 
     &.left {
       flex-direction: row;

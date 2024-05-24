@@ -1,8 +1,9 @@
 .expertise-container {
-  margin-top: 4rem;
+  margin-top: 5em;
 
   .hero {
-    height: 75vh;
+  
+    height: 65vh;
     background: linear-gradient(
       0deg,
       #1c1c1cfe 3%,
@@ -21,17 +22,15 @@
 
     .title {
       width: 40%;
-      margin-left: 3rem;
+      margin-left: 10rem;
 
       h1 {
-        
+
         color: var(--sunset1);
-        font-weight: 600;
-        text-shadow: 1px 2px 2px rgb(44, 44, 44);
-        font-size: 2.6em;
-        line-height: 3rem;
+        font-weight: 500;
+        font-size: 2.2em;
+        line-height: 2.5rem;
         margin-bottom: 2rem;
-        padding-bottom: 0rem;
       }
 
       .description {
@@ -39,7 +38,7 @@
         color: rgb(254, 254, 254);
         font-size: 1.1rem;
         line-height: 1.8rem;
-        font-weight: 500;
+
       }
 
       button {
@@ -92,9 +91,10 @@
     }
   }
   .forces {
+    max-width: 1440px;
+    margin : 3rem auto;
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 3rem;
+    justify-content: space-between;
 
     li {
       width: 15%;
@@ -120,15 +120,16 @@
 
   .slides-section {
     display: flex;
-    margin-bottom: 8rem;
+    max-width: 1440px;
+    margin : 3rem auto;
 
     .slide {
       text-align: center;
-      width: 27%;
+      width: 25%;
       margin: auto;
 
       img {
-        width: 20rem;
+        width: 15rem;
         object-fit: cover;
         border-radius: 50%;
         -webkit-border-radius: 50%;
@@ -176,14 +177,3 @@
     }
   }
 }
-
-// .item {
-//   width: 200px;
-//   height: 200px;
-//   margin: 50px auto;
-//   padding-top: 75px;
-//   background: #ccc;
-//   text-align: center;
-//   color: #fff;
-//   font-size: 3em;
-// }

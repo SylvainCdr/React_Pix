@@ -1,24 +1,21 @@
 .homepage-container {
   width: 100%;
+  margin-top: 5em;
 
   h2 {
-    text-transform: uppercase;
     margin-bottom: 0.5em;
-    font-size: 3em;
+    font-size: 2em;
     font-weight: 500;
     text-shadow: rgb(19, 18, 18) 1px 1px 2px;
     color: var(--sunset1);
   }
 
   .section-1 {
-    // margin-top: 0.2rem;
     display: flex;
-    // clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
     height: 40vh;
 
     .section-1__img {
       width: 40%;
-      // background: linear-gradient(to top right, #9c9b9b1c, #dddcdce5);
       background-image: url("https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
       background-size: cover;
       background-position: center;
@@ -27,15 +24,15 @@
 
     .section-1__intro {
       width: 60%;
-      background: linear-gradient(
-        153deg,
-        var(--sunset2) 7%,
-        var(--sunset1) 16%,
-        rgb(2, 73, 120) 40%,
-        rgb(1, 51, 100),
-        rgb(0, 22, 44) 94%
-      );
-      box-shadow: 1px 1px 5px 0px #424242;
+      // background: linear-gradient(
+      //   153deg,
+      //   var(--sunset2) 7%,
+      //   var(--sunset1) 16%,
+      //   rgb(2, 73, 120) 40%,
+      //   rgb(1, 51, 100),
+      //   rgb(0, 22, 44) 94%
+      // );
+      background:var(--sunset1);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -47,13 +44,12 @@
         text-align: justify;
         color: #e6e4e4;
         text-shadow: rgb(0, 16, 57) 1px 1px 2px;
-        // font-family: "Barlow Condensed", sans-serif;
         margin-left: 4rem;
         margin-right: 4rem;
         margin-bottom: 1.5rem;
 
         strong {
-          font-size: 1.3rem;
+          font-size: 1.2rem;
           color: #ffffff;
           text-shadow: rgb(0, 2, 5) 1px 1px 2px;
           font-weight: 500;
@@ -71,18 +67,19 @@
   }
 
   .section-2 {
-    margin-top: 1em;
+    margin: 2em auto;
+    max-width: 1440px;
+
     .section-2__offer {
       display: block;
       width: 100%;
 
       .title {
       
-        padding-left: 1.5em;
         position: relative;
 
         h2 {
-          padding-top: 0.8em;
+
         }
       }
 
@@ -90,36 +87,35 @@
         width: 100%;
 
         p {
-          line-height: 1.6;
-          font-size: 1.2rem;
-          font-weight: 500;
-          text-align: justify;
-          color: #fafafa;
-          padding: 0.1em 1.5em 1.5em 1.5em;
+          line-height: 1.5;
+          font-size: 1.1rem;
+
         }
       }
     }
   }
 
   .section-3 {
-    margin: 2rem 3rem 3rem 3rem;
+    max-width: 1440px;
+   margin : 3rem auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
+    gap: 4em;
 
     .skills-card {
       display: block;
       width: 100%;
-      height: 20em;
-
-      background: linear-gradient(
-        150deg,
-        #73c8edd1 7%,
-        rgba(66, 164, 255, 0.743) 16%,
-        rgba(11, 97, 183, 0.449) 40%,
-        rgba(48, 48, 48, 0.664),
-        rgba(16, 16, 16, 0) 94%
-      );
+      height: auto;
+      padding-bottom : 1rem;
+background-color: rgba(80, 80, 80, 0.185);
+      // background: linear-gradient(
+      //   150deg,
+      //   #73c8edd1 7%,
+      //   rgba(66, 164, 255, 0.743) 16%,
+      //   rgba(11, 97, 183, 0.449) 40%,
+      //   rgba(48, 48, 48, 0.664),
+      //   rgba(16, 16, 16, 0) 94%
+      // );
       text-align: center;
       border-radius: 0.5rem;
       // box-shadow: 1px 1px 2px #424242;
@@ -130,15 +126,15 @@
       }
 
       h3 {
-        font-size: 1.5rem;
-        font-weight: 600;
+        font-size: 1.2rem;
+        font-weight: 500;
         padding: 1rem;
       }
 
       p {
         font-size: 1rem;
         color: rgb(214, 214, 214);
-        padding: 1rem 1rem 1rem 1rem;
+        padding: 0rem 1rem 1rem 1rem;
         line-height: 1.3rem;
       }
       a {
@@ -158,19 +154,19 @@
 
   .section-4 {
     display: flex;
-    margin-bottom: 2em;
     height: auto;
+    margin: 3em auto;
+    max-width: 1440px;
 
     .section-4__text {
       width: 40%;
-      padding-left: 2em;
-      // align-self: center;
+   
+
       justify-items: center;
 
       p {
-        line-height: 1.5;
+        line-height: 1.4;
         font-size: 1.1rem;
-        font-weight: 500;
         text-align: justify;
         color: #e6e4e4;
         margin-bottom: 1em;
