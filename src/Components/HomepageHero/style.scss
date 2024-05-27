@@ -10,15 +10,15 @@
     .left {
       width: 40%;
       height: 70vh;
-      // background: linear-gradient(
-      //   153deg,
-      //   rgb(0, 22, 44) 7%,
-      //   rgb(1, 51, 100) 16%,
-      //   rgb(2, 73, 120) 40%,
-      //   var(--sunset1),
-      //   var(--sunset2) 94%
-      // );
-      background:var(--sunset1);
+      background: linear-gradient(
+        153deg,
+        rgb(0, 22, 44) 7%,
+        rgb(1, 51, 100) 16%,
+        rgb(2, 73, 120) 40%,
+        var(--sunset1),
+        var(--sunset2) 94%
+      );
+      // background:var(--sunset1);
       display: flex;
 
       h1 {

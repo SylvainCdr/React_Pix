@@ -24,15 +24,15 @@
 
     .section-1__intro {
       width: 60%;
-      // background: linear-gradient(
-      //   153deg,
-      //   var(--sunset2) 7%,
-      //   var(--sunset1) 16%,
-      //   rgb(2, 73, 120) 40%,
-      //   rgb(1, 51, 100),
-      //   rgb(0, 22, 44) 94%
-      // );
-      background:var(--sunset1);
+      background: linear-gradient(
+        153deg,
+        var(--sunset2) 7%,
+        var(--sunset1) 16%,
+        rgb(2, 73, 120) 40%,
+        rgb(1, 51, 100),
+        rgb(0, 22, 44) 94%
+      );
+      // background:var(--sunset1);
       display: flex;
       flex-direction: column;
       justify-content: center;
