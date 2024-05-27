@@ -3,7 +3,7 @@ import "./style.scss";
 
 function Footer() {
   return (
-    <div className="footer">
+    <div className="footer-container">
       <div className="section-1">
         <img src="/assets/logo-dark.svg" alt="" />
         <p>
@@ -14,7 +14,7 @@ function Footer() {
       </div>
       <div className="section-2">
         <h4>Plan du site </h4>
-        <br />
+        
         <ul>
           <li>Accueil</li>
           <li>Catalogue</li>
@@ -26,7 +26,6 @@ function Footer() {
 
       <div className="section-3">
         <h4>Nous contacter </h4>
-        <br />
         <ul>
           <li>
             {" "}

@@ -13,14 +13,16 @@ function Catalogue() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    Aos.init({ duration: 2000 });
+    Aos.init({ duration: 1500 });
   }, []);
 
   useEffect(() => {
     fetch("http://localhost:3001/products")
       .then((res) => res.json())
       .then((data) => {
-        const iproProducts = data.filter(product => product.brand === "Vivotek");
+        const iproProducts = data.filter(
+          (product) => product.brand === "Vivotek"
+        );
         setProducts(iproProducts);
       })
       .catch((err) => {
@@ -28,7 +30,6 @@ function Catalogue() {
         console.error(err);
       });
   }, []);
-
 
   useEffect(() => {
     fetch("http://localhost:3001/products")
@@ -45,7 +46,6 @@ function Catalogue() {
       });
   }, []);
 
-
   return (
     <div className="shop-container">
       <ShopNav />
@@ -53,8 +53,8 @@ function Catalogue() {
 
       {searchResults.length === 0 && (
         <div className="shop-hero">
-          <img data-aos="fade-down-left" src="assets/heroShop.png" alt="" />
-          <div className="hero-shop__title">
+          <img  src="assets/heroShop.png" alt="" />
+          <div data-aos="fade-right" className="hero-title">
             <h2>Vous voulez bénéficier de réductions exclusives ?</h2>
             <h1>Créez un compte !</h1>
             <p>
@@ -68,17 +68,51 @@ function Catalogue() {
         </div>
       )}
 
+      <div data-aos="fade-up" className="shop-categories">
+        <Link to="/boutique/Caméras">
+          <div  className="category">
+            <h3>Caméras</h3>
+            <img
+              src="https://images.unsplash.com/photo-1585206031650-9e9a7c87dcfe?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Caméras"
+            />
+          </div>
+        </Link>
 
-     
+        <Link to="/boutique/Réseau">
+          <div  className="category">
+            <h3>Réseaux</h3>
+            <img
+              src="https://images.unsplash.com/photo-1561233835-f937539b95b9?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Réseaux"
+            />
+          </div></Link>
 
+          <Link to="/boutique/Logiciels">
+          <div className="category">
+            <h3>Logiciels</h3>
+            <img
+              src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fHw%3D"
+              alt="Logiciels"
+            />
+          </div>
+        </Link>
+
+        <Link to="/boutique/Autres">
+          <div  className="category">
+            <h3>Autres</h3>
+            <img
+              src="https://images.unsplash.com/photo-1591808216268-ce0b82787efe?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Autres"
+            />
+          </div>
+        </Link>
+      </div>
 
       <div className="products-carousel">
-       <ShopCarousel products={products} />
-       
+        <ShopCarousel products={products} />
       </div>
-      
     </div>
-
   );
 }
 
