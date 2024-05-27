@@ -89,7 +89,7 @@ const PasswordResetModal = ({ show, onClose, onResetPassword, checkEmail }) => {
           &times;
         </span>
         <h2 className="modal-title">Réinitialisation du mot de passe</h2>
-        <p>
+        <p className="modal-text">
           Veuillez saisir votre e-mail pour réinitialiser votre mot de passe :
         </p>
         <input className="email-input"

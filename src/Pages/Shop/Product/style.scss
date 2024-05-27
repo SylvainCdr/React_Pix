@@ -169,6 +169,7 @@
         }
 
         .quantity {
+          
           display: flex;
           align-items: center;
           width: 25%;
@@ -182,6 +183,8 @@
           justify-content: space-between;
           margin-right:3rem;
           font-size: 1.2rem;
+  
+
 
 
           .qty-input {
@@ -197,6 +200,7 @@
             -moz-border-radius: 0.2rem;
             -ms-border-radius: 0.2rem;
             -o-border-radius: 0.2rem;
+            
 
             &:hover {
               cursor: pointer;
@@ -207,6 +211,9 @@
               -webkit-animation: clickAnimation 0.5s ease;
             }
           }
+
+  
+
         }
 
         .add {

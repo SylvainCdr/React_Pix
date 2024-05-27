@@ -28,6 +28,7 @@ import Rgpd from "./Pages/Authentification/Rgpd/Rgpd";
 import Cgv from "./Pages/Authentification/Cgv/Cgv";
 import Partners from "./Pages/Partners/Partners";
 import { Provider, CartProvider } from "./Pages/appContext";
+import ScrollToTop from './Components/scrollToTop';
 
 // on importe le hook useLocalStorage pour stocker l'utilisateur dans le local storage
 import useLocalStorage from "use-local-storage";
@@ -40,12 +41,13 @@ function App() {
     <Provider value={{ user, setUser }}>
       <CartProvider>
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route element={<Template />}>
               <Route path="/" element={<Home />} />
-              <Route path="/a-propos" element={<AboutUs />} />
               <Route path="/notre-expertise" element={<Expertise />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/a-propos" element={<AboutUs />} />
               <Route path="/boutique/produit/:id" element={<Product />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/connexion" element={<Login />} />
