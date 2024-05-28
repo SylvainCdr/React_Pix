@@ -9,6 +9,7 @@ export default function AdminProducts() {
 
   const [categoryFilter, setCategoryFilter] = useState([]);
   const [subcategoryFilter, setSubcategoryFilter] = useState([]);
+  const [brandFilter, setBrandFilter] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3001/products")
@@ -95,24 +96,50 @@ export default function AdminProducts() {
     setSubcategoryFilter(updatedSubcategoryFilter);
   };
 
-  // Filtrer les produits en fonction des filtres sélectionnés
-  const filteredProducts = products.filter((product) => {
-    // Si aucun filtre n'est sélectionné, afficher tous les produits
-    if (categoryFilter.length === 0 && subcategoryFilter.length === 0) {
-      return true;
+  const handleBrandFilterChange = (brand) => {
+    const updatedBrandFilter = [...brandFilter];
+    if (updatedBrandFilter.includes(brand)) {
+      // Si la marque est déjà dans le filtre, la retirer
+      updatedBrandFilter.splice(updatedBrandFilter.indexOf(brand), 1);
+    } else {
+      // Sinon, l'ajouter au filtre
+      updatedBrandFilter.push(brand);
     }
+    setBrandFilter(updatedBrandFilter);
+  };
 
-    // Vérifier si la catégorie du produit est dans le filtre de catégorie
-    const categoryMatch =
-      categoryFilter.length === 0 || categoryFilter.includes(product.category);
 
-    // Vérifier si la sous-catégorie du produit est dans le filtre de sous-catégorie
-    const subcategoryMatch =
-      subcategoryFilter.length === 0 ||
-      subcategoryFilter.includes(product.subcategory);
 
-    return categoryMatch && subcategoryMatch;
-  });
+
+
+  // Filtrer les produits en fonction des filtres sélectionnés
+const filteredProducts = products.filter((product) => {
+  // Si aucun filtre n'est sélectionné, afficher tous les produits
+  if (
+    categoryFilter.length === 0 &&
+    subcategoryFilter.length === 0 &&
+    brandFilter.length === 0
+  ) {
+    return true;
+  }
+
+  // Vérifier si la catégorie du produit est dans le filtre de catégorie
+  const categoryMatch =
+    categoryFilter.length === 0 ||
+    categoryFilter.includes(product.category);
+
+  // Vérifier si la sous-catégorie du produit est dans le filtre de sous-catégorie
+  const subcategoryMatch =
+    subcategoryFilter.length === 0 ||
+    subcategoryFilter.includes(product.subcategory);
+
+  // Vérifier si la marque du produit est dans le filtre de marque
+  const brandMatch =
+    brandFilter.length === 0 || brandFilter.includes(product.brand);
+
+  return categoryMatch && subcategoryMatch && brandMatch;
+});
+
 
   return (
     <div className="admin-products">
@@ -160,7 +187,24 @@ export default function AdminProducts() {
               </label>
             </div>
           ))}
+
+          <h3>Filtrer par Marque</h3>
+          {Array.from(new Set(products.map((product) => product.brand))).map(
+            (brand) => (
+              <div key={brand}>
+                <input
+                  type="checkbox"
+                  id={`brand-${brand}`}
+                  checked={brandFilter.includes(brand)}
+                  onChange={() => handleBrandFilterChange(brand)}
+                />
+                <label htmlFor={`brand-${brand}`}>{brand}</label>
+              </div>
+            )
+          )}
         </div>
+
+        
 
         <div className="admin-products-display">
           {selectedProduct ? (
@@ -206,7 +250,7 @@ export default function AdminProducts() {
                     <td>{product.subcategory}</td>
                     <td>{product.brand}</td>
                     <td>{product.price} €</td>
-                    <td>
+                    <td >
                       <button
                         onClick={() => {
                           editProduct(product._id);

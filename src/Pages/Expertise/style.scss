@@ -33,15 +33,15 @@
     width: 100%;
 
     .title {
-      width: 30%;
+      width: 40%;
       margin-left: 10rem;
 
       h1 {
-
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 3rem;
         color: var(--sunset1);
         font-weight: 500;
-        font-size: 2.1em;
-        line-height: 2.5rem;
+        line-height: 3rem;
         margin-bottom: 2rem;
       }
 
@@ -151,6 +151,18 @@
         -o-border-radius: 50%;
       }
 
+      h2 {
+        
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        font-size: 2rem;
+        font-weight: 600;
+        margin-top: 1rem;
+        color: #efefef;
+        border-top: 1px solid #2ab1ff;
+        border-bottom: 1px solid #2ab1ff;
+        padding: 0.8rem 0;
+      }
       h4 {
         font-family: "Barlow Condensed", sans-serif;
         font-size: 2rem;
@@ -167,18 +179,6 @@
         color: #efefef;
       }
 
-      h2 {
-        font-family: "Barlow Condensed", sans-serif;
-        text-transform: uppercase;
-        letter-spacing: 0.1rem;
-        font-size: 2rem;
-        font-weight: 600;
-        margin-top: 1rem;
-        color: #efefef;
-        border-top: 1px solid #2ab1ff;
-        border-bottom: 1px solid #2ab1ff;
-        padding: 0.8rem 0;
-      }
 
       p {
         font-size: 1rem;

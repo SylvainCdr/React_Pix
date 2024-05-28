@@ -66,6 +66,9 @@ function Header() {
 
         <ul onClick={burgerToggle}>
           <li>
+            <Link to="/boutique" className="shop">Boutique</Link>
+          </li>
+          <li>
             <Link to="/notre-expertise">Notre expertise</Link>
           </li>
           <li>
@@ -84,9 +87,6 @@ function Header() {
               <Link to="/mon-compte">Mon compte</Link>
             </li>
           )}
-          <li>
-            <Link to="/boutique" className="shop">Boutique</Link>
-          </li>
           {user?.role === "admin" && (
             <li>
               <Link to="/admin/dashboard">Administration</Link>

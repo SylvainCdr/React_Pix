@@ -15,7 +15,8 @@ export default function AboutUs() {
       </div>
 
       <div className="section-2">
-        <div className="card-about">
+        <div className="card-about" data-aos="fade-up"
+     data-aos-duration="1500">
           <div className="top">
             <img
               src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -28,7 +29,8 @@ export default function AboutUs() {
             ADN travaux, chantier, qui reste l'essence même de notre métier.
           </p>
         </div>
-        <div className="card-about">
+        <div className="card-about" data-aos="fade-up"
+     data-aos-duration="2000">
           <div className="top">
             <img
               src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -42,7 +44,8 @@ export default function AboutUs() {
             d'accès...
           </p>
         </div>
-        <div className="card-about">
+        <div className="card-about" data-aos="fade-up"
+     data-aos-duration="2500">
           <div className="top">
             <img
               src="https://images.unsplash.com/photo-1629904853893-c2c8981a1dc5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"

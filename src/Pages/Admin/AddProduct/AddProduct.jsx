@@ -24,7 +24,7 @@ function AddProduct() {
                     timer: 2000,
                     timerProgressBar: true,
                 }).then(() => {
-                    window.location.href = "/admin/products";
+                    window.location.href = "/admin/produits";
                 });
             } else {
                 Swal.fire({
@@ -49,8 +49,8 @@ function AddProduct() {
 
     return (
         <div className="add-product">
-            <h1>ADMINISTRATION</h1>
-            <h2>Ajouter un produit</h2>
+            <h1>ADMINISTRATION - 
+            <span> Ajouter un produit</span> </h1>
             <AdminProductForm onSubmit={handleAddProduct} />
         </div>
     );

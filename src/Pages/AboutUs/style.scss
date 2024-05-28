@@ -7,8 +7,9 @@
   
   
   h1 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 3rem;
     font-weight: 500;
-    font-size: 2.2rem;
     margin-bottom: 1.5rem;
     color: var(--sunset1);
     text-align: center;
@@ -16,6 +17,7 @@
   }
   
   .section-1 {
+    margin-bottom: 3em;
 
     p {
       font-size: 1.1rem;
@@ -37,9 +39,9 @@
     .card-about {
       width: 30%;
       height: auto;
-      background-color: rgba(157, 157, 157, 0.192);
+      background-color: rgba(157, 157, 157, 0.154);
+      box-shadow:  1px 1px 2px rgba(126, 126, 126, 0.613);
       border-radius: 0.5em;
-    
       -webkit-border-radius: 0.5em;
       -moz-border-radius: 0.5em;
       -ms-border-radius: 0.5em;
@@ -50,6 +52,7 @@
         align-items: center;
         justify-content: center;
         margin-bottom: 1rem;
+        box-shadow:  1px 1px 2px rgba(126, 126, 126, 0.613);
 
         img {
           width: 100%;
@@ -90,6 +93,7 @@
     display: flex;
     flex-direction: column;
     margin-left: 10%;
+    box-shadow:  1px 1px 2px rgba(126, 126, 126, 0.613);
 
     border-radius: 0.5em;
     -webkit-border-radius: 0.5em;
@@ -114,6 +118,9 @@
   }
 
   .section-4 {
+    h1 {
+      margin-bottom: 1.5em;
+    }
  
     .auto-grid {
       width: 95%;

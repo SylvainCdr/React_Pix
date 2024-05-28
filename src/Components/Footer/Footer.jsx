@@ -17,11 +17,7 @@ function Footer() {
         <h4>Plan du site </h4>
 
         <ul>
-          {/* <Link ><li>Accueil</li></Link>
-          <Link><li>Catalogue</li> </Link>
-          <Link><li>Notre expertise</li></Link>
-          <Link><li>A propos</li></Link>
-          <Link><li>Contact </li></Link> */}
+    
 
           <Link to="/">
             <li>Accueil</li>
@@ -35,11 +31,11 @@ function Footer() {
           <Link to="/a-propos">
             <li>Qui sommes-nous ?</li>
           </Link>
+          <Link to="/partenaires">
+            <li>Nos partenaires</li>
+          </Link>
           <Link to="/contact">
             <li>Contact</li>
-          </Link>
-          <Link to="/inscription">
-            <li>Se connecter</li>
           </Link>
         </ul>
       </div>

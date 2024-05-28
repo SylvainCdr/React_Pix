@@ -16,7 +16,7 @@ function Expertise() {
       {/* <h1>Des experts avant tout</h1> */}
 
       <div className="hero">
-        <div data-aos="flip-down" className="title">
+        <div data-aos="fade-right" className="title">
           <h1>
             Votre protection, notre engagement : <br />
             Une sécurité complète

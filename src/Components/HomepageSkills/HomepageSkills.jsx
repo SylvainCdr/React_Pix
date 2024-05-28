@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function HomepageSkills() {
   return (
     <div className="skills-container">
-      <div data-aos="zoom-in-down" className="skills-card">
+      <div data-aos="fade-down" className="skills-card">
         <img
           src="https://images.unsplash.com/photo-1603559062568-c1f32a56087d?q=80&w=2075&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt=""
@@ -19,7 +19,7 @@ export default function HomepageSkills() {
         <Link to="/notre-expertise#videoprotection">EN SAVOIR PLUS</Link>
       </div>
 
-      <div data-aos="zoom-in-up" className="skills-card">
+      <div data-aos="fade-down" className="skills-card">
         <img
           src="https://images.unsplash.com/photo-1708807472445-d33589e6b090?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt=""
@@ -33,7 +33,7 @@ export default function HomepageSkills() {
         <Link to="/notre-expertise#analyse">EN SAVOIR PLUS</Link>
       </div>
 
-      <div data-aos="zoom-in-down" className="skills-card">
+      <div data-aos="fade-down" className="skills-card">
         <img
           src="https://images.unsplash.com/photo-1585079374502-415f8516dcc3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt=""
@@ -47,7 +47,7 @@ export default function HomepageSkills() {
         <Link to="/notre-expertise#access">EN SAVOIR PLUS</Link>
       </div>
 
-      <div data-aos="zoom-in-down" className="skills-card">
+      <div data-aos="fade-down" className="skills-card">
         <img
           src="https://images.unsplash.com/photo-1667984390538-3dea7a3fe33d?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt=""
@@ -62,7 +62,7 @@ export default function HomepageSkills() {
         <Link to="/notre-expertise#cloud">EN SAVOIR PLUS</Link>
       </div>
 
-      <div data-aos="zoom-in-up" className="skills-card">
+      <div data-aos="fade-down" className="skills-card">
         <img
           src="https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt=""
@@ -77,7 +77,7 @@ export default function HomepageSkills() {
         <Link to="/notre-expertise#network">EN SAVOIR PLUS</Link>
       </div>
 
-      <div data-aos="zoom-in-down" className="skills-card">
+      <div data-aos="fade-down" className="skills-card">
         <img
           src="https://images.unsplash.com/photo-1581091870619-835cee86e759?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt=""

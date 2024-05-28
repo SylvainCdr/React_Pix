@@ -97,6 +97,7 @@ export default function AdminOrders() {
             <th>Montant</th>
             <th>Statut</th>
             <th>Actions</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -119,10 +120,12 @@ export default function AdminOrders() {
                 <button onClick={() => handleDetails(order._id)}>
                   Détails
                 </button>
+                </td>
+                <td>
                 <NavLink to={`/admin/commande/modification/${order._id}`}>
                   <button>Modifier</button>{" "}
-                </NavLink>
-              </td>
+                </NavLink></td>
+             
             </tr>
           ))}
         </tbody>
