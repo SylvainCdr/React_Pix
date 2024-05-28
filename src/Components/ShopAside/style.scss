@@ -1,6 +1,6 @@
 .shopAside-container {
   width: 15%;
-  background-color: rgba(200, 205, 207, 0.682);
+  background-color: rgba(199, 199, 199, 0.38);
   margin: 1em;
   padding: 0.5em;
   border-radius: 0.3rem;
@@ -30,7 +30,24 @@
   .color-filter,
   .infrarouge-filter,
   .distanceInfrarouge-filter,
-  .installationExt-filter {
+  .installationExt-filter,
+  .nbrePorts-filter,
+  .rackable-filter,
+  .manageable-filter,
+  .poe-filter, 
+  .poePlus-filter,
+  .poePlusPlus-filter,
+  .usb-filter,
+  .debitVpn-filter,
+  .maxTcp-filter,
+  .debitFirewall-filter,
+  .vitesse-filter,
+  .typeWifi-filter,
+  .antenne-filter,
+  .lan-filter,
+  .nebula-filter
+
+  {
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
@@ -66,7 +83,9 @@
     .color-filter,
     .infrarouge-filter,
     .distanceInfrarouge-filter,
-    .installationExt-filter {
+    .installationExt-filter,
+    .nbrePorts-filter
+    {
       label,
       span,
       li {

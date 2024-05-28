@@ -363,10 +363,10 @@
 @media screen and (max-width: 768px) {
   .product-container {
     margin-top: 5rem;
-    margin-left: 1.5rem;
     margin-right: 1.5rem;
-
+    
     .product-section1 {
+      padding-left: 2rem;
       grid-template-columns: 1fr;
       grid-gap: 3rem;
       height: auto;

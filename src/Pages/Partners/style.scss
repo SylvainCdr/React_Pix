@@ -17,15 +17,19 @@
       flex-direction: column;
 
       h1 {
-        font-size: 2rem;
-        font-weight: 500;
-        margin-bottom: 0.5em;
-        text-transform: uppercase;
+        
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 3rem;
         color: var(--sunset1);
+        font-weight: 500;
+        line-height: 3rem;
+        margin-bottom: 0.5em;
+        margin-top: 0.5em;
+
       }
 
       p {
-        font-size: 1rem;
+        font-size: 1.1rem;
         line-height: 1.4em;
         margin-bottom: 0.8em;
         text-align: justify;
@@ -104,11 +108,13 @@
       text-align: center;
 
 
+
       p {
         line-height: 1.4;
-        font-weight: 500;
+    
         text-align: justify;
         color: rgb(207, 207, 207);
+        margin-bottom: 0.7em;
       }
 
       a {
