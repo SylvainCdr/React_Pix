@@ -104,7 +104,7 @@
   }
   .forces {
     max-width: 1440px;
-    margin : 3rem auto;
+    margin : 6em auto;
     display: flex;
     justify-content: space-between;
 
@@ -133,7 +133,8 @@
   .slides-section {
     display: flex;
     max-width: 1440px;
-    margin : 3rem auto;
+     margin : 2em auto;
+    padding-top : 8rem;
 
     .slide {
       text-align: center;

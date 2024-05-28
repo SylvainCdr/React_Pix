@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.scss";
-import { NavLink, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useUser } from "../../Pages/appContext";
 import Swal from "sweetalert2";
 // import useCart from "../useCart";
@@ -55,41 +55,41 @@ function Header() {
       <nav className="header__nav">
         {/* ON affiche le logo situé dans assets et on le redirige vers la page d'accueil */}
         <div className="header__logo">
-          <NavLink to="/">
+          <Link to="/">
             <img src="/assets/logo-dark.svg" alt="logo" />
             {/* <p>
               Fournisseur de solutions <br />
               de sureté intelligentes
             </p> */}
-          </NavLink>
+          </Link>
         </div>
 
         <ul onClick={burgerToggle}>
           <li>
-            <NavLink to="/boutique" className="shop">Boutique</NavLink>
+            <Link to="/notre-expertise">Notre expertise</Link>
           </li>
           <li>
-            <NavLink to="/notre-expertise">Notre expertise</NavLink>
+            <Link to="/a-propos">Qui sommes-nous ?</Link>
           </li>
           <li>
-            <NavLink to="/a-propos">Qui sommes-nous ?</NavLink>
-          </li>
-          <li>
-            <NavLink to="/contact">Contact</NavLink>
+            <Link to="/contact">Contact</Link>
           </li>
           {!user && (
             <li>
-              <NavLink to="/inscription">Se Connecter</NavLink>
+              <Link to="/inscription">Se Connecter</Link>
             </li>
           )}
           {user?.role === "user" && (
             <li>
-              <NavLink to="/mon-compte">Mon compte</NavLink>
+              <Link to="/mon-compte">Mon compte</Link>
             </li>
           )}
+          <li>
+            <Link to="/boutique" className="shop">Boutique</Link>
+          </li>
           {user?.role === "admin" && (
             <li>
-              <NavLink to="/admin/dashboard">Administration</NavLink>
+              <Link to="/admin/dashboard">Administration</Link>
             </li>
           )}
           {user && (
@@ -109,9 +109,9 @@ function Header() {
 
         {user?.role === "user" && (
           <div className="cart">
-            <NavLink to="/panier">
+            <Link to="/panier">
               <i className="fa-solid fa-cart-shopping"></i>
-            </NavLink>
+            </Link>
           </div>
         )}
        

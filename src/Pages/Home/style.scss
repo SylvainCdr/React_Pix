@@ -19,7 +19,6 @@
       background-image: url("https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
       background-size: cover;
       background-position: center;
-
     }
 
     .section-1__intro {
@@ -67,100 +66,27 @@
   }
 
   .section-2 {
-    margin: 2em auto;
+    margin: 8em auto;
     max-width: 1440px;
 
-    .section-2__offer {
-      display: block;
-      width: 100%;
-
-      .title {
-      
-        position: relative;
-
-        h2 {
-
-        }
-      }
-
-      .description {
-        width: 100%;
-
+   
         p {
           line-height: 1.5;
-          font-size: 1.1rem;
-
+          font-size: 1.2rem;
         }
-      }
-    }
+      
+    
   }
 
-  .section-3 {
-    max-width: 1440px;
-   margin : 3rem auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4em;
-
-    .skills-card {
-      display: block;
-      width: 100%;
-      height: auto;
-      padding-bottom : 1rem;
-background-color: rgba(80, 80, 80, 0.185);
-      // background: linear-gradient(
-      //   150deg,
-      //   #73c8edd1 7%,
-      //   rgba(66, 164, 255, 0.743) 16%,
-      //   rgba(11, 97, 183, 0.449) 40%,
-      //   rgba(48, 48, 48, 0.664),
-      //   rgba(16, 16, 16, 0) 94%
-      // );
-      text-align: center;
-      border-radius: 0.5rem;
-      // box-shadow: 1px 1px 2px #424242;
-
-      img {
-        margin-top: 1rem;
-        width: 15%;
-      }
-
-      h3 {
-        font-size: 1.2rem;
-        font-weight: 500;
-        padding: 1rem;
-      }
-
-      p {
-        font-size: 1rem;
-        color: rgb(214, 214, 214);
-        padding: 0rem 1rem 1rem 1rem;
-        line-height: 1.3rem;
-      }
-      a {
-        text-decoration: none;
-        color: #009fe3;
-        font-size: 1.2rem;
-        font-weight: 600;
-        padding: 2rem;
-        transition: all 0.3s ease;
-        cursor: pointer;
-        &:hover {
-          color: #f9f9f9;
-        }
-      }
-    }
-  }
 
   .section-4 {
     display: flex;
     height: auto;
-    margin: 3em auto;
+    margin: 8em auto;
     max-width: 1440px;
 
     .section-4__text {
-      width: 40%;
-   
+      width: 60%;
 
       justify-items: center;
 
@@ -223,7 +149,7 @@ background-color: rgba(80, 80, 80, 0.185);
           40%,
           rgba(122, 122, 122, 0.106) 94%
         ),
-        url("https://images.unsplash.com/photo-1634848577969-bc28ee71ffc1?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        url("https://images.unsplash.com/photo-1581091877018-dac6a371d50f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
       background-size: cover;
       background-position: center;
 
@@ -288,6 +214,7 @@ background-color: rgba(80, 80, 80, 0.185);
     .section-4 {
       flex-direction: column;
       padding-left: 0rem;
+      margin : 7em auto;
       .section-4__text {
         width: 100%;
         padding-left: 0rem;
@@ -300,5 +227,4 @@ background-color: rgba(80, 80, 80, 0.185);
       }
     }
   }
- 
 }

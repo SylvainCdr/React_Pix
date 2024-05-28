@@ -2,14 +2,12 @@
 .counter_wrapper {
   width: 100%;
   background: #f9f9f900;
-  padding-top: 2em;
-  padding-bottom: 2em;
-
-
+  margin : 8em auto;
 }
+
 .counter_wrapper .count_box {
-  padding: 5em;
-  border: 2px solid var(--sunset1);
+  padding: 4em;
+  border: 1px solid var(--sunset5);
   text-align: center;
   border-radius: 0.5em;
   -webkit-border-radius: 0.5em;

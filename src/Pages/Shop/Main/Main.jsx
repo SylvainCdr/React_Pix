@@ -110,6 +110,7 @@ function Catalogue() {
       </div>
 
       <div className="products-carousel">
+        <h2>Découvrez nos produits Vivotek </h2>
         <ShopCarousel products={products} />
       </div>
     </div>

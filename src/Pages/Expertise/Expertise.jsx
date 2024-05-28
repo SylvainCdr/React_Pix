@@ -36,7 +36,7 @@ function Expertise() {
 
        
       </div>
-      <div className="forces">
+      <div className="forces" >
             <li>
             <i class="fa-regular fa-circle-check" data-aos="zoom-in"></i> Des outils électroniques de pointe, taillés sur mesure pour
               répondre à vos besoins.
@@ -60,7 +60,7 @@ function Expertise() {
           
         </div>
 
-      <div className="slides-section">
+      <div className="slides-section" id="videoprotection" >
         <div className="slide" data-aos="fade-up-right">
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-camera-visible.jpg"
@@ -70,15 +70,14 @@ function Expertise() {
           <h3>La caméra tout-terrain </h3>
           <p>
             De jour comme de nuit les caméras visibles sont exploitées pour de
-            la détection, de la reconaissance ainsi que pour de l'
-            <identification className="br"></identification>
+            la détection, de la reconaissance ainsi que pour de l'identification. <br />
             Pixecurity travaille avec les meilleurs fabricants pour cette
             typologie de caméras.
           </p>
         </div>
 
-        <div className="slide" data-aos="slide-up">
-          <h2>Vidéoprotection</h2>
+        <div className="slide" data-aos="slide-up" >
+          <h2>Vidéoprotection </h2>
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/videoprotection.png"
             alt=""
@@ -108,7 +107,7 @@ function Expertise() {
         </div>
       </div>
 
-      <div className="slides-section">
+      <div className="slides-section" id="analyse">
         <div className="slide" data-aos="fade-up-right">
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-analyse-temps-reel.jpg"
@@ -138,7 +137,7 @@ function Expertise() {
           </p>
         </div>
 
-        <div className="slide" data-aos="fade-up-left">
+        <div className="slide" data-aos="fade-up-left" >
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-business-intelligence.jpg"
             alt=""
@@ -152,7 +151,7 @@ function Expertise() {
         </div>
       </div>
 
-      <div className="slides-section">
+      <div className="slides-section" id="access">
         <div className="slide" data-aos="fade-up-right">
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-controle-acces.jpg"
@@ -197,7 +196,7 @@ function Expertise() {
         </div>
       </div>
 
-      <div className="slides-section">
+      <div className="slides-section" id="cloud">
         <div className="slide" data-aos="fade-up-right">
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-cloud.jpg"
@@ -245,7 +244,7 @@ function Expertise() {
         </div>
       </div>
 
-      <div className="slides-section">
+      <div className="slides-section" id="network">
         <div className="slide" data-aos="fade-up-right">
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-reseaux.jpg"
