@@ -42,7 +42,7 @@
   -moz-border-radius: 0rem 0rem 0.6rem 0.6rem;
   -ms-border-radius: 0rem 0rem 0.6rem 0.6rem;
   -o-border-radius: 0rem 0rem 0.6rem 0.6rem;
-  margin : 0 auto;
+  margin: 0 auto;
 
   .header__nav {
     margin: auto;
@@ -69,16 +69,10 @@
       font-family: "Barlow Condensed", sans-serif;
       text-transform: uppercase;
 
-
       li.active a {
-        
-           text-decoration: underline var(--sunset6);
-   
-
-            
-           
-   
-         }
+        border-bottom: 1px solid var(--sunset4);
+        padding-bottom: 0.5rem;
+      }
     }
 
     li,
@@ -101,7 +95,6 @@
           width: 2.5rem;
         }
       }
-
 
       .shop {
         background-color: var(--sunset1);
@@ -143,13 +136,6 @@
       scale: 1.1;
     }
   }
-
-
-
-
-
-
-  
 
   .header__burgerMenu {
     display: none;

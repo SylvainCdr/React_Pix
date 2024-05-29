@@ -7,7 +7,7 @@ export default function HomepageSkills() {
     <div className="skills-container">
       <div data-aos="fade-down" className="skills-card">
         <img
-          src="https://images.unsplash.com/photo-1603559062568-c1f32a56087d?q=80&w=2075&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src="https://t3.ftcdn.net/jpg/00/86/09/02/240_F_86090219_AgQYqc6e5WTemRT4gUBm9nWGfz3dmBan.jpg"
           alt=""
         />
         <h3>Vidéoprotection</h3>
@@ -23,7 +23,7 @@ export default function HomepageSkills() {
 
       <div data-aos="fade-down" className="skills-card">
         <img
-          src="https://images.unsplash.com/photo-1708807472445-d33589e6b090?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src="https://as2.ftcdn.net/v2/jpg/06/23/47/61/1000_F_623476120_sxpUbL24Q2bltwWFyFnW2I36C04iZijQ.jpg"
           alt=""
         />
         <h3>Analyse d'image</h3>
@@ -37,7 +37,7 @@ export default function HomepageSkills() {
 
       <div data-aos="fade-down" className="skills-card">
         <img
-          src="https://images.unsplash.com/photo-1585079374502-415f8516dcc3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src="https://as1.ftcdn.net/v2/jpg/03/98/81/82/1000_F_398818257_AeMd0j9behzSLR4VHU8i7u2eEGqjoaao.jpg"
           alt=""
         />
         <h3>Contrôle d'accès</h3>
@@ -51,7 +51,7 @@ export default function HomepageSkills() {
 
       <div data-aos="fade-down" className="skills-card">
         <img
-          src="https://images.unsplash.com/photo-1667984390538-3dea7a3fe33d?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src="https://as1.ftcdn.net/v2/jpg/05/29/73/10/1000_F_529731004_UaoYV7jskuWv59UBAW379oNlvB7eFSXQ.jpg"
           alt=""
         />
         <h3>Cloud et objets connectés</h3>
@@ -66,7 +66,7 @@ export default function HomepageSkills() {
 
       <div data-aos="fade-down" className="skills-card">
         <img
-          src="https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src="https://as2.ftcdn.net/v2/jpg/07/21/03/59/1000_F_721035927_13iHfiOZwRdje1j2DhAKmNJXHysZI5B2.jpg"
           alt=""
         />
         <h3>Réseaux SI / Stockage</h3>
@@ -81,7 +81,7 @@ export default function HomepageSkills() {
 
       <div data-aos="fade-down" className="skills-card">
         <img
-          src="https://images.unsplash.com/photo-1581091870619-835cee86e759?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src="https://as1.ftcdn.net/v2/jpg/04/37/45/56/1000_F_437455634_qQLUUFaON7O4I3PATKsFsBIhfrHAf6BM.jpg"
           alt=""
         />
         <h3>Ingénierie</h3>

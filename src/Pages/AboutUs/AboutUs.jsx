@@ -19,7 +19,7 @@ export default function AboutUs() {
      data-aos-duration="1500">
           <div className="top">
             <img
-              src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src="https://as2.ftcdn.net/v2/jpg/05/73/57/23/1000_F_573572330_EFcB1C8z5wcthD2H8MjUKFVmBrN9wVdT.jpg"
               alt=""
             />
           </div>
