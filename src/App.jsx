@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Template from "./Components/Template/Template";
+import { Navigate } from "react-router-dom";
 
 import Home from "./Pages/Home/Home";
 import AboutUs from "./Pages/AboutUs/AboutUs";
@@ -37,6 +38,10 @@ function App() {
   // on crée un state user et setUser pour stocker l'utilisateur en local storage
   const [user, setUser] = useLocalStorage("user", null);
 
+  const AdminRoute = ({ isAdmin, ...rest }) => (
+    isAdmin ? <Route {...rest} /> : <Navigate to="/" />
+  );
+
   return (
     // <Provider> est un composant qui enveloppe toute l'application pour fournir un contexte partagé, ici l'utilisateur connecté
     <Provider value={{ user, setUser }}>
@@ -54,14 +59,20 @@ function App() {
               <Route path="/connexion" element={<Login />} />
               <Route path="/inscription" element={<Register />} />
               <Route path="/reset-password/:token" element={<ResetPassword />} />
-              <Route path="/admin/dashboard" element={<Dashboard />} />
-              <Route path="/admin/produits" element={<AdminProducts />} />
-              <Route path="/admin/produits/ajout" element={<AddProduct />} />
-              <Route path="/admin/produits/modification/:id" element={<EditProduct />} />
-              <Route path="/admin/utilisateurs" element={<AdminUsers />} />
-              <Route path="/admin/utilisateurs/modification/:id" element={<EditUser />} />
-              <Route path="/admin/commandes" element={<AdminOrders />} />
-              <Route path="/admin/commande/modification/:id" element={<EditOrders />} />
+              
+           {/* Admin routes sécurisées */}
+           {user && user.role === 'admin' && (
+              <>
+                <Route path="/admin/dashboard" element={<Dashboard />} />
+                <Route path="/admin/produits" element={<AdminProducts />} />
+                <Route path="/admin/produits/ajout" element={<AddProduct />} />
+                <Route path="/admin/produits/modification/:id" element={<EditProduct />} />
+                <Route path="/admin/utilisateurs" element={<AdminUsers />} />
+                <Route path="/admin/utilisateurs/modification/:id" element={<EditUser />} />
+                <Route path="/admin/commandes" element={<AdminOrders />} />
+                <Route path="/admin/commande/modification/:id" element={<EditOrders />} />
+              </>
+            )}
               <Route path="/boutique" element={<Catalogue />} />
               <Route path="/boutique/:category" element={<Products />} />
               <Route path="/boutique/:category/:subcategory" element={<Products />} />

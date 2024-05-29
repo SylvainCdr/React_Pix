@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./style.scss";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useUser } from "../../Pages/appContext";
 import Swal from "sweetalert2";
-// import useCart from "../useCart";
 import { useCartContext } from "../../Pages/appContext";
 
 function Header() {
+
   const user = useUser();
   console.log(user);
 
-  const { cart } = useCartContext();
-  const itemsCount = cart.length;
 
   // Creation fonction menu Burger
   let isBurgerOpen = false;
@@ -50,45 +48,43 @@ function Header() {
     }, 2000);
   };
 
+  const location = useLocation();
+
+
   return (
     <div className="header">
       <nav className="header__nav">
-        {/* ON affiche le logo situé dans assets et on le redirige vers la page d'accueil */}
         <div className="header__logo">
           <Link to="/">
             <img src="/assets/logo-dark.svg" alt="logo" />
-            {/* <p>
-              Fournisseur de solutions <br />
-              de sureté intelligentes
-            </p> */}
           </Link>
         </div>
 
-        <ul onClick={burgerToggle}>
-          <li>
+        <ul>
+          <li className={location.pathname === "/boutique" ? "active" : ""}>
             <Link to="/boutique" className="shop">Boutique</Link>
           </li>
-          <li>
+          <li className={location.pathname === "/notre-expertise" ? "active" : ""}>
             <Link to="/notre-expertise">Notre expertise</Link>
           </li>
-          <li>
+          <li className={location.pathname === "/a-propos" ? "active" : ""}>
             <Link to="/a-propos">Qui sommes-nous ?</Link>
           </li>
-          <li>
+          <li className={location.pathname === "/contact" ? "active" : ""}>
             <Link to="/contact">Contact</Link>
           </li>
           {!user && (
-            <li>
+            <li className={location.pathname === "/inscription" || location.pathname === "/connexion" ? "active" : ""}>
               <Link to="/inscription">Se Connecter</Link>
             </li>
           )}
           {user?.role === "user" && (
-            <li>
+            <li className={location.pathname === "/mon-compte" ? "active" : ""}>
               <Link to="/mon-compte">Mon compte</Link>
             </li>
           )}
           {user?.role === "admin" && (
-            <li>
+            <li className={location.pathname === "/admin/dashboard" ? "active" : ""} >
               <Link to="/admin/dashboard">Administration</Link>
             </li>
           )}
@@ -99,12 +95,9 @@ function Header() {
               </a>
             </li>
           )}
-      
-          
         </ul>
-        <div className="cart-burgerMenu">
-        </div>
-        
+
+        <div className="cart-burgerMenu"></div>
         <div className="header__burgerMenu" onClick={burgerToggle}></div>
 
         {user?.role === "user" && (
@@ -114,7 +107,6 @@ function Header() {
             </Link>
           </div>
         )}
-       
       </nav>
     </div>
   );

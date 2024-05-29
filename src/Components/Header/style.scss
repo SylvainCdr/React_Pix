@@ -68,6 +68,17 @@
       font-weight: 500;
       font-family: "Barlow Condensed", sans-serif;
       text-transform: uppercase;
+
+
+      li.active a {
+        
+           text-decoration: underline var(--sunset6);
+   
+
+            
+           
+   
+         }
     }
 
     li,
@@ -90,6 +101,8 @@
           width: 2.5rem;
         }
       }
+
+
       .shop {
         background-color: var(--sunset1);
         padding: 0.5em 0.6em;
@@ -130,6 +143,13 @@
       scale: 1.1;
     }
   }
+
+
+
+
+
+
+  
 
   .header__burgerMenu {
     display: none;
