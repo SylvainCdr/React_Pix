@@ -22,8 +22,8 @@
       h2 {
         padding: 1.9rem;
         text-align: center;
-        font-size: 1.3em;
-        font-weight: 600;
+        font-size: 2em;
+        font-family: 'Barlow Condensed', sans-serif;
         border-bottom: 1px solid rgb(87, 87, 87);
         color : var(--sunset1);
       }
@@ -35,7 +35,7 @@
         font-size: large;
         cursor: pointer;
         transition: 0.3s;
-        margin-top: 2rem;
+        margin-top: 5rem;
 
         &:hover {
           background-color: rgb(94, 91, 91);
@@ -58,12 +58,15 @@
     -o-border-radius: 0rem 0.5rem 0.5rem 0rem;
 
     h3 {
-      color: white;
-      padding: 1.8rem;
+      padding: 2.1rem;
       text-align: center;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       border-bottom: 1px solid rgb(87, 87, 87);
-      color : var(--sunset1);
+      color : var(--sunset3);
+
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+
     }
 
     .user-infos {

@@ -16,7 +16,9 @@ export default function HomepageSkills() {
           l'experience utilisateur sans être une usine à gaz. Notre savoir faire
           nous permet de vous proposer les meilleurs produits.{" "}
         </p>
-        <Link to="/notre-expertise#videoprotection">EN SAVOIR PLUS</Link>
+        <div className="bottom">
+          <Link to="/notre-expertise#videoprotection">EN SAVOIR PLUS <i className="fa-solid fa-arrow-right"></i></Link>
+        </div>
       </div>
 
       <div data-aos="fade-down" className="skills-card">
@@ -28,10 +30,10 @@ export default function HomepageSkills() {
         <p>
           Protections des biens et des personnes, levée de doutes et bien plus
           encore... Pixecurity sélectionne pour vous les meilleures solutions du
-          marché : Caméras visibles, thermiques, mobiles, fish-eye...{" "}
-        </p>
-        <Link to="/notre-expertise#analyse">EN SAVOIR PLUS</Link>
-      </div>
+          marché : Caméras visibles, thermiques, mobiles, fish-eye...
+        </p><div className="bottom">
+        <Link to="/notre-expertise#analyse">EN SAVOIR PLUS <i class="fa-solid fa-arrow-right"></i></Link>
+      </div></div>
 
       <div data-aos="fade-down" className="skills-card">
         <img
@@ -43,9 +45,9 @@ export default function HomepageSkills() {
           Suivi, gestion, traçabilité, protection des personnes. Pixecurity
           complète son offre pour vous proposer une solution globale avec les
           leaders du marché.
-        </p>
-        <Link to="/notre-expertise#access">EN SAVOIR PLUS</Link>
-      </div>
+        </p><div className="bottom">
+        <Link to="/notre-expertise#access">EN SAVOIR PLUS <i class="fa-solid fa-arrow-right"></i></Link>
+      </div></div>
 
       <div data-aos="fade-down" className="skills-card">
         <img
@@ -58,9 +60,9 @@ export default function HomepageSkills() {
           exploitable depuis n'importe quelle interface utilisateur. Pixecurity
           vous propose des solutions innovantes et intélligentes permettant de
           les traiter.
-        </p>
-        <Link to="/notre-expertise#cloud">EN SAVOIR PLUS</Link>
-      </div>
+        </p> <div className="bottom">
+        <Link to="/notre-expertise#cloud">EN SAVOIR PLUS <i class="fa-solid fa-arrow-right"></i></Link>
+      </div> </div>
 
       <div data-aos="fade-down" className="skills-card">
         <img
@@ -73,9 +75,9 @@ export default function HomepageSkills() {
           par une expertise métier. Les ingénieurs Pixecurity vous assurent un
           dimensionnement optimal des réseaux, du stockage, des ressources
           informatiques.
-        </p>
-        <Link to="/notre-expertise#network">EN SAVOIR PLUS</Link>
-      </div>
+        </p> <div className="bottom">
+        <Link to="/notre-expertise#network">EN SAVOIR PLUS <i class="fa-solid fa-arrow-right"></i></Link>
+      </div> </div>
 
       <div data-aos="fade-down" className="skills-card">
         <img
@@ -87,9 +89,9 @@ export default function HomepageSkills() {
           Notre équipe d'ingénieurs geeks vous propose un accompagnement Niveau
           2-Niveau 3 sur vos systèmes de sureté. Avant vente, suivi de projet,
           mise en service, maintenance, livrables documentaires...
-        </p>
+        </p> <div className="bottom">
         {/* <Link to="/notre-expertise#engineering">EN SAVOIR PLUS</Link> */}
-      </div>
+      </div> </div>
     </div>
   );
 }

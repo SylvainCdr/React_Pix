@@ -4,8 +4,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import useFavorites from "../../../Components/useFavorites";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
 import useCart from "../../../Components/useCart";
-import AOS from "aos";
 import DeliveryTimeline from "../../../Components/DeliveryTimeline/DeliveryTimeline";
+import AOS from "aos";
 
 export default function UserAccount() {
   const navigate = useNavigate();
@@ -144,7 +144,7 @@ export default function UserAccount() {
                 <p>Téléphone : {userData.phone}</p>
               </div>
             </div>
-            <NavLink to="/edit-account">
+            <NavLink to="/mon-compte/modification">
               <button>Modifier mes informations</button>
             </NavLink>
           </div>

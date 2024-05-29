@@ -18,10 +18,11 @@ import Catalogue from "./Pages/Shop/Main/Main";
 import Products from "./Pages/Shop/Products/Products";
 import Product from "./Pages/Shop/Product/Product";
 import EditUser from "./Pages/Admin/EditUser/EditUser";
-import UserAccount from "./Pages/Shop/UserAccount/UserAccount";
+import UserAccount from "./Pages/User/UserAccount/UserAccount";
+import InfosUpdate from "./Pages/User/InfosUpdate/InfosUpdate";
 import Cart from "./Pages/Shop/Cart/Cart";
 import Order from "./Pages/Shop/Order/Order";
-import OrderDetails from "./Pages/Shop/OrderDetails/OrderDetails";
+import OrderDetails from "./Pages/User/OrderDetails/OrderDetails";
 import AdminOrders from "./Pages/Admin/AdminOrders/AdminOrders";
 import EditOrders from "./Pages/Admin/EditOrders/EditOrders";
 import Rgpd from "./Pages/Authentification/Rgpd/Rgpd";
@@ -68,6 +69,7 @@ function App() {
               <Route path="/panier/commande" element={<Order />} />
               <Route path="/mon-compte" element={<UserAccount />} />
               <Route path="/mon-compte/commande/:id" element={<OrderDetails />} />
+              <Route path="/mon-compte/modification" element={<InfosUpdate />} />
               <Route path="/rgpd" element={<Rgpd />} />
               <Route path="/cgv" element={<Cgv />} />
               <Route path="/partenaires" element={<Partners />} />
