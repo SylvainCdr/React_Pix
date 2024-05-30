@@ -5,7 +5,8 @@ import ShopNav from "../../../Components/ShopNav/ShopNav";
 import ShopSearch from "../../../Components/ShopSearch/ShopSearch";
 import Aos from "aos";
 import "aos/dist/aos.css"; // Import des styles d'AOS
-import ShopCarousel from "../../../Components/ShopCarousel/ShopCarousel";
+import ShopProductsCarousel from "../../../Components/ShopProductsCarousel/ShopProductsCarousel";
+import ShopHeroCarousel from "../../../Components/ShopHeroCarousel/ShopHeroCarousel";
 
 function Catalogue() {
   const [searchResults, setSearchResults] = useState([]);
@@ -53,7 +54,9 @@ function Catalogue() {
       <ShopNav />
       <ShopSearch setSearchResults={setSearchResults} />
 
-      {searchResults.length === 0 && (
+
+
+      {/* {searchResults.length === 0 && (
         <div className="shop-hero">
           <img  src="assets/heroShop.png" alt="" />
           <div data-aos="fade-right" className="hero-title">
@@ -68,7 +71,11 @@ function Catalogue() {
             </Link>
           </div>
         </div>
-      )}
+      )} */}
+
+<div className="shop-hero-carousel">
+      <ShopHeroCarousel />
+      </div>
 
       <div data-aos="fade-up" className="shop-categories">
         <Link to="/boutique/Caméras">
@@ -113,7 +120,7 @@ function Catalogue() {
 
       <div className="products-carousel">
         <h2>Découvrez nos produits Vivotek </h2>
-        <ShopCarousel carouselProducts={carouselProducts} />
+        <ShopProductsCarousel carouselProducts={carouselProducts} />
       </div>
     </div>
   );

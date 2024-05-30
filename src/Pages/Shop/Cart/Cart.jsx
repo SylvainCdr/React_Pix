@@ -3,7 +3,7 @@ import "./style.scss";
 import useCart from "../../../Components/useCart";
 import { NavLink, useNavigate } from "react-router-dom";
 import AOS from "aos";
-import ShopCarousel from "../../../Components/ShopCarousel/ShopCarousel";
+import ShopProductsCarousel from "../../../Components/ShopProductsCarousel/ShopProductsCarousel";
 
 export default function Cart() {
   const { fetchCart, editQuantity, removeFromCart, cart } = useCart();
@@ -69,7 +69,7 @@ export default function Cart() {
           <p>Vous n'avez pas encore de produits dans votre panier.</p>
           <NavLink to="/boutique"> <button>Visiter la boutique</button></NavLink>
 
-          <ShopCarousel carouselProducts={carouselProducts} />
+          <ShopProductsCarousel carouselProducts={carouselProducts} />
         </div>
       </div>
     );

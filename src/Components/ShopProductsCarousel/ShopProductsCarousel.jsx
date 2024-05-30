@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style.scss";
 
-const ShopCarousel = ({ carouselProducts }) => {
+const ShopProductsCarousel = ({ carouselProducts }) => {
   const settings = {
     // dots: true,
     infinite: true,
@@ -93,4 +93,4 @@ const ShopCarousel = ({ carouselProducts }) => {
   );
 };
 
-export default ShopCarousel;
+export default ShopProductsCarousel;
