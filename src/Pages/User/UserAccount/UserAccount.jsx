@@ -7,6 +7,7 @@ import useCart from "../../../Components/useCart";
 import DeliveryTimeline from "../../../Components/DeliveryTimeline/DeliveryTimeline";
 import AOS from "aos";
 
+
 export default function UserAccount() {
   const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
@@ -14,6 +15,7 @@ export default function UserAccount() {
   const [products, setProducts] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [orders, setOrders] = useState([]);
+
 
   const { getFavorites, removeFromFavorites, checkFavorite, addToFavorites } =
     useFavorites();
@@ -63,6 +65,8 @@ export default function UserAccount() {
     }
   }, [userData]);
 
+
+
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
@@ -83,11 +87,16 @@ export default function UserAccount() {
     return null; // Ou affichez un message de chargement si nécessaire
   }
 
+
+
+
+
+
   return (
     <div className="user-account-container">
       <div className="user-menu">
         <aside className="user-account-nav">
-          <h2>MENU</h2>
+          <h2>Mon compte</h2>
           <ul>
             <NavLink
               className="active"
@@ -147,7 +156,7 @@ export default function UserAccount() {
               </div>
             </div>
             <NavLink to="/mon-compte/modification">
-              <button>Modifier mes informations</button>
+              <button>Modifier</button>
             </NavLink>
           </div>
         )}
@@ -175,7 +184,13 @@ export default function UserAccount() {
                   );
                 })
               ) : (
+                <div className="no-favorites-orders-msg">
                 <p>Vous n'avez pas encore de produits favoris.</p>
+                <NavLink to="/boutique"> <button>Visiter la boutique</button></NavLink>
+                </div>
+
+                
+
               )}
             </div>
           </div>
@@ -234,7 +249,10 @@ export default function UserAccount() {
                 </div>
               ))
             ) : (
+              <div className="no-favorites-orders-msg">
               <p>Vous n'avez pas encore de commandes.</p>
+              <NavLink to="/boutique"> <button>Visiter la boutique</button></NavLink>
+              </div>
             )}
           </div>
         )}

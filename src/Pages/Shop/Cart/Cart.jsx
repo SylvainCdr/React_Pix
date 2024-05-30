@@ -3,6 +3,7 @@ import "./style.scss";
 import useCart from "../../../Components/useCart";
 import { NavLink, useNavigate } from "react-router-dom";
 import AOS from "aos";
+import ShopCarousel from "../../../Components/ShopCarousel/ShopCarousel";
 
 export default function Cart() {
   const { fetchCart, editQuantity, removeFromCart, cart } = useCart();
@@ -40,6 +41,24 @@ export default function Cart() {
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
+ 
+  const [carouselProducts, setCarouselProducts] = useState([]);
+  const [error, setError] = useState(null);
+
+
+  // useEffect pour récupérer 10 produits random 
+  useEffect(() => {
+    fetch("http://localhost:3001/products")
+      .then((res) => res.json())
+      .then((data) => {
+        const randomProducts = data.sort(() => 0.5 - Math.random()).slice(0, 10);
+        setCarouselProducts(randomProducts);
+      })
+      .catch((err) => {
+        setError("Erreur lors du chargement des produits.");
+        console.error(err);
+      });
+  }, []);
 
   // Condition pour afficher un message si le panier est vide
   if (cart.length === 0) {
@@ -49,6 +68,8 @@ export default function Cart() {
         <div className="empty-cart-message">
           <p>Vous n'avez pas encore de produits dans votre panier.</p>
           <NavLink to="/boutique"> <button>Visiter la boutique</button></NavLink>
+
+          <ShopCarousel carouselProducts={carouselProducts} />
         </div>
       </div>
     );

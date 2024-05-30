@@ -47,7 +47,7 @@
       }
     }
   }
-
+  
   .user-dashboard {
     width: 80%;
     background-color: rgba(107, 106, 106, 0.219);
@@ -56,17 +56,69 @@
     -moz-border-radius: 0rem 0.5rem 0.5rem 0rem;
     -ms-border-radius: 0rem 0.5rem 0.5rem 0rem;
     -o-border-radius: 0rem 0.5rem 0.5rem 0rem;
-
+    
     h3 {
       padding: 2.1rem;
       text-align: center;
       font-size: 1.6rem;
       border-bottom: 1px solid rgb(87, 87, 87);
       color : var(--sunset3);
-
+  
       font-family: 'Barlow Condensed', sans-serif;
       text-transform: uppercase;
+  
+    }
 
+    .no-favorites-orders-msg {
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      p {
+        font-size: 1.1rem;
+        margin-top: 2em;}
+     
+      a {
+        margin-top : 2rem;
+        text-decoration: none;
+        text-align: center;
+        button {
+          padding: 10px 40px;
+          text-align: center;
+          text-transform: uppercase;
+          transition: 0.5s;
+          background-size: 200% auto;
+          color: white;
+          border-radius: 10px;
+          display: block;
+          border: 0px;
+          font-weight: 500;
+          box-shadow: 0px 0px 14px -7px #121e37;
+          background-image: linear-gradient(
+            45deg,
+            #0651bb 0%,
+            #009fe3 51%,
+            #00438f 100%
+          );
+          // background-color: var(--sunset1);
+          cursor: pointer;
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+  
+          &:hover {
+            background-position: right center;
+            /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+  
+          &:active {
+            transform: scale(0.95);
+          }
+        }
+      }
     }
 
     .user-infos {
@@ -77,8 +129,10 @@
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-        padding: 1rem;
+        padding: 5em 1em;
         margin: 1rem;
+        background-color: white;
+        border-radius: 0.5rem;
 
         .perso,
         .address,
@@ -90,16 +144,22 @@
           padding-right: 1rem;
 
           h4 {
-            color: var(--sunset1);
-            padding-bottom: 2rem;
-            padding-top: 2rem;
-            font-size: 1.2rem;
-            font-weight: 600;
+            background-color: var(--sunset1);
+            padding: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            font-weight: 400;
             text-transform: uppercase;
-          }
+            border-radius:0.5rem;
+            -webkit-border-radius:0.5rem;
+            -moz-border-radius:0.5rem;
+            -ms-border-radius:0.5rem;
+            -o-border-radius:0.5rem;
+}
 
           p {
             margin-top: 1.7rem;
+            color : black;
           }
         }
 
@@ -111,31 +171,31 @@
       a {
         text-decoration: none;
         color: white;
-        margin: auto;
-        width: 30%;
+        margin-left: 36% ;
+        width: 100%;
 
         button {
-          margin-top: 5rem;
+          margin-top: 1.5rem;
           text-align: center;
-          padding: 15px 30px;
+          padding: 15px 120px;
           transition: 0.5s;
           background-size: 200% auto;
           color: white;
-          border-radius: 10px;
           display: flex;
+          text-transform: uppercase;
           border: 0px;
           font-weight: 500;
           box-shadow: 0px 0px 14px -7px #121e37;
-          background-image: linear-gradient(
-            45deg,
-            #0651bb 0%,
-            #009fe3 51%,
-            #00438f 100%
-          );
+          background-image: linear-gradient(            45deg,            #0651bb 0%,            #009fe3 51%,            #00438f 100%          );
           cursor: pointer;
           user-select: none;
           -webkit-user-select: none;
           touch-action: manipulation;
+          border-radius: 0.5rem;
+          -webkit-border-radius: 0.5rem;
+          -moz-border-radius: 0.5rem;
+          -ms-border-radius: 0.5rem;
+          -o-border-radius: 0.5rem;
 
           &:hover {
             background-position: right center;
@@ -157,6 +217,8 @@
         grid-template-rows: 1fr;
         gap: 1rem;
         padding: 1rem;
+
+       
 
         .product-card {
           display: flex;
@@ -187,37 +249,40 @@
     }
 
     .user-orders {
-      width: 100%;
+      margin: 1rem;
+ 
+    
 
-      .order {
+
+      .order
+{
+        width: 100%;
+ 
+    
+
         table {
           width: 100%;
-          border-collapse: collapse;
-          margin-top: 2rem;
-          vertical-align: baseline;
-          background: linear-gradient(
-            -45deg,
-            rgba(110, 110, 110, 0.017) 0%,
-            rgb(62, 62, 62) 50%,
-            rgba(15, 15, 15, 0.295) 100%
-          );
+          margin: auto;
+          background-color: white;
+          border-radius: 0.5em ;
+          -webkit-border-radius: 0.5em ;
+          -moz-border-radius: 0.5em ;
+          -ms-border-radius: 0.5em ;
+          -o-border-radius: 0.5em ;
 
           th {
-            background: linear-gradient(
-              -45deg,
-              rgba(110, 110, 110, 0.017) 0%,
-              rgb(62, 62, 62) 50%,
-              rgba(15, 15, 15, 0.295) 100%
-            );
-
+          
+            background-color: var(--sunset1);
             color: white;
             padding: 1rem;
             border: 1px solid rgb(98, 98, 98);
+            
           }
 
           td {
             padding: 1rem;
             border: 1px solid rgb(98, 98, 98);
+            color : black;
 
             p {
               margin: 0;
@@ -234,8 +299,9 @@
                 color: white;
                 border-radius: 10px;
                 display: flex;
+                text-transform: uppercase;
                 border: 0px;
-                font-weight: 600;
+                font-weight: 500;
                 box-shadow: 0px 0px 14px -7px #121e37;
                 background-image: linear-gradient(
                   45deg,

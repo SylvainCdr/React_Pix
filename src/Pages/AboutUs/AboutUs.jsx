@@ -62,8 +62,8 @@ export default function AboutUs() {
       <div className="section-3">
        
           <h3>
-            "Notre but ? Répondre aux exigences et anticiper les besoins de nos
-            clients. <br />Simplifier la compréhension de la sécurité ”
+           " Notre but ? Répondre aux exigences et anticiper les besoins de nos
+            clients. <br />Simplifier la compréhension de la sécurité "
           </h3>
           <p>Yann Duchet, CEO Pixecurity</p>
         

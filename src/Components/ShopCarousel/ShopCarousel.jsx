@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style.scss";
 
-const ShopCarousel = ({ products }) => {
+const ShopCarousel = ({ carouselProducts }) => {
   const settings = {
     // dots: true,
     infinite: true,
@@ -61,19 +61,19 @@ const ShopCarousel = ({ products }) => {
   return (
     <div className="shopCarousel-container">
       <Slider {...settings}>
-        {products.map((product, index) => {
-          const discountedPrice = calculateDiscount(product.price, discount);
+        {carouselProducts.map((carouselProduct, index) => {
+          const discountedPrice = calculateDiscount(carouselProduct.price, discount);
           return (
             <div key={index} className="product-item">
-              <img src={product.image} alt={product.name} />
-              <Link to={`./produit/${product._id}`}>
-                <h3>{product.name}</h3>
+              <img src={carouselProduct.image} alt={carouselProduct.name} />
+              <Link to={`./produit/${carouselProduct._id}`}>
+                <h3>{carouselProduct.name}</h3>
               </Link>
               <div className="price">
                 {userId ? (
                   <p className="prices">
                     <span className="original-price">
-                      {product.price.toFixed(2)} €
+                      {carouselProduct.price.toFixed(2)} €
                     </span>
                     <span className="discounted-price">
                       {discountedPrice.toFixed(2)} € <span> HT</span>
@@ -81,7 +81,7 @@ const ShopCarousel = ({ products }) => {
                   </p>
                 ) : (
                   <p className="price">
-                    {product.price.toFixed(2)} € <span>HT</span>
+                    {carouselProduct.price.toFixed(2)} € <span>HT</span>
                   </p>
                 )}
               </div>

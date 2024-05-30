@@ -21,7 +21,10 @@
       rgba(59, 97, 167, 0.192),
       60%,
       rgba(122, 122, 122, 0.055) 94%
-    ),url("../../../public/assets/us.jpeg");
+    ),
+    url("../../../public/assets/us.jpeg");
+    // url("https://as2.ftcdn.net/v2/jpg/04/99/27/49/1000_F_499274941_tQTJ92Wf8vAtvYGOGhgx0YuqYqGRV2Zl.jpg");
+
 
 
     background-repeat: no-repeat;
@@ -42,7 +45,16 @@
         color: var(--sunset1);
         font-weight: 500;
         line-height: 3rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      h2 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2rem;
+        color: #fff;
+        font-weight: 400;
+        line-height: 2rem;
+        margin-bottom: 1.5rem;
       }
 
       .description {

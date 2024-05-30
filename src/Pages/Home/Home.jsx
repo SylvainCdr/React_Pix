@@ -33,7 +33,7 @@ export default function Home() {
             <strong>solutions</strong> sur-mesure, repensant la sécurité selon
             vos besoins.
           </p>
-          <div data-aos="flip-down" className="icons">
+          <div data-aos="zoom-in" className="icons">
             <img src="../assets/icons/ico3.png" alt="" />
             <img src="../assets/icons/ico2.png" alt="" />
             <img src="../assets/icons/ico1.png" alt="" />

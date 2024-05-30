@@ -7,8 +7,8 @@ export default function InfosUpdate() {
     firstName: "",
     lastName: "",
     email: "",
-    company: "non renseigné",
-    phone: "non renseigné",
+    company: "",
+    phone: "",
     billingAddress: {
       street: "",
       city: "",
@@ -51,38 +51,45 @@ export default function InfosUpdate() {
 
   const validateForm = () => {
     const newErrors = {};
-
+  
     const namePattern = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]{1,30}$/;
-    const companyPattern = /^[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]{1,30}$/;
-    const zipPattern = /^[0-9]{1,6}$/;
-    const addressPattern = /^.{1,60}$/;
-    const phonePattern = /^[0-9+]{1,30}$/;
-
+    const companyPattern = /^[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]{0,30}$/; // Company can be empty
+    const zipPattern = /^[0-9]{0,6}$/; // Zip code can be empty
+    const addressPattern = /^.{0,60}$/; // Address can be empty
+    const phonePattern = /^[0-9+]{0,20}$/; // Phone can be empty
+  
     if (!user.firstName.trim() || !namePattern.test(user.firstName)) {
       newErrors.firstName = "Le prénom doit comporter uniquement des lettres (max 30 caractères)";
     }
+    // Valider le nom
     if (!user.lastName.trim() || !namePattern.test(user.lastName)) {
       newErrors.lastName = "Le nom doit comporter uniquement des lettres (max 30 caractères)";
     }
+    // Valider l'entreprise
     if (!companyPattern.test(user.company)) {
       newErrors.company = "L'entreprise doit comporter des lettres et/ou des chiffres (max 30 caractères)";
     }
+    // Valider le code postal
     if (!zipPattern.test(user.billingAddress.zip)) {
       newErrors.zip = "Le code postal doit comporter uniquement des chiffres (max 6 caractères)";
     }
+    // Valider l'adresse
     if (!addressPattern.test(user.billingAddress.street)) {
       newErrors.street = "L'adresse ne doit pas dépasser 60 caractères";
     }
-    if (!namePattern.test(user.billingAddress.city)) {
+    // Valider la ville si elle n'est pas vide
+    if (user.billingAddress.city && !namePattern.test(user.billingAddress.city)) {
       newErrors.city = "La ville doit comporter uniquement des lettres (max 30 caractères)";
     }
-    if (!namePattern.test(user.billingAddress.country)) {
+    // Valider le pays si il n'est pas vide
+    if (user.billingAddress.country && !namePattern.test(user.billingAddress.country)) {
       newErrors.country = "Le pays doit comporter uniquement des lettres (max 30 caractères)";
     }
+    // Valider le téléphone
     if (!phonePattern.test(user.phone)) {
-      newErrors.phone = "Le téléphone doit comporter des chiffres et/ou le symbole + (max 30 caractères)";
+      newErrors.phone = "Le téléphone doit comporter des chiffres et/ou le symbole + (max 20 caractères)";
     }
-
+  
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };

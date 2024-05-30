@@ -9,13 +9,14 @@ import ShopCarousel from "../../../Components/ShopCarousel/ShopCarousel";
 
 function Catalogue() {
   const [searchResults, setSearchResults] = useState([]);
-  const [products, setProducts] = useState([]);
+  const [carouselProducts, setCarouselProducts] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     Aos.init({ duration: 1500 });
   }, []);
 
+  // useEffect pour récupérer les produits de la marque Vivotek
   useEffect(() => {
     fetch("http://localhost:3001/products")
       .then((res) => res.json())
@@ -23,7 +24,7 @@ function Catalogue() {
         const iproProducts = data.filter(
           (product) => product.brand === "Vivotek"
         );
-        setProducts(iproProducts);
+        setCarouselProducts(iproProducts);
       })
       .catch((err) => {
         setError("Erreur lors du chargement des produits.");
@@ -31,6 +32,7 @@ function Catalogue() {
       });
   }, []);
 
+  // useEffect pour récupérer les catégories et sous-catégories des produits
   useEffect(() => {
     fetch("http://localhost:3001/products")
       .then((res) => res.json())
@@ -111,7 +113,7 @@ function Catalogue() {
 
       <div className="products-carousel">
         <h2>Découvrez nos produits Vivotek </h2>
-        <ShopCarousel products={products} />
+        <ShopCarousel carouselProducts={carouselProducts} />
       </div>
     </div>
   );

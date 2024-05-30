@@ -18,18 +18,18 @@ function Expertise() {
       <div className="hero">
         <div data-aos="fade-right" className="title">
           <h1>
-            Votre protection, notre engagement : <br />
-            Une sécurité complète
+          Notre Expertise : <br /> Votre protection, notre engagement
           </h1>
+          <h2>Une sécurité complète</h2>
           <p className="description">
             Avec Pixecurity, votre sûreté est entre de bonnes mains à chaque
             étape, de la conception à la certification.
           </p>
 
-          <NavLink to="/contact">
+          {/* <NavLink to="/contact">
             <button> Décrouvrez notre process</button>
           </NavLink>
-         
+          */}
         
         </div>
 

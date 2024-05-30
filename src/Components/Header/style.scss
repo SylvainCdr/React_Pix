@@ -111,19 +111,19 @@
 
   .cart {
     margin-right: 1.5em;
-    background-color: #0fa3e7;
-    width: 50px;
-    height: 40px;
     display: flex;
     text-align: center;
     align-items: center;
-    box-shadow: 0 0 4px rgba(255, 254, 254, 0.5);
     cursor: pointer;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
+    background-color: var(--sunset1);
+    padding: 0.6em 0.6em;
+    box-shadow: 0 0 2px rgba(255, 254, 254, 0.5);
+    border-radius: 0.3rem;
+    -webkit-border-radius: 0.3rem;
+    -moz-border-radius: 0.3rem;
+    -ms-border-radius: 0.3rem;
+    -o-border-radius: 0.3rem;
+  
 
     a {
       width: 100%;
