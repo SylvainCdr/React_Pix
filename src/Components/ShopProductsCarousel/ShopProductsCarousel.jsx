@@ -4,10 +4,13 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style.scss";
+import ProductCard from "../ProductCard/ProductCard";
+import useFavorites from "../useFavorites";
+import useCart from "../useCart";
 
 const ShopProductsCarousel = ({ carouselProducts }) => {
   const settings = {
-    // dots: true,
+    dots: true,
     infinite: true,
     speed: 600,
     autoplay: true,
@@ -42,6 +45,9 @@ const ShopProductsCarousel = ({ carouselProducts }) => {
     ],
   };
 
+  const { addToFavorites, removeFromFavorites, checkFavorite } = useFavorites();
+  const { addToCart } = useCart();
+
   // Retrieve user data from local storage
   const userDataString = localStorage.getItem("user");
 
@@ -60,31 +66,26 @@ const ShopProductsCarousel = ({ carouselProducts }) => {
 
   return (
     <div className="shopCarousel-container">
+      {/* integration du composant ProductCard dans le composant ShopProductsCarousel */}
+
       <Slider {...settings}>
         {carouselProducts.map((carouselProduct, index) => {
-          const discountedPrice = calculateDiscount(carouselProduct.price, discount);
+          const discountedPrice = calculateDiscount(
+            carouselProduct.price,
+            discount
+          );
           return (
-            <div key={index} className="product-item">
-              <img src={carouselProduct.image} alt={carouselProduct.name} />
-              <Link to={`./produit/${carouselProduct._id}`}>
-                <h3>{carouselProduct.name}</h3>
-              </Link>
-              <div className="price">
-                {userId ? (
-                  <p className="prices">
-                    <span className="original-price">
-                      {carouselProduct.price.toFixed(2)} €
-                    </span>
-                    <span className="discounted-price">
-                      {discountedPrice.toFixed(2)} € <span> HT</span>
-                    </span>
-                  </p>
-                ) : (
-                  <p className="price">
-                    {carouselProduct.price.toFixed(2)} € <span>HT</span>
-                  </p>
-                )}
-              </div>
+            <div className="product-item">
+              <ProductCard
+                key={index}
+                product={carouselProduct}
+                discountedPrice={discountedPrice}
+                userId={userId}
+                addToFavorites={addToFavorites}
+                removeFromFavorites={removeFromFavorites}
+                checkFavorite={checkFavorite}
+                addToCart={addToCart}
+              />
             </div>
           );
         })}

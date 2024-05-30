@@ -68,8 +68,8 @@ export default function Cart() {
         <div className="empty-cart-message">
           <p>Vous n'avez pas encore de produits dans votre panier.</p>
           <NavLink to="/boutique"> <button>Visiter la boutique</button></NavLink>
-
           <ShopProductsCarousel carouselProducts={carouselProducts} />
+
         </div>
       </div>
     );

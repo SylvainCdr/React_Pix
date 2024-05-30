@@ -4,8 +4,8 @@ import "./style.scss";
 import ShopNav from "../../../Components/ShopNav/ShopNav";
 import ShopSearch from "../../../Components/ShopSearch/ShopSearch";
 import ShopAside from "../../../Components/ShopAside/ShopAside";
-import useFavorites from "../../../Components/useFavorites";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
+import useFavorites from "../../../Components/useFavorites";
 import useCart from "../../../Components/useCart";
 import PropagateLoader from "react-spinners/PropagateLoader";
 

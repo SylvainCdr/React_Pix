@@ -54,10 +54,7 @@ function Catalogue() {
       <ShopNav />
       <ShopSearch setSearchResults={setSearchResults} />
 
-
-
-      {/* {searchResults.length === 0 && (
-        <div className="shop-hero">
+      {/* <div className="shop-hero">
           <img  src="assets/heroShop.png" alt="" />
           <div data-aos="fade-right" className="hero-title">
             <h2>Vous voulez bénéficier de réductions exclusives ?</h2>
@@ -70,12 +67,15 @@ function Catalogue() {
               <button>S'inscrire</button>
             </Link>
           </div>
-        </div>
-      )} */}
+        </div> */}
 
-<div className="shop-hero-carousel">
+       {searchResults.length === 0 && (
+      <div className="shop-hero-carousel">
       <ShopHeroCarousel />
       </div>
+      )} 
+
+
 
       <div data-aos="fade-up" className="shop-categories">
         <Link to="/boutique/Caméras">
