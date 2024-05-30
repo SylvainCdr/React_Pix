@@ -11,7 +11,7 @@
         align-items: center;
         width: 30%;
         .timeline-circle {
-            width: 2rem;
+            width: 2.1rem;
             height: 2rem;
             border-radius: 50%;
             background-color: rgb(142, 142, 142);
@@ -26,9 +26,11 @@
         }
         .timeline-content {
             text-align: center;
-            h3 {
-                font-size: 1.2rem;
+            h4 {
+                font-size: 1.1rem;
                 margin-bottom: 0.9rem;
+                font-weight: 500;
+                text-transform: uppercase;
             }
             p {
                 font-size: 0.9rem;
@@ -38,7 +40,7 @@
     .active {
         .timeline-circle {
             background-color: rgb(3, 201, 63);
-            width: 2.7rem;
+            width: 2.8rem;
             height: 2.7rem;
 
         }

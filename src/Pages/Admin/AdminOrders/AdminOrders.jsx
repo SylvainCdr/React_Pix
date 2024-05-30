@@ -3,52 +3,6 @@ import "./style.scss";
 import AdminOrderModal from "../../../Components/AdminOrderModal/AdminOrderModal";
 import { NavLink } from "react-router-dom";
 
-// const OrderSchema = new Schema({
-//     // Création d'une référence à l'utilisateur qui a passé la commande
-//     user: {
-//       type: mongoose.Schema.Types.ObjectId,
-//       ref: 'User',
-//       required: true
-//     },
-//     // Création d'un objet pour stocker l'adresse de livraison
-//     deliveryAddress: {
-//       street: { type: String, required: true },
-//       city: { type: String, required: true },
-//       zip: { type: String, required: true },
-//       country: { type: String, required: true },
-//     },
-//     // Création d'un objet pour stocker les produits commandés
-//     items: [{
-//       product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
-//       name: { type: String, required: true },
-//       ref : { type: String, required: true },
-//       quantity: { type: Number, required: true },
-//       priceAtOrderTime: { type: Number, required: true },
-//     }],
-//     delivery: {
-//       method: { type: String, required: true, enum: ['standard', 'express'] },
-//       fee: { type: Number, default: 0 },
-//     },
-//     // Création d'une date de commande
-//     orderDate: {
-//       type: Date,
-//       default: Date.now
-
-//     },
-//     // Création d'un statut pour la commande
-//     status: {
-//       type: String,
-//       enum: ['pending', 'shipped', 'delivered'],
-//       default: 'pending'
-//     },
-//     payment: {
-//       method: { type: String, required: true },
-//       paid: { type: Boolean, default: false },
-//     },
-//     // Création d'un total pour la commande
-//       totalAmount: { type: Number, required: true },
-//   });
-
 export default function AdminOrders() {
   const [orders, setOrders] = useState([]);
   const [users, setUsers] = useState({});
@@ -57,7 +11,11 @@ export default function AdminOrders() {
   useEffect(() => {
     fetch("http://localhost:3001/allOrders")
       .then((response) => response.json())
-      .then((data) => setOrders(data));
+      .then((data) => {
+        // Trier les commandes par date de commande, de la plus récente à la plus ancienne
+        const sortedOrders = data.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
+        setOrders(sortedOrders);
+      });
   }, []);
 
   useEffect(() => {

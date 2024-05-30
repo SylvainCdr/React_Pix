@@ -54,6 +54,8 @@ export default function UserAccount() {
         .then((response) => response.json())
         .then((data) => {
           setOrders(data);
+          const sortedOrders = data.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
+          setOrders(sortedOrders);
         })
         .catch((error) => {
           console.error("Erreur lors de la récupération des commandes :", error);

@@ -15,22 +15,22 @@ useEffect(() => {
             <div className={`timeline-item ${status === 'pending' ? 'active' : ''}`}>
                 <div className="timeline-circle">1</div>
                 <div className="timeline-content">
-                    <h3>En attente</h3>
-                    <p>Votre commande est en attente de traitement.</p>
+                    <h4>En attente</h4>
+                    <p>Votre commande est en attente de traitement</p>
                 </div>
             </div>
             <div className={`timeline-item ${status === 'shipped' ? 'active' : ''}`}>
                 <div className="timeline-circle">2</div>
                 <div className="timeline-content">
-                    <h3>Expédiée</h3>
-                    <p>Votre commande a été expédiée.</p>
+                    <h4>Expédiée</h4>
+                    <p>Votre commande a été expédiée</p>
                 </div>
             </div>
             <div className={`timeline-item ${status === 'delivered' ? 'active' : ''}`}>
                 <div className="timeline-circle">3</div>
                 <div className="timeline-content">
-                    <h3>Livrée</h3>
-                    <p>Votre commande a été livrée avec succès.</p>
+                    <h4>Livrée</h4>
+                    <p>Votre commande a été livrée avec succès</p>
                 </div>
             </div>
         </div>

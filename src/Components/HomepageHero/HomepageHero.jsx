@@ -33,7 +33,7 @@ export default function HomepageHero() {
         <div className="right">
           <h2 data-aos="fade-up"
      data-aos-duration="3000">Confiez votre sûreté à l'intelligence de Pixecurity</h2>
-          {/* <Navlink to="/contact"><button>Nous contacter</button></Navlink> */}
+          <Navlink to="/boutique"><button>Visiter la boutique</button></Navlink>
 
         </div>
         
