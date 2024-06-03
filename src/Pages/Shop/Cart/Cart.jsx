@@ -77,7 +77,7 @@ export default function Cart() {
 
   return (
     <div  className="cart-container">
-      <div className="cart">
+      <div className="cart-content">
       <h1>Panier</h1>
 
       <div className="shopping-cart">

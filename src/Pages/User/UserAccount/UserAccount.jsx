@@ -8,6 +8,7 @@ import DeliveryTimeline from "../../../Components/DeliveryTimeline/DeliveryTimel
 import AOS from "aos";
 
 
+
 export default function UserAccount() {
   const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
@@ -15,6 +16,7 @@ export default function UserAccount() {
   const [products, setProducts] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [orders, setOrders] = useState([]);
+  
 
 
   const { getFavorites, removeFromFavorites, checkFavorite, addToFavorites } =
@@ -71,6 +73,9 @@ export default function UserAccount() {
     AOS.init({ duration: 1000 });
   }, []);
 
+ 
+  
+
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
   };
@@ -86,6 +91,7 @@ export default function UserAccount() {
   if (!userData) {
     return null; // Ou affichez un message de chargement si nécessaire
   }
+
 
 
 

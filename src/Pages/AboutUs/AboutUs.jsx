@@ -77,18 +77,18 @@ export default function AboutUs() {
               <h2 className="profile__name">Yann DUCHET</h2>
               <p>CEO</p>
               <img
-                alt="Anita Simmons"
+                alt="Yann DUCHET"
                 src="https://www.pixecurity.com/wp-content/uploads/2022/04/Yann.png"
               />
             </div>
           </li>
           <li>
             <div className="profile">
-              <h2 className="profile__name">Kenza GAUTHIAM</h2>
+              <h2 className="profile__name">Kenza GAUTIAM</h2>
               <p>Commerciale</p>
               <img
-                alt="Profile shot for Celina Harris"
-                src="https://www.pixecurity.com/wp-content/uploads/2022/03/Kenza.png"
+                alt="Kenza GAUTIAM"
+                src="assets/team/KENZA_.jpg"
               />
             </div>
           </li>
@@ -97,8 +97,8 @@ export default function AboutUs() {
               <h2 className="profile__name">Fabrice VALLEE</h2>
               <p>Commercial grands comptes</p>
               <img
-                alt="Profile shot for Ruby Morris"
-                src="https://www.pixecurity.com/wp-content/uploads/2023/02/Fabrice.png"
+                alt="Fabrice VALLEE"
+                src="assets/team/FABRICE_.jpg"
               />
             </div>
           </li>
@@ -177,8 +177,8 @@ export default function AboutUs() {
               <h2 className="profile__name">Dyhia LAGA</h2>
               <p>Chargée d'étude avant-vente</p>
               <img
-                alt="Profile shot for Chad"
-                src="https://www.pixecurity.com/wp-content/uploads/2023/02/Dyhia.png"
+                alt="Dyhia LAGA"
+                src="assets/team/DYHIA_.jpg"
               />
             </div>
           </li>
@@ -187,8 +187,58 @@ export default function AboutUs() {
               <h2 className="profile__name">Jessica FILIALI</h2>
               <p>Assistante de direction</p>
               <img
-                alt="Profile shot for Chad"
-                src="https://www.pixecurity.com/wp-content/uploads/2022/11/Jessica.png"
+                alt="Jessica FILIALI"
+                src="assets/team/JESSICA_.jpg"
+              />
+            </div>
+          </li>
+          <li>
+            <div className="profile">
+              <h2 className="profile__name">Alexis OTTINA</h2>
+              <p>Développeur</p>
+              <img
+                alt="Alexis OTTINA"
+                src="assets/team/ALEXIS_.jpg"
+              />
+            </div>
+          </li>
+          <li>
+            <div className="profile">
+              <h2 className="profile__name">Augustin</h2>
+              <p>Dévelopeur</p>
+              <img
+                alt="Auugustin"
+                src="assets/team/AUGUSTIN_.jpg"
+              />
+            </div>
+          </li>
+          <li>
+            <div className="profile">
+              <h2 className="profile__name">Nathalie JANNOT</h2>
+              <p>Assistante de direction</p>
+              <img
+                alt="Nathalie JANNOT"
+                src="assets/team/NATHALIE_.jpg"
+              />
+            </div>
+          </li>
+          <li>
+            <div className="profile">
+              <h2 className="profile__name">Yasmina</h2>
+              <p>Chargée d'étude avant-vente</p>
+              <img
+                alt="Yasmina"
+                src="assets/team/YASMINA_.jpg"
+              />
+            </div>
+          </li>
+          <li>
+            <div className="profile">
+              <h2 className="profile__name">Alex HUBERT</h2>
+              <p>Développeur</p>
+              <img
+                alt="Yasmina"
+                src="assets/team/ALEX_.jpg"
               />
             </div>
           </li>
