@@ -1,34 +1,34 @@
 .header {
-  // DEBUT ANIMATION SURVOL PARENTHESES
-  .header__nav {
-    li:before,
-    li:after {
-      position: absolute;
-      opacity: 0;
-      font-size: 25px;
-      top: 0px;
-      transition: all 0.3s;
-      color: #009fe3;
-    }
-    li:before {
-      content: "[";
-      top: -5px;
-      left: -1rem;
-      transform: translateX(10px);
-    }
-    li:after {
-      content: "]";
-      top: -5px;
-      right: -1rem;
-      transform: translateX(-10px);
-    }
-    li:hover:before,
-    li:hover:after {
-      opacity: 1;
-      transform: translateX(0px);
-    }
-  }
-  // FIN ANIMATION SURVOL PARENTHESES
+  // // DEBUT ANIMATION SURVOL PARENTHESES
+  // .header__nav {
+  //   li:before,
+  //   li:after {
+  //     position: absolute;
+  //     opacity: 0;
+  //     font-size: 25px;
+  //     top: 0px;
+  //     transition: all 0.3s;
+  //     color: #009fe3;
+  //   }
+  //   li:before {
+  //     content: "[";
+  //     top: -5px;
+  //     left: -1rem;
+  //     transform: translateX(10px);
+  //   }
+  //   li:after {
+  //     content: "]";
+  //     top: -5px;
+  //     right: -1rem;
+  //     transform: translateX(-10px);
+  //   }
+  //   li:hover:before,
+  //   li:hover:after {
+  //     opacity: 1;
+  //     transform: translateX(0px);
+  //   }
+  // }
+  // // FIN ANIMATION SURVOL PARENTHESES
 
   width: 100%;
   background: rgb(44, 44, 44);
@@ -71,7 +71,7 @@
 
       li.active a {
         border-bottom: 1px solid var(--sunset4);
-        padding-bottom: 0.5rem;
+        padding-bottom: 0.2rem;
       }
     }
 
@@ -98,7 +98,7 @@
 
       .shop {
         background-color: var(--sunset1);
-        padding: 0.5em 0.6em;
+        padding: 0.4em 0.4em;
         box-shadow: 0 0 2px rgba(255, 254, 254, 0.5);
         border-radius: 0.3rem;
         -webkit-border-radius: 0.3rem;
@@ -110,20 +110,19 @@
   }
 
   .cart {
-    margin-right: 1.5em;
+    margin-right: 2em;
     display: flex;
     text-align: center;
     align-items: center;
     cursor: pointer;
     background-color: var(--sunset1);
-    padding: 0.6em 0.6em;
+    padding: 0.5em 0.5em;
     box-shadow: 0 0 2px rgba(255, 254, 254, 0.5);
     border-radius: 0.3rem;
     -webkit-border-radius: 0.3rem;
     -moz-border-radius: 0.3rem;
     -ms-border-radius: 0.3rem;
     -o-border-radius: 0.3rem;
-  
 
     a {
       width: 100%;
@@ -132,7 +131,6 @@
     }
 
     &:hover {
-      background-color: #037ee2;
       scale: 1.1;
     }
   }
@@ -141,12 +139,20 @@
     display: none;
   }
 
-  @media screen and (max-width: 1024px) {
-    // span {
-    //   display: none;
-    // }
+  @media screen and (max-width: 1080px) {
+
     .header__nav {
       justify-content: flex-end;
+
+      ul {
+
+        .shop {
+          background-color: inherit;
+          padding: 0;
+          box-shadow: none;
+          border-radius: 0;
+        }
+      }
     }
 
     // DEBUT MENU BURGER
@@ -164,17 +170,17 @@
     ul {
       position: fixed;
       left: -110%;
-      top: 0;
+      top: 4em;
       flex-direction: column;
       transition: 0.25s;
-      background-color: rgb(55, 55, 55);
+      background-color: rgb(57, 57, 57);
       z-index: 100;
 
       li {
         padding: 0.3rem 0;
 
         &:hover {
-          background: #aaa9a9;
+          background: #707070;
         }
       }
     }
@@ -184,9 +190,7 @@
     .active ul {
       left: 0;
     }
-  }
 
-  @media screen and (max-width: 1080px) {
     // DEBUT MENU BURGER
     .header__burgerMenu {
       display: flex;
@@ -197,9 +201,9 @@
     }
 
     .cart {
-      justify-content: flex-end;
+      // justify-content: flex-end;
     }
   }
-
-  // // FIN MENU BURGER
 }
+
+// // FIN MENU BURGER

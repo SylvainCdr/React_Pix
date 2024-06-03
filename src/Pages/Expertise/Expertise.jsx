@@ -60,13 +60,17 @@ function Expertise() {
           
         </div>
 
+{/* ---------------------------- */}
+
       <div className="slides-section" id="videoprotection" >
+        <h2 >Vidéoprotection </h2>
+        <div className="slide-container">
         <div className="slide" data-aos="fade-up-right">
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-camera-visible.jpg"
             alt=""
           />
-          <h4>Caméras visibles</h4>
+          <h4 >Caméras visibles</h4>
           <h3>La caméra tout-terrain </h3>
           <p>
             De jour comme de nuit les caméras visibles sont exploitées pour de
@@ -77,7 +81,7 @@ function Expertise() {
         </div>
 
         <div className="slide" data-aos="slide-up" >
-          <h2>Vidéoprotection </h2>
+          
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/videoprotection.png"
             alt=""
@@ -106,8 +110,11 @@ function Expertise() {
           </p>
         </div>
       </div>
+      </div>
 
       <div className="slides-section" id="analyse">
+      <h2>Analyse d'image</h2>
+        <div className="slide-container">
         <div className="slide" data-aos="fade-up-right">
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-analyse-temps-reel.jpg"
@@ -123,7 +130,7 @@ function Expertise() {
         </div>
 
         <div className="slide" data-aos="slide-up">
-          <h2>Analyse d'image</h2>
+          
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/analyse-image.png"
             alt=""
@@ -150,8 +157,13 @@ function Expertise() {
           </p>
         </div>
       </div>
+      </div>
+
+      {/* ---------------------------- */}
 
       <div className="slides-section" id="access">
+      <h2>Contrôle d'accès</h2>
+        <div className="slide-container">
         <div className="slide" data-aos="fade-up-right">
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-controle-acces.jpg"
@@ -167,7 +179,7 @@ function Expertise() {
         </div>
 
         <div className="slide" data-aos="slide-up">
-          <h2>Contrôle d'accès</h2>
+          
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/controle-acces.png"
             alt=""
@@ -195,8 +207,13 @@ function Expertise() {
           </p>
         </div>
       </div>
+      </div>
+
+      {/* ---------------------------- */}
 
       <div className="slides-section" id="cloud">
+      <h2>Cloud et objets connectés</h2>
+        <div className="slide-container">
         <div className="slide" data-aos="fade-up-right">
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-cloud.jpg"
@@ -213,7 +230,7 @@ function Expertise() {
         </div>
 
         <div className="slide" data-aos="slide-up">
-          <h2>Cloud et objets connectés</h2>
+         
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/cloud.png"
             alt=""
@@ -243,8 +260,13 @@ function Expertise() {
           </p>
         </div>
       </div>
+      </div>
+
+      {/* ---------------------------- */}
 
       <div className="slides-section" id="network">
+      <h2>réseaux, si, stockage</h2>
+        <div className="slide-container">
         <div className="slide" data-aos="fade-up-right">
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-reseaux.jpg"
@@ -263,7 +285,7 @@ function Expertise() {
         </div>
 
         <div className="slide" data-aos="slide-up">
-          <h2>réseaux, si, stockage</h2>
+         
           <img
             src="https://www.pixecurity.com/wp-content/uploads/2021/04/reseau-stockage.png"
             alt=""
@@ -291,45 +313,11 @@ function Expertise() {
           </p>
         </div>
       </div>
-
-      {/* 
-      <div class="item" data-aos="fade-right">
-        3
-      </div>
-      <div class="item" data-aos="fade-left">
-        4
       </div>
 
-      <div class="item" data-aos="zoom-in">
-        5
-      </div>
-      <div class="item" data-aos="zoom-out">
-        6
-      </div>
+      {/* ---------------------------- */}
 
-      <div class="item" data-aos="slide-up">
-        7
-      </div>
 
-      <div class="item" data-aos="flip-up">
-        8
-      </div>
-      <div class="item" data-aos="flip-down">
-        9
-      </div>
-      <div class="item" data-aos="flip-right">
-        10
-      </div>
-      <div class="item" data-aos="flip-left">
-        11
-      </div>
-      <div class="item" data-aos="fade-up">
-        1
-      </div>
-
-      <div class="item" data-aos="fade-down">
-        2
-      </div> */}
     </div>
   );
 }

@@ -10,16 +10,23 @@ function Header() {
   const user = useUser();
   console.log(user);
 
+ // Creation fonction menu Burger
+ function burgerToggle() {
+  const nav = document.querySelector(".header__nav");
+  const burgerMenu = document.querySelector(".header__burgerMenu");
+  nav.classList.toggle("active");
+  burgerMenu.classList.toggle("active");
+}
+// Fin fonction menu Burger
 
-  // Creation fonction menu Burger
-  let isBurgerOpen = false;
-  function burgerToggle() {
+  const handleLinkClick = () => {
     const nav = document.querySelector(".header__nav");
-    console.log(nav);
-    nav.classList.toggle("active");
-    isBurgerOpen = !isBurgerOpen;
-  }
-  // Fin fonction menu Burger
+    const burgerMenu = document.querySelector(".header__burgerMenu");
+    if (nav.classList.contains("active")) {
+      nav.classList.remove("active");
+      burgerMenu.classList.remove("active");
+    }
+  };
 
   const logout = () => {
     // on supprime le user du localStorage
@@ -62,42 +69,42 @@ function Header() {
 
         <ul>
           <li className={location.pathname === "/boutique" ? "active" : ""}>
-            <Link to="/boutique" className="shop">Boutique</Link>
+            <Link to="/boutique" className="shop" onClick={handleLinkClick}>Boutique</Link>
           </li>
           <li className={location.pathname === "/notre-expertise" ? "active" : ""}>
-            <Link to="/notre-expertise">Notre expertise</Link>
+            <Link to="/notre-expertise" onClick={handleLinkClick}>Notre expertise</Link>
           </li>
           <li className={location.pathname === "/a-propos" ? "active" : ""}>
-            <Link to="/a-propos">Qui sommes-nous ?</Link>
+            <Link to="/a-propos" onClick={handleLinkClick}>Qui sommes-nous ?</Link>
           </li>
           <li className={location.pathname === "/contact" ? "active" : ""}>
-            <Link to="/contact">Contact</Link>
+            <Link to="/contact" onClick={handleLinkClick}>Contact</Link>
           </li>
           {!user && (
             <li className={location.pathname === "/inscription" || location.pathname === "/connexion" ? "active" : ""}>
-              <Link to="/inscription">Se Connecter</Link>
+              <Link to="/inscription" onClick={handleLinkClick}>Connexion</Link>
             </li>
           )}
           {user?.role === "user" && (
             <li className={location.pathname === "/mon-compte" ? "active" : ""}>
-              <Link to="/mon-compte">Mon compte</Link>
+              <Link to="/mon-compte" onClick={handleLinkClick}>Mon compte</Link>
             </li>
           )}
           {user?.role === "admin" && (
             <li className={location.pathname === "/admin/dashboard" ? "active" : ""} >
-              <Link to="/admin/dashboard">Administration</Link>
+              <Link to="/admin/dashboard" onClick={handleLinkClick}>Administration</Link>
             </li>
           )}
           {user && (
             <li>
               <a href="#" onClick={logout} className="logout">
-                Se déconnecter
+                Déconnexion
               </a>
             </li>
           )}
         </ul>
 
-        <div className="cart-burgerMenu"></div>
+
         <div className="header__burgerMenu" onClick={burgerToggle}></div>
 
         {user?.role === "user" && (
