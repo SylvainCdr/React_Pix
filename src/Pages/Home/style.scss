@@ -8,15 +8,13 @@
     font-family: "Barlow Condensed", sans-serif;
     font-size: 3rem;
     font-weight: 500;
-
- 
   }
 
-  .section-1 {
+  .section1-intro {
     display: flex;
-    height: 35vh;
+    height: 100%;
 
-    .section-1__img {
+    .section1-img {
       width: 40%;
       background-image: url("https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
       // background-image : url(../../../public/assets/homehero.jpeg);
@@ -25,7 +23,7 @@
       background-position: center;
     }
 
-    .section-1__intro {
+    .section1-text {
       width: 60%;
       background: linear-gradient(
         153deg,
@@ -49,6 +47,7 @@
         text-shadow: rgb(0, 16, 57) 1px 1px 1px;
         margin-left: 4rem;
         margin-right: 4rem;
+        padding-top: 1em;
 
         strong {
           font-size: 1.2rem;
@@ -68,27 +67,27 @@
     }
   }
 
-  .section-2 {
-    margin: 8em auto;
+  .section2-offer {
+    margin: 7em auto;
+    padding : 0 2rem;
     max-width: 1440px;
-
-   
         p {
           line-height: 1.5;
           font-size: 1.2rem;
+          text-align: justify;
         }
-      
     
   }
 
 
-  .section-4 {
+  .section4-aboutUs {
     display: flex;
     height: auto;
     margin: 8em auto;
+    padding-left : 2rem;
     max-width: 1440px;
 
-    .section-4__text {
+    .section4-text {
       width: 60%;
 
       justify-items: center;
@@ -141,7 +140,7 @@
       }
     }
 
-    .section-4__img {
+    .section4-img {
       width: 80%;
       background: linear-gradient(
           80deg,
@@ -168,22 +167,31 @@
 
   //media queries
   @media (max-width: 1024px) {
-    .section-1 {
-      height: 40vh;
-      .section-1__img {
+    .section1-intro {
+      
+      .section1-img {
         width: 50%;
       }
-      .section-1__intro {
+      .section1-text{
         width: 75%;
         p {
-          margin-left: 2rem;
-          margin-right: 2rem;
+          font-size : 1rem;
+          margin-left: 1rem;
+          margin-right: 1rem;
+          strong {
+            font-size: 1rem;
+          }
+        }
+        .icons {
+          img {
+            width: 3.5rem;
+          }
         }
       }
     }
 
-    .section-2 {
-      .section-2__offer {
+    .section2-offer {
+      
         .title {
           h2 {
             font-size: 2.5em;
@@ -193,39 +201,23 @@
           p {
             font-size: 1.1rem;
           }
-        }
+        
       }
     }
 
-    .section-3 {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      .skills-card {
-        height: auto;
-        h3 {
-          font-size: 1.3rem;
-        }
-        p {
-          font-size: 1rem;
-        }
-        a {
-          font-size: 1.1rem;
-        }
-      }
-    }
 
-    .section-4 {
+    .section4-aboutUs {
       flex-direction: column;
       padding-left: 0rem;
       margin : 7em auto;
-      .section-4__text {
+      .section4-text {
         width: 100%;
         padding-left: 0rem;
         p {
           margin-bottom: 1em;
         }
       }
-      .section-4__img {
+      .section4-img {
         width: 100%;
       }
     }

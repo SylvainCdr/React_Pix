@@ -1,14 +1,14 @@
 .shopCarousel-container {
   width: 90%;
   margin: 0 auto;
-  padding: 0 0px;
-
 
   .product-item {
-   border-radius: 5px;
     padding: 0.5em;
     transition: 0.3s;
     margin-bottom: 2em;
-    
- 
-  }}
+
+    .card-brand {
+      padding-top: 1rem;
+    }
+  }
+}

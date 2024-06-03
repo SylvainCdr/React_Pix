@@ -79,7 +79,7 @@ export default function HomepageCountUp() {
               <h3>
                 <span className="timer">48</span>
               </h3>
-              <h4>Clients satisfaits</h4>
+              <h4>Clients </h4>
             </div>
           </div>
         </div>

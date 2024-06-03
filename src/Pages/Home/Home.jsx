@@ -19,10 +19,10 @@ export default function Home() {
     <div className="homepage-container">
       <Hero />
 
-      <div className="section-1">
-        <div className="section-1__img"></div>
+      <div className="section1-intro">
+        <div className="section1-img"></div>
 
-        <div className="section-1__intro">
+        <div className="section1-text">
           <p>
             La <strong>sécurité</strong> ne dépend plus de la force brute, mais
             de <strong>l'intelligence</strong>. <br /> Chez{" "}
@@ -44,7 +44,7 @@ export default function Home() {
 
 
 
-      <div className="section-2">
+      <div className="section2-offer">
         <h2>Une offre pensée autrement</h2>
         <p>
           La protection de vos données personnelles certifiée Pixecurity c'est :
@@ -59,12 +59,11 @@ export default function Home() {
       </div>
 
 
-      <div className="section-3">
         <HomepageSkills />
-      </div>
+  
 
-      <div className="section-4">
-        <div className="section-4__text">
+      <div className="section4-aboutUs">
+        <div className="section4-text">
           <h2>Qui sommes nous ?</h2>
           <p>
             Des ingénieurs avant-gardistes. Des experts 3.0, natifs du
@@ -79,7 +78,7 @@ export default function Home() {
             <button>Notre équipe</button>{" "}
           </NavLink>
         </div>
-        <div className="section-4__img"></div>
+        <div className="section4-img"></div>
       </div>
 
       <HomepageCountUp />

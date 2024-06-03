@@ -1,4 +1,5 @@
 .shopAside-container {
+ 
   width: 15%;
   background-color: rgba(199, 199, 199, 0.38);
   margin: 1em;
@@ -34,7 +35,7 @@
   .nbrePorts-filter,
   .rackable-filter,
   .manageable-filter,
-  .poe-filter, 
+  .poe-filter,
   .poePlus-filter,
   .poePlusPlus-filter,
   .usb-filter,
@@ -45,9 +46,7 @@
   .typeWifi-filter,
   .antenne-filter,
   .lan-filter,
-  .nebula-filter
-
-  {
+  .nebula-filter {
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
@@ -60,43 +59,43 @@
       margin-bottom: 0.2rem;
       color: #333;
     }
-
-    checkbox,
-    input {
-      margin-right: 0.5rem;
-    }
   }
-}
 
-@media screen and (max-width: 1024px) {
-  .shopAside-container {
-    width: 7em;
+  @media screen and (max-width: 1024px) {
+    .shopAside-container {
+      h2 {
+        font-size: 0.9rem;
+      }
 
-    h2 {
-      font-size: 0.9rem;
-    } 
-
-    .brand-filter,
-    .price-filter,
-    .megapixels-filter,
-    .imgSec-filter,
-    .color-filter,
-    .infrarouge-filter,
-    .distanceInfrarouge-filter,
-    .installationExt-filter,
-    .nbrePorts-filter
-    {
-      label,
-      span,
-      li {
-        font-size: 0.8rem;
+      .brand-filter,
+      .price-filter,
+      .megapixels-filter,
+      .imgSec-filter,
+      .color-filter,
+      .infrarouge-filter,
+      .distanceInfrarouge-filter,
+      .installationExt-filter,
+      .nbrePorts-filter,
+      .rackable-filter,
+      .manageable-filter,
+      .poe-filter,
+      .poePlus-filter,
+      .poePlusPlus-filter,
+      .usb-filter,
+      .debitVpn-filter,
+      .maxTcp-filter,
+      .debitFirewall-filter,
+      .vitesse-filter,
+      .typeWifi-filter,
+      .antenne-filter,
+      .lan-filter,
+      .nebula-filter {
+        label,
+        span,
+        li {
+          font-size: 0.8rem;
+        }
       }
     }
-
   }
-
 }
-
-
-
-

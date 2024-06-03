@@ -1,6 +1,7 @@
 .skills-container {
   max-width: 1440px;
   margin: 8rem auto;
+  padding : 0 2rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 5em;
@@ -24,7 +25,7 @@
 
     img {
       width: 100%;
-      height: 15rem;
+      height: 13rem;
       object-fit: cover;
       border-radius: 0.5em 0.5rem 0 0;
       transition: transform 0.3s ease;
@@ -98,4 +99,14 @@
       }
     }
   }
+
+  // media queries
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
 }

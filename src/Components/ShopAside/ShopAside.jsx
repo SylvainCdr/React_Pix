@@ -780,7 +780,7 @@ setNebulaValues(uniqueNebula);
 
 
   return (
-    <aside className="shopAside-container">
+    <div className="shopAside-container">
       {brands.length > 0 && (
         <div className="brand-filter">
           <h2>Marques</h2>
@@ -1263,6 +1263,6 @@ setNebulaValues(uniqueNebula);
 
 
 
-    </aside>
+    </div>
   );
 }

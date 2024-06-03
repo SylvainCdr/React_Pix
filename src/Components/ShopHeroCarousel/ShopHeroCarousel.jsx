@@ -4,16 +4,17 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style.scss";
-import ProductCard from "../ProductCard/ProductCard";
 
 const ShopHeroCarousel = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 700,
     autoplay: true,
     slidesToShow: 1,
     slidesToScroll: 1,
+    fade: true,
+  cssEase: 'linear'
   };
 
   const heroImages = [

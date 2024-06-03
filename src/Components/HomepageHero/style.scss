@@ -10,15 +10,15 @@
     .left {
       width: 40%;
       height: 70vh;
-      background: linear-gradient(
-        153deg,
-        rgb(0, 22, 44) 7%,
-        rgb(1, 51, 100) 16%,
-        rgb(2, 73, 120) 40%,
-        var(--sunset1),
-        var(--sunset2) 94%
-      );
-      // background:var(--sunset1);
+      // background: linear-gradient(
+      //   153deg,
+      //   rgb(0, 22, 44) 7%,
+      //   rgb(1, 51, 100) 16%,
+      //   rgb(2, 73, 120) 40%,
+      //   var(--sunset1),
+      //   var(--sunset2) 94%
+      // );
+      background:var(--sunset1);
       display: flex;
 
       h1 {
@@ -59,7 +59,7 @@
       a {
         text-decoration: none;
         color: white;
-        bottom: 30%;
+        bottom: 25%;
         right: 6%;
         position: absolute;
 
@@ -107,35 +107,45 @@
 @media (max-width: 1024px) {
   .background {
     .left {
-      width: 67%;
-      height: 50vh;
-
       h1 {
-        font-size: 2em;
-        margin-top: 10%;
-        margin-left: 10%;
+        font-size: 2.5em;
       }
     }
 
     .right {
-      width: 100%;
-      height: 50vh;
-
       h2 {
         font-size: 2.5em;
-        top: 25%;
-        right: 22%;
       }
 
       a {
-        bottom: 47%;
-        right: 10%;
-
         button {
-          padding: 12px 40px;
           font-size: 1em;
         }
       }
-    }}}
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .background {
+    .left {
+      h1 {
+        font-size: 2em;
+      }
+    }
+
+    .right {
+      h2 {
+        font-size: 2em;
+      }
+
+      a {
+        button {
+          font-size: 0.9em;
+        }
+      }
+    }
+  }
+}
 
 }

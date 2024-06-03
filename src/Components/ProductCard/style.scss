@@ -42,10 +42,10 @@
   }
 
   .card-title {
-    height: 2.3rem;
-    font-size: 1.2rem;
+    height: 2.5rem;
+    font-size: 1.1rem;
     font-weight: 500;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
 
     a {
       text-decoration: none;
@@ -58,7 +58,7 @@
   }
 
   img {
-    width: 80%;
+    width: 90%;
     height: 15em;
     object-fit: cover;
     margin: 0 auto;
@@ -164,4 +164,12 @@
       }
     }
   }
+
+  //media queries
+  @media (max-width: 768px) {
+    .card-title {
+      font-size: 1rem;
+    }
+  }
+
 }

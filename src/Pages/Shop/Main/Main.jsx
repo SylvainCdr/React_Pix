@@ -54,20 +54,6 @@ function Catalogue() {
       <ShopNav />
       <ShopSearch setSearchResults={setSearchResults} />
 
-      {/* <div className="shop-hero">
-          <img  src="assets/heroShop.png" alt="" />
-          <div data-aos="fade-right" className="hero-title">
-            <h2>Vous voulez bénéficier de réductions exclusives ?</h2>
-            <h1>Créez un compte !</h1>
-            <p>
-              Nous vous recontacterons dans les plus brefs délais pour définir
-              votre discount
-            </p>
-            <Link to="/inscription">
-              <button>S'inscrire</button>
-            </Link>
-          </div>
-        </div> */}
 
        {searchResults.length === 0 && (
       <div className="shop-hero-carousel">
@@ -101,7 +87,7 @@ function Catalogue() {
           <div className="category">
             <h3>Logiciels</h3>
             <img
-              src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fHw%3D"
+              src="https://images.unsplash.com/photo-1635514874042-beb98fd8ea43?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Logiciels"
             />
           </div>
@@ -119,7 +105,7 @@ function Catalogue() {
       </div>
 
       <div className="products-carousel">
-        <h2>Découvrez nos produits Vivotek </h2>
+        <h4>Découvrez nos produits Vivotek </h4>
         <ShopProductsCarousel carouselProducts={carouselProducts} />
       </div>
     </div>
