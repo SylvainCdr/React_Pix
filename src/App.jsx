@@ -26,6 +26,7 @@ import Order from "./Pages/Shop/Order/Order";
 import OrderDetails from "./Pages/User/OrderDetails/OrderDetails";
 import AdminOrders from "./Pages/Admin/AdminOrders/AdminOrders";
 import EditOrders from "./Pages/Admin/EditOrders/EditOrders";
+import AdminCarts from "./Pages/Admin/AdminCarts/AdminCarts";
 import Rgpd from "./Pages/Authentification/Rgpd/Rgpd";
 import Cgv from "./Pages/Authentification/Cgv/Cgv";
 import Partners from "./Pages/Partners/Partners";
@@ -71,6 +72,7 @@ function App() {
                 <Route path="/admin/utilisateurs/modification/:id" element={<EditUser />} />
                 <Route path="/admin/commandes" element={<AdminOrders />} />
                 <Route path="/admin/commande/modification/:id" element={<EditOrders />} />
+                <Route path="/admin/paniers" element={<AdminCarts />} />
               </>
             )}
               <Route path="/boutique" element={<Catalogue />} />
