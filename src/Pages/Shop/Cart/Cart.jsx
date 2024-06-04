@@ -144,7 +144,7 @@ export default function Cart() {
 />
             </div>
             <div className="product-removal">
-              <button
+              <a
                 className="remove-product"
                 onClick={() => {
                   const userDataString = localStorage.getItem("user");
@@ -154,7 +154,7 @@ export default function Cart() {
                 }}
               >
                 Supprimer
-              </button>
+              </a>
             </div>
             <div className="product-line-price">
               {(

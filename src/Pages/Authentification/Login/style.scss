@@ -1,28 +1,9 @@
 .login-container {
   display: flex;
-  // justify-content: center;
   height: 90vh;
   background-image: url(https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
   background-position: center;
   margin-top: 5em;
-
-  // .section-1 {
-  //   width: 65%;
-  //   background-image: url(https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
-  //   background-size: cover;
-  //   background-repeat: no-repeat;
-  //   background-position: center;
-  //   display: flex;
-  //   flex-direction: column;
-  //   justify-content: center;
-  //   align-items: center;
-
-  //   img {
-  //     width: 40%;
-  //     animation: wiggle 2s linear infinite;
-  //     -webkit-animation: wiggle 2s linear infinite;
-  //   }
-  // }
 
   .section-2 {
     width: 100%;
@@ -37,7 +18,6 @@
       font-weight: 500;
       margin-bottom: 0.6em;
       color: var(--sunset1);
- 
     }
 
     form {
@@ -76,46 +56,8 @@
       }
 
       button {
-        margin-top: 1rem;
-        padding: 12px 30px;
-        text-align: center;
-        //text-transform: uppercase;
-        transition: 0.5s;
-        background-size: 200% auto;
-        color: white;
-        display: block;
-        border: 0px;
-        font-weight: 500;
-        box-shadow: 0px 0px 14px -7px #121e37;
-        background-image: linear-gradient(
-          45deg,
-          #0651bb 0%,
-          #009fe3 51%,
-          #00438f 100%
-        );
-        cursor: pointer;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-        border-radius: 5px;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        -ms-border-radius: 5px;
-        -o-border-radius: 5px;
-        -webkit-transition: 0.5s;
-        -moz-transition: 0.5s;
-        -ms-transition: 0.5s;
-        -o-transition: 0.5s;
-        &:hover {
-          background-position: right center;
-          /* change the direction of the change here */
-          color: #fff;
-          text-decoration: none;
-        }
-
-        &:active {
-          transform: scale(0.95);
-        }
+        margin-top: 1em;
+        padding: 0.35em 1em;
       }
 
       .success {
@@ -129,7 +71,6 @@
         color: red;
         font-weight: bold;
       }
-
     }
     a {
       color: #0187db;
@@ -142,6 +83,5 @@
     a:hover {
       color: #0460d1;
     }
-  
   }
 }

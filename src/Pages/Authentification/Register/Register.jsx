@@ -206,7 +206,7 @@ export default function Register() {
           <button>S'enregistrer</button>
 
           <span>――――― OU ―――――</span>
-          <NavLink to="/connexion">Se connecter</NavLink>
+          <NavLink to="/connexion"><button> Se connecter</button></NavLink>
         </form>
       </div>
 

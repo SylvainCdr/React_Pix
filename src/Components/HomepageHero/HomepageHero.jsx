@@ -20,24 +20,24 @@ export default function HomepageHero() {
   , []);
 
   return (
-    <div className="hero-container">
-      <div className="background">
-        <div className="left">
-          <h1 data-aos="flip-left"
+    <div className="homepageHero-container">
+  
+        <div className="hero-left">
+          <h2 data-aos="flip-left"
      data-aos-easing="ease-out-cubic"
      data-aos-duration="2000">
             Smarter. <br /> Safer.
-          </h1>
+          </h2>
         </div>
 
-        <div className="right">
-          <h2 data-aos="fade-up"
-     data-aos-duration="3000">Confiez votre sûreté à l'intelligence de Pixecurity</h2>
+        <div className="hero-right">
+          <h1 data-aos="fade-up"
+     data-aos-duration="3000">Confiez votre sûreté à l'intelligence de Pixecurity</h1>
           <Navlink to="/boutique"><button>Visiter la boutique</button></Navlink>
 
         </div>
         
-      </div>
+    
       {/* <video ref={videoRef} id="video-background" loop playsInline autoPlay>
         <source src="assets/hero4.mp4" type="video/mp4" />
       </video> */}

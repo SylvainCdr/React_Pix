@@ -144,6 +144,10 @@ const ProductCard = ({
     Aos.init({ duration: 1000 });
   }, []);
 
+  
+
+
+
   return (
     <div className="product-card">
       {discount !== 0 && <span className="discount-badge">-{discount}%</span>}
@@ -162,6 +166,9 @@ const ProductCard = ({
         </Link>
       </div>
       <p className="card-brand">{product.brand}</p>
+     
+
+     
       <div className="card-bottom">
         {calculateDiscountedPrice()}
         <div className="CTA">

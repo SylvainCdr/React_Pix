@@ -17,7 +17,7 @@ export default function HomepageSkills() {
           nous permet de vous proposer les meilleurs produits.{" "}
         </p>
         <div className="bottom">
-          <Link to="/notre-expertise#videoprotection">EN SAVOIR PLUS <i className="fa-solid fa-arrow-right"></i></Link>
+          <Link to="/notre-expertise#videoprotection"> <i className="fa-solid fa-arrow-right"></i></Link>
         </div>
       </div>
 
@@ -32,7 +32,7 @@ export default function HomepageSkills() {
           encore... Pixecurity sélectionne pour vous les meilleures solutions du
           marché : Caméras visibles, thermiques, mobiles, fish-eye...
         </p><div className="bottom">
-        <Link to="/notre-expertise#analyse">EN SAVOIR PLUS <i class="fa-solid fa-arrow-right"></i></Link>
+        <Link to="/notre-expertise#analyse"> <i class="fa-solid fa-arrow-right"></i></Link>
       </div></div>
 
       <div data-aos="fade-down" className="skills-card">
@@ -46,7 +46,7 @@ export default function HomepageSkills() {
           complète son offre pour vous proposer une solution globale avec les
           leaders du marché.
         </p><div className="bottom">
-        <Link to="/notre-expertise#access">EN SAVOIR PLUS <i class="fa-solid fa-arrow-right"></i></Link>
+        <Link to="/notre-expertise#access"><i class="fa-solid fa-arrow-right"></i></Link>
       </div></div>
 
       <div data-aos="fade-down" className="skills-card">
@@ -61,7 +61,7 @@ export default function HomepageSkills() {
           vous propose des solutions innovantes et intélligentes permettant de
           les traiter.
         </p> <div className="bottom">
-        <Link to="/notre-expertise#cloud">EN SAVOIR PLUS <i class="fa-solid fa-arrow-right"></i></Link>
+        <Link to="/notre-expertise#cloud"><i class="fa-solid fa-arrow-right"></i></Link>
       </div> </div>
 
       <div data-aos="fade-down" className="skills-card">
@@ -76,7 +76,7 @@ export default function HomepageSkills() {
           dimensionnement optimal des réseaux, du stockage, des ressources
           informatiques.
         </p> <div className="bottom">
-        <Link to="/notre-expertise#network">EN SAVOIR PLUS <i class="fa-solid fa-arrow-right"></i></Link>
+        <Link to="/notre-expertise#network"> <i class="fa-solid fa-arrow-right"></i></Link>
       </div> </div>
 
       <div data-aos="fade-down" className="skills-card">

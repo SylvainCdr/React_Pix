@@ -3,45 +3,46 @@
   width: 100%;
   box-shadow: 0 0 3px rgba(255, 254, 254, 0.5);
   display: flex;
+  height : 35vh;
   justify-content: space-around;
   border-radius: 0.6rem 0.6rem 0rem 0rem;
   -webkit-border-radius: 0.6rem 0.6rem 0rem 0rem;
   -moz-border-radius: 0.6rem 0.6rem 0rem 0rem;
   -ms-border-radius: 0.6rem 0.6rem 0rem 0rem;
   -o-border-radius: 0.6rem 0.6rem 0rem 0rem;
-
-
+ 
 
   .section-1 {
     width: 30%;
-
     align-self: center;
 
     img {
-      padding-top: 0.8rem;
-      width: 60%;
+      
+      width: 80%;
+      padding-bottom: 2em;
     }
 
     p {
-      line-height: 1.3rem;
+      line-height: 1.7rem;
     }
   }
 
   .section-2,
   .section-3 {
     width: 20%;
-    margin-bottom: 1em;
+    margin-top: 2.5em;
+    
 
     h4 {
+      font-family: 'barlow condensed', sans-serif;
       text-transform: uppercase;
-      font-size: 1.2rem;
-      font-weight: 600;
+      font-size: 1.6rem;
+      font-weight: 500;
       color: var(--sunset1);
       margin-top: 1rem;
-      margin-bottom: 0.5em;
+      margin-bottom: 1em;
     }
 
-      
     a {
       text-decoration: none;
       color: white;
@@ -50,53 +51,46 @@
         color: var(--sunset1);
       }
     }
-   
+
     li {
       list-style: none;
-      line-height: 1.4rem;
-    
+      line-height: 1.8rem;
     }
 
-  
-      i {
-        margin-right: 0.8rem;
-        color: var(--sunset3);
-      }
+    i {
+      margin-right: 1rem;
+      color: var(--sunset3);
+    }
   }
 }
 
-  // media query
+// media query
 
-  @media screen and (max-width: 768px) {
-    .footer-container {
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      margin-top: 0;
-      height: auto;
+@media screen and (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    margin-top: 0;
+    height: auto;
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    .section-1 {
       width: 100%;
-      border-radius: 0;
-      box-shadow: none;
-      .section-1 {
-        width: 100%;
-        margin-left: 0;
-        text-align: center;
-        img {
-          width: 50%;
-        }
-      }
-
-
-      .section-2,
-      .section-3 {
-        width: 100%;
-        margin-top: 1rem;
-        text-align: center;
-
-      
-  
+      margin-left: 0;
+      text-align: center;
+      img {
+        width: 50%;
       }
     }
-  }
 
+    .section-2,
+    .section-3 {
+      width: 100%;
+      margin-top: 1rem;
+      text-align: center;
+    }
+  }
+}

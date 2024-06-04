@@ -182,6 +182,7 @@ Swal.fire({
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
+  
 
   return (
     <div className="product-container">
@@ -246,7 +247,7 @@ Swal.fire({
                   className="qty-input">+</button>
                 </div>
 
-                <button onClick={handleAddToCartClick} className="add">
+                <button onClick={handleAddToCartClick} >
                   Ajouter au panier
                 </button>
                 

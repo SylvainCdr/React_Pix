@@ -14,9 +14,9 @@
   .modal-content {
     background-color: #3b3b3bf1;
     margin: 12% auto;
-    padding: 20px;
+    padding: 30px;
 
-    width: 32em;
+    width: 35em;
     height: 25em;
 
   }
@@ -63,45 +63,8 @@
     }
  
 
-    .btn-send {
-      margin-top: 1rem;
-      padding: 12px 30px;
-      text-align: center;
-      transition: 0.5s;
-      background-size: 200% auto;
-      color: white;
-      display: block;
-      border: 0px;
-      font-weight: 500;
-      box-shadow: 0px 0px 14px -7px #121e37;
-      background-image: linear-gradient(
-        45deg,
-        #0651bb 0%,
-        #009fe3 51%,
-        #00438f 100%
-      );
-      cursor: pointer;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: manipulation;
-      border-radius: 5px;
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      -ms-border-radius: 5px;
-      -o-border-radius: 5px;
-      -webkit-transition: 0.5s;
-      -moz-transition: 0.5s;
-      -ms-transition: 0.5s;
-      -o-transition: 0.5s;
-      &:hover {
-        background-position: right center;
-        color: #fff;
-        text-decoration: none;
-      }
-
-      &:active {
-        transform: scale(0.95);
-      }
+     .btn-send {
+      margin-top: 1em;
     }
 
 
