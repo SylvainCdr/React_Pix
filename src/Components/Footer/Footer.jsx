@@ -14,6 +14,9 @@ function Footer() {
         </p>
       </div>
       <div className="section-2">
+        <img src="/assets/icons/mase.png" alt="" />
+        </div>
+      <div className="section-3">
         <h4>Plan du site </h4>
 
         <ul>
@@ -40,7 +43,7 @@ function Footer() {
         </ul>
       </div>
 
-      <div className="section-3">
+      <div className="section-4">
         <h4>Nous contacter </h4>
         <ul>
           <li>
@@ -62,6 +65,7 @@ function Footer() {
           </li>
         </ul>
       </div>
+      
     </div>
   );
 }

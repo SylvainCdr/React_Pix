@@ -138,9 +138,10 @@
         text-decoration: none;
         color: white;
         width: 100%;
+        padding-bottom : 2em;
 
         button {
-          padding : 0.6em 3.5em
+          padding: 0.6em 3.5em;
         }
       }
     }
@@ -160,21 +161,24 @@
           .discount-badge {
             position: relative;
           }
-
-          .card-title {
-            width: 100%;
-          }
-
-          .card-brand {
-            border: none;
-          }
-
-          img {
+          .product-img {
             align-items: start;
             width: 60%;
             height: 8rem;
             object-fit: cover;
             margin-right: 5%;
+          }
+
+          .card-title {
+            width: 100%;
+            margin: none;
+            padding: none;
+          }
+
+          .card-brand-logo {
+            border: none;
+            margin: 0 1.5em 0 0;
+            padding: none;
           }
         }
       }
@@ -215,39 +219,9 @@
             a {
               text-decoration: none;
               color: white;
+              
 
               button {
-                padding: 10px 30px;
-                transition: 0.5s;
-                background-size: 200% auto;
-                color: white;
-                border-radius: 10px;
-                display: flex;
-                text-transform: uppercase;
-                border: 0px;
-                font-weight: 500;
-                box-shadow: 0px 0px 14px -7px #121e37;
-                background-image: linear-gradient(
-                  45deg,
-                  #0651bb 0%,
-                  #009fe3 51%,
-                  #00438f 100%
-                );
-                cursor: pointer;
-                user-select: none;
-                -webkit-user-select: none;
-                touch-action: manipulation;
-
-                &:hover {
-                  background-position: right center;
-                  /* change the direction of the change here */
-                  color: #fff;
-                  text-decoration: none;
-                }
-
-                &:active {
-                  transform: scale(0.95);
-                }
               }
             }
           }
@@ -255,4 +229,71 @@
       }
     }
   }
+
+  // mediaqueries
+
+  @media (max-width: 1024px) {
+    .user-dashboard {
+      .user-infos {
+        .grid-infos {
+          flex-direction: column;
+          padding: 2em 1em;
+
+          .perso,
+          .address,
+          .contact {
+            width: 100%;
+            border-right: none;
+            padding-right: 0;
+            margin-bottom: 1rem;
+          }
+        }
+      }
+
+      .user-favorites {
+        .favorites-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1rem;
+          padding: 1rem;
+
+          .product-card {
+            display: flex;
+            flex-direction: column;
+
+            .product-img {
+              margin: inherit;
+            }
+          }
+        }
+      }
+    }
+   
+  }
+
+  @media screen and (max-width: 768px)
+  {
+    .user-dashboard {
+    .user-favorites {
+      .favorites-grid {
+        display: grid;
+        grid-template-columns: 1fr ;
+        gap: 1rem;
+        padding: 1rem;
+
+        .product-card {
+         
+          
+          .product-img{
+            margin: inherit;
+            width: 45%;
+          }
+        }
+      }
+    }
+  }
+   
+    
+  }
+
 }
