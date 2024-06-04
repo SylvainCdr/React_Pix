@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./style.scss";
 import Swal from "sweetalert2";
 import Aos from "aos";
+import { logos } from "../../Pages/Shop/Product/LogosData";
 
 const ProductCard = ({
   product,
@@ -144,7 +145,10 @@ const ProductCard = ({
     Aos.init({ duration: 1000 });
   }, []);
 
-  
+  console.log("Marque du produit:", product.brand);
+  const brandLogo = logos.find(logo => logo.name.toLowerCase() === product.brand?.toLowerCase());
+  console.log("Logo trouvé:", brandLogo);
+
 
 
 
@@ -152,11 +156,12 @@ const ProductCard = ({
     <div className="product-card">
       {discount !== 0 && <span className="discount-badge">-{discount}%</span>}
       {product.image.startsWith("http") ? (
-                        <img src={product.image} alt="" />
+                        <img src={product.image} alt="" className="product-img" />
                       ) : (
                         <img
                           src={`http://localhost:3001${product.image}`}
-                          alt=""
+                          alt="" 
+                          className="product-img"
                         />
                       )}
 
@@ -165,7 +170,15 @@ const ProductCard = ({
           <h2>{product.name}</h2>
         </Link>
       </div>
-      <p className="card-brand">{product.brand}</p>
+      {/* <p className="card-brand">{product.brand}</p> */}
+      {brandLogo && (
+        <img
+          src={brandLogo.logo}
+          alt={brandLogo.name}
+          className="card-brand-logo"
+        />
+      )}
+
      
 
      

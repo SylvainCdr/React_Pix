@@ -9,6 +9,7 @@ import useCart from "../../../Components/useCart";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
 import Swal from "sweetalert2";
 import AOS from "aos";
+import { logos } from "../../Shop/Product/LogosData";
 
 export default function Product() {
   const [product, setProduct] = useState({});
@@ -39,6 +40,11 @@ export default function Product() {
   const calculateDiscount = (price, discount) => {
     return price - (price * discount) / 100;
   };
+
+  console.log("Marque du produit:", product.brand);
+  const brandLogo = logos.find(logo => logo.name.toLowerCase() === product.brand?.toLowerCase());
+  console.log("Logo trouvé:", brandLogo);
+
 
   // Create a mapping object to map the product details keys to their corresponding labels
   const labelsMapping = {
@@ -182,6 +188,9 @@ Swal.fire({
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
+
+
+
   
 
   return (
@@ -222,8 +231,20 @@ Swal.fire({
                 </p>
               
               <h1>{product.name}</h1>
-              <p className="brand">{product.brand}</p>
-              <p className="presentation">{product.presentation}</p>
+
+
+
+              {/* <p className="brand">{product.brand}</p> */}
+            
+              {brandLogo ? (
+                <img src={brandLogo.logo} alt={product.brand} className="brand-logo" />
+              ) : (
+                <p className="brand-logo">{product.brand}</p>
+              )}
+
+
+              <p className="presentation">{product.presentation} </p>
+
               {/* TODO : Chercher l'etat du stock dans Axonaut */}
               <p className="stock">Sur commande</p>
               <p className="livraison">
