@@ -1,0 +1,97 @@
+// <div className="editUserCart">
+// <h1>Modification du panier de l'utilisateur</h1>
+// <table>
+//   <thead>
+//     <tr>
+//       <th>Produit</th>
+//       <th>Quantité</th>
+//       <th>Prix</th>
+//     </tr>
+//   </thead>
+//   <tbody>
+//     {userCart.map((product, index) => (
+//       <tr key={product.product_id}>
+//         <td>{product.name}</td>
+//         <td>
+//           <input
+//             type="number"
+//             value={product.quantity}
+//             onChange={(e) =>
+//               handleInputChange(index, "quantity", e.target.value)
+//             }
+//           />
+//         </td>
+//         <td>
+//           <input
+//             type="number"
+//             step="0.01"
+//             value={product.price}
+//             onChange={(e) =>
+//               handleInputChange(index, "price", e.target.value)
+//             }
+//           />
+//         </td>
+//       </tr>
+//     ))}
+//   </tbody>
+// </table>
+// <button onClick={handleSaveChanges}>Enregistrer les modifications</button>
+// </div>
+
+.editUserCart {
+  margin: 8rem auto;
+  max-width: 1440px;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--sunset1);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    background-color: rgb(61, 61, 61);
+
+    th {
+      background-color: var(--sunset1);
+      border: 1px solid #afafaf;
+      padding: 0.4em;
+      text-align: left;
+      font-size: 1.1em;
+      font-weight: 500;
+    }
+
+    td {
+      border: 1px solid #afafaf;
+      padding: 0.2em;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+      align-self: center;
+      font-size: 1.1em;
+    }
+
+    input {
+        width: 9rem;
+        height: 2rem;
+        border: 1px solid #afafaf;
+        border-radius: 0.3rem;
+        text-align: center;
+        font-size: 1.1em;
+    }
+
+    img {
+      margin: 0 auto;
+      width: 10rem;
+      height: 6rem;
+      background-color: white;
+      object-fit: cover;
+    }
+
+    tbody tr:hover {
+        background-color: #575757;
+    }
+  }
+}

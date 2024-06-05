@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./style.scss";
 import AdminCartModal from "../../../Components/AdminCartModal/AdminCartModal";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminCarts() {
   const [allCarts, setAllCarts] = useState([]);
   const [selectedCart, setSelectedCart] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate(); // Corrected here
 
   // Fetch all carts from the server
   useEffect(() => {
@@ -29,6 +31,11 @@ export default function AdminCarts() {
     setSelectedCart(null);
   };
 
+
+  const handleEditClick = (cart) => {
+    navigate(`/admin/panier/modification/${cart.userId}`);
+  };
+
   return (
     <div className="adminCarts-container">
       <h1>Paniers en cours </h1>
@@ -41,6 +48,7 @@ export default function AdminCarts() {
               <th>Quantité</th>
               <th>Prix</th>
               <th>Total</th>
+              <th>Updated</th>
               <th>Action</th>
               <th></th>
             </tr>
@@ -60,10 +68,18 @@ export default function AdminCarts() {
                       .reduce((acc, curr) => acc + curr, 0)}€
                   </td>
                   <td>
-                  <button onClick={() => handleViewClick(cart)}>Voir</button>
+                    {cart.cart.length > 0 ? 
+                      new Date(cart.cart.reduce((latest, product) => {
+                        const productDate = new Date(product.created);
+                        return productDate > latest ? productDate : latest;
+                      }, new Date(0))).toLocaleDateString('fr-FR') : 
+                      'Aucune date'}
                   </td>
                   <td>
-                    <button>Modifier</button>
+                    <button onClick={() => handleViewClick(cart)}>Voir</button>
+                  </td>
+                  <td>
+                    <button onClick={() => handleEditClick(cart)}>Modifier</button>
                   </td>
                 </tr>
               ))}

@@ -60,6 +60,8 @@
       float: left;
       width: 12%;
       text-align: right;
+      color: rgb(1, 110, 1);
+      font-weight: 500;
     }
 
     /* This is used as the traditional .clearfix class */
@@ -191,6 +193,7 @@
           float: right;
           width: 21%;
           text-align: right;
+          
         }
       }
 
@@ -267,6 +270,7 @@
       .product-line-price {
         float: right;
         width: 70px;
+        
       }
     }
 
@@ -291,6 +295,7 @@
         .totals-item {
           label {
             width: 60%;
+            
           }
 
           .totals-value {

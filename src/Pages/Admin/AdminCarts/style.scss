@@ -28,6 +28,7 @@ table {
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     border : 1px solid #858585;
+    background-color: rgb(61, 61, 61);
 
     -webkit-border-radius: 0.3rem;
     -moz-border-radius: 0.3rem;
@@ -49,7 +50,7 @@ table {
         border-bottom: none;
     }
     tbody tr:hover {
-        background-color: #363636;
+        background-color: #575757;
     }
 
     td {

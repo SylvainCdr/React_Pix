@@ -4,18 +4,20 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.658);
     display: flex;
     align-items: center;
     justify-content: center;
 
 
-.modal-content {
-    padding: 1em;
-    display: flex;
+.cart-modal {
+  display: flex;
+    background-color: rgb(61, 61, 61);
+    padding: 2em;
     flex-direction: column;
-    max-width: 60rem;
     width: 100%;
+    max-width: 50rem;
+    max-height : 100vh;
     border-radius:0.3em;
     -webkit-border-radius:0.3em;
     -moz-border-radius:0.3em;
@@ -23,7 +25,8 @@
     -o-border-radius:0.3em;
 
     h2 {
-        font-size: 1.5em;
+        font-size: 1.3em;
+        font-weight: 500;
         margin-bottom: 1em;
         background-color: var(--sunset1);
         padding: 0.5em;
@@ -46,28 +49,22 @@
     float: right;
   }
 
-//   <h3>Client: {user.username}</h3>
-//   <h3>Contact {cart.contact }</h3>
-//   <ul>
-//     {cart.cart.map((product, index) => (
-//       <li key={index}>
-//         <p>Produit: {product.name}</p>
-//         <p>Quantité: {product.quantity}</p>
-//         <p>Prix: {product.price}€</p>
-//       </li>
-//     ))}
-//   </ul>
-//   <h4>Total: {cart.cart.reduce((acc, product) => acc + product.price * product.quantity, 0)}€</h4>
-  
+
 
 h3 {
     font-size: 1.1em;
-    margin-bottom: 1em;
+    margin-bottom: 0.7em;
     border-radius:0.2em;
     -moz-border-radius:0.2em;
     -ms-border-radius:0.2em;
     -o-border-radius:0.2em;
     -webkit-border-radius:0.2em;
+}
+
+p {
+    font-size: 1em;
+    margin-bottom: 2em;
+    color: white;
 }
 
 ul {
@@ -95,6 +92,11 @@ ul {
 h4 {
   font-size: 1.2em;
   margin-top: 1em;
+  color : rgb(0, 189, 0);
+  font-weight: 600;
+  background-color: rgb(242, 242, 242);
+  padding : 0.5em;
+  border-radius:0.2em;
  
 }
   
