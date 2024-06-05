@@ -170,15 +170,16 @@ const ProductCard = ({
           <h2>{product.name}</h2>
         </Link>
       </div>
+      <div className="card-brand">
       {/* <p className="card-brand">{product.brand}</p> */}
       {brandLogo && (
         <img
           src={brandLogo.logo}
           alt={brandLogo.name}
-          className="card-brand-logo"
+          className="brand-logo"
         />
       )}
-
+</div>
      
 
      

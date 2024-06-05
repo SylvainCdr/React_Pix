@@ -64,16 +64,19 @@
     margin: 0 auto;
     display: block;
   }
-  .card-brand-logo {
+  .card-brand { 
+    border-bottom: 0.1rem solid #d9d9d9;
+    margin-bottom: 1rem;
+    
+    .brand-logo {
+    padding-bottom: 1rem;
     font-size: 1rem;
     color: #646464;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
     font-weight: 600;
-    border-bottom: 0.1rem solid #d9d9d9;
     width: 5rem;
     height: auto;
   }
+}
 
   .card-bottom {
     width: 100%;
@@ -84,7 +87,7 @@
       font-size: 1.2rem;
       font-weight: 500;
       color: #363636;
-      padding-right: 2rem;
+      // padding-right: 2rem;
       margin-bottom: 0.5rem;
 
       span {

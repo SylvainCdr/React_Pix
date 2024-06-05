@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./style.scss";
 import { NavLink, useNavigate } from "react-router-dom";
 import useFavorites from "../../../Components/useFavorites";
@@ -7,8 +7,6 @@ import useCart from "../../../Components/useCart";
 import DeliveryTimeline from "../../../Components/DeliveryTimeline/DeliveryTimeline";
 import AOS from "aos";
 
-
-
 export default function UserAccount() {
   const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
@@ -16,11 +14,8 @@ export default function UserAccount() {
   const [products, setProducts] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [orders, setOrders] = useState([]);
-  
 
-
-  const { getFavorites, removeFromFavorites, checkFavorite, addToFavorites } =
-    useFavorites();
+  const { getFavorites, removeFromFavorites, checkFavorite, addToFavorites } = useFavorites();
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -32,49 +27,46 @@ export default function UserAccount() {
     }
   }, [navigate]);
 
-  useEffect(() => {
+  const fetchUserData = useCallback(async () => {
     if (userData) {
-      const fetchData = async () => {
-        try {
-          const [productsData, favoritesData] = await Promise.all([
-            fetch("http://localhost:3001/products").then((res) => res.json()),
-            getFavorites(userData._id),
-          ]);
+      try {
+        const [productsData, favoritesData] = await Promise.all([
+          fetch("http://localhost:3001/products").then((res) => res.json()),
+          getFavorites(userData._id),
+        ]);
 
-          setProducts(productsData);
-          setFavorites(favoritesData);
-        } catch (error) {
-          console.error("Error fetching data:", error);
-        }
-      };
-
-      fetchData();
+        setProducts(productsData);
+        setFavorites(favoritesData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     }
   }, [userData, getFavorites]);
 
   useEffect(() => {
-    if (userData) {
-      fetch(`http://localhost:3001/orders?userId=${userData._id}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setOrders(data);
+    fetchUserData();
+  }, [fetchUserData]);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      if (userData) {
+        try {
+          const response = await fetch(`http://localhost:3001/orders?userId=${userData._id}`);
+          const data = await response.json();
           const sortedOrders = data.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
           setOrders(sortedOrders);
-        })
-        .catch((error) => {
+        } catch (error) {
           console.error("Erreur lors de la récupération des commandes :", error);
-        });
-    }
+        }
+      }
+    };
+
+    fetchOrders();
   }, [userData]);
-
-
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
-
- 
-  
 
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
@@ -91,11 +83,6 @@ export default function UserAccount() {
   if (!userData) {
     return null; // Ou affichez un message de chargement si nécessaire
   }
-
-
-
-
-
 
 
   return (

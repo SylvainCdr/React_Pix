@@ -50,28 +50,28 @@
         border-radius: 0.3rem;
         box-shadow: 0.1rem 0.1rem 0.2rem 0rem rgba(217, 217, 217, 0.798);
       }
-    }
-
-    .product-description {
-      padding-right: 5em;
 
       .like {
-        display: flex;
-        margin-bottom: 1.5rem;
-        align-items: center;
-
-        width: 90%;
-        color: #646363;
+        position: absolute;
         display: flex;
         justify-content: flex-end;
+        top: 1.5rem;
+        right: 2rem;
+        color: #909090;
         i {
-          font-size: 2rem;
+          font-size: 2.2rem;
           &:hover {
             cursor: pointer;
             scale: 1.1;
           }
         }
       }
+    }
+
+    .product-description {
+      padding-right: 5em;
+
+
 
       h1 {
         font-size: 1.5rem;
@@ -92,36 +92,46 @@
       .presentation {
         font-size: 1rem;
         font-weight: 500;
-        margin-bottom: 3rem;
+        margin-bottom: 2.5rem;
         text-align: justify;
         line-height: 1.4rem;
       }
 
       .stock {
-        font-size: 1.3rem;
+        font-size: 1rem;
         font-weight: 500;
         margin-bottom: 1.7rem;
-        color: green;
+        color: #019e38;
 
         border-bottom: 1px solid #b8b8b8;
         padding-bottom: 1rem;
       }
 
-      .livraison {
-        font-size: 1.1rem;
-        font-weight: 500;
-        margin-bottom: 3rem;
+      .delivery {
         border-bottom: 1px solid #b8b8b8;
-        padding-bottom: 1rem;
-        align-items: center;
+        margin-bottom: 2.5rem;
+        p {
+          font-size: 1.1rem;
+          font-weight: 500;
+          padding-bottom: 1rem;
+          align-items: center;
+          color: rgb(62, 62, 62);
+          display: flex;
 
-        i {
-          font-size: 1.5rem;
-          color: #3282df;
+          i {
+            font-size: 1.3rem;
+            color: rgb(62, 62, 62);
+            margin-right: 0.8rem;
+          }
+        }
+
+        img {
+          width: 7em;
+          height: 1.5rem;
           margin-right: 0.8rem;
+          margin-bottom: 1em;
         }
       }
-
       .ref {
         font-size: 0.9rem;
         margin-top: 3rem;
@@ -282,7 +292,6 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: 1rem;
-        text-align: center;
 
         a {
           text-decoration: none;

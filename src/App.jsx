@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Template from "./Components/Template/Template";
 import { Navigate } from "react-router-dom";
-
 import Home from "./Pages/Home/Home";
 import AboutUs from "./Pages/AboutUs/AboutUs";
 import Expertise from "./Pages/Expertise/Expertise";

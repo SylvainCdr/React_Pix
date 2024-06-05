@@ -171,14 +171,18 @@
 
           .card-title {
             width: 100%;
-            margin: none;
-            padding: none;
+            margin: inherit;
+            padding: inherit;
           }
-
-          .card-brand-logo {
+          .card-brand {
+            margin: inherit;
+         
             border: none;
-            margin: 0 1.5em 0 0;
-            padding: none;
+
+            .brand-logo {
+              margin: 0 1.5em 0 0;
+              padding: inherit;
+            }
           }
         }
       }
@@ -262,6 +266,11 @@
 
             .product-img {
               margin: inherit;
+            }
+
+            .card-brand {
+              margin:1em;
+
             }
           }
         }

@@ -1,0 +1,104 @@
+.cartModal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+.modal-content {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    max-width: 60rem;
+    width: 100%;
+    border-radius:0.3em;
+    -webkit-border-radius:0.3em;
+    -moz-border-radius:0.3em;
+    -ms-border-radius:0.3em;
+    -o-border-radius:0.3em;
+
+    h2 {
+        font-size: 1.5em;
+        margin-bottom: 1em;
+        background-color: var(--sunset1);
+        padding: 0.5em;
+        border-radius:0.2em;
+        -moz-border-radius:0.2em;
+        -ms-border-radius:0.2em;
+        -o-border-radius:0.2em;
+        -webkit-border-radius:0.2em;
+}
+
+  
+  .close-button {
+    background: rgb(100, 100, 100);
+    color: white;
+    border: none;
+    padding: 0.1em 0.6em;
+    font-size: 1em;
+    
+    cursor: pointer;
+    float: right;
+  }
+
+//   <h3>Client: {user.username}</h3>
+//   <h3>Contact {cart.contact }</h3>
+//   <ul>
+//     {cart.cart.map((product, index) => (
+//       <li key={index}>
+//         <p>Produit: {product.name}</p>
+//         <p>Quantité: {product.quantity}</p>
+//         <p>Prix: {product.price}€</p>
+//       </li>
+//     ))}
+//   </ul>
+//   <h4>Total: {cart.cart.reduce((acc, product) => acc + product.price * product.quantity, 0)}€</h4>
+  
+
+h3 {
+    font-size: 1.1em;
+    margin-bottom: 1em;
+    border-radius:0.2em;
+    -moz-border-radius:0.2em;
+    -ms-border-radius:0.2em;
+    -o-border-radius:0.2em;
+    -webkit-border-radius:0.2em;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        margin-bottom: 1em;
+        padding: 1em;
+        background-color: rgb(82, 82, 82);
+        border-radius:0.2em;
+        -moz-border-radius:0.2em;
+        -ms-border-radius:0.2em;
+        -o-border-radius:0.2em;
+        -webkit-border-radius:0.2em;
+   
+
+    p {
+        margin: 0;
+    }
+  }
+  
+}
+h4 {
+  font-size: 1.2em;
+  margin-top: 1em;
+ 
+}
+  
+  
+
+}
+}

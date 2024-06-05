@@ -2,8 +2,67 @@
 
 .adminCarts-container {
 
-    margin-top: 6rem;
+    max-width: 1440px;
+    margin: 7rem auto;
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        color : var(--sunset1);
+        font-weight: 500;
+    }
 
 
+.carts-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 0.3rem;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border : 1px solid #858585;
+
+    -webkit-border-radius: 0.3rem;
+    -moz-border-radius: 0.3rem;
+    -ms-border-radius: 0.3rem;
+    -o-border-radius: 0.3rem;
+    thead
+{
+        background-color: var(--sunset1);
+        color: white;
+    }
+    th, td {
+        padding: 0.8rem;
+        text-align: left;
+    }
+    tr {
+        border : 1px solid #858585;
+    }
+    tr:last-child {
+        border-bottom: none;
+    }
+    tbody tr:hover {
+        background-color: #363636;
+    }
+
+    td {
+        line-height: 1.5em;
+    }
+   
+    th {
+        font-size: 1.2rem;
+    }
+    .total {
+        font-weight: bold;
+    }
+}
+}
 
 }

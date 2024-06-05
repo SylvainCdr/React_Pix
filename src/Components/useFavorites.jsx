@@ -97,7 +97,7 @@ const useFavorites = () => {
     }
   };
 
-  const getFavorites = async (userId) => {
+  const getFavorites = useCallback(async (userId) => {
     try {
       const response = await fetch(`http://localhost:3001/users/${userId}/favorites`);
       if (response.ok) {
@@ -112,7 +112,7 @@ const useFavorites = () => {
       console.error("Error network issue during getFavorites:", error);
       return [];
     }
-  };
+  }, []);
 
   return {
     addToFavorites,

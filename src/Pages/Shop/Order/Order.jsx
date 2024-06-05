@@ -426,9 +426,12 @@ export default function Order() {
               onChange={handleChange}
             >
               <option value="">Sélectionnez le mode de livraison</option>
-              <option value="standard">Standard</option>
-              <option value="express">Express</option>
+              <option value="dhl">DHL</option>
+              <option value="chronopost">chronopost</option>
             </select>
+            <img src="https://www.chronopost.fr/sites/chronopost/themes/custom/chronopost/images/chronopost_logo.png" className="chrono" alt="chronopost" />
+            <img src="https://www.dhl.com/content/dam/dhl/global/core/images/logos/dhl-logo.svg" alt="DHL" />
+            
           </div>
 
           <div className="payment-options">
@@ -444,7 +447,6 @@ export default function Order() {
             >
               <option value="">Sélectionnez le mode de paiement</option>
               <option value="carte">Carte</option>
-              <option value="paypal">Paypal</option>
               <option value="virement">Virement</option>
             </select>
           </div>

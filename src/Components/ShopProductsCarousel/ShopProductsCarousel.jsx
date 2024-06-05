@@ -20,7 +20,7 @@ const ShopProductsCarousel = ({ carouselProducts }) => {
 
     responsive: [
       {
-        breakpoint: 1400,
+        breakpoint: 1480,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 1,

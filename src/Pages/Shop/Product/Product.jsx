@@ -19,7 +19,6 @@ export default function Product() {
   const [cart, setCart] = useState([]);
   const [isInFavorites, setIsInFavorites] = useState(false);
 
-
   // Utilisez le hook useFavorites
   const { addToFavorites, removeFromFavorites, checkFavorite, getFavorites } =
     useFavorites();
@@ -42,9 +41,10 @@ export default function Product() {
   };
 
   console.log("Marque du produit:", product.brand);
-  const brandLogo = logos.find(logo => logo.name.toLowerCase() === product.brand?.toLowerCase());
+  const brandLogo = logos.find(
+    (logo) => logo.name.toLowerCase() === product.brand?.toLowerCase()
+  );
   console.log("Logo trouvé:", brandLogo);
-
 
   // Create a mapping object to map the product details keys to their corresponding labels
   const labelsMapping = {
@@ -127,8 +127,9 @@ export default function Product() {
     } else {
       // Afficher un message SweetAlert indiquant à l'utilisateur de se connecter ou de s'inscrire
       Swal.fire({
-        icon: 'info',
-        title: 'Pour ajouter un produit à vos favoris, veuillez vous connecter ou vous inscrire.',
+        icon: "info",
+        title:
+          "Pour ajouter un produit à vos favoris, veuillez vous connecter ou vous inscrire.",
         showConfirmButton: true,
       });
     }
@@ -152,14 +153,13 @@ export default function Product() {
         console.error("Erreur lors de l'ajout du produit au panier");
       }
     } else {
-// Afficher un message SweetAlert indiquant à l'utilisateur de se connecter ou de s'inscrire
-Swal.fire({
-  icon: 'info',
-  title: 'Pour ajouter un produit au panier, veuillez vous connecter ou vous inscrire.',
-  showConfirmButton: true,
-});
-      
-
+      // Afficher un message SweetAlert indiquant à l'utilisateur de se connecter ou de s'inscrire
+      Swal.fire({
+        icon: "info",
+        title:
+          "Pour ajouter un produit au panier, veuillez vous connecter ou vous inscrire.",
+        showConfirmButton: true,
+      });
     }
   };
 
@@ -177,8 +177,7 @@ Swal.fire({
     } else {
       return (
         <p className="price">
-          {product.price ? product.price.toFixed(2) : "00.00"} €{" "}
-          <span>HT</span>
+          {product.price ? product.price.toFixed(2) : "00.00"} € <span>HT</span>
         </p>
       );
     }
@@ -188,10 +187,6 @@ Swal.fire({
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
-
-
-
-  
 
   return (
     <div className="product-container">
@@ -214,46 +209,54 @@ Swal.fire({
                 }
                 alt={product.name}
               />
-
+              <p
+                className="like"
+                data-aos="zoom-in-left"
+                onClick={handleToggleFavoritesClick}
+                style={{ cursor: "pointer" }}
+              >
+                <i
+                  className="fa-solid fa-heart"
+                  style={{ color: isInFavorites ? "#ed3f3f" : "inherit" }}
+                ></i>
+              </p>
             </div>
             <div className="product-description">
-             
-                {/* <p className="prices">{calculateDiscountedPrice()} </p> */}
-                <p
-                  className="like" data-aos="zoom-in-left"
-                  onClick={handleToggleFavoritesClick}
-                  style={{ cursor: "pointer" }}
-                >
-                  <i
-                    className="fa-solid fa-heart"
-                    style={{ color: isInFavorites ? "#ed3f3f" : "inherit" }}
-                  ></i>
-                </p>
-              
               <h1>{product.name}</h1>
 
-
-
-              {/* <p className="brand">{product.brand}</p> */}
-            
               {brandLogo ? (
-                <img src={brandLogo.logo} alt={product.brand} className="brand-logo" />
+                <img
+                  src={brandLogo.logo}
+                  alt={product.brand}
+                  className="brand-logo"
+                />
               ) : (
                 <p className="brand-logo">{product.brand}</p>
               )}
 
-
               <p className="presentation">{product.presentation} </p>
 
               {/* TODO : Chercher l'etat du stock dans Axonaut */}
-              <p className="stock">Sur commande</p>
-              <p className="livraison">
-                <i className="fa-solid fa-truck-fast"></i> Livraison sous 2 à 3 semaines
-              </p>
+              <p className="stock">Etat : disponible chez le fournisseur</p>
+              <div className="delivery">
+                <p>
+                  <i className="fa-solid fa-truck-fast"></i> Livraison sous 2 à
+                  3 semaines
+                </p>
+                <img
+                  src="https://www.dhl.com/content/dam/dhl/global/core/images/logos/dhl-logo.svg"
+                  alt="DHL"
+                />
+                <img
+                  src="https://www.chronopost.fr/sites/chronopost/themes/custom/chronopost/images/chronopost_logo.png"
+                  className="chrono"
+                  alt="chronopost"
+                />
+              </div>
               <div className="price-addToCart">
                 {/* // bouton avec + - pour ajouter ou retirer des produits */}
                 <div className="price">
-                <p className="prices">{calculateDiscountedPrice()} </p>
+                  <p className="prices">{calculateDiscountedPrice()} </p>
                 </div>
                 <div className="quantity">
                   <button
@@ -264,15 +267,17 @@ Swal.fire({
                     -
                   </button>
                   <p>{quantity}</p>
-                  <button onClick={() => setQuantity(quantity + 1)}
-                  className="qty-input">+</button>
+                  <button
+                    onClick={() => setQuantity(quantity + 1)}
+                    className="qty-input"
+                  >
+                    +
+                  </button>
                 </div>
 
-                <button onClick={handleAddToCartClick} >
+                <button onClick={handleAddToCartClick}>
                   Ajouter au panier
                 </button>
-                
-
               </div>
               <p className="ref">Référence : {product.ref}</p>
             </div>
@@ -294,20 +299,22 @@ Swal.fire({
                             <td>{labelsMapping[key] || key}</td>
                             {/* Affichez la valeur */}
                             <td>{product.details[key]}</td>
-                      
                           </tr>
                         )
                     )}
                 </tbody>
               </table>
-            
+
               {product.pdf && (
-                <a href={product.pdf} download target = "_blank" className="pdf-link" >
-                 Fiche technique <i class="fa-solid fa-file-pdf"></i>
-                  
+                <a
+                  href={product.pdf}
+                  download
+                  target="_blank"
+                  className="pdf-link"
+                >
+                  Fiche technique <i class="fa-solid fa-file-pdf"></i>
                 </a>
               )}
-
             </div>
 
             <div className="product-suggestions">
@@ -321,16 +328,14 @@ Swal.fire({
                   )
                   .slice(0, 4)
                   .map((item) => (
-                   
-                      <ProductCard
-                        product={item}
-                        isInFavorites={isInFavorites}
-                        addToFavorites={addToFavorites}
-                        removeFromFavorites={removeFromFavorites}
-                        checkFavorite={checkFavorite}
-                        getFavorites={getFavorites}
-                      />
-                   
+                    <ProductCard
+                      product={item}
+                      isInFavorites={isInFavorites}
+                      addToFavorites={addToFavorites}
+                      removeFromFavorites={removeFromFavorites}
+                      checkFavorite={checkFavorite}
+                      getFavorites={getFavorites}
+                    />
                   ))}
               </div>
             </div>
