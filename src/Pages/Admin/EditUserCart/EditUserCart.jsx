@@ -13,9 +13,10 @@ export default function EditUserCart() {
     addToCart,
     fetchCart,
     editQuantity,
+    editPrice,
     removeFromCart,
     cartItemsCount,
-    setCartItemsCount
+    setCartItemsCount,
   } = useCart(); // Utilisation du hook useCart
 
   const [availableProducts, setAvailableProducts] = useState([]);
@@ -27,11 +28,11 @@ export default function EditUserCart() {
     const fetchData = async () => {
       try {
         await fetchCart(userId); // Utilisation de fetchCart du hook useCart
-  
+
         const productsResponse = await fetch("http://localhost:3001/products");
         const productsData = await productsResponse.json();
         setAvailableProducts(productsData);
-  
+
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -39,21 +40,20 @@ export default function EditUserCart() {
         setLoading(false);
       }
     };
-  
+
     if (loading) {
       // Ne récupère les produits que si loading est true
       fetchData();
     }
   }, [userId, fetchCart, loading]); // Dépendances du useEffect
-  
 
   const handleAddProduct = () => {
     if (!selectedProductId) return;
-  
+
     const selectedProduct = availableProducts.find(
       (product) => product._id === selectedProductId
     );
-  
+
     addToCart(
       userId,
       selectedProductId,
@@ -65,19 +65,24 @@ export default function EditUserCart() {
     );
   };
 
-    // Fonction pour modifier la quantité d'un produit dans le panier
-const handleQuantityChange = (product, newValue) => {
-  if (newValue >= 1) {
-    editQuantity(userId, product.product_id, newValue);
-  }
-};
+  // Fonction pour modifier la quantité d'un produit dans le panier et ou le prix
+  const handleQuantityChange = (product, newValue) => {
+    if (newValue >= 1) {
+      editQuantity(userId, product.product_id, newValue);
+    }
+  };
 
+  const handlePriceChange = (product, newValue) => {
+    if (newValue >= 1) {
+      editPrice(userId, product.product_id, newValue);
+    }
+  };
 
   if (loading) return <div>Chargement...</div>;
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="editUserCart">
+    <div className="editUserCart-container">
       <h1>Modification du panier de {userId}</h1>
       <table>
         <thead>
@@ -92,13 +97,17 @@ const handleQuantityChange = (product, newValue) => {
         <tbody>
           {cart.map((product, index) => (
             <tr key={product.product_id || index}>
-              <td><img src={product.image} alt="" /></td>
+              <td>
+                <img src={product.image} alt="" />
+              </td>
               <td>{product.name}</td>
               <td>
                 <input
                   type="number"
                   value={product.quantity}
-                  onChange={(e) => handleQuantityChange(product, e.target.value)}
+                  onChange={(e) =>
+                    handleQuantityChange(product, e.target.value)
+                  }
                 />
               </td>
               <td>
@@ -106,22 +115,29 @@ const handleQuantityChange = (product, newValue) => {
                   type="number"
                   step="0.01"
                   value={product.price}
-                  readOnly // Empêche la modification du prix
+                  onChange={(e) => handlePriceChange(product, e.target.value)}
                 />
               </td>
               <td>
-                <button onClick={() => removeFromCart(userId, product.product_id)}>Supprimer</button> {/* Utilisation de removeFromCart fourni par useCart */}
+                <button
+                  onClick={() => removeFromCart(userId, product.product_id)}
+                >
+                  Supprimer
+                </button>{" "}
+                {/* Utilisation de removeFromCart fourni par useCart */}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <div>
+      <div className="add-select">
         <select
           value={selectedProductId}
           onChange={(e) => setSelectedProductId(e.target.value)}
         >
-          <option key="" value="">Sélectionner un produit</option>
+          <option key="" value="">
+            Sélectionner un produit
+          </option>
           {availableProducts.map((product) => (
             <option key={product._id} value={product._id}>
               {product.name}
@@ -130,7 +146,9 @@ const handleQuantityChange = (product, newValue) => {
         </select>
         <button onClick={handleAddProduct}>Ajouter au panier</button>
       </div>
-      <button onClick={() => navigate('/admin/paniers')}>Enregistrer les modifications</button>
+      <button onClick={() => navigate("/admin/paniers")} className="update-cart-btn">
+        Enregistrer les modifications
+      </button>
     </div>
   );
 }

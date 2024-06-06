@@ -51,6 +51,26 @@ const useCart = () => {
     }
   };
 
+  // Fonction pour modifier le prix d'un produit dans le panier
+const editPrice = async (userId, productId, price) => {
+  try {
+    const response = await fetch(`http://localhost:3001/users/${userId}/edit-cart/${productId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ price }),
+    });
+    if (response.ok) {
+      fetchCart(userId);
+    } else {
+      console.error('Erreur lors de la modification du prix du produit:', response.status);
+    }
+  } catch (error) {
+    console.error('Erreur réseau lors de la modification du prix du produit:', error);
+  }
+};
+
   // Fonction pour ajouter un produit au panier
   const addToCart = async (userId, productId, productName, productRef, quantity, productPrice, productImage) => {
     try {
@@ -134,7 +154,7 @@ const useCart = () => {
   }, [userId, isCartFetched]);
 
   // Retourne les fonctions et états du hook
-  return { cart, totalAmount, isAddingToCart, addToCart, fetchCart, editQuantity, removeFromCart, cartItemsCount, setCartItemsCount };
+  return { cart, totalAmount, isAddingToCart, addToCart, fetchCart, editQuantity, editPrice, removeFromCart, cartItemsCount, setCartItemsCount };
 };
 
 export default useCart;

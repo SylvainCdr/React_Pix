@@ -60,7 +60,7 @@ export default function AdminCarts() {
                 <tr key={cart.userId}>
                   <td>{cart.username}</td>
                   <td>{cart.cart.map((product) => product.name).join(", ")}</td>
-                  <td>{cart.cart.map((product) => product.quantity).join(", ")}</td>
+                  <td>{cart.cart.map((product) => product.quantity).join(" - ")}</td>
                   <td>{cart.cart.map((product) => product.price).join("€ - ")}€ </td>
                   <td>
                     {cart.cart

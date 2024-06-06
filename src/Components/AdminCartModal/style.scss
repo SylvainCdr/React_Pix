@@ -1,106 +1,131 @@
 .cartModal-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.658);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-
-.cart-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.658);
   display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+
+  .cart-modal {
+    display: flex;
     background-color: rgb(61, 61, 61);
     padding: 2em;
     flex-direction: column;
     width: 100%;
     max-width: 50rem;
-    max-height : 100vh;
-    border-radius:0.3em;
-    -webkit-border-radius:0.3em;
-    -moz-border-radius:0.3em;
-    -ms-border-radius:0.3em;
-    -o-border-radius:0.3em;
+    border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    -ms-border-radius: 0.3em;
+    -o-border-radius: 0.3em;
 
     h2 {
-        font-size: 1.3em;
-        font-weight: 500;
-        margin-bottom: 1em;
-        background-color: var(--sunset1);
-        padding: 0.5em;
-        border-radius:0.2em;
-        -moz-border-radius:0.2em;
-        -ms-border-radius:0.2em;
-        -o-border-radius:0.2em;
-        -webkit-border-radius:0.2em;
-}
+      font-size: 1.3em;
+      font-weight: 500;
+      margin-bottom: 1em;
+      background-color: var(--sunset1);
+      padding: 0.5em;
+      border-radius: 0.2em;
+      -moz-border-radius: 0.2em;
+      -ms-border-radius: 0.2em;
+      -o-border-radius: 0.2em;
+      -webkit-border-radius: 0.2em;
+    }
 
-  
-  .close-button {
-    background: rgb(100, 100, 100);
-    color: white;
-    border: none;
-    padding: 0.1em 0.6em;
-    font-size: 1em;
-    
-    cursor: pointer;
-    float: right;
-  }
+    .close-button {
+      background: rgb(100, 100, 100);
+      color: white;
+      border: none;
+      padding: 0.1em 0.6em;
+      font-size: 1em;
 
+      cursor: pointer;
+      float: right;
+    }
 
-
-h3 {
-    font-size: 1.1em;
-    margin-bottom: 0.7em;
-    border-radius:0.2em;
-    -moz-border-radius:0.2em;
-    -ms-border-radius:0.2em;
-    -o-border-radius:0.2em;
-    -webkit-border-radius:0.2em;
-}
-
-p {
-    font-size: 1em;
-    margin-bottom: 2em;
-    color: white;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    li {
-        margin-bottom: 1em;
-        padding: 1em;
-        background-color: rgb(82, 82, 82);
-        border-radius:0.2em;
-        -moz-border-radius:0.2em;
-        -ms-border-radius:0.2em;
-        -o-border-radius:0.2em;
-        -webkit-border-radius:0.2em;
-   
+    h3 {
+      font-size: 1.1em;
+      margin-bottom: 0.7em;
+      border-radius: 0.2em;
+      -moz-border-radius: 0.2em;
+      -ms-border-radius: 0.2em;
+      -o-border-radius: 0.2em;
+      -webkit-border-radius: 0.2em;
+    }
 
     p {
-        margin: 0;
+      font-size: 1em;
+      margin-bottom: 2em;
+      color: white;
+    }
+
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+      border-radius: 0.3rem;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+      border: 1px solid #858585;
+      background-color: rgb(61, 61, 61);
+
+      -webkit-border-radius: 0.3rem;
+      -moz-border-radius: 0.3rem;
+      -ms-border-radius: 0.3rem;
+      -o-border-radius: 0.3rem;
+
+      thead {
+        background-color: var(--sunset1);
+        color: white;
+      }
+
+      th,
+      td {
+        padding: 0.5rem;
+        text-align: left;
+      }
+
+      tr {
+        border: 1px solid #858585;
+      }
+
+      tr:last-child {
+        border-bottom: none;
+      }
+
+      tbody tr:hover {
+        background-color: #575757;
+      }
+
+      td {
+        line-height: 1.2em;
+      }
+
+      th {
+        font-size: 1.2rem;
+      }
+
+      .total {
+        font-weight: bold;
+      }
+    }
+
+
+    h4 {
+      font-size: 1.2em;
+      margin-top: 1em;
+      color: rgb(0, 189, 0);
+      font-weight: 600;
+      background-color: rgb(242, 242, 242);
+      padding: 0.5em;
+      border-radius: 0.2em;
     }
   }
-  
-}
-h4 {
-  font-size: 1.2em;
-  margin-top: 1em;
-  color : rgb(0, 189, 0);
-  font-weight: 600;
-  background-color: rgb(242, 242, 242);
-  padding : 0.5em;
-  border-radius:0.2em;
- 
-}
-  
-  
-
-}
 }
