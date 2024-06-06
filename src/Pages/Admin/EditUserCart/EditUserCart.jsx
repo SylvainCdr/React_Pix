@@ -19,15 +19,26 @@ export default function EditUserCart() {
     setCartItemsCount,
   } = useCart(); // Utilisation du hook useCart
 
+  const [user, setUser] = useState({});
   const [availableProducts, setAvailableProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedProductId, setSelectedProductId] = useState("");
+  const [totalWithTaxAndShipping, setTotalWithTaxAndShipping] = useState(0);
+  const [totalHT, setTotalHT] = useState(0);
+  const [tva, setTva] = useState(0);
+
+  const TAX_RATE = 0.20; // Example VAT rate of 20%
+  const SHIPPING_COST = 20; // Example fixed shipping cost
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         await fetchCart(userId); // Utilisation de fetchCart du hook useCart
+
+        const userResponse = await fetch(`http://localhost:3001/users/${userId}`);
+        const userData = await userResponse.json();
+        setUser(userData);
 
         const productsResponse = await fetch("http://localhost:3001/products");
         const productsData = await productsResponse.json();
@@ -46,6 +57,22 @@ export default function EditUserCart() {
       fetchData();
     }
   }, [userId, fetchCart, loading]); // Dépendances du useEffect
+
+ // useEffect pour calculer le total TTC du panier
+  useEffect(() => {
+    const calculateTotals = () => {
+      const subtotal = cart.reduce((sum, product) => sum + product.price * product.quantity, 0);
+      const calculatedTva = subtotal * TAX_RATE;
+      const totalWithTax = subtotal + calculatedTva;
+      const totalWithTaxAndShipping = totalWithTax + SHIPPING_COST;
+
+      setTotalHT(subtotal);
+      setTva(calculatedTva);
+      setTotalWithTaxAndShipping(totalWithTaxAndShipping);
+    };
+
+    calculateTotals();
+  }, [cart]);
 
   const handleAddProduct = () => {
     if (!selectedProductId) return;
@@ -83,7 +110,7 @@ export default function EditUserCart() {
 
   return (
     <div className="editUserCart-container">
-      <h1>Modification du panier de {userId}</h1>
+      <h1>Modification du panier de {user.name || userId}</h1>
       <table>
         <thead>
           <tr>
@@ -91,6 +118,7 @@ export default function EditUserCart() {
             <th>Produit</th>
             <th>Quantité</th>
             <th>Prix</th>
+            <th>Total</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -118,6 +146,7 @@ export default function EditUserCart() {
                   onChange={(e) => handlePriceChange(product, e.target.value)}
                 />
               </td>
+              <td>{(product.quantity * product.price).toFixed(2)} €</td>
               <td>
                 <button
                   onClick={() => removeFromCart(userId, product.product_id)}
@@ -130,6 +159,12 @@ export default function EditUserCart() {
           ))}
         </tbody>
       </table>
+      <div className="cart-summary">
+        <p>Total (HT) : {totalHT.toFixed(2)} €</p>
+        <p>TVA (20%) : {tva.toFixed(2)} €</p>
+        <p>Frais de port : {SHIPPING_COST.toFixed(2)} €</p>
+        <p>Total (TTC) : {totalWithTaxAndShipping.toFixed(2)} €</p>
+      </div>
       <div className="add-select">
         <select
           value={selectedProductId}
