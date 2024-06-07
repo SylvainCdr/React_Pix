@@ -388,6 +388,7 @@ if (imageFile) {
               <>
                 <option value="Switchs">Switchs</option>
                 <option value="Firewall">Firewall</option>
+                <option value="Modules Wifi">Modules Wifi</option>
               </>
             )}
 
@@ -406,7 +407,6 @@ if (imageFile) {
               <>
                 <option value="Supports">Supports</option>
                 <option value="Alimentation">Alimentation</option>
-                <option value="Modules Wifi">Modules Wifi</option>
               </>
             )}
 

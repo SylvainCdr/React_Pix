@@ -72,7 +72,7 @@
       padding-right: 5em;
 
       h1 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         font-weight: 600;
         margin-bottom: 1.5rem;
         border-bottom: 1px solid #b8b8b8;
@@ -89,7 +89,7 @@
 
       .presentation {
         font-size: 1rem;
-        font-weight: 500;
+        font-weight: 400;
         margin-bottom: 2.5rem;
         text-align: justify;
         line-height: 1.4rem;
@@ -115,7 +115,7 @@
         border-bottom: 1px solid #b8b8b8;
         margin-bottom: 2.5rem;
         p {
-          font-size: 1.1rem;
+          font-size: 1rem;
           font-weight: 500;
           padding-bottom: 1rem;
           align-items: center;
@@ -123,7 +123,7 @@
           display: flex;
 
           i {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: rgb(62, 62, 62);
             margin-right: 0.8rem;
           }
@@ -136,10 +136,7 @@
           margin-bottom: 1em;
         }
       }
-      .ref {
-        font-size: 0.9rem;
-        margin-top: 3rem;
-      }
+     
 
       .price-addToCart {
         display: flex;
@@ -158,20 +155,20 @@
             }
 
             .original-price {
-              font-size: 1.2rem;
+              font-size: 1.1rem;
               font-weight: 500;
               color: #eb4545;
               text-decoration: line-through;
               margin-right: 1rem;
             }
             .discounted-price {
-              font-size: 1.5rem;
+              font-size: 1.4rem;
               font-weight: 600;
               color: #019e38;
             }
 
             .price {
-              font-size: 1.5rem;
+              font-size: 1.4rem;
               font-weight: 600;
               color: #019e38;
             }
@@ -181,21 +178,20 @@
         .quantity {
           display: flex;
           align-items: center;
-          width: 25%;
-          border: 1px solid #414040;
-          border-radius: 0.3rem;
-          -webkit-border-radius: 0.3rem;
-          -moz-border-radius: 0.3rem;
-          -ms-border-radius: 0.3rem;
-          -o-border-radius: 0.3rem;
+          width: 20%;
+          border: 1px solid #a7a7a7;
+          border-radius: 0.2rem;
+          -webkit-border-radius: 0.2rem;
+          -moz-border-radius: 0.2rem;
+          -ms-border-radius: 0.2rem;
+          -o-border-radius: 0.2rem;
           padding: 0.4rem;
           justify-content: space-between;
-
-          font-size: 1.2rem;
-
-          .qty-input {
-            padding: 0.1em 0.5em;
-            font-size: 1.7rem;
+          font-size: 1.1rem;
+          .qty-input
+{
+            padding: 0.04em 0.4em;
+            font-size: 1.5rem;
             color: #ffffff;
             background-color: #0c96d2;
             box-shadow: 0 0 4px 0 rgb(144, 144, 144);
@@ -216,6 +212,14 @@
             }
           }
         }
+        button {
+          padding : 0.45em 1em;
+        }
+      }
+      .ref {
+        font-size: 0.9rem;
+        color : rgb(72, 72, 72)  ;
+        margin-top: 2rem;
       }
     }
   }
@@ -241,7 +245,7 @@
 
       p {
         font-size: 1rem;
-        font-weight: 500;
+        font-weight: 400;
         margin-top: 2rem;
         margin-bottom: 3rem;
         text-align: justify;
@@ -259,6 +263,12 @@
           padding: 0.5rem;
           border-bottom: 1px solid #c9c9c9;
         }
+        
+        tr:nth-child(even) {
+          background-color: #c4c4c42e;
+        }
+        
+
       }
     }
 
@@ -286,9 +296,9 @@
     .product-suggestions {
       margin-bottom: 1em;
       h3 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         font-weight: 600;
-        margin-bottom: 1rem;
+        padding-bottom: 1rem;
       }
 
       .suggestions-grid {

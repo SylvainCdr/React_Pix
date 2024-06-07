@@ -72,7 +72,7 @@ const Products = () => {
       )}
 
       {searchResults.length === 0 && (
-        <div className="products">
+        <div className="aside-products">
           <ShopAside
             setFilteredProducts={setProducts}
             subcategory={subcategory}
