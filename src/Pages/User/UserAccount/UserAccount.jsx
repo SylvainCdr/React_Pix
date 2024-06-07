@@ -119,7 +119,7 @@ export default function UserAccount() {
         </h3>
 
         {selectedTab === "infos" && (
-          <div data-aos="zoom-out-up" className="user-infos">
+          <div data-aos="fade-up" className="user-infos">
             <div className="grid-infos">
               <div className="perso">
                 <h4>Informations personnelles</h4>
@@ -164,7 +164,7 @@ export default function UserAccount() {
                   );
 
                   return (
-                    <div data-aos="fade-up-left" key={favorite.product_id}>
+                    <div data-aos="fade-up" key={favorite.product_id}>
                       <ProductCard
                         product={product}
                         addToCart={addToCart}

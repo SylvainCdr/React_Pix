@@ -255,7 +255,7 @@ const filteredProducts = products.filter((product) => {
                         onClick={() => {
                           editProduct(product._id);
                         }}
-                        className="btn btn-primary"
+                        className="modify-btn"
                       >
                         Modifier
                       </button>
@@ -265,7 +265,7 @@ const filteredProducts = products.filter((product) => {
                         onClick={() => {
                           deleteProduct(product._id);
                         }}
-                        className="btn btn-danger"
+                        className="delete-btn"
                       >
                         Supprimer
                       </button>

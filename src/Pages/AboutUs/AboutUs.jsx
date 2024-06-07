@@ -88,7 +88,7 @@ export default function AboutUs() {
               <p>Commerciale</p>
               <img
                 alt="Kenza GAUTIAM"
-                src="assets/team/KENZA_.jpg"
+                src="assets/team/KENZA_.jpeg"
               />
             </div>
           </li>
@@ -107,8 +107,8 @@ export default function AboutUs() {
               <h2 className="profile__name">Yanis MEBARKI</h2>
               <p>Commercial</p>
               <img
-                alt="Profile shot for Nicholas Castro"
-                src="https://www.pixecurity.com/wp-content/uploads/2022/06/Yanis.png"
+                alt="Yanis MEBARKI"
+                src="assets/team/YANNIS_.jpg"
               />
             </div>
           </li>
@@ -117,7 +117,7 @@ export default function AboutUs() {
               <h2 className="profile__name">Adrien JOANNY</h2>
               <p>Ingénieur Systèmes & Réseaux</p>
               <img
-                alt="Profile shot for Marc Dixon"
+                alt="Adrien JOANNY"
                 src="https://www.pixecurity.com/wp-content/uploads/2022/03/Adri-J.png"
               />
             </div>
@@ -127,7 +127,7 @@ export default function AboutUs() {
               <h2 className="profile__name">Adrien DESDOITS</h2>
               <p>Technicien Systèmes & Réseaux</p>
               <img
-                alt="Profile shot for Chad"
+                alt="Adrien DESDOITS"
                 src="https://www.pixecurity.com/wp-content/uploads/2022/03/Adri-D.png"
               />
             </div>
@@ -137,7 +137,7 @@ export default function AboutUs() {
               <h2 className="profile__name">Mathieu PACREAU</h2>
               <p>Technicien supérieur Systèmes & Réseaux</p>
               <img
-                alt="Profile shot for Chad"
+                alt="Mathieu PACREAU"
                 src="https://www.pixecurity.com/wp-content/uploads/2022/03/Mathieu.png"
               />
             </div>
@@ -147,7 +147,7 @@ export default function AboutUs() {
               <h2 className="profile__name">Aziz ARJDAL</h2>
               <p>Technicien Systèmes & Réseaux</p>
               <img
-                alt="Profile shot for Chad"
+                alt="Aziz ARJDAL"
                 src="https://www.pixecurity.com/wp-content/uploads/2023/02/Aziz.png"
               />
             </div>
@@ -157,8 +157,8 @@ export default function AboutUs() {
               <h2 className="profile__name">Élodie TENEUR</h2>
               <p>Technicienne supérieur Systèmes & Réseaux</p>
               <img
-                alt="Profile shot for Chad"
-                src="https://www.pixecurity.com/wp-content/uploads/2022/11/Elodie.png"
+                alt="Élodie TENEUR"
+                src="assets/team/ELODIE_.jpg"
               />
             </div>
           </li>
@@ -167,7 +167,7 @@ export default function AboutUs() {
               <h2 className="profile__name">Anaelle SOUHAUT</h2>
               <p>Chargée d'affaires</p>
               <img
-                alt="Profile shot for Chad"
+                alt="Anaelle SOUHAUT"
                 src="https://www.pixecurity.com/wp-content/uploads/2022/03/Anaelle.png"
               />
             </div>
@@ -204,10 +204,10 @@ export default function AboutUs() {
           </li>
           <li>
             <div className="profile">
-              <h2 className="profile__name">Augustin</h2>
+              <h2 className="profile__name">Augustin MAHIEU</h2>
               <p>Dévelopeur</p>
               <img
-                alt="Auugustin"
+                alt="Augustin MAHIEU"
                 src="assets/team/AUGUSTIN_.jpg"
               />
             </div>
@@ -224,10 +224,10 @@ export default function AboutUs() {
           </li>
           <li>
             <div className="profile">
-              <h2 className="profile__name">Yasmina</h2>
+              <h2 className="profile__name">Yasmina AOUAM</h2>
               <p>Chargée d'étude avant-vente</p>
               <img
-                alt="Yasmina"
+                alt="Yasmina AOUAM"
                 src="assets/team/YASMINA_.jpg"
               />
             </div>
@@ -242,6 +242,27 @@ export default function AboutUs() {
               />
             </div>
           </li>
+          <li>
+            <div className="profile">
+              <h2 className="profile__name">Sylvain CADORET</h2>
+              <p>Technicien Systèmes & Réseaux</p>
+              <img
+                alt="Sylvain CADORET"
+                src="assets/team/SYLVAIN_.jpg"
+              />
+            </div>
+          </li>
+          <li>
+            <div className="profile">
+              <h2 className="profile__name">Abdulrhaman SHOUGRI</h2>
+              <p>Commercial</p>
+              <img
+                alt="Abdulrhaman SHOUGRI"
+                src="assets/team/ABDULRAHMAN_.jpg"
+              />
+            </div>
+          </li>
+         
         </ul>
       </div>
     </div>

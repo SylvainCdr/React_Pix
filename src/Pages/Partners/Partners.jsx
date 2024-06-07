@@ -10,6 +10,12 @@ const Partners = () => {
     });
   }, []);
 
+  // Group partners by domain
+  const groupedPartners = partners.reduce((acc, partner) => {
+    (acc[partner.domain] = acc[partner.domain] || []).push(partner);
+    return acc;
+  }, {});
+
   return (
     <div className="partners-container">
       <div className="partners-section1">
@@ -22,36 +28,45 @@ const Partners = () => {
             avec des entreprises innovantes et réputées.
           </p>
           <p>
-          Chaque partenaire apporte son expertise et ses technologies de pointe, couvrant une vaste gamme de besoins : surveillance IP, gestion vidéo, contrôle d'accès et bien plus. Nos partenaires offrent des solutions avancées pour protéger vos biens et garantir votre tranquillité d'esprit.
+            Chaque partenaire apporte son expertise et ses technologies de
+            pointe, couvrant une vaste gamme de besoins : surveillance IP,
+            gestion vidéo, contrôle d'accès et bien plus. Nos partenaires
+            offrent des solutions avancées pour protéger vos biens et garantir
+            votre tranquillité d'esprit.
           </p>
           <p>
-          Parcourez notre galerie pour en savoir plus sur ces entreprises et leurs produits. Nous sommes fiers de travailler avec ces acteurs majeurs pour vous offrir des solutions de sécurité de la plus haute qualité.
+            Parcourez notre galerie pour en savoir plus sur ces entreprises et
+            leurs produits. Nous sommes fiers de travailler avec ces acteurs
+            majeurs pour vous offrir des solutions de sécurité de la plus haute
+            qualité.
           </p>
-          <p>
-          Bienvenue chez Pixecurity, où votre sécurité est notre priorité.
-          </p>
+          <p>Bienvenue chez Pixecurity, où votre sécurité est notre priorité.</p>
         </div>
 
         <div data-aos="fade-left" className="partner-img"></div>
       </div>
 
-      {partners.map((partner, index) => (
-        <div
-          key={index}
-          className={`partners-section2 ${index % 2 === 0 ? "left" : "right"}`}
-        >
-          <div className="partner-logo">
-            <a href={partner.website} target="_blank" rel="noreferrer">
-              <img data-aos="zoom-in" src={partner.logo} alt={partner.name} />
-            </a>
-          </div>
-          <div  className="partner-info">
-            {/* <h2>{partner.name}</h2> */}
-            <p>{partner.description}</p>
-            <a href={partner.website} target="_blank" rel="noreferrer">
-              {partner.website}
-            </a>
-          </div>
+      {Object.keys(groupedPartners).map((domain, domainIndex) => (
+        <div key={domainIndex} className="domain-title">
+          <h2 >{domain}</h2>
+          {groupedPartners[domain].map((partner, partnerIndex) => (
+            <div
+              key={partnerIndex}
+              className={`partners-section2 ${partnerIndex % 2 === 0 ? "left" : "right"}`}
+            >
+              <div className="partner-logo">
+                <a href={partner.website} target="_blank" rel="noreferrer">
+                  <img data-aos="zoom-in" src={partner.logo} alt={partner.name} />
+                </a>
+              </div>
+              <div className="partner-info">
+                <p>{partner.description}</p>
+                <a href={partner.website} target="_blank" rel="noreferrer">
+                  {partner.website}
+                </a>
+              </div>
+            </div>
+          ))}
         </div>
       ))}
     </div>

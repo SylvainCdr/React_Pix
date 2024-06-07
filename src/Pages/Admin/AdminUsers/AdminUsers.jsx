@@ -115,10 +115,10 @@ const deleteUser = (id) => {
                        
 
 
-                      <NavLink to={`/admin/utilisateurs/modification/${user._id}`}><button class="btn btn-primary" >Modifier</button></NavLink>
+                      <NavLink to={`/admin/utilisateurs/modification/${user._id}`}><button className="modify-btn" >Modifier</button></NavLink>
 
                         <td>
-                            <button class="btn btn-danger" onClick={() => deleteUser(user._id)}>Supprimer</button>
+                            <button className ="delete-btn" onClick={() => deleteUser(user._id)}>Supprimer</button>
                         </td>
                     </tr>
                 ))}

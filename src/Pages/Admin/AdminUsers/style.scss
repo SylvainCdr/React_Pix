@@ -1,7 +1,8 @@
 .admin-users {
 
-    margin-top: 6rem;
-    padding : 0rem 3rem 2rem 3rem;
+    margin: 6rem auto;
+    max-width: 1440px;
+
 
     h1 {
 
@@ -61,6 +62,16 @@
         tr:hover {
             background-color: #555;
         }
+
+        button {
+            padding: 0.5rem 1rem;
+          }
+          .modify-btn {
+            background-color: rgb(226, 100, 16);
+          }
+          .delete-btn {
+            background-color: rgb(249, 47, 47);
+          }
 
     }
 

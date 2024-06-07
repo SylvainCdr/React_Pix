@@ -237,7 +237,7 @@ export default function Product() {
               <p className="presentation">{product.presentation} </p>
 
               {/* TODO : Chercher l'etat du stock dans Axonaut */}
-              <p className="stock">Etat : disponible chez le fournisseur</p>
+              <p className="stock"> <i class="fa-solid fa-check"></i> Disponible sur commande</p>
               <div className="delivery">
                 <p>
                   <i className="fa-solid fa-truck-fast"></i> Livraison sous 2 à

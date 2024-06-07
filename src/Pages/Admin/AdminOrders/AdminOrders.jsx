@@ -81,7 +81,7 @@ export default function AdminOrders() {
                 </td>
                 <td>
                 <NavLink to={`/admin/commande/modification/${order._id}`}>
-                  <button>Modifier</button>{" "}
+                  <button className="modify-btn">Modifier</button>{" "}
                 </NavLink></td>
              
             </tr>

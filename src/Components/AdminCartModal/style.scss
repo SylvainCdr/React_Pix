@@ -9,7 +9,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
- 
 
   .cart-modal {
     display: flex;
@@ -64,7 +63,6 @@
       color: white;
     }
 
-
     table {
       width: 100%;
       border-collapse: collapse;
@@ -117,15 +115,20 @@
       }
     }
 
+    .cart-summary {
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+      background-color: rgb(61, 61, 61);
+      
+      
+      p {
 
-    h4 {
-      font-size: 1.2em;
-      margin-top: 1em;
-      color: rgb(0, 189, 0);
-      font-weight: 600;
-      background-color: rgb(242, 242, 242);
-      padding: 0.5em;
-      border-radius: 0.2em;
+        margin: 0;
+        width: 100%;
+        font-size: 1.1em;
+      padding : 0.3em 0em;
+      }
     }
   }
 }

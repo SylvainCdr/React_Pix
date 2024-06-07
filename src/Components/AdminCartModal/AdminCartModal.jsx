@@ -1,8 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
 
 export default function AdminCartModal({ cart, user, contact, onClose }) {
+  const TAX_RATE = 0.2; // Example VAT rate of 20%
+  const SHIPPING_COST = 20; // Example fixed shipping cost
+
+  const subtotal = cart.cart.reduce(
+    (acc, product) => acc + product.price * product.quantity,
+    0
+  );
+
+  const tva = subtotal * TAX_RATE;
+  const totalWithTax = subtotal + tva;
+  const totalWithTaxAndShipping = totalWithTax + SHIPPING_COST;
+
   return (
     <div className="cartModal-container">
       <div className="cart-modal">
@@ -43,15 +55,12 @@ export default function AdminCartModal({ cart, user, contact, onClose }) {
             ))}
           </tbody>
         </table>
-
-        <h4>
-          Total :{" "}
-          {cart.cart.reduce(
-            (acc, product) => acc + product.price * product.quantity,
-            0
-          )}
-          €
-        </h4>
+        <div className="cart-summary">
+          <p>Sous-total (HT) : {subtotal.toFixed(2)} €</p>
+          <p>TVA (20%) : {tva.toFixed(2)} €</p>
+          <p>Frais de port : {SHIPPING_COST.toFixed(2)} €</p>
+          <p>Total (TTC) : {totalWithTaxAndShipping.toFixed(2)} €</p>
+        </div>
       </div>
     </div>
   );

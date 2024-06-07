@@ -79,7 +79,7 @@ export default function AdminCarts() {
                     <button onClick={() => handleViewClick(cart)}>Voir</button>
                   </td>
                   <td>
-                    <button onClick={() => handleEditClick(cart)}>Modifier</button>
+                    <button onClick={() => handleEditClick(cart)} className="modify-btn">Modifier</button>
                   </td>
                 </tr>
               ))}

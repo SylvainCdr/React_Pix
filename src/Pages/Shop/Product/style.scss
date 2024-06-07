@@ -71,8 +71,6 @@
     .product-description {
       padding-right: 5em;
 
-
-
       h1 {
         font-size: 1.5rem;
         font-weight: 600;
@@ -101,10 +99,16 @@
         font-size: 1rem;
         font-weight: 500;
         margin-bottom: 1.7rem;
-        color: #019e38;
+        color: rgb(77, 77, 77);
 
         border-bottom: 1px solid #b8b8b8;
         padding-bottom: 1rem;
+
+        i {
+          font-size: 1.3rem;
+          color: rgb(22, 160, 4);
+          margin-right: 0.8rem;
+        }
       }
 
       .delivery {
