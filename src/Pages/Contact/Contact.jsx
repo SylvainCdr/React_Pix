@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.scss";
 import Swal from "sweetalert2";
+import AOS from "aos";
 
 function Contact() {
   // DECLARATION DES VARIABLES D'ETAT POUR LES CHAMPS DU FORMULAIRE
@@ -20,18 +21,16 @@ function Contact() {
   // MISE EN PLACE DES REGEX POUR VERIFIER LES CHAMPS DU FORMULAIRE
   const isValidLastname = (name) => /^[a-zA-Z\s]{2,}$/.test(name);
   const isValidFirstname = (name) => /^[a-zA-Z\s]{2,}$/.test(name);
-  const isValidCompany = (name) => /^[a-zA-Z\s]{2,}$/.test(name);
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const isValidMessage = (message) => message.length >= 15;
+  const isValidMessage = (message) => message.length >= 50;
+  const isValidCompanyLength = (name) => name.length <= 30;
 
-  // FONCTIONS POUR VERIFIER LES CHAMPS DU FORMULAIRE (name,email,message)
+  // FONCTIONS POUR VERIFIER LES CHAMPS DU FORMULAIRE (name, email, message)
   const handleLastnameChange = (e) => {
     const value = e.target.value;
     setLastname(value);
     setLastnameError(
-      isValidLastname(value)
-        ? ""
-        : "Nom invalide (au moins 2 caractères alphabétiques)"
+      isValidLastname(value) ? "" : "Nom invalide (minimum 2 lettres)"
     );
   };
 
@@ -39,20 +38,18 @@ function Contact() {
     const value = e.target.value;
     setFirstname(value);
     setFirstnameError(
-      isValidFirstname(value)
-        ? ""
-        : "Prénom invalide (au moins 2 caractères alphabétiques)"
+      isValidFirstname(value) ? "" : "Prénom invalide (minimum 2 lettres)"
     );
   };
 
   const handleCompanyChange = (e) => {
     const value = e.target.value;
-    setCompany(value);
-    setCompanyError(
-      isValidCompany(value)
-        ? ""
-        : "Société invalide (au moins 2 caractères alphabétiques)"
-    );
+    if (isValidCompanyLength(value)) {
+      setCompany(value);
+      setCompanyError("");
+    } else {
+      setCompanyError("Le nom de l'entreprise ne doit pas dépasser 30 caractères");
+    }
   };
 
   const handleEmailChange = (e) => {
@@ -65,7 +62,7 @@ function Contact() {
     const value = e.target.value;
     setMessage(value);
     setMessageError(
-      isValidMessage(value) ? "" : "Message invalide (au moins 15 caractères)"
+      isValidMessage(value) ? "" : "Message invalide (au moins 50 caractères)"
     );
   };
 
@@ -77,9 +74,9 @@ function Contact() {
     if (
       !isValidLastname(lastname) ||
       !isValidFirstname(firstname) ||
-      !isValidCompany(company) ||
       !isValidEmail(email) ||
-      !isValidMessage(message)
+      !isValidMessage(message) ||
+      (company && !isValidCompanyLength(company))
     ) {
       Swal.fire({
         title: "Erreur",
@@ -124,7 +121,6 @@ function Contact() {
       setCompanyError("");
       setEmailError("");
       setMessageError("");
-
     } else {
       // EN CAS D'ERREUR
       Swal.fire({
@@ -136,118 +132,137 @@ function Contact() {
     }
   };
 
+  // INITIALISATION DE AOS POUR ANIMER LES ELEMENTS DU FORMULAIRE
+  useEffect(() => {
+    AOS.init({
+      duration: 2300,
+    });
+  }, []);
+
   return (
     <div className="contact-container">
-      <h1>Contactez-nous</h1>
+      <div className="contact-section">
+        {/* CARTE DE VISITE/CONTACT */}
+        <div data-aos="flip-down" className="visit-card">
+          <h2>Contactez-nous</h2>
+          <h1>Let's Get In Touch</h1>
+          <h3>
+            Dites-nous qui vous êtes et expliquez nous votre problématique en
+            quelques mots. Nous vous recontacterons dans les plus brefs délais
+            pour lancer le projet.
+          </h3>
 
-      {/* CARTE DE VISITE/CONTACT  */}
-      <div className="visitCard">
-        <p>
-        {/* <i class="fa-solid fa-shield-halved"></i>Pixecurity */}
-        <img src="assets/logo-dark.svg" alt="" />
-        </p>
-        <p>
-          {" "}
-          <i className="fa-solid fa-phone"></i>(+33) 1 39 60 98 82
-        </p>
-        <p>
-          <i className="fa-solid fa-envelope"></i>
-          <a href="mailto:pixecurity@pixecurity.com">
-            pixecurity@pixecurity.com
-          </a>
-        </p>
-        <p>
-          <i className="fa-brands fa-linkedin"></i>
-          <a href="https://www.linkedin.com/company/pixecurity/">Linkedin</a>
-        </p>
-        <p>
-          <i className="fa-solid fa-location-dot"></i> 38 Rue Jean Mermoz 78600
-          Maisons-Laffitte
-        </p>
+          <p>
+            <img src="assets/logo-dark.svg" alt="" />
+          </p>
+          <p>
+            <i className="fa-solid fa-phone"></i>(+33) 1 39 60 98 82
+          </p>
+          <p>
+            <i className="fa-solid fa-envelope"></i>
+            <a href="mailto:pixecurity@pixecurity.com">
+              pixecurity@pixecurity.com
+            </a>
+          </p>
+          <p>
+            <i className="fa-brands fa-linkedin"></i>
+            <a href="https://www.linkedin.com/company/pixecurity/">Linkedin</a>
+          </p>
+          <p>
+            <i className="fa-solid fa-location-dot"></i> 38 Rue Jean Mermoz
+            78600 Maisons-Laffitte
+          </p>
+        </div>
+
+        <div data-aos="flip-up" className="map">
+          {/* CARTE GOOGLE MAPS */}
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2620.3192053317075!2d2.1426642!3d48.9474075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e661bf4bc8b7a5%3A0x530ca1d69735aaaf!2sPixecurity!5e0!3m2!1sen!2sfr!4v1707475449842!5m2!1sen!2sfr"
+            width="600"
+            height="450"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
       </div>
 
-      {/* CARTE GOOGLE MAPS */}
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2620.3192053317075!2d2.1426642!3d48.9474075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e661bf4bc8b7a5%3A0x530ca1d69735aaaf!2sPixecurity!5e0!3m2!1sen!2sfr!4v1707475449842!5m2!1sen!2sfr"
-        width="600"
-        height="450"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
+      <div data-aos="flip-right" className="contact-form">
+        {/* DEBUT FORMULAIRE DE CONTACT */}
+        <form onSubmit={handleFormSubmit}>
+          <label htmlFor="lastname">Nom :</label>
+          <input
+            type="text"
+            id="lastname"
+            name="lastname"
+            required
+            value={lastname}
+            onChange={handleLastnameChange}
+          />
+          {/* AFFICHAGE DU MESSAGE D'ERREUR EN LIVE SI LE CHAMP EST INCORRECT */}
+          {lastnameError && (
+            <span className="error-message">{lastnameError}</span>
+          )}
 
-      {/* DEBUT FORMULAIRE DE CONTACT  */}
-      <form onSubmit={handleFormSubmit}>
-        <label htmlFor="name">Nom :</label>
-        <input
-          type="text"
-          id="lastname"
-          name="lastname"
-          required
-          value={lastname}
-          onChange={handleLastnameChange}
-        />
-        {/* AFFICHAGE DU MESSAGE D'ERREUR EN LIVE SI LE CHAMP EST INCORRECT */}
-        {lastnameError && (
-          <span className="error-message">{lastnameError}</span>
-        )}
+          <label htmlFor="firstname">Prénom :</label>
+          <input
+            type="text"
+            id="firstname"
+            name="firstname"
+            required
+            value={firstname}
+            onChange={handleFirstnameChange}
+          />
+          {/* AFFICHAGE DU MESSAGE D'ERREUR EN LIVE SI LE CHAMP EST INCORRECT */}
+          {firstnameError && (
+            <span className="error-message">{firstnameError}</span>
+          )}
 
-        <label htmlFor="firstname">Prénom :</label>
-        <input
-          type="text"
-          id="firstname"
-          name="firstname"
-          required
-          value={firstname}
-          onChange={handleFirstnameChange}
-        />
-        {/* AFFICHAGE DU MESSAGE D'ERREUR EN LIVE SI LE CHAMP EST INCORRECT */}
-        {firstnameError && (
-          <span className="error-message">{firstnameError}</span>
-        )}
+          <label htmlFor="company">Entreprise (optionnel) :</label>
+          <input
+            type="text"
+            id="company"
+            name="company"
+            value={company}
+            onChange={handleCompanyChange}
+          />
+          {/* AFFICHAGE DU MESSAGE D'ERREUR EN LIVE SI LE CHAMP EST INCORRECT */}
+          {companyError && (
+            <span className="error-message">{companyError}</span>
+          )}
 
-        <label htmlFor="company">Entreprise :</label>
-        <input
-          type="text"
-          id="company"
-          name="company"
-          required
-          value={company}
-          onChange={handleCompanyChange}
-        />
-        {/* AFFICHAGE DU MESSAGE D'ERREUR EN LIVE SI LE CHAMP EST INCORRECT */}
-        {companyError && <span className="error-message">{companyError}</span>}
+          <label htmlFor="email">Email :</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            value={email}
+            onChange={handleEmailChange}
+          />
+          {emailError && <span className="error-message">{emailError}</span>}
 
-        <label htmlFor="email">Email :</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          required
-          value={email}
-          onChange={handleEmailChange}
-        />
-        {emailError && <span className="error-message">{emailError}</span>}
+          <label htmlFor="message">Message :</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="6"
+            required
+            value={message}
+            onChange={handleMessageChange}
+          />
+          {messageError && <span className="error-message">{messageError}</span>}
 
-        <label htmlFor="message">Message :</label>
-        <textarea
-          id="message"
-          name="message"
-          rows="6"
-          required
-          value={message}
-          onChange={handleMessageChange}
-        />
-        {messageError && <span className="error-message">{messageError}</span>}
-
-        <input type="submit" value="Envoyer" className="submitButton" />
-      </form>
-      {/* FIN FORMULAIRE DE CONTACT  */}
+          <input type="submit" value="Envoyer" className="submitButton" />
+        </form>
+        {/* FIN FORMULAIRE DE CONTACT */}
+      </div>
     </div>
   );
 }
 
 export default Contact;
+
 
 // TO DO : Utiliser emailJS pour envoyer les mails depuis le formulaire de contact
 //  By José - sharemycode :

@@ -1,0 +1,104 @@
+.shopAside-container {
+ 
+  width: 15%;
+  min-width: 8em;
+  background-color: rgba(199, 199, 199, 0.38);
+  margin: 1em;
+  padding: 0.5em;
+  border-radius: 0.3rem;
+  -webkit-border-radius: 0.3rem;
+  -moz-border-radius: 0.3rem;
+  -ms-border-radius: 0.3rem;
+  -o-border-radius: 0.3rem;
+
+  h2 {
+    color: white;
+    background-color: var(--sunset1);
+    padding: 0.4em;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    -ms-border-radius: 0.3em;
+    -o-border-radius: 0.3em;
+  }
+
+  .brand-filter,
+  .price-filter,
+  .megapixels-filter,
+  .imgSec-filter,
+  .color-filter,
+  .infrarouge-filter,
+  .distanceInfrarouge-filter,
+  .installationExt-filter,
+  .nbrePorts-filter,
+  .rackable-filter,
+  .manageable-filter,
+  .poe-filter,
+  .poePlus-filter,
+  .poePlusPlus-filter,
+  .usb-filter,
+  .debitVpn-filter,
+  .maxTcp-filter,
+  .debitFirewall-filter,
+  .vitesse-filter,
+  .typeWifi-filter,
+  .antenne-filter,
+  .lan-filter,
+  .nebula-filter {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+
+    label,
+    span,
+    li {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.2rem;   
+      color: #333;
+      input {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .shopAside-container {
+      h2 {
+        font-size: 0.9rem;
+      }
+
+      .brand-filter,
+      .price-filter,
+      .megapixels-filter,
+      .imgSec-filter,
+      .color-filter,
+      .infrarouge-filter,
+      .distanceInfrarouge-filter,
+      .installationExt-filter,
+      .nbrePorts-filter,
+      .rackable-filter,
+      .manageable-filter,
+      .poe-filter,
+      .poePlus-filter,
+      .poePlusPlus-filter,
+      .usb-filter,
+      .debitVpn-filter,
+      .maxTcp-filter,
+      .debitFirewall-filter,
+      .vitesse-filter,
+      .typeWifi-filter,
+      .antenne-filter,
+      .lan-filter,
+      .nebula-filter {
+        label,
+        span,
+        li {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}

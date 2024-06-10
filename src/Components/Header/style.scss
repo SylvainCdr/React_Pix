@@ -1,54 +1,80 @@
 .header {
-  max-width: 1440px;
+  // // DEBUT ANIMATION SURVOL PARENTHESES
+  // .header__nav {
+  //   li:before,
+  //   li:after {
+  //     position: absolute;
+  //     opacity: 0;
+  //     font-size: 25px;
+  //     top: 0px;
+  //     transition: all 0.3s;
+  //     color: #009fe3;
+  //   }
+  //   li:before {
+  //     content: "[";
+  //     top: -5px;
+  //     left: -1rem;
+  //     transform: translateX(10px);
+  //   }
+  //   li:after {
+  //     content: "]";
+  //     top: -5px;
+  //     right: -1rem;
+  //     transform: translateX(-10px);
+  //   }
+  //   li:hover:before,
+  //   li:hover:after {
+  //     opacity: 1;
+  //     transform: translateX(0px);
+  //   }
+  // }
+  // // FIN ANIMATION SURVOL PARENTHESES
+
   width: 100%;
   background: rgb(44, 44, 44);
-  box-shadow: 0 0 10px rgba(255, 254, 254, 0.5);
-  border-radius: 0rem 0rem 1rem 1rem;
-  -webkit-border-radius: 0rem 0rem 1rem 1rem;
-  -moz-border-radius: 0rem 0rem 1rem 1rem;
-  -ms-border-radius: 0rem 0rem 1rem 1rem;
-  -o-border-radius: 0rem 0rem 1rem 1rem;
+  box-shadow: 0 0 3px rgba(255, 254, 254, 0.5);
   position: fixed;
-  display: flex;
-  z-index: 1000;
+  // display: flex;
+  z-index: 9999;
   top: 0;
+  border-radius: 0rem 0rem 0.6rem 0.6rem;
+  -webkit-border-radius: 0rem 0rem 0.6rem 0.6rem;
+  -moz-border-radius: 0rem 0rem 0.6rem 0.6rem;
+  -ms-border-radius: 0rem 0rem 0.6rem 0.6rem;
+  -o-border-radius: 0rem 0rem 0.6rem 0.6rem;
+  margin: 0 auto;
 
   .header__nav {
     margin: auto;
     width: 100%;
-    height: 6rem;
+    height: 5.5rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
 
     .header__logo {
       display: flex;
-
       cursor: pointer;
 
       img {
-        margin-left: 1rem;
-        width: 11rem;
-      }
-
-      p {
-        font-family: "Montserrat", sans serif;
-        font-size: 0.8rem;
-        text-align: center;
-        color: #d8f3ff;
+        margin-left: 1em;
+        width: 13rem;
       }
     }
 
     ul {
-      display: flex;
-      padding: 0 20px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      font-family: "Roboto", sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 1px;
       width: 100%;
+      display: flex;
+      font-size: 1.2rem;
+      font-weight: 500;
+      font-family: "Barlow Condensed", sans-serif;
+      text-transform: uppercase;
+
+      li.active a {
+        border-bottom: 1px solid var(--sunset4);
+        padding-bottom: 0.2rem;
+      }
     }
+
     li,
     img {
       margin: auto;
@@ -60,15 +86,52 @@
         -ms-transform: scale(1.1);
         -o-transform: scale(1.1);
       }
+
+      a {
+        color: white;
+        text-decoration: none;
+        img {
+          margin: 0.3rem;
+          width: 2.5rem;
+        }
+      }
+
+      .shop {
+        background-color: #6c1b74;
+        padding: 0.4em 0.5em;
+        box-shadow: 0 0 2px rgba(255, 254, 254, 0.5);
+        border-radius: 0.3rem;
+        -webkit-border-radius: 0.3rem;
+        -moz-border-radius: 0.3rem;
+        -ms-border-radius: 0.3rem;
+        -o-border-radius: 0.3rem;
+      }
     }
+  }
+
+  .cart {
+    margin-right: 2em;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--sunset1);
+    padding: 0.5em 0.5em;
+    box-shadow: 0 0 2px rgba(255, 254, 254, 0.5);
+    border-radius: 0.3rem;
+    -webkit-border-radius: 0.3rem;
+    -moz-border-radius: 0.3rem;
+    -ms-border-radius: 0.3rem;
+    -o-border-radius: 0.3rem;
 
     a {
+      width: 100%;
+      font-size: 1.3rem;
       color: white;
-      text-decoration: none;
-      img {
-        margin: 0.3rem;
-        width: 2.5rem;
-      }
+    }
+
+    &:hover {
+      scale: 1.1;
     }
   }
 
@@ -76,53 +139,29 @@
     display: none;
   }
 
-  // DEBUT ANIMATION SURVOL PARENTHESES
+  @media screen and (max-width: 1080px) {
 
-  .header__nav {
-    li:before,
-    li:after {
-      position: absolute;
-      opacity: 0;
-      font-size: 25px;
-      top: 0px;
-      transition: all 0.3s;
-      color: #009fe3;
-    }
+    .header__nav {
+      justify-content: flex-end;
 
-    li:before {
-      content: "[";
-      top: -7px;
-      left: -1rem;
-      transform: translateX(10px);
-    }
+      ul {
 
-    li:after {
-      content: "]";
-      top: -7px;
-      right: -1rem;
-      transform: translateX(-10px);
-    }
-
-    li:hover:before,
-    li:hover:after {
-      opacity: 1;
-      transform: translateX(0px);
-    }
-  }
-  // FIN ANIMATION SURVOL PARENTHESES
-
-  @media screen and (max-width: 900px) {
-    span {
-      display: none;
+        .shop {
+          background-color: inherit;
+          padding: 0;
+          box-shadow: none;
+          border-radius: 0;
+        }
+      }
     }
 
     // DEBUT MENU BURGER
     .header__burgerMenu {
       display: flex;
-      margin-right: 10%;
-      font-size: 2.5rem;
+      margin-left: auto;
+      font-size: 2.6rem;
       cursor: pointer;
-      right: 0%;
+      right: 0;
     }
 
     .header__burgerMenu:before {
@@ -131,17 +170,17 @@
     ul {
       position: fixed;
       left: -110%;
-      top: 0;
+      top: 4em;
       flex-direction: column;
       transition: 0.25s;
-      background-color: rgb(114, 114, 114);
+      background-color: rgb(57, 57, 57);
       z-index: 100;
 
       li {
         padding: 0.3rem 0;
 
         &:hover {
-          background: #aaa9a9;
+          background: #707070;
         }
       }
     }
@@ -151,7 +190,20 @@
     .active ul {
       left: 0;
     }
-  }
 
-  // FIN MENU BURGER
+    // DEBUT MENU BURGER
+    .header__burgerMenu {
+      display: flex;
+
+      font-size: 2.6rem;
+      cursor: pointer;
+      margin-right: 5%;
+    }
+
+    .cart {
+      // justify-content: flex-end;
+    }
+  }
 }
+
+// // FIN MENU BURGER

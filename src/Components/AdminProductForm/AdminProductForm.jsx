@@ -18,8 +18,10 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
   const [selectedBrand, setSelectedBrand] = useState("defaultBrand");
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
+  const [imageFile, setImageFile] = useState(null); // Ajout d'un état pour le fichier d'image
+  const [pdf, setPdf] = useState("");
 
-  // on test si le produit à éditer est bien récupéré
+  // Caractéristiques 2ndaires
   const [detailsDimensions, setDetailsDimensions] = useState("");
   const [detailsPoids, setDetailsPoids] = useState("");
   const [detailsTemp, setDetailsTemp] = useState("");
@@ -71,7 +73,12 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
       setBrand(productToEdit.brand || "");
       setPrice(productToEdit.price || 0);
       setImage(productToEdit.image || "");
-      // on test si le produit à éditer est bien récupéré
+      setImageFile(null); // Réinitialisez l'image pour éviter de l'afficher à nouveau
+      setPdf(productToEdit.pdf || "");
+      setSelectedCategory(productToEdit.category || "defaultCategory");
+      setSelectedSubcategory(productToEdit.subcategory || "defaultSubcategory");
+      setSelectedBrand(productToEdit.brand || "defaultBrand");
+      // Caractéristiques 2ndaires
       setDetailsDimensions(
         productToEdit.details ? productToEdit.details.dimensions || "" : ""
       );
@@ -181,10 +188,20 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
       setDetailsNebula(
         productToEdit.details ? productToEdit.details.nebula || "" : ""
       );
+    
 
     }
   }, [productToEdit]);
 
+  // Gérer le changement de l'image
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImageFile(file);
+    setImage(URL.createObjectURL(file));
+  };
+
+
+// Gérer la soumission du formulaire
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -196,14 +213,13 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
       ref,
       presentation,
       description,
-      category: category === "newCategory" ? newCategory : category,
-      subcategory:
-        selectedSubcategory === "newSubcategory"
-          ? newSubcategory
-          : selectedSubcategory || subcategory,
-      brand: selectedBrand === "newBrand" ? newBrand : selectedBrand || brand,
+      category: selectedCategory === "newCategory" ? newCategory : selectedCategory,
+      subcategory: selectedSubcategory === "newSubcategory" ? newSubcategory : selectedSubcategory,
+      brand: selectedBrand === "newBrand" ? newBrand : selectedBrand,
       price,
       image,
+      imageFile,
+      pdf,
       dimensions: detailsDimensions,
       poids: detailsPoids,
       temp: detailsTemp,
@@ -245,6 +261,30 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
 
     console.log("Après ajout nouvelle sous-catégorie :", product.subcategory);
 
+
+
+// Télécharger l'image si un fichier est sélectionné
+if (imageFile) {
+  const formData = new FormData();
+  formData.append('file', imageFile);
+  formData.append('fileName', imageFile.name); // Utilisez `imageFile.name` comme nom de fichier
+  console.log(imageFile.name);
+
+  try {
+    const response = await fetch("http://localhost:3001/upload", {
+      method: "POST",
+      body: formData,
+    });
+    const data = await response.json();
+    product.image = data.url;
+  } catch (error) {
+    console.error("Erreur lors de l'upload de l'image:", error);
+    return;
+  }
+}
+
+
+   
     // Ajouter l'identifiant du produit si disponible
     if (productToEdit && productToEdit._id) {
       product._id = productToEdit._id;
@@ -348,6 +388,7 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
               <>
                 <option value="Switchs">Switchs</option>
                 <option value="Firewall">Firewall</option>
+                <option value="Modules Wifi">Modules Wifi</option>
               </>
             )}
 
@@ -366,7 +407,6 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
               <>
                 <option value="Supports">Supports</option>
                 <option value="Alimentation">Alimentation</option>
-                <option value="Modules Wifi">Modules Wifi</option>
               </>
             )}
 
@@ -484,6 +524,9 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
+           <label htmlFor="imageFile">Image:</label>
+        <input type="file" accept="image/*" onChange={handleImageChange} />
+
           <label htmlFor="image">URL de l'image</label>
           <input
             type="text"
@@ -491,7 +534,18 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
             id="image"
             value={image}
             onChange={(e) => setImage(e.target.value)}
+            />
+            {image && <img src={image} alt="Preview" className="image-preview" />}
+
+          <label htmlFor="pdf">URL du PDF</label>
+          <input
+            type="text"
+            name="pdf"
+            id="pdf"
+            value={pdf}
+            onChange={(e) => setPdf(e.target.value)}
           />
+          
         </div>
         <div className="details-1">
           <label htmlFor="detailsDimensions">Dimensions</label>
@@ -785,6 +839,8 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
             value={detailsNebula}
             onChange={(e) => setDetailsNebula(e.target.value)}
           />
+
+
 
         </div>
       </div>

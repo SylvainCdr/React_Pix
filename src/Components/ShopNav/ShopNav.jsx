@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
 
-
 function ShopNav() {
   const [categories, setCategories] = useState([]);
   const [subcategoriesMap, setSubcategoriesMap] = useState({});
-  
+  const [openCategory, setOpenCategory] = useState(null);
+  const [openSubcategory, setOpenSubcategory] = useState(null);
 
   useEffect(() => {
     // Charger toutes les catégories
@@ -49,32 +49,52 @@ function ShopNav() {
     }
   }, [categories]);
 
-  
+  // Fonction pour ouvrir ou fermer le menu déroulant d'une catégorie
+  const toggleCategory = (category) => {
+    setOpenCategory(openCategory === category ? null : category);
+    setOpenSubcategory(null); // Fermer le dropdown de la sous-catégorie lorsqu'on ouvre une nouvelle catégorie
+  };
+
+  // Fonction pour ouvrir ou fermer le menu déroulant d'une sous-catégorie
+  const toggleSubcategory = (subcategory) => {
+    setOpenSubcategory(openSubcategory === subcategory ? null : subcategory);
+    setOpenCategory(null); // Fermer le dropdown de la catégorie lorsqu'on clique sur une sous-catégorie
+  };
+
+  // Modification de l'ordre des catégories
+  const order = ["Caméras", "Réseau", "Logiciels", "Autres"];
+
+  // Trier les catégories selon l'ordre spécifié
+  const sortedCategories = categories.sort((a, b) => order.indexOf(a) - order.indexOf(b));
 
   return (
-    <div className="shop-nav">
-      <div className="dropdownmenu">
-        <ul>
-          {/* création d'une li pour chaque catégorie trouvée dans la base de données */}
-          {categories.map((category) => (
-            <li key={category}>
-              <Link to={`/Catalogue/${category}`}>{category}</Link>
-
-              <ul id="submenu">
-                {subcategoriesMap[category]?.map((subcategory) => (
-                  <li key={subcategory}>
-                    <Link to={`/Catalogue/${category}/${subcategory}`}>
-                      {subcategory}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-   
+    <div className="shopNav-container">
+      <ul>
+        {/* création d'une li pour chaque catégorie trouvée dans la base de données */}
+        {sortedCategories.map((category) => (
+          <li key={category} className="dropdown">
+            <label htmlFor={category} data-toggle="dropdown" onClick={() => toggleCategory(category)}>{category}</label>
+            <input type="checkbox" id={category} style={{ display: "none" }} />
+            <ul className="dropdown-menu" style={{ display: openCategory === category ? "block" : "none" }}>
+              {subcategoriesMap[category]?.map((subcategory) => (
+                <li key={subcategory}>
+                  <Link
+                    to={`/boutique/${category}/${subcategory}`}
+                    onClick={() => toggleSubcategory(subcategory)}
+                    className={openSubcategory === subcategory ? "active" : ""}
+                  >
+                    {subcategory}
+                  </Link>
+                </li>
+              ))}
+              {/* création d'une li pour tous les produits de chaque catégorie */}
+              <li>
+                <Link to={`/boutique/${category}`}>Tous les produits</Link>
+              </li>
+            </ul>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

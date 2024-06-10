@@ -41,7 +41,7 @@ function EditProduct() {
                     timer: 2000,
                     timerProgressBar: true,
                 }).then(() => {
-                    window.location.href = "/admin/products";
+                    window.location.href = "/admin/produits";
                 });
             } else {
                 Swal.fire({

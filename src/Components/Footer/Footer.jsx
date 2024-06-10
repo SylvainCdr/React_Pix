@@ -1,9 +1,10 @@
 import React from "react";
 import "./style.scss";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <div className="footer">
+    <div className="footer-container">
       <div className="section-1">
         <img src="/assets/logo-dark.svg" alt="" />
         <p>
@@ -13,23 +14,39 @@ function Footer() {
         </p>
       </div>
       <div className="section-2">
+        <img src="/assets/icons/mase.png" alt="" />
+        </div>
+      <div className="section-3">
         <h4>Plan du site </h4>
-        <br />
+
         <ul>
-          <li>Accueil</li>
-          <li>Catalogue</li>
-          <li>Notre expertise</li>
-          <li>A propos</li>
-          <li>Contact </li>
+    
+
+          <Link to="/">
+            <li>Accueil</li>
+          </Link>
+          <Link to="/boutique">
+            <li>Boutique</li>
+          </Link>
+          <Link to="/notre-expertise">
+            <li>Notre expertise</li>
+          </Link>
+          <Link to="/a-propos">
+            <li>Qui sommes-nous ?</li>
+          </Link>
+          <Link to="/partenaires">
+            <li>Nos partenaires</li>
+          </Link>
+          <Link to="/contact">
+            <li>Contact</li>
+          </Link>
         </ul>
       </div>
 
-      <div className="section-3">
+      <div className="section-4">
         <h4>Nous contacter </h4>
-        <br />
         <ul>
           <li>
-            {" "}
             <i className="fa-solid fa-envelope"></i>
             <a href="mailto:pixecurity@pixecurity.com">
               pixecurity@pixecurity.com
@@ -40,7 +57,7 @@ function Footer() {
           </li>
           <li>
             <i className="fa-solid fa-location-dot"></i> 38 Rue Jean Mermoz
-            78600 Maisons-Laffitte
+            <br /> 78600 Maisons-Laffitte
           </li>
           <li>
             <i className="fa-brands fa-linkedin"></i>
@@ -48,8 +65,7 @@ function Footer() {
           </li>
         </ul>
       </div>
-
-
+      
     </div>
   );
 }

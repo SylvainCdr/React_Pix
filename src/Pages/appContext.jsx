@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 // NB : ON INSTALLE LE PACKAGE "use-local-storage" POUR STOCKER L'UTILISATEUR DANS LE LOCAL STORAGE
 
@@ -19,5 +19,33 @@ export function useUser() {
   return user;
 }
 
+// Hook pour récupérer le token de l'utilisateur connecté
+const CartContext = createContext();
+
+// Hook pour récupérer le panier
+export const useCartContext = () => useContext(CartContext);
+
+// Provider pour le panier
+export const CartProvider = ({ children }) => {
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+  };
+
+  const removeFromCart = (productId) => {
+    setCart(cart.filter((item) => item.productId !== productId));
+  };
+
+  const clearCart = () => {
+    setCart([]);
+  };
+
+  return (
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+      {children}
+    </CartContext.Provider>
+  );
+};
 
 

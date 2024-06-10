@@ -1,17 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, CSSProperties } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import "./style.scss";
 import ShopNav from "../../../Components/ShopNav/ShopNav";
-import Search from "../../../Components/Search/Search";
+import ShopSearch from "../../../Components/ShopSearch/ShopSearch";
+import ShopAside from "../../../Components/ShopAside/ShopAside";
+import ProductCard from "../../../Components/ProductCard/ProductCard";
+import useFavorites from "../../../Components/useFavorites";
+import useCart from "../../../Components/useCart";
+import PropagateLoader from "react-spinners/PropagateLoader";
 
 const Products = () => {
   const { category, subcategory } = useParams();
   const [products, setProducts] = useState([]);
   const location = useLocation();
   const [searchResults, setSearchResults] = useState([]);
+  const { addToFavorites, removeFromFavorites, checkFavorite } = useFavorites();
+  const { addToCart } = useCart();
+  const [userId, setUserId] = useState("");
+
+  const override = {
+    size: "15px",
+    margin: "0 auto",
+    borderColor: "red",
+  };
+
+  const [loading, setLoading] = useState(true);
+  const [color, setColor] = useState("#ff9c3fc0");
 
   useEffect(() => {
     const fetchProducts = async () => {
+      setLoading(true); // Set loading to true before starting the fetch
       const apiUrl = subcategory
         ? `http://localhost:3001/products?category=${encodeURIComponent(
             category
@@ -26,6 +44,8 @@ const Products = () => {
         setProducts(data);
       } catch (error) {
         console.error("Erreur lors de la récupération des produits :", error);
+      } finally {
+        setLoading(false); // Set loading to false after the fetch is done
       }
     };
 
@@ -35,35 +55,41 @@ const Products = () => {
   return (
     <div className="products-container">
       <ShopNav />
-      <Search setSearchResults={setSearchResults} />
+
+      <ShopSearch setSearchResults={setSearchResults} />
+
+      {loading && (
+        <div className="sweet-loading">
+          <PropagateLoader
+            color={color}
+            loading={loading}
+            cssOverride={override}
+            size={20}
+            aria-label="Grid Loader"
+            data-testid="loader"
+          />
+        </div>
+      )}
 
       {searchResults.length === 0 && (
-       <div className="products">
-          <div className="products-title">
-            <h1>{category} </h1>
-          </div>
-           
+        <div className="aside-products">
+          <ShopAside
+            setFilteredProducts={setProducts}
+            subcategory={subcategory}
+            category={category}
+          />
 
           <div className="products-grid">
             {products.map((item) => (
-              <div className="product-card" key={item._id}>
-                <div className="card-title">
-                  <h2>{item.name}</h2>
-                </div>
-                <img src={item.image} alt={item.name} className="card-img" />
-                <p className="card-price">
-                  {item.price} € <span>TTC</span>
-                </p>
-                <p>{item.brand}</p>
-                <div className="buttons">
-                  <button className="button-see">
-                    <Link to={`/product/${item._id}`}>Voir le produit</Link>
-                  </button>
-                  <button className="button-cart">
-                    <i className="fa-solid fa-cart-plus"></i>
-                  </button>
-                </div>
-              </div>
+              <ProductCard
+                key={item._id}
+                product={item}
+                userId={userId}
+                addToFavorites={addToFavorites}
+                removeFromFavorites={removeFromFavorites}
+                checkFavorite={checkFavorite}
+                addToCart={addToCart}
+              />
             ))}
           </div>
         </div>

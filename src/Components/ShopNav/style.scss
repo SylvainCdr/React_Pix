@@ -1,85 +1,116 @@
-.shop-nav {
-    margin-top: 8rem;
-    width: 100%;
-    background-color:  #30A6E6;
-    height: 2.5rem;
- 
- 
-    .dropdownmenuul,.dropdownmenuli
-{
-        margin: 0;
-        padding: 0;
-    }
-    
-    .dropdownmenu ul {
-        background: gray;
-        list-style: none;
-        width: 100%;
-        
-    }
-    .dropdownmenu li {
-        float: left;
-        position: relative;
-        width:10rem;
+.shopNav-container {
+  margin-top: 5.5rem;
+  width: 100%;
+  background-color: #30a6e6;
+  height: 2.4rem;
+  display: flex;
 
-    }
-    .dropdownmenu a {
-        background: #30A6E6;
-        color: #FFFFFF;
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li:hover {
+      .dropdown-menu {
         display: block;
-        font: bold 1rem/20px sans-serif;
-        padding: 10px 3rem;
-        text-align: center;
-        text-decoration: none;
-        -webkit-transition: all .25s ease;
-        -moz-transition: all .25s ease;
-        -ms-transition: all .25s ease;
-        -o-transition: all .25s ease;
-        transition: all .25s ease;
+        max-height: 9999px;
+      }
     }
-    .dropdownmenu li:hover a {
-        background: #343434;
-        
-    }
-    #submenu {
-        left: 0;
-        opacity: 0;
-        position: absolute;
-        visibility: hidden;
-        z-index: 1;
-    }
-    li:hover ul#submenu {
-        opacity: 1;
-        top: 40px;	/* adjust this as per top nav padding top & bottom comes */
-        visibility: visible;
-     
-    }
-    #submenu li {
-        float: none;
-        width: 100%;
-      
-    }
-    #submenu a:hover {
-        background: #DF4B05;
-    }
-    #submenu a {
-        background-color:#343434;
+  }
+
+  .dropdown {
+    float: left;
+    position: relative;
+    width: 10em;
+
+    label {
+      background: #30a6e6;
+      color: #ffffff;
+      display: block;
+      font-size: 1.1em;
+      font-weight: 500;
+      padding: 0.6rem 0.7rem;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.25s ease;
+
+      &:before {
+        content: "\25BC";
+        font-size: 0.7em;
+        margin-right: 0.8em;
+        transition: transform 0.25s ease;
+      }
+
+      &:hover {
+        background: #6c1b74;
+      }
     }
 
-    .search {
-        float: right;
-      
+    input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
 
-    input {
-        width: 15rem;
-        height: 2.5rem;
-        border: none;
-        padding: 0 1rem;
-        font-size: 1rem;
-       
+      &:checked ~ .dropdown-menu {
+        display: block;
+        max-height: 9999px;
+      }
+
+      &:checked + label:before {
+        transform: rotate(-180deg);
+      }
     }
 
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      background: gray;
+      list-style: none;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease-out;
+      //   width: 10em;
+      margin-left: 0em;
+      -webkit-transition: max-height 0.6s ease-out;
+      -moz-transition: max-height 0.6s ease-out;
+      -ms-transition: max-height 0.6s ease-out;
+      -o-transition: max-height 0.6s ease-out;
+    }
+  }
+
+  .dropdown a {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    text-align: center;
+    background-color: #343434;
+    transition: background-color 0.25s ease;
+
+    &:hover {
+      background:  #6c1b74;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .shopNav-container {
+    .dropdown {
+      width: 6.6em;
+      font-size: 0.8em;
     }
 
-
+    .dropdown-menu {
+      width: 5.6em;
+      min-width: 5.6em;
     }
+    ul.dropdown-menu {
+      li {
+        width: 5.6em;
+      }
+    }
+  }
+}
