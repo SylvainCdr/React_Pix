@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
+import { BASE_URL } from "../../url";
 
 function ShopNav() {
   const [categories, setCategories] = useState([]);
@@ -10,7 +11,7 @@ function ShopNav() {
 
   useEffect(() => {
     // Charger toutes les catégories
-    fetch("http://localhost:3001/categories")
+    fetch(`${BASE_URL}/categories`)
       .then((res) => res.json())
       .then((data) => setCategories(data))
       .catch((error) =>
@@ -23,7 +24,7 @@ function ShopNav() {
     const fetchSubcategories = async () => {
       const subcategoriesData = await Promise.all(
         categories.map((category) =>
-          fetch(`http://localhost:3001/subcategories?category=${category}`)
+          fetch(`${BASE_URL}/subcategories?category=${category}`)
             .then((res) => res.json())
             .catch((error) => {
               console.error(
