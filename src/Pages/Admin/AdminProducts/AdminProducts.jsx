@@ -225,6 +225,7 @@ const filteredProducts = products.filter((product) => {
                   <th scope="col">Sous-catégorie</th>
                   <th scope="col">Marque</th>
                   <th scope="col">Prix</th>
+                  <th scope="col">updated</th>
                   <th scope="col">Actions</th>
                   <th scope="col"></th>
                   <th scope="col"></th>
@@ -244,12 +245,21 @@ const filteredProducts = products.filter((product) => {
                         />
                       )}
                     </td>
-                    <td>{product.name}</td>
+                    {/* <td>{product.name}</td>
+                    // lien vers la page produit */}
+                    <td><a href={`http://localhost:3000/boutique/produit/${product._id}`}>{product.name}</a></td>
                     <td>{product.ref}</td>
                     <td>{product.category}</td>
                     <td>{product.subcategory}</td>
                     <td>{product.brand}</td>
                     <td>{product.price} €</td>
+          
+             
+                    <td>{new Date(product.updatedAt).toLocaleDateString()}</td>
+
+
+
+
                     <td >
                       <button
                         onClick={() => {
