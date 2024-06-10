@@ -40,33 +40,28 @@ export default function ShopAside({
   const [poePlusPlusValues, setPoePlusPlusValues] = useState([]);
   const [selectedPoePlusPlus, setSelectedPoePlusPlus] = useState([]);
 
-  const [usbValues, setUsbValues] = useState([])
-  const [selectedUsb, setSelectedUsb] = useState([])
+  const [usbValues, setUsbValues] = useState([]);
+  const [selectedUsb, setSelectedUsb] = useState([]);
 
-const [debitVpnValues, setDebitVpnValues] = useState([])
-const [selectedDebitVpn, setSelectedDebitVpn] = useState([])
+  const [debitVpnValues, setDebitVpnValues] = useState([]);
+  const [selectedDebitVpn, setSelectedDebitVpn] = useState([]);
 
-const [maxTcpValues, setMaxTcpValues] = useState([])
-const [selectedMaxTcp, setSelectedMaxTcp] = useState([])
+  const [maxTcpValues, setMaxTcpValues] = useState([]);
+  const [selectedMaxTcp, setSelectedMaxTcp] = useState([]);
 
-const [debitFirewallValues, setDebitFirewallValues] = useState([])
-const [selectedDebitFirewall, setSelectedDebitFirewall] = useState([])
+  const [debitFirewallValues, setDebitFirewallValues] = useState([]);
+  const [selectedDebitFirewall, setSelectedDebitFirewall] = useState([]);
 
-
-const [vitesseValues, setVitesseValues] = useState([])
-const [selectedVitesse, setSelectedVitesse] = useState([])
-const [typeWifiValues, setTypeWifiValues] = useState([])
-const [selectedTypeWifi, setSelectedTypeWifi] = useState([])
-const [antenneValues, setAntenneValues] = useState([])
-const [selectedAntenne, setSelectedAntenne] = useState([])
-const [lanValues, setLanValues] = useState([])
-const [selectedLan, setSelectedLan] = useState([])
-const [nebulaValues, setNebulaValues] = useState([])
-const [selectedNebula, setSelectedNebula] = useState([])
-
-
-
-
+  const [vitesseValues, setVitesseValues] = useState([]);
+  const [selectedVitesse, setSelectedVitesse] = useState([]);
+  const [typeWifiValues, setTypeWifiValues] = useState([]);
+  const [selectedTypeWifi, setSelectedTypeWifi] = useState([]);
+  const [antenneValues, setAntenneValues] = useState([]);
+  const [selectedAntenne, setSelectedAntenne] = useState([]);
+  const [lanValues, setLanValues] = useState([]);
+  const [selectedLan, setSelectedLan] = useState([]);
+  const [nebulaValues, setNebulaValues] = useState([]);
+  const [selectedNebula, setSelectedNebula] = useState([]);
 
   // Récupération des produits et des marques
   useEffect(() => {
@@ -173,75 +168,82 @@ const [selectedNebula, setSelectedNebula] = useState([])
         const poePlus = data
           .map((product) => getProductsPoePlus(product).trim())
           .filter((value) => value);
-        const uniquePoePlus = Array.from(new Set(poePlus)).sort((a, b) => a - b);
+        const uniquePoePlus = Array.from(new Set(poePlus)).sort(
+          (a, b) => a - b
+        );
         setPoePlusValues(uniquePoePlus);
 
         const poePlusPlus = data
           .map((product) => getProductsPoePlusPlus(product).trim())
           .filter((value) => value);
-        const uniquePoePlusPlus = Array.from(new Set(poePlusPlus)).sort((a, b) => a - b);
+        const uniquePoePlusPlus = Array.from(new Set(poePlusPlus)).sort(
+          (a, b) => a - b
+        );
         setPoePlusPlusValues(uniquePoePlusPlus);
 
-const usb = data
-.map((product) => getProductsUsb(product).trim())
-.filter((value) => value);
-const uniqueUsb = Array.from(new Set(usb)).sort((a, b) => a - b);
-setUsbValues(uniqueUsb);
+        const usb = data
+          .map((product) => getProductsUsb(product).trim())
+          .filter((value) => value);
+        const uniqueUsb = Array.from(new Set(usb)).sort((a, b) => a - b);
+        setUsbValues(uniqueUsb);
 
-const debitVpn = data
-.map((product) => getProductsDebitVpn(product).trim())
-.filter((value) => value);
-const uniqueDebitVpn = Array.from(new Set(debitVpn)).sort((a, b) => a - b);
-setDebitVpnValues(uniqueDebitVpn);
+        const debitVpn = data
+          .map((product) => getProductsDebitVpn(product).trim())
+          .filter((value) => value);
+        const uniqueDebitVpn = Array.from(new Set(debitVpn)).sort(
+          (a, b) => a - b
+        );
+        setDebitVpnValues(uniqueDebitVpn);
 
-const maxTcp = data
-.map((product) => getProductsMaxTcp(product).trim())
-.filter((value) => value);
-const uniqueMaxTcp = Array.from(new Set(maxTcp)).sort((a, b) => a - b);
-setMaxTcpValues(uniqueMaxTcp);
+        const maxTcp = data
+          .map((product) => getProductsMaxTcp(product).trim())
+          .filter((value) => value);
+        const uniqueMaxTcp = Array.from(new Set(maxTcp)).sort((a, b) => a - b);
+        setMaxTcpValues(uniqueMaxTcp);
 
-const debitFirewall = data
-.map((product) => getProductsDebitFirewall(product).trim())
-.filter((value) => value);
-const uniqueDebitFirewall = Array.from(new Set(debitFirewall)).sort((a, b) => a - b);
-setDebitFirewallValues(uniqueDebitFirewall);
+        const debitFirewall = data
+          .map((product) => getProductsDebitFirewall(product).trim())
+          .filter((value) => value);
+        const uniqueDebitFirewall = Array.from(new Set(debitFirewall)).sort(
+          (a, b) => a - b
+        );
+        setDebitFirewallValues(uniqueDebitFirewall);
 
-const vitesse = data
-.map((product) => getProductsVitesse(product).trim())
-.filter((value) => value);
-const uniqueVitesse = Array.from(new Set(vitesse)).sort((a, b) => a - b);
-setVitesseValues(uniqueVitesse);
+        const vitesse = data
+          .map((product) => getProductsVitesse(product).trim())
+          .filter((value) => value);
+        const uniqueVitesse = Array.from(new Set(vitesse)).sort(
+          (a, b) => a - b
+        );
+        setVitesseValues(uniqueVitesse);
 
-const typeWifi = data
-.map((product) => getProductsTypeWifi(product).trim())
-.filter((value) => value);
-const uniqueTypeWifi = Array.from(new Set(typeWifi)).sort((a, b) => a - b);
-setTypeWifiValues(uniqueTypeWifi);
+        const typeWifi = data
+          .map((product) => getProductsTypeWifi(product).trim())
+          .filter((value) => value);
+        const uniqueTypeWifi = Array.from(new Set(typeWifi)).sort(
+          (a, b) => a - b
+        );
+        setTypeWifiValues(uniqueTypeWifi);
 
-const antenne = data
-.map((product) => getProductsAntenne(product).trim())
-.filter((value) => value);
-const uniqueAntenne = Array.from(new Set(antenne)).sort((a, b) => a - b);
-setAntenneValues(uniqueAntenne);
+        const antenne = data
+          .map((product) => getProductsAntenne(product).trim())
+          .filter((value) => value);
+        const uniqueAntenne = Array.from(new Set(antenne)).sort(
+          (a, b) => a - b
+        );
+        setAntenneValues(uniqueAntenne);
 
-const lan = data
-.map((product) => getProductsLan(product).trim())
-.filter((value) => value);
-const uniqueLan = Array.from(new Set(lan)).sort((a, b) => a - b);
-setLanValues(uniqueLan);
+        const lan = data
+          .map((product) => getProductsLan(product).trim())
+          .filter((value) => value);
+        const uniqueLan = Array.from(new Set(lan)).sort((a, b) => a - b);
+        setLanValues(uniqueLan);
 
-const nebula = data
-.map((product) => getProductsNebula(product).trim())
-.filter((value) => value);
-const uniqueNebula = Array.from(new Set(nebula)).sort((a, b) => a - b);
-setNebulaValues(uniqueNebula);
-
-
-
-
-
-
-
+        const nebula = data
+          .map((product) => getProductsNebula(product).trim())
+          .filter((value) => value);
+        const uniqueNebula = Array.from(new Set(nebula)).sort((a, b) => a - b);
+        setNebulaValues(uniqueNebula);
 
         setSelectedBrands([]);
         setSelectedMegapixels([]);
@@ -353,60 +355,68 @@ setNebulaValues(uniqueNebula);
     if (selectedPoePlus.length > 0) {
       filtered = filtered.filter((product) =>
         selectedPoePlus.includes(getProductsPoePlus(product).trim())
-      );}
+      );
+    }
 
     if (selectedPoePlusPlus.length > 0) {
       filtered = filtered.filter((product) =>
         selectedPoePlusPlus.includes(getProductsPoePlusPlus(product).trim())
-      );}
+      );
+    }
 
-      if (selectedUsb.length > 0) {
-        filtered = filtered.filter((product) =>
-          selectedUsb.includes(getProductsUsb(product).trim())
-        );}
+    if (selectedUsb.length > 0) {
+      filtered = filtered.filter((product) =>
+        selectedUsb.includes(getProductsUsb(product).trim())
+      );
+    }
 
-        if (selectedDebitVpn.length > 0) {
-          filtered = filtered.filter((product) =>
-            selectedDebitVpn.includes(getProductsDebitVpn(product).trim())
-          );}
+    if (selectedDebitVpn.length > 0) {
+      filtered = filtered.filter((product) =>
+        selectedDebitVpn.includes(getProductsDebitVpn(product).trim())
+      );
+    }
 
-          if (selectedMaxTcp.length > 0) {
-            filtered = filtered.filter((product) =>
-              selectedMaxTcp.includes(getProductsMaxTcp(product).trim())
-            );}
+    if (selectedMaxTcp.length > 0) {
+      filtered = filtered.filter((product) =>
+        selectedMaxTcp.includes(getProductsMaxTcp(product).trim())
+      );
+    }
 
-            if (selectedDebitFirewall.length > 0) {
-              filtered = filtered.filter((product) =>
-                selectedDebitFirewall.includes(getProductsDebitFirewall(product).trim())
-              );}
+    if (selectedDebitFirewall.length > 0) {
+      filtered = filtered.filter((product) =>
+        selectedDebitFirewall.includes(getProductsDebitFirewall(product).trim())
+      );
+    }
 
-              if (selectedVitesse.length > 0) {
-                filtered = filtered.filter((product) =>
-                  selectedVitesse.includes(getProductsVitesse(product).trim())
-                );}
+    if (selectedVitesse.length > 0) {
+      filtered = filtered.filter((product) =>
+        selectedVitesse.includes(getProductsVitesse(product).trim())
+      );
+    }
 
-                if (selectedTypeWifi.length > 0) {
-                  filtered = filtered.filter((product) =>
-                    selectedTypeWifi.includes(getProductsTypeWifi(product).trim())
-                  );}
+    if (selectedTypeWifi.length > 0) {
+      filtered = filtered.filter((product) =>
+        selectedTypeWifi.includes(getProductsTypeWifi(product).trim())
+      );
+    }
 
-                  if (selectedAntenne.length > 0) {
-                    filtered = filtered.filter((product) =>
-                      selectedAntenne.includes(getProductsAntenne(product).trim())
-                    );}
+    if (selectedAntenne.length > 0) {
+      filtered = filtered.filter((product) =>
+        selectedAntenne.includes(getProductsAntenne(product).trim())
+      );
+    }
 
-                    if (selectedLan.length > 0) {
-                      filtered = filtered.filter((product) =>
-                        selectedLan.includes(getProductsLan(product).trim())
-                      );}
+    if (selectedLan.length > 0) {
+      filtered = filtered.filter((product) =>
+        selectedLan.includes(getProductsLan(product).trim())
+      );
+    }
 
-                      if (selectedNebula.length > 0) {
-                        filtered = filtered.filter((product) =>
-                          selectedNebula.includes(getProductsNebula(product).trim())
-                        );}
-
-
-
+    if (selectedNebula.length > 0) {
+      filtered = filtered.filter((product) =>
+        selectedNebula.includes(getProductsNebula(product).trim())
+      );
+    }
 
     setFilteredProducts(filtered);
   }, [
@@ -598,9 +608,7 @@ setNebulaValues(uniqueNebula);
   const handlePoeChange = (event) => {
     const poeValue = event.target.value;
     if (selectedPoe.includes(poeValue)) {
-      setSelectedPoe(
-        selectedPoe.filter((value) => value !== poeValue)
-      );
+      setSelectedPoe(selectedPoe.filter((value) => value !== poeValue));
     } else {
       setSelectedPoe([...selectedPoe, poeValue]);
     }
@@ -619,11 +627,11 @@ setNebulaValues(uniqueNebula);
     } else {
       setSelectedPoePlus([...selectedPoePlus, poePlusValue]);
     }
-  }
+  };
 
   const getProductsPoePlus = (product) => {
     return product.details?.poePlus || "";
-  }
+  };
 
   const handlePoePlusPlusChange = (event) => {
     const poePlusPlusValue = event.target.value;
@@ -634,26 +642,24 @@ setNebulaValues(uniqueNebula);
     } else {
       setSelectedPoePlusPlus([...selectedPoePlusPlus, poePlusPlusValue]);
     }
-  }
+  };
 
   const getProductsPoePlusPlus = (product) => {
     return product.details?.poePlusPlus || "";
-  }
+  };
 
   const handleUsbChange = (event) => {
     const usbValue = event.target.value;
     if (selectedUsb.includes(usbValue)) {
-      setSelectedUsb(
-        selectedUsb.filter((value) => value !== usbValue)
-      );
+      setSelectedUsb(selectedUsb.filter((value) => value !== usbValue));
     } else {
       setSelectedUsb([...selectedUsb, usbValue]);
     }
-  }
+  };
 
   const getProductsUsb = (product) => {
     return product.details?.usb || "";
-  }
+  };
 
   const handleDebitVpnChange = (event) => {
     const debitVpnValue = event.target.value;
@@ -664,11 +670,11 @@ setNebulaValues(uniqueNebula);
     } else {
       setSelectedDebitVpn([...selectedDebitVpn, debitVpnValue]);
     }
-  }
+  };
 
   const getProductsDebitVpn = (product) => {
     return product.details?.debitVpn || "";
-  }
+  };
 
   const handleMaxTcpChange = (event) => {
     const maxTcpValue = event.target.value;
@@ -679,11 +685,11 @@ setNebulaValues(uniqueNebula);
     } else {
       setSelectedMaxTcp([...selectedMaxTcp, maxTcpValue]);
     }
-  }
+  };
 
   const getProductsMaxTcp = (product) => {
     return product.details?.maxTcp || "";
-  }
+  };
 
   const handleDebitFirewallChange = (event) => {
     const debitFirewallValue = event.target.value;
@@ -694,13 +700,13 @@ setNebulaValues(uniqueNebula);
     } else {
       setSelectedDebitFirewall([...selectedDebitFirewall, debitFirewallValue]);
     }
-  }
+  };
 
   const getProductsDebitFirewall = (product) => {
     return product.details?.debitFirewall || "";
-  }
+  };
 
-  const handleVitesseChange = (event) => {  
+  const handleVitesseChange = (event) => {
     const vitesseValue = event.target.value;
     if (selectedVitesse.includes(vitesseValue)) {
       setSelectedVitesse(
@@ -709,11 +715,11 @@ setNebulaValues(uniqueNebula);
     } else {
       setSelectedVitesse([...selectedVitesse, vitesseValue]);
     }
-  }
+  };
 
   const getProductsVitesse = (product) => {
     return product.details?.vitesse || "";
-  }
+  };
 
   const handleTypeWifiChange = (event) => {
     const typeWifiValue = event.target.value;
@@ -724,11 +730,11 @@ setNebulaValues(uniqueNebula);
     } else {
       setSelectedTypeWifi([...selectedTypeWifi, typeWifiValue]);
     }
-  }
+  };
 
   const getProductsTypeWifi = (product) => {
     return product.details?.typeWifi || "";
-  }
+  };
 
   const handleAntenneChange = (event) => {
     const antenneValue = event.target.value;
@@ -739,26 +745,24 @@ setNebulaValues(uniqueNebula);
     } else {
       setSelectedAntenne([...selectedAntenne, antenneValue]);
     }
-  }
+  };
 
   const getProductsAntenne = (product) => {
     return product.details?.antenne || "";
-  }
+  };
 
   const handleLanChange = (event) => {
     const lanValue = event.target.value;
     if (selectedLan.includes(lanValue)) {
-      setSelectedLan(
-        selectedLan.filter((value) => value !== lanValue)
-      );
+      setSelectedLan(selectedLan.filter((value) => value !== lanValue));
     } else {
       setSelectedLan([...selectedLan, lanValue]);
     }
-  }
+  };
 
   const getProductsLan = (product) => {
     return product.details?.lan || "";
-  }
+  };
 
   const handleNebulaChange = (event) => {
     const nebulaValue = event.target.value;
@@ -769,15 +773,11 @@ setNebulaValues(uniqueNebula);
     } else {
       setSelectedNebula([...selectedNebula, nebulaValue]);
     }
-  }
+  };
 
   const getProductsNebula = (product) => {
     return product.details?.nebula || "";
-  }
-
-
-
-
+  };
 
   return (
     <div className="shopAside-container">
@@ -1257,12 +1257,6 @@ setNebulaValues(uniqueNebula);
           </ul>
         </div>
       )}
-
-      
-
-
-
-
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const useCart = () => {
   // États du panier
@@ -7,80 +7,110 @@ const useCart = () => {
   const [isAddingToCart, setIsAddingToCart] = useState(false); // Indique si un produit est en cours d'ajout au panier
 
   // Récupération de l'ID utilisateur depuis le stockage local
-  const userId = JSON.parse(localStorage.getItem('user'))?._id;
+  const userId = JSON.parse(localStorage.getItem("user"))?._id;
 
   // État du nombre total d'articles dans le panier
   const [cartItemsCount, setCartItemsCount] = useState(0);
 
   // Calcul du montant total du panier
-  const totalAmount = cart.reduce((acc, product) => acc + (product.quantity * product.price) * 1.20 + 9.90, 0);
+  const totalAmount = cart.reduce(
+    (acc, product) => acc + product.quantity * product.price * 1.2 + 9.9,
+    0
+  );
 
   // Fonction pour récupérer le panier depuis le serveur
   const fetchCart = async (userId) => {
     try {
-      const response = await fetch(`http://localhost:3001/users/${userId}/cart`);
+      const response = await fetch(
+        `http://localhost:3001/users/${userId}/cart`
+      );
       if (response.ok) {
         const data = await response.json();
         setCart(data);
         setIsCartFetched(true);
       } else {
-        console.error('Réponse du serveur:', response.status);
+        console.error("Réponse du serveur:", response.status);
       }
     } catch (error) {
-      console.error('Erreur réseau:', error);
+      console.error("Erreur réseau:", error);
     }
   };
 
   // Fonction pour modifier la quantité d'un produit dans le panier
   const editQuantity = async (userId, productId, quantity) => {
     try {
-      const response = await fetch(`http://localhost:3001/users/${userId}/edit-cart/${productId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ quantity }),
-      });
+      const response = await fetch(
+        `http://localhost:3001/users/${userId}/edit-cart/${productId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ quantity }),
+        }
+      );
       if (response.ok) {
         fetchCart(userId);
       } else {
-        console.error('Erreur lors de la modification du panier:', response.status);
+        console.error(
+          "Erreur lors de la modification du panier:",
+          response.status
+        );
       }
     } catch (error) {
-      console.error('Erreur réseau lors de la modification du panier:', error);
+      console.error("Erreur réseau lors de la modification du panier:", error);
     }
   };
 
   // Fonction pour modifier le prix d'un produit dans le panier
-const editPrice = async (userId, productId, price) => {
-  try {
-    const response = await fetch(`http://localhost:3001/users/${userId}/edit-cart/${productId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ price }),
-    });
-    if (response.ok) {
-      fetchCart(userId);
-    } else {
-      console.error('Erreur lors de la modification du prix du produit:', response.status);
+  const editPrice = async (userId, productId, price) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/users/${userId}/edit-cart/${productId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ price }),
+        }
+      );
+      if (response.ok) {
+        fetchCart(userId);
+      } else {
+        console.error(
+          "Erreur lors de la modification du prix du produit:",
+          response.status
+        );
+      }
+    } catch (error) {
+      console.error(
+        "Erreur réseau lors de la modification du prix du produit:",
+        error
+      );
     }
-  } catch (error) {
-    console.error('Erreur réseau lors de la modification du prix du produit:', error);
-  }
-};
+  };
 
   // Fonction pour ajouter un produit au panier
-  const addToCart = async (userId, productId, productName, productRef, quantity, productPrice, productImage) => {
+  const addToCart = async (
+    userId,
+    productId,
+    productName,
+    productRef,
+    quantity,
+    productPrice,
+    productImage
+  ) => {
     try {
       setIsAddingToCart(true);
-      const discount = JSON.parse(localStorage.getItem('user'))?.discount;
+      const discount = JSON.parse(localStorage.getItem("user"))?.discount;
       const discountedPrice = productPrice - (productPrice * discount) / 100;
-      const existingProductIndex = cart.findIndex(product => product.product_id === productId);
+      const existingProductIndex = cart.findIndex(
+        (product) => product.product_id === productId
+      );
 
       let url = `http://localhost:3001/users/${userId}/add-cart/${productId}`;
-      let method = 'POST';
+      let method = "POST";
       let body = {
         product_id: productId,
         name: productName,
@@ -96,7 +126,7 @@ const editPrice = async (userId, productId, price) => {
         updatedCart[existingProductIndex].quantity += quantity;
         setCart(updatedCart);
         url = `http://localhost:3001/users/${userId}/add-cart/${productId}`;
-        method = 'POST';
+        method = "POST";
         body = {
           product_id: productId,
           name: productName,
@@ -110,7 +140,7 @@ const editPrice = async (userId, productId, price) => {
       const response = await fetch(url, {
         method: method,
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(body),
       });
@@ -121,7 +151,7 @@ const editPrice = async (userId, productId, price) => {
         fetchCart(userId);
       }
     } catch (error) {
-      console.error('Erreur réseau:', error);
+      console.error("Erreur réseau:", error);
     } finally {
       setIsAddingToCart(false);
     }
@@ -130,19 +160,30 @@ const editPrice = async (userId, productId, price) => {
   // Fonction pour supprimer un produit du panier
   const removeFromCart = async (userId, productId) => {
     try {
-      const response = await fetch(`http://localhost:3001/users/${userId}/delete-cart/${productId}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await fetch(
+        `http://localhost:3001/users/${userId}/delete-cart/${productId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       if (response.ok) {
-        setCart(prevCart => prevCart.filter(product => product.product_id !== productId));
+        setCart((prevCart) =>
+          prevCart.filter((product) => product.product_id !== productId)
+        );
       } else {
-        console.error('Erreur lors de la suppression du produit du panier:', response.status);
+        console.error(
+          "Erreur lors de la suppression du produit du panier:",
+          response.status
+        );
       }
     } catch (error) {
-      console.error('Erreur réseau lors de la suppression du produit du panier:', error);
+      console.error(
+        "Erreur réseau lors de la suppression du produit du panier:",
+        error
+      );
     }
   };
 
@@ -154,7 +195,18 @@ const editPrice = async (userId, productId, price) => {
   }, [userId, isCartFetched]);
 
   // Retourne les fonctions et états du hook
-  return { cart, totalAmount, isAddingToCart, addToCart, fetchCart, editQuantity, editPrice, removeFromCart, cartItemsCount, setCartItemsCount };
+  return {
+    cart,
+    totalAmount,
+    isAddingToCart,
+    addToCart,
+    fetchCart,
+    editQuantity,
+    editPrice,
+    removeFromCart,
+    cartItemsCount,
+    setCartItemsCount,
+  };
 };
 
 export default useCart;

@@ -26,7 +26,7 @@ const useFavorites = () => {
             product_id: productId,
             name: productName,
             price: productPrice,
-            ref : productRef,
+            ref: productRef,
             image: productImage,
           }),
         }
@@ -50,8 +50,10 @@ const useFavorites = () => {
 
   const checkFavorite = useCallback(async (userId, productId) => {
     try {
-      const response = await fetch(`http://localhost:3001/users/${userId}/check-favorite/${productId}`);
-      
+      const response = await fetch(
+        `http://localhost:3001/users/${userId}/check-favorite/${productId}`
+      );
+
       if (response.ok) {
         const data = await response.json();
         console.log("Check Favorite Response Data:", data); // Add this line for debugging
@@ -69,20 +71,16 @@ const useFavorites = () => {
   const removeFromFavorites = async (userId, productId) => {
     try {
       setIsAddingToFavorites(true);
-      
-      
 
       const response = await fetch(
         `http://localhost:3001/users/${userId}/delete-favorite/${productId}`,
         {
           method: "DELETE",
-          
         }
-        );
-        console.log("res", response)
-        
-        if (response.ok) {
-        
+      );
+      console.log("res", response);
+
+      if (response.ok) {
         console.log("Produit retiré des favoris avec succès!");
         setIsInFavorites(false);
         return true;
@@ -99,7 +97,9 @@ const useFavorites = () => {
 
   const getFavorites = useCallback(async (userId) => {
     try {
-      const response = await fetch(`http://localhost:3001/users/${userId}/favorites`);
+      const response = await fetch(
+        `http://localhost:3001/users/${userId}/favorites`
+      );
       if (response.ok) {
         const data = await response.json();
         console.log("Favorites Data:", data); // Add this line for debugging

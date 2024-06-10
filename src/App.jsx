@@ -1,7 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
 import Template from "./Components/Template/Template";
-import { Navigate } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import AboutUs from "./Pages/AboutUs/AboutUs";
 import Expertise from "./Pages/Expertise/Expertise";
@@ -30,7 +28,7 @@ import Rgpd from "./Pages/Authentification/Rgpd/Rgpd";
 import Cgv from "./Pages/Authentification/Cgv/Cgv";
 import Partners from "./Pages/Partners/Partners";
 import { Provider, CartProvider } from "./Pages/appContext";
-import ScrollToTop from './Components/scrollToTop';
+import ScrollToTop from "./Components/scrollToTop";
 import EditUserCart from "./Pages/Admin/EditUserCart/EditUserCart";
 
 // on importe le hook useLocalStorage pour stocker l'utilisateur dans le local storage
@@ -38,10 +36,6 @@ import useLocalStorage from "use-local-storage";
 function App() {
   // on crée un state user et setUser pour stocker l'utilisateur en local storage
   const [user, setUser] = useLocalStorage("user", null);
-
-  const AdminRoute = ({ isAdmin, ...rest }) => (
-    isAdmin ? <Route {...rest} /> : <Navigate to="/" />
-  );
 
   return (
     // <Provider> est un composant qui enveloppe toute l'application pour fournir un contexte partagé, ici l'utilisateur connecté
@@ -59,32 +53,58 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/connexion" element={<Login />} />
               <Route path="/inscription" element={<Register />} />
-              <Route path="/reset-password/:token" element={<ResetPassword />} />
-              
-           {/* Admin routes sécurisées */}
-           {user && user.role === 'admin' && (
-              <>
-                <Route path="/admin/dashboard" element={<Dashboard />} />
-                <Route path="/admin/produits" element={<AdminProducts />} />
-                <Route path="/admin/produits/ajout" element={<AddProduct />} />
-                <Route path="/admin/produits/modification/:id" element={<EditProduct />} />
-                <Route path="/admin/utilisateurs" element={<AdminUsers />} />
-                <Route path="/admin/utilisateurs/modification/:id" element={<EditUser />} />
-                <Route path="/admin/commandes" element={<AdminOrders />} />
-                <Route path="/admin/commande/modification/:id" element={<EditOrders />} />
-                <Route path="/admin/paniers" element={<AdminCarts />} />
-                <Route path="/admin/panier/modification/:id" element={<EditUserCart />} />
-            
-              </>
-            )}
+              <Route
+                path="/reset-password/:token"
+                element={<ResetPassword />}
+              />
+
+              {/* Admin routes sécurisées */}
+              {user && user.role === "admin" && (
+                <>
+                  <Route path="/admin/dashboard" element={<Dashboard />} />
+                  <Route path="/admin/produits" element={<AdminProducts />} />
+                  <Route
+                    path="/admin/produits/ajout"
+                    element={<AddProduct />}
+                  />
+                  <Route
+                    path="/admin/produits/modification/:id"
+                    element={<EditProduct />}
+                  />
+                  <Route path="/admin/utilisateurs" element={<AdminUsers />} />
+                  <Route
+                    path="/admin/utilisateurs/modification/:id"
+                    element={<EditUser />}
+                  />
+                  <Route path="/admin/commandes" element={<AdminOrders />} />
+                  <Route
+                    path="/admin/commande/modification/:id"
+                    element={<EditOrders />}
+                  />
+                  <Route path="/admin/paniers" element={<AdminCarts />} />
+                  <Route
+                    path="/admin/panier/modification/:id"
+                    element={<EditUserCart />}
+                  />
+                </>
+              )}
               <Route path="/boutique" element={<Catalogue />} />
               <Route path="/boutique/:category" element={<Products />} />
-              <Route path="/boutique/:category/:subcategory" element={<Products />} />
+              <Route
+                path="/boutique/:category/:subcategory"
+                element={<Products />}
+              />
               <Route path="/panier" element={<Cart />} />
               <Route path="/panier/commande" element={<Order />} />
               <Route path="/mon-compte" element={<UserAccount />} />
-              <Route path="/mon-compte/commande/:id" element={<OrderDetails />} />
-              <Route path="/mon-compte/modification" element={<InfosUpdate />} />
+              <Route
+                path="/mon-compte/commande/:id"
+                element={<OrderDetails />}
+              />
+              <Route
+                path="/mon-compte/modification"
+                element={<InfosUpdate />}
+              />
               <Route path="/rgpd" element={<Rgpd />} />
               <Route path="/cgv" element={<Cgv />} />
               <Route path="/partenaires" element={<Partners />} />
