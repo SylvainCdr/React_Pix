@@ -24,7 +24,7 @@ function ShopNav() {
     const fetchSubcategories = async () => {
       const subcategoriesData = await Promise.all(
         categories.map((category) =>
-          fetch(`${BASE_URL}/subcategories?category=${category}`)
+          fetch(`https://agile-brushlands-56076-16e3e6016b28.herokuapp.com/subcategories?category=${category}`)
             .then((res) => res.json())
             .catch((error) => {
               console.error(
