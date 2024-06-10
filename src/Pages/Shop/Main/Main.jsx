@@ -7,6 +7,7 @@ import Aos from "aos";
 import "aos/dist/aos.css"; // Import des styles d'AOS
 import ShopProductsCarousel from "../../../Components/ShopProductsCarousel/ShopProductsCarousel";
 import ShopHeroCarousel from "../../../Components/ShopHeroCarousel/ShopHeroCarousel";
+import { BASE_URL } from "../../../url";
 
 function Catalogue() {
   const [searchResults, setSearchResults] = useState([]);
@@ -19,7 +20,7 @@ function Catalogue() {
 
   // useEffect pour récupérer les produits de la marque Vivotek
   useEffect(() => {
-    fetch("http://localhost:3001/products")
+    fetch(`${BASE_URL}/products`)
       .then((res) => res.json())
       .then((data) => {
         const iproProducts = data.filter(
@@ -35,7 +36,7 @@ function Catalogue() {
 
   // useEffect pour récupérer les catégories et sous-catégories des produits
   useEffect(() => {
-    fetch("http://localhost:3001/products")
+    fetch(`${BASE_URL}/products`)
       .then((res) => res.json())
       .then((data) => {
         const categories = data.map((product) => product.category);
