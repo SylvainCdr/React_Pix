@@ -8,6 +8,7 @@ import ProductCard from "../../../Components/ProductCard/ProductCard";
 import useFavorites from "../../../Components/useFavorites";
 import useCart from "../../../Components/useCart";
 import PropagateLoader from "react-spinners/PropagateLoader";
+import { BASE_URL } from "../url";
 
 const Products = () => {
   const { category, subcategory } = useParams();
@@ -31,10 +32,10 @@ const Products = () => {
     const fetchProducts = async () => {
       setLoading(true); // Set loading to true before starting the fetch
       const apiUrl = subcategory
-        ? `http://localhost:3001/products?category=${encodeURIComponent(
+        ? `${BASE_URL}/products?category=${encodeURIComponent(
             category
           )}&subcategory=${encodeURIComponent(subcategory)}`
-        : `http://localhost:3001/products?category=${encodeURIComponent(
+        : `${BASE_URL}/products?category=${encodeURIComponent(
             category
           )}`;
 

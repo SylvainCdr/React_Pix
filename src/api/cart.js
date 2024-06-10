@@ -1,7 +1,9 @@
+import { BASE_URL } from "../url";
+
 export const editQuantity = async (userId, productId, quantity) => {
   try {
     const response = await fetch(
-      `http://localhost:3001/users/${userId}/edit-cart/${productId}`,
+      `${BASE_URL}/users/${userId}/edit-cart/${productId}`,
       {
         method: "PUT",
         headers: {
@@ -26,7 +28,7 @@ export const editQuantity = async (userId, productId, quantity) => {
 export const editPrice = async (userId, productId, price) => {
   try {
     const response = await fetch(
-      `http://localhost:3001/users/${userId}/edit-cart/${productId}`,
+      `${BASE_URL}/users/${userId}/edit-cart/${productId}`,
       {
         method: "PUT",
         headers: {
