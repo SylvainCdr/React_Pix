@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
-import { BASE_URL } from "../../url";
-console.log('baseUrl',BASE_URL);
+const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
+console.log('BASE_URL:', BASE_URL);
 
 
 
