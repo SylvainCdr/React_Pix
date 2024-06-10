@@ -1,5 +1,5 @@
-import React, { useState, useEffect, CSSProperties } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import React, { useState, useEffect} from "react";
+import {useLocation, useParams } from "react-router-dom";
 import "./style.scss";
 import ShopNav from "../../../Components/ShopNav/ShopNav";
 import ShopSearch from "../../../Components/ShopSearch/ShopSearch";
@@ -16,7 +16,7 @@ const Products = () => {
   const [searchResults, setSearchResults] = useState([]);
   const { addToFavorites, removeFromFavorites, checkFavorite } = useFavorites();
   const { addToCart } = useCart();
-  const [userId, setUserId] = useState("");
+  const [userId] = useState("");
 
   const override = {
     size: "15px",
@@ -25,7 +25,7 @@ const Products = () => {
   };
 
   const [loading, setLoading] = useState(true);
-  const [color, setColor] = useState("#ff9c3fc0");
+  const [color] = useState("#ff9c3fc0");
 
   useEffect(() => {
     const fetchProducts = async () => {

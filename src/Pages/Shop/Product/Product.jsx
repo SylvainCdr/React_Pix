@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./style.scss";
 import ShopNav from "../../../Components/ShopNav/ShopNav";
 import ShopSearch from "../../../Components/ShopSearch/ShopSearch";
-import Cart from "../../Shop/Cart/Cart";
 import useFavorites from "../../../Components/useFavorites";
 import useCart from "../../../Components/useCart";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
@@ -16,7 +15,6 @@ export default function Product() {
   const { id } = useParams();
   const [suggestion, setSuggestion] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
-  const [cart, setCart] = useState([]);
   const [isInFavorites, setIsInFavorites] = useState(false);
 
   // Utilisez le hook useFavorites
