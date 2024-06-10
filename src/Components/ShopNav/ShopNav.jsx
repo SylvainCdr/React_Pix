@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
 import { BASE_URL } from "../../url";
+console.log(BASE_URL);
+
+
+
 
 function ShopNav() {
   const [categories, setCategories] = useState([]);
@@ -24,7 +28,7 @@ function ShopNav() {
     const fetchSubcategories = async () => {
       const subcategoriesData = await Promise.all(
         categories.map((category) =>
-          fetch(`https://agile-brushlands-56076-16e3e6016b28.herokuapp.com/subcategories?category=${category}`)
+          fetch(`${BASE_URL}/subcategories?category=${category}`)
             .then((res) => res.json())
             .catch((error) => {
               console.error(
