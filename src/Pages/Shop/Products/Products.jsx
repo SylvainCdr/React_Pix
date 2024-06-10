@@ -8,7 +8,7 @@ import ProductCard from "../../../Components/ProductCard/ProductCard";
 import useFavorites from "../../../Components/useFavorites";
 import useCart from "../../../Components/useCart";
 import PropagateLoader from "react-spinners/PropagateLoader";
-import { BASE_URL } from "../url";
+import { BASE_URL } from "../../../url";
 
 const Products = () => {
   const { category, subcategory } = useParams();
