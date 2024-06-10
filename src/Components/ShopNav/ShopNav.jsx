@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
 import { BASE_URL } from "../../url";
-console.log(BASE_URL);
+console.log('baseUrl',BASE_URL);
 
 
 
