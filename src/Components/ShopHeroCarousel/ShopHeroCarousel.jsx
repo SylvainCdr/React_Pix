@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./style.scss";
+import styles from "./style.module.scss";
 
 const ShopHeroCarousel = () => {
   const settings = {
@@ -27,7 +27,7 @@ const ShopHeroCarousel = () => {
   ];
 
   return (
-    <div className="shop-hero-carousel-container">
+    <div className={styles.shop_hero_carousel_container}>
       <Slider {...settings}>
         {heroImages.map((image, index) => (
           <div key={index}>

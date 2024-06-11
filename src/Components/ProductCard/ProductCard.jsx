@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./style.scss";
+import styles from "./style.module.scss";
 import Swal from "sweetalert2";
 import Aos from "aos";
 import { logos } from "../../Pages/Shop/Product/LogosData";
@@ -96,9 +96,9 @@ const ProductCard = ({
     if (userId && product.price && discount) {
       const discountedPrice = calculateDiscount(product.price, discount);
       return (
-        <div className="card-prices">
-          <p className="original-price">{product.price.toFixed(2)} € </p>
-          <p className="discounted-price">
+        <div className={styles['card-prices']}>
+          <p className={styles['original-price']}>{product.price.toFixed(2)} € </p>
+          <p className={styles['discounted-price']}>
             {discountedPrice.toFixed(2)} € <span>HT</span>{" "}
           </p>
         </div>
@@ -106,7 +106,7 @@ const ProductCard = ({
     } else {
       return (
         // Si l'utilisateur n'est pas authentifié ou si le produit n'a pas de prix remisé, afficher le prix normal
-        <span className="card-price">
+        <span className={styles['card-price']}>
           {product.price ? product.price.toFixed(2) : "00.00"} €<span> HT</span>
         </span>
       );
@@ -150,46 +150,40 @@ const ProductCard = ({
   const brandLogo = logos.find(logo => logo.name.toLowerCase() === product.brand?.toLowerCase());
   console.log("Logo trouvé:", brandLogo);
 
-
-
-
   return (
-    <div className="product-card">
-      {discount !== 0 && <span className="discount-badge">-{discount}%</span>}
+    <div className={styles['product-card']}>
+      {discount !== 0 && <span className={styles['discount-badge']}>-{discount}%</span>}
       {product.image.startsWith("http") ? (
-                        <img src={product.image} alt="" className="product-img" />
-                      ) : (
-                        <img
-                          src={`${BASE_URL}${product.image}`}
-                          alt="" 
-                          className="product-img"
-                        />
-                      )}
+        <img src={product.image} alt="" className={styles['product-img']} />
+      ) : (
+        <img
+          src={`${BASE_URL}${product.image}`}
+          alt=""
+          className={styles['product-img']}
+        />
+      )}
 
-      <div className="card-title">
+      <div className={styles['card-title']}>
         <Link to={`/boutique/produit/${product._id}`}>
           <h2>{product.name}</h2>
         </Link>
       </div>
-      <div className="card-brand">
-      {/* <p className="card-brand">{product.brand}</p> */}
-      {brandLogo && (
-        <img
-          src={brandLogo.logo}
-          alt={brandLogo.name}
-          className="brand-logo"
-        />
-      )}
-</div>
-     
-
-     
-      <div className="card-bottom">
+      <div className={styles['card-brand']}>
+        {/* <p className="card-brand">{product.brand}</p> */}
+        {brandLogo && (
+          <img
+            src={brandLogo.logo}
+            alt={brandLogo.name}
+            className={styles['brand-logo']}
+          />
+        )}
+      </div>
+      <div className={styles['card-bottom']}>
         {calculateDiscountedPrice()}
-        <div className="CTA">
+        <div className={styles['CTA']}>
           <p
             data-aos="zoom-in-down"
-            className="heart"
+            className={styles['heart']}
             onClick={handleToggleFavoritesClick}
             style={{ cursor: "pointer" }}
           >
@@ -198,7 +192,7 @@ const ProductCard = ({
               style={{ color: isInFavorites ? "#ed3f3f" : "#838485" }}
             ></i>
           </p>
-          <p data-aos="zoom-in-down" className="cart">
+          <p data-aos="zoom-in-down" className={styles['cart']}>
             <i
               className="fa-solid fa-cart-plus"
               onClick={handleAddToCartClick}

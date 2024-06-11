@@ -1,19 +1,19 @@
 import React from "react";
-import "./style.scss";
+import styles from "./style.module.scss";
 import { NavLink } from "react-router-dom";
 import { partners } from "../../Components/HomepagePartners/PartnersData";
 
 export default function HomepagePartners() {
   return (
-    <div className="homepagePartners-container">
-      <div className="partners-logo">
+    <div className={styles['homepagePartners-container']}>
+      <div className={styles['partners-logo']}>
         {partners.map((partner, index) => (
           <a key={index} href={partner.website} target="_blank" rel="noreferrer">
             <img src={partner.logo} alt={partner.name} />
           </a>
         ))}
       </div>
-      <div className="partners-text">
+      <div className={styles['partners-text']}>
         <h2>Nos partenaires</h2>
         <h3>L'excellence du marché à votre service</h3>
         <p>

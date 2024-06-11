@@ -1,11 +1,11 @@
 import React from "react";
-import "./style.scss";
+import styles from "./style.module.scss";
 import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <div className="footer-container">
-      <div className="section-1">
+    <div className={styles['footer-container']}>
+      <div className={styles['section-1']}>
         <img src="/assets/logo-dark.svg" alt="" />
         <p>
           Pixecurity est un fournisseur de solutions de sureté intelligentes :
@@ -13,15 +13,12 @@ function Footer() {
           des données, hypervision...
         </p>
       </div>
-      <div className="section-2">
+      <div className={styles['section-2']}>
         <img src="/assets/icons/mase.png" alt="" />
-        </div>
-      <div className="section-3">
+      </div>
+      <div className={styles['section-3']}>
         <h4>Plan du site </h4>
-
         <ul>
-    
-
           <Link to="/">
             <li>Accueil</li>
           </Link>
@@ -42,8 +39,8 @@ function Footer() {
           </Link>
         </ul>
       </div>
-
-      <div className="section-4">
+  
+      <div className={styles['section-4']}>
         <h4>Nous contacter </h4>
         <ul>
           <li>
@@ -65,9 +62,8 @@ function Footer() {
           </li>
         </ul>
       </div>
-      
     </div>
   );
-}
-
-export default Footer;
+  }
+  
+  export default Footer;

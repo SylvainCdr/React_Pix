@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import "./style.scss";
+import styles from "./style.module.scss";
 
 export default function AdminCartModal({ cart, user, contact, onClose }) {
   const TAX_RATE = 0.2; // Example VAT rate of 20%
@@ -16,10 +15,10 @@ export default function AdminCartModal({ cart, user, contact, onClose }) {
   const totalWithTaxAndShipping = totalWithTax + SHIPPING_COST;
 
   return (
-    <div className="cartModal-container">
-      <div className="cart-modal">
-        <div className="close">
-          <button className="close-button" onClick={onClose}>
+    <div className={styles['cartModal-container']}>
+      <div className={styles['cart-modal']}>
+        <div className={styles.close}>
+          <button className={styles['close-button']} onClick={onClose}>
             x
           </button>
         </div>
@@ -36,7 +35,7 @@ export default function AdminCartModal({ cart, user, contact, onClose }) {
               ).toLocaleDateString("fr-FR")
             : "Aucune date"}
         </p>
-
+  
         <table>
           <thead>
             <tr>
@@ -55,7 +54,7 @@ export default function AdminCartModal({ cart, user, contact, onClose }) {
             ))}
           </tbody>
         </table>
-        <div className="cart-summary">
+        <div className={styles['cart-summary']}>
           <p>Sous-total (HT) : {subtotal.toFixed(2)} €</p>
           <p>TVA (20%) : {tva.toFixed(2)} €</p>
           <p>Frais de port : {SHIPPING_COST.toFixed(2)} €</p>
@@ -64,4 +63,5 @@ export default function AdminCartModal({ cart, user, contact, onClose }) {
       </div>
     </div>
   );
-}
+  }
+  

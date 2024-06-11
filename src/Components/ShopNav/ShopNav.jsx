@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./style.scss";
+import styles from "./style.module.scss";
 import { BASE_URL } from "../../url";
-
-
-
 
 function ShopNav() {
   const [categories, setCategories] = useState([]);
@@ -72,20 +69,20 @@ function ShopNav() {
   const sortedCategories = categories.sort((a, b) => order.indexOf(a) - order.indexOf(b));
 
   return (
-    <div className="shopNav-container">
+    <div className={styles["shopNav-container"]}>
       <ul>
         {/* création d'une li pour chaque catégorie trouvée dans la base de données */}
         {sortedCategories.map((category) => (
-          <li key={category} className="dropdown">
+          <li key={category} className={styles.dropdown}>
             <label htmlFor={category} data-toggle="dropdown" onClick={() => toggleCategory(category)}>{category}</label>
             <input type="checkbox" id={category} style={{ display: "none" }} />
-            <ul className="dropdown-menu" style={{ display: openCategory === category ? "block" : "none" }}>
+            <ul className={styles["dropdown-menu"]} style={{ display: openCategory === category ? "block" : "none" }}>
               {subcategoriesMap[category]?.map((subcategory) => (
                 <li key={subcategory}>
                   <Link
                     to={`/boutique/${category}/${subcategory}`}
                     onClick={() => toggleSubcategory(subcategory)}
-                    className={openSubcategory === subcategory ? "active" : ""}
+                    className={openSubcategory === subcategory ? styles.active : ""}
                   >
                     {subcategory}
                   </Link>

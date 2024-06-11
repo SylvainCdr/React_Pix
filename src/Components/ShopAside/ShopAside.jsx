@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./style.scss";
+import styles from "./style.module.scss";
 import { BASE_URL } from "../../url";
 
 export default function ShopAside({
@@ -781,9 +781,9 @@ export default function ShopAside({
   };
 
   return (
-    <div className="shopAside-container">
+    <div className={styles.shopAside_container}>
       {brands.length > 0 && (
-        <div className="brand-filter">
+        <div className={styles.filter}>
           <h2>Marques</h2>
           <ul>
             {brands.map((brand) => (
@@ -803,7 +803,7 @@ export default function ShopAside({
         </div>
       )}
 
-      <div className="price-filter">
+      <div className={styles.filter}>
         <h2>Prix</h2>
         <input
           type="range"
@@ -816,7 +816,7 @@ export default function ShopAside({
       </div>
 
       {megapixelsValues.length > 0 && (
-        <div className="megapixels-filter">
+        <div className={styles.filter}>
           <h2>Mégapixels</h2>
           <ul>
             {megapixelsValues.map((value) => (
@@ -838,7 +838,7 @@ export default function ShopAside({
       )}
 
       {imgSecValues.length > 0 && (
-        <div className="imgSec-filter">
+        <div className={styles.filter}>
           <h2>Images par seconde</h2>
           <ul>
             {imgSecValues.map((value) => (
@@ -860,7 +860,7 @@ export default function ShopAside({
       )}
 
       {colorValues.length > 0 && (
-        <div className="color-filter">
+        <div className={styles.filter}>
           <h2>Couleur</h2>
           <ul>
             {colorValues.map((value) => (
@@ -881,7 +881,7 @@ export default function ShopAside({
       )}
 
       {infrarougeValues.length > 0 && (
-        <div className="infrarouge-filter">
+        <div className={styles.filter}>
           <h2>Infrarouge</h2>
           <ul>
             {infrarougeValues.map((value) => (
@@ -902,7 +902,7 @@ export default function ShopAside({
       )}
 
       {distanceInfrarougeValues.length > 0 && (
-        <div className="distanceInfrarouge-filter">
+        <div className={styles.filter}>
           <h2>Distance infrarouge</h2>
           <ul>
             {distanceInfrarougeValues.map((value) => (
@@ -924,7 +924,7 @@ export default function ShopAside({
       )}
 
       {installationExtValues.length > 0 && (
-        <div className="installationExt-filter">
+        <div className={styles.filter}>
           <h2>Installation extérieure</h2>
           <ul>
             {installationExtValues.map((value) => (
@@ -945,7 +945,7 @@ export default function ShopAside({
       )}
 
       {nbrePortsValues.length > 0 && (
-        <div className="nbrePorts-filter">
+        <div className={styles.filter}>
           <h2>Nombre de ports</h2>
           <ul>
             {nbrePortsValues.map((value) => (
@@ -966,7 +966,7 @@ export default function ShopAside({
       )}
 
       {rackableValues.length > 0 && (
-        <div className="rackable-filter">
+        <div className={styles.filter}>
           <h2>Rackable</h2>
           <ul>
             {rackableValues.map((value) => (
@@ -987,7 +987,7 @@ export default function ShopAside({
       )}
 
       {manageableValues.length > 0 && (
-        <div className="manageable-filter">
+        <div className={styles.filter}>
           <h2>Manageable</h2>
           <ul>
             {manageableValues.map((value) => (
@@ -1008,7 +1008,7 @@ export default function ShopAside({
       )}
 
       {poeValues.length > 0 && (
-        <div className="poe-filter">
+        <div className={styles.filter}>
           <h2>PoE</h2>
           <ul>
             {poeValues.map((value) => (
@@ -1029,7 +1029,7 @@ export default function ShopAside({
       )}
 
       {poePlusValues.length > 0 && (
-        <div className="poePlus-filter">
+        <div className={styles.filter}>
           <h2>PoE+</h2>
           <ul>
             {poePlusValues.map((value) => (
@@ -1050,7 +1050,7 @@ export default function ShopAside({
       )}
 
       {poePlusPlusValues.length > 0 && (
-        <div className="poePlusPlus-filter">
+        <div className={styles.filter}>
           <h2>PoE++</h2>
           <ul>
             {poePlusPlusValues.map((value) => (
@@ -1071,7 +1071,7 @@ export default function ShopAside({
       )}
 
       {usbValues.length > 0 && (
-        <div className="usb-filter">
+        <div className={styles.filter}>
           <h2>USB</h2>
           <ul>
             {usbValues.map((value) => (
@@ -1092,7 +1092,7 @@ export default function ShopAside({
       )}
 
       {debitVpnValues.length > 0 && (
-        <div className="debitVpn-filter">
+        <div className={styles.filter}>
           <h2>Débit VPN</h2>
           <ul>
             {debitVpnValues.map((value) => (
@@ -1113,7 +1113,7 @@ export default function ShopAside({
       )}
 
       {maxTcpValues.length > 0 && (
-        <div className="maxTcp-filter">
+        <div className={styles.filter}>
           <h2>Débit TCP</h2>
           <ul>
             {maxTcpValues.map((value) => (
@@ -1134,7 +1134,7 @@ export default function ShopAside({
       )}
 
       {debitFirewallValues.length > 0 && (
-        <div className="debitFirewall-filter">
+        <div className={styles.filter}>
           <h2>Débit Firewall</h2>
           <ul>
             {debitFirewallValues.map((value) => (
@@ -1155,7 +1155,7 @@ export default function ShopAside({
       )}
 
       {vitesseValues.length > 0 && (
-        <div className="vitesse-filter">
+        <div className={styles.filter}>
           <h2>Vitesse</h2>
           <ul>
             {vitesseValues.map((value) => (
@@ -1176,7 +1176,7 @@ export default function ShopAside({
       )}
 
       {typeWifiValues.length > 0 && (
-        <div className="typeWifi-filter">
+        <div className={styles.filter}>
           <h2>Type Wifi</h2>
           <ul>
             {typeWifiValues.map((value) => (
@@ -1197,7 +1197,7 @@ export default function ShopAside({
       )}
 
       {antenneValues.length > 0 && (
-        <div className="antenne-filter">
+        <div className={styles.filter}>
           <h2>Antenne</h2>
           <ul>
             {antenneValues.map((value) => (
@@ -1218,7 +1218,7 @@ export default function ShopAside({
       )}
 
       {lanValues.length > 0 && (
-        <div className="lan-filter">
+        <div className={styles.filter}>
           <h2>LAN</h2>
           <ul>
             {lanValues.map((value) => (
@@ -1239,7 +1239,7 @@ export default function ShopAside({
       )}
 
       {nebulaValues.length > 0 && (
-        <div className="nebula-filter">
+        <div className={styles.filter}>
           <h2>Nebula</h2>
           <ul>
             {nebulaValues.map((value) => (

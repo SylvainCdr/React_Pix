@@ -1,0 +1,48 @@
+
+
+.delivery-timeline {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    .timeline-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 30%;
+        .timeline-circle {
+            width: 2.1rem;
+            height: 2rem;
+            border-radius: 50%;
+            background-color: rgb(142, 142, 142);
+            box-shadow: 0 0 0.4rem rgb(142, 142, 142);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+           
+        }
+        .timeline-content {
+            text-align: center;
+            h4 {
+                font-size: 1.1rem;
+                margin-bottom: 0.9rem;
+                font-weight: 500;
+                text-transform: uppercase;
+            }
+            p {
+                font-size: 0.9rem;
+            }
+        }
+    }
+    .active {
+        .timeline-circle {
+            background-color: rgb(3, 201, 63);
+            width: 2.8rem;
+            height: 2.7rem;
+
+        }
+    }
+}

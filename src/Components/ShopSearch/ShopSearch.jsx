@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./style.scss";
+import styles from "./style.module.scss";
 import ProductCard from "../ProductCard/ProductCard";
 import useFavorites from "../useFavorites";
 import useCart from "../useCart";
@@ -41,9 +41,9 @@ function ShopSearch({ setSearchResults }) {
   };
 
   return (
-    <div className="search-container">
+    <div className={styles["search-container"]}>
       <form onSubmit={handleSearch}>
-        <div className="search-bar">
+        <div className={styles["search-bar"]}>
           <input
             type="text"
             placeholder="Rechercher un produit"
@@ -56,15 +56,14 @@ function ShopSearch({ setSearchResults }) {
 
       {searching && <p>Recherche en cours...</p>}
 
-     
-        {/* si résultats de recherche locaux n'est pas vide, afficher les résultats */}
-        {searchResultsLocal.length > 0 && (
-           <div className="search-msg">
+      {/* si résultats de recherche locaux n'est pas vide, afficher les résultats */}
+      {searchResultsLocal.length > 0 && (
+        <div className={styles["search-msg"]}>
           <p>Résultats de recherche ({searchResultsLocal.length} produits) :</p>
-      </div>
-        )}
+        </div>
+      )}
 
-      <div className="search-grid">
+      <div className={styles["search-grid"]}>
         {searchResultsLocal.map((result) => (
           <ProductCard
             key={result._id}
@@ -73,8 +72,6 @@ function ShopSearch({ setSearchResults }) {
             removeFromFavorites={removeFromFavorites}
             checkFavorite={checkFavorite}
             addToCart={addToCart}
-
-
           />
         ))}
       </div>

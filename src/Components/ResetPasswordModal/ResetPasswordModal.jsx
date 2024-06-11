@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import "./style.scss";
+import styles from "./style.module.scss";
 import { BASE_URL } from "../../url";
 
 const PasswordResetModal = ({ show, onClose, onResetPassword, checkEmail }) => {
@@ -84,27 +84,28 @@ const PasswordResetModal = ({ show, onClose, onResetPassword, checkEmail }) => {
   
 
   return (
-    <div className={`resetPasswordModal ${show ? "show" : ""}`}>
-      <div className="modal-content">
-        <span className="close" onClick={onClose}>
+    <div className={`${styles['resetPasswordModal']} ${show ? styles['show'] : ""}`}>
+      <div className={styles['modal-content']}>
+        <span className={styles['close']} onClick={onClose}>
           &times;
         </span>
-        <h2 className="modal-title">Réinitialisation du mot de passe</h2>
-        <p className="modal-text">
+        <h2 className={styles['modal-title']}>Réinitialisation du mot de passe</h2>
+        <p className={styles['modal-text']}>
           Veuillez saisir votre e-mail pour réinitialiser votre mot de passe :
         </p>
-        <input className="email-input"
+        <input className={styles['email-input']}
           type="email"
           placeholder="Entrez votre e-mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button className="btn-send" onClick={handleReset} disabled={isLoading}>
+        <button className={styles['btn-send']} onClick={handleReset} disabled={isLoading}>
           {isLoading ? "Envoi en cours..." : "Envoyer"}
         </button>
       </div>
     </div>
   );
 };
+
 
 export default PasswordResetModal;

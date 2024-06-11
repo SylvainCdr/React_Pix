@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./style.scss";
+import styles from "./style.module.scss";
 import { BASE_URL } from "../../url";
 
 export default function AdminProductForm({ onSubmit, productToEdit }) {
@@ -297,8 +297,8 @@ if (imageFile) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="admin-product-form">
-        <div className="main-details">
+      <div className={styles['admin-product-form']}>
+        <div className={styles['main-details']}>
           <label htmlFor="name">Nom</label>
           <input
             type="text"
@@ -508,7 +508,7 @@ if (imageFile) {
             value={presentation}
             onChange={(e) => setPresentation(e.target.value)}
           />
-            
+
           <label htmlFor="description">Description</label>
           <input
             type="text-area"
@@ -525,8 +525,8 @@ if (imageFile) {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
-           <label htmlFor="imageFile">Image:</label>
-        <input type="file" accept="image/*" onChange={handleImageChange} />
+          <label htmlFor="imageFile">Image:</label>
+          <input type="file" accept="image/*" onChange={handleImageChange} />
 
           <label htmlFor="image">URL de l'image</label>
           <input
@@ -535,8 +535,8 @@ if (imageFile) {
             id="image"
             value={image}
             onChange={(e) => setImage(e.target.value)}
-            />
-            {image && <img src={image} alt="Preview" className="image-preview" />}
+          />
+          {image && <img src={image} alt="Preview" className={styles['image-preview']} />}
 
           <label htmlFor="pdf">URL du PDF</label>
           <input
@@ -546,9 +546,8 @@ if (imageFile) {
             value={pdf}
             onChange={(e) => setPdf(e.target.value)}
           />
-          
         </div>
-        <div className="details-1">
+        <div className={styles['details-1']}>
           <label htmlFor="detailsDimensions">Dimensions</label>
           <input
             type="text"
@@ -685,7 +684,7 @@ if (imageFile) {
             value={detailsInstallationExt}
             onChange={(e) => setDetailsInstallationExt(e.target.value)}
           />
-       
+
           <label htmlFor="detailsNbrePorts">Nombre de ports</label>
           <input
             type="text"
@@ -702,8 +701,8 @@ if (imageFile) {
             value={detailsRackable}
             onChange={(e) => setDetailsRackable(e.target.value)}
           />
-           </div>
-        <div className="details-2">
+        </div>
+        <div className={styles['details-2']}>
           <label htmlFor="detailsManageable">Manageable</label>
           <input
             type="text"
@@ -752,7 +751,7 @@ if (imageFile) {
             value={detailsGarantie}
             onChange={(e) => setDetailsGarantie(e.target.value)}
           />
-         <label htmlFor="detailsInterface">Interface</label>
+          <label htmlFor="detailsInterface">Interface</label>
           <input
             type="text"
             name="detailsInterface"
@@ -840,12 +839,9 @@ if (imageFile) {
             value={detailsNebula}
             onChange={(e) => setDetailsNebula(e.target.value)}
           />
-
-
-
         </div>
       </div>
-      <div className="form-button">
+      <div className={styles['form-button']}>
         <button type="submit">{productToEdit ? "Modifier" : "Ajouter"}</button>{" "}
       </div>
     </form>

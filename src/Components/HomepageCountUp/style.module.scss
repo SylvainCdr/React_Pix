@@ -1,0 +1,114 @@
+
+.counter_wrapper {
+    max-width: 1440px;
+    background: rgb(234, 234, 234);
+    margin: 8em auto;
+    padding: 1em 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    -ms-border-radius: 0.3em;
+    -o-border-radius: 0.3em;
+
+  }
+  .row {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+  }
+
+  // .col_4 {
+  //   width: 100%;
+  // }
+
+
+  .count_box {
+   display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   width : 25em;
+    height : 8em;
+    border: 1px solid var(--sunset5);
+    text-align: center;
+    border-radius: 0.5em;
+    -webkit-border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    -ms-border-radius: 0.5em;
+    -o-border-radius: 0.5em;
+    background: var(--sunset1);
+  }
+  
+  .count_box h3 {
+    font-size: 40px;
+    font-weight: 600;
+    color: #ffffff;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;  
+  }
+  
+  .count_box h4 {
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #ffffff;
+    padding-top: 10px;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+  }
+  
+  .box_center {
+    background: var(--sunset1);
+  }
+  
+  .box_center h3,
+  .box_center h4 {
+    color: #fff;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+  }
+  
+  /* .box_hover:hover {
+    background: linear-gradient(to bottom right,#2779f400, #25bffc);
+    background-size: cover;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  } */
+  
+  .box_hover:hover h3,
+  .box_hover:hover h4 {
+    scale: 1.2;
+  }
+  
+  @media (max-width: 768px) {
+    .counter_wrapper {
+      flex-direction: column;
+    }
+    .count_box {
+      padding: 1em;
+    }
+    .count_box h3 {
+      font-size: 30px;
+    }
+    .count_box h4 {
+      font-size: 12px;
+    }
+  }
+  

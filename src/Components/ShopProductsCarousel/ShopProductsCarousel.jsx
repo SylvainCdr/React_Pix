@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./style.scss";
+import styles from "./style.module.scss";
 import ProductCard from "../ProductCard/ProductCard";
 import useFavorites from "../useFavorites";
 import useCart from "../useCart";
@@ -75,7 +75,7 @@ const ShopProductsCarousel = ({ carouselProducts }) => {
   };
 
   return (
-    <div className="shopCarousel-container">
+    <div className={styles["shopCarousel-container"]}>
       {/* integration du composant ProductCard dans le composant ShopProductsCarousel */}
 
       <Slider {...settings}>
@@ -85,9 +85,8 @@ const ShopProductsCarousel = ({ carouselProducts }) => {
             discount
           );
           return (
-            <div className="product-item">
+            <div className={styles["product-item"]} key={index}>
               <ProductCard
-                key={index}
                 product={carouselProduct}
                 discountedPrice={discountedPrice}
                 userId={userId}

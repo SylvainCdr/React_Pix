@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import "./style.scss";
-import { NavLink as Navlink } from "react-router-dom";
+import styles from "./style.module.scss";
+import { NavLink } from "react-router-dom";
 import AOS from "aos";
 
 export default function HomepageHero() {
@@ -19,28 +19,35 @@ export default function HomepageHero() {
   }
   , []);
 
-  return (
-    <div className="homepageHero-container">
-  
-        <div className="hero-left">
-          <h2 data-aos="flip-left"
-     data-aos-easing="ease-out-cubic"
-     data-aos-duration="2000">
+
+    return (
+      <div className={styles['homepageHero-container']}>
+        <div className={styles['hero-left']}>
+          <h2 
+            data-aos="flip-left"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="2000"
+          >
             Smarter. <br /> Safer.
           </h2>
         </div>
-
-        <div className="hero-right">
-          <h1 data-aos="fade-up"
-     data-aos-duration="3000">Confiez votre sûreté à l'intelligence de Pixecurity</h1>
-          <Navlink to="/boutique"><button>Visiter la boutique</button></Navlink>
-
+  
+        <div className={styles['hero-right']}>
+          <h1 
+            data-aos="fade-up"
+            data-aos-duration="3000"
+          >
+            Confiez votre sûreté à l'intelligence de Pixecurity
+          </h1>
+          <NavLink to="/boutique">
+            <button>Visiter la boutique</button>
+          </NavLink>
         </div>
         
-    
-      {/* <video ref={videoRef} id="video-background" loop playsInline autoPlay>
-        <source src="assets/hero4.mp4" type="video/mp4" />
-      </video> */}
-    </div>
-  );
+        {/* <video ref={videoRef} id="video-background" loop playsInline autoPlay>
+          <source src="assets/hero4.mp4" type="video/mp4" />
+        </video> */}
+      </div>
+    );
+  
 }

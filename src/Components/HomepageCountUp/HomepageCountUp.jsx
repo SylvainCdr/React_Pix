@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./style.scss";
+import styles from "./style.module.scss";
 
 export default function HomepageCountUp() {
   const animationDuration = 5000;
@@ -38,48 +38,57 @@ export default function HomepageCountUp() {
       },
       { threshold: 0.5 } // Déclencher quand 50% de l'élément est visible
     );
-        // Ajouter chaque élément .timer à observer
-        const countupEls = document.querySelectorAll(".timer");
-        countupEls.forEach((el) => {
-          observer.observe(el);
-        });
-    
-        // Nettoyage de l'effet
-        return () => countupEls.forEach((el) => observer.unobserve(el));
-      }, []);
+    // Ajouter chaque élément .timer à observer
+    const countupEls = document.querySelectorAll(`.${styles.timer}`);
+    countupEls.forEach((el) => {
+      observer.observe(el);
+    });
+
+    // Nettoyage de l'effet
+    return () => countupEls.forEach((el) => observer.unobserve(el));
+  }, []);
 
   return (
-    <div className="counter_wrapper">
-      <div  className="container">
-        <div className="row">
-          <div data-aos="flip-down"
-     data-aos-easing="ease-out-cubic"
-     data-aos-duration="1000" className="col-4">
-            <div className="count_box box_hover">
+    <div className={styles.counter_wrapper}>
+      <div className={styles.container}>
+        <div className={styles.row}>
+          <div
+            data-aos="flip-down"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="1000"
+            className={styles.col_4}
+          >
+            <div className={`${styles.count_box} ${styles.box_hover}`}>
               <h3>
-                <span className="timer">23</span>
+                <span className={styles.timer}>23</span>
               </h3>
               <h4>Partenaires</h4>
             </div>
           </div>
-          <div data-aos="flip-down"
-     data-aos-easing="ease-out-cubic"
-     data-aos-duration="2000" className="col-4">
-            <div className="count_box box_center">
+          <div
+            data-aos="flip-down"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="2000"
+            className={styles.col_4}
+          >
+            <div className={`${styles.count_box} ${styles.box_center}`}>
               <h3>
-                <span className="timer">63</span>
+                <span className={styles.timer}>63</span>
               </h3>
               <h4>Projets</h4>
             </div>
           </div>
-          <div data-aos="flip-down"
-     data-aos-easing="ease-out-cubic"
-     data-aos-duration="3000" className="col-4">
-            <div className="count_box box_hover">
+          <div
+            data-aos="flip-down"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="3000"
+            className={styles.col_4}
+          >
+            <div className={`${styles.count_box} ${styles.box_hover}`}>
               <h3>
-                <span className="timer">48</span>
+                <span className={styles.timer}>48</span>
               </h3>
-              <h4>Clients </h4>
+              <h4>Clients</h4>
             </div>
           </div>
         </div>
