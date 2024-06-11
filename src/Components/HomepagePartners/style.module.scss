@@ -72,32 +72,21 @@
 
   @media screen and (max-width: 1440px) {
     .partners-logo {
-      width: 100%;
+      width: 90%;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 4em;
     }
   }
 
-  // @media screen and (max-width: 1080px) {
 
-  //   .partners-logo {
-  //     width: 100%;
-  //     display: grid;
-  //     grid-template-columns: repeat(2, 1fr);
-  //     gap: 1.5em;
-  //     padding-right :4em;
 
-  //   }
-
-  // }
-
-  @media screen and (max-width: 1080px) {
+  @media screen and (max-width: 1024px) {
     display: flex;
     flex-direction: column-reverse;
 
     .partners-logo {
-      width: 100%;
+      width: 80%;
       gap: 3em;
       padding-right : 0em;
     }
@@ -125,6 +114,7 @@
   @media screen and (max-width: 768px) {
 
     .partners-logo {
+      width: 80%;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
     }

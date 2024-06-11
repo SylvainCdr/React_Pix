@@ -1,40 +1,9 @@
-.header {
-  // // DEBUT ANIMATION SURVOL PARENTHESES
-  // .header__nav {
-  //   li:before,
-  //   li:after {
-  //     position: absolute;
-  //     opacity: 0;
-  //     font-size: 25px;
-  //     top: 0px;
-  //     transition: all 0.3s;
-  //     color: #009fe3;
-  //   }
-  //   li:before {
-  //     content: "[";
-  //     top: -5px;
-  //     left: -1rem;
-  //     transform: translateX(10px);
-  //   }
-  //   li:after {
-  //     content: "]";
-  //     top: -5px;
-  //     right: -1rem;
-  //     transform: translateX(-10px);
-  //   }
-  //   li:hover:before,
-  //   li:hover:after {
-  //     opacity: 1;
-  //     transform: translateX(0px);
-  //   }
-  // }
-  // // FIN ANIMATION SURVOL PARENTHESES
-
+.header_container {
   width: 100%;
   background: rgb(44, 44, 44);
   box-shadow: 0 0 3px rgba(255, 254, 254, 0.5);
   position: fixed;
-  // display: flex;
+  display: flex;
   z-index: 9999;
   top: 0;
   border-radius: 0rem 0rem 0.6rem 0.6rem;
@@ -56,8 +25,8 @@
       cursor: pointer;
 
       img {
-        margin-left: 1em;
-        width: 13rem;
+        padding-left: 1em;
+        width: 14rem;
       }
     }
 
@@ -140,12 +109,10 @@
   }
 
   @media screen and (max-width: 1080px) {
-
     .header__nav {
       justify-content: flex-end;
 
       ul {
-
         .shop {
           background-color: inherit;
           padding: 0;
@@ -155,7 +122,6 @@
       }
     }
 
-    // DEBUT MENU BURGER
     .header__burgerMenu {
       display: flex;
       margin-left: auto;
@@ -191,10 +157,8 @@
       left: 0;
     }
 
-    // DEBUT MENU BURGER
     .header__burgerMenu {
       display: flex;
-
       font-size: 2.6rem;
       cursor: pointer;
       margin-right: 5%;
@@ -205,5 +169,3 @@
     }
   }
 }
-
-// // FIN MENU BURGER

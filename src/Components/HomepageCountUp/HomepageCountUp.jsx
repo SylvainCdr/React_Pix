@@ -56,7 +56,7 @@ export default function HomepageCountUp() {
             data-aos="flip-down"
             data-aos-easing="ease-out-cubic"
             data-aos-duration="1000"
-            className={styles.col_4}
+            className={styles.col}
           >
             <div className={`${styles.count_box} ${styles.box_hover}`}>
               <h3>
@@ -69,7 +69,7 @@ export default function HomepageCountUp() {
             data-aos="flip-down"
             data-aos-easing="ease-out-cubic"
             data-aos-duration="2000"
-            className={styles.col_4}
+            className={styles.col}
           >
             <div className={`${styles.count_box} ${styles.box_center}`}>
               <h3>
@@ -82,7 +82,7 @@ export default function HomepageCountUp() {
             data-aos="flip-down"
             data-aos-easing="ease-out-cubic"
             data-aos-duration="3000"
-            className={styles.col_4}
+            className={styles.col}
           >
             <div className={`${styles.count_box} ${styles.box_hover}`}>
               <h3>

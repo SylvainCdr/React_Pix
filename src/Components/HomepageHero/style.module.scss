@@ -37,15 +37,15 @@
     background-position: right;
 
     h1 {
-      width: 45%;
+      width: 50%;
       text-shadow: rgb(82, 82, 82) 2px 2px 5px;
-      font-size: 3.5em;
+      font-size: 3.3em;
       font-family: "Barlow Condensed", sans-serif;
       font-weight: 600;
       letter-spacing: 0.2rem;
       position: absolute;
       top: 40%;
-      right: 37%;
+      right: 30%;
       text-transform: uppercase;
     }
 
@@ -55,10 +55,105 @@
       bottom: 25%;
       right: 6%;
       position: absolute;
+    }
+  }
+}
 
-      
+  //media queries 1024px
+
+  @media (max-width: 1024px) {
+   
+    .homepageHero-container {
+      height: 60vh;
+
+      .hero-left {
+        h2 {
+          font-size: 2.5em;
+          margin-top: 10%;
+          margin-left: 10%;
+        }
+      }
+
+    
+
+      .hero-right {
+        h1 {
+          font-size: 2.3em;
+          width: 50%;
+          top:40%;
+          right: 30%;
+        }
+
+        a {
+          bottom: 35%;
+          right: 10%;
+        }
+      }
     }
   }
 
-  //media queries
-}
+  //media queries 768px
+  @media (max-width: 768px) {
+
+    .homepageHero-container {
+      height: 50vh;
+    .hero-left {
+      h2 {
+        font-size: 2.2em;
+        margin-top: 10%;
+        margin-left: 10%;
+      }
+    }
+
+    .hero-right {
+      h1 {
+        font-size: 2.2em;
+        width: 70%;
+        top: 40%;
+        right: 15%;
+      }
+
+      a {
+        bottom: 43%;
+        right: 10%;
+        button {
+          padding: 0.5rem 1rem;
+          font-size: 1.2em;
+        }
+      }
+    }
+    }
+  }
+
+  //media queries 425px
+  @media (max-width: 480px) {
+    .homepageHero-container {
+      height: 40vh;
+    .hero-left {
+      h2 {
+        font-size: 1.5em;
+        margin-top: 10%;
+        margin-left: 10%;
+      }
+    }
+
+    .hero-right {
+      h1 {
+        font-size: 1.9em;
+        width: 70%;
+        top: 23%;
+        right: 15%;
+      }
+
+      a {
+        bottom: 52%;
+        right: 10%;
+        button {
+          padding: 0.5rem 1rem;
+          font-size: 1.2em;
+        }
+      }
+    }
+    }
+  }
+

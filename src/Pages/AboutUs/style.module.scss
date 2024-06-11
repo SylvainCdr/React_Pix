@@ -4,8 +4,7 @@
   max-width: 1440px;
   display: flex;
   flex-direction: column;
-  
-  
+
   h1 {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 3rem;
@@ -13,9 +12,8 @@
     margin-bottom: 1.5rem;
     color: var(--sunset1);
     text-align: center;
-
   }
-  
+
   .section-1 {
     margin-bottom: 3em;
 
@@ -26,8 +24,6 @@
       justify-content: center;
       text-align: justify;
       margin: 2.5rem auto;
-
-      
     }
   }
 
@@ -36,14 +32,12 @@
     justify-content: space-between;
     margin-bottom: 8em;
 
-   
-
     .card-about {
       width: 30%;
       height: auto;
       background-color: rgb(255, 255, 255);
-      box-shadow:  1px 1px 2px rgba(126, 126, 126, 0.613);
-      color : rgb(80, 80, 80);
+      box-shadow: 1px 1px 2px rgba(126, 126, 126, 0.613);
+      color: rgb(80, 80, 80);
       border-radius: 0.5em;
       -webkit-border-radius: 0.5em;
       -moz-border-radius: 0.5em;
@@ -54,8 +48,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow:  1px 1px 2px rgba(126, 126, 126, 0.613);
-        
+        box-shadow: 1px 1px 2px rgba(126, 126, 126, 0.613);
+
         img {
           width: 100%;
           border-radius: 0.5em 0.5em 0em 0em;
@@ -65,7 +59,7 @@
           -o-border-radius: 0.5em 0.5em 0em 0em;
         }
       }
-      
+
       h2 {
         text-align: center;
         font-size: 1.5rem;
@@ -78,7 +72,6 @@
       }
 
       p {
-      
         text-align: center;
         font-size: 1.1rem;
         color: rgb(78, 78, 78);
@@ -89,23 +82,21 @@
         align-self: center;
         align-content: center;
       }
-
-  
-      
     }
   }
 
   .section-3 {
-    height : 18vh;
+    height: auto;
     width: 80%;
     background-color: var(--sunset1);
     margin-bottom: 8em;
+    padding: 2em;
     align-items: center;
     justify-content: center;
     display: flex;
     flex-direction: column;
     margin-left: 10%;
-    box-shadow:  1px 1px 2px rgba(126, 126, 126, 0.613);
+    box-shadow: 1px 1px 2px rgba(126, 126, 126, 0.613);
 
     border-radius: 0.5em;
     -webkit-border-radius: 0.5em;
@@ -114,7 +105,6 @@
     -o-border-radius: 0.5em;
 
     h3 {
-    
       font-size: 1.6rem;
       font-weight: 400;
       text-align: center;
@@ -123,9 +113,8 @@
     }
 
     p {
-
       text-align: center;
-      padding : 0.5em 0.5em 
+      padding: 0.5em 0.5em;
     }
   }
 
@@ -133,9 +122,9 @@
     h1 {
       margin-bottom: 1.5em;
     }
- 
+
     .auto-grid {
-      width: 95%;
+      width: 100%;
       margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(
@@ -178,26 +167,26 @@
     }
 
     .profile::before {
-    //   background: linear-gradient(
-    //     to top,
-    //     hsl(0 0% 0% / 0.79) 0%,
-    //     hsl(0 0% 0% / 0.787) 7.8%,
-    //     hsl(0 0% 0% / 0.779) 14.4%,
-    //     hsl(0 0% 0% / 0.765) 20.2%,
-    //     hsl(0 0% 0% / 0.744) 25.3%,
-    //     hsl(0 0% 0% / 0.717) 29.9%,
-    //     hsl(0 0% 0% / 0.683) 34.3%,
-    //     hsla(0, 0%, 0%, 0.641) 38.7%,
-    //     hsl(0 0% 0% / 0.592) 43.3%,
-    //     hsl(0 0% 0% / 0.534) 48.4%,
-    //     hsl(0 0% 0% / 0.468) 54.1%,
-    //     hsl(0 0% 0% / 0.393) 60.6%,
-    //     hsl(0 0% 0% / 0.31) 68.3%,
-    //     hsl(0 0% 0% / 0.216) 77.3%,
-    //     hsl(0 0% 0% / 0.113) 87.7%,
-    //     hsl(0 0% 0% / 0) 100%
-    //  );
-// meme gradient mais avec la variable sunset1
+      //   background: linear-gradient(
+      //     to top,
+      //     hsl(0 0% 0% / 0.79) 0%,
+      //     hsl(0 0% 0% / 0.787) 7.8%,
+      //     hsl(0 0% 0% / 0.779) 14.4%,
+      //     hsl(0 0% 0% / 0.765) 20.2%,
+      //     hsl(0 0% 0% / 0.744) 25.3%,
+      //     hsl(0 0% 0% / 0.717) 29.9%,
+      //     hsl(0 0% 0% / 0.683) 34.3%,
+      //     hsla(0, 0%, 0%, 0.641) 38.7%,
+      //     hsl(0 0% 0% / 0.592) 43.3%,
+      //     hsl(0 0% 0% / 0.534) 48.4%,
+      //     hsl(0 0% 0% / 0.468) 54.1%,
+      //     hsl(0 0% 0% / 0.393) 60.6%,
+      //     hsl(0 0% 0% / 0.31) 68.3%,
+      //     hsl(0 0% 0% / 0.216) 77.3%,
+      //     hsl(0 0% 0% / 0.113) 87.7%,
+      //     hsl(0 0% 0% / 0) 100%
+      //  );
+      // meme gradient mais avec la variable sunset1
       background: linear-gradient(
         180deg,
         hsla(210, 93%, 56%, 0) 0%,
@@ -208,7 +197,7 @@
         hsla(210, 93%, 56%, 0.14) 50%,
         hsla(210, 93%, 56%, 0.13) 63%,
         hsla(210, 93%, 56%, 0.26) 75%,
-        hsla(210, 93%, 56%, 0.476) 100%,
+        hsla(210, 93%, 56%, 0.476) 100%
       );
 
       transition: 300ms opacity linear;
@@ -297,6 +286,28 @@
       -moz-transform: scale(1.15) rotate(2deg);
       -ms-transform: scale(1.15) rotate(2deg);
       -o-transform: scale(1.15) rotate(2deg);
-}
+    }
+  }
+
+  // media queries
+  @media screen and (max-width: 1024px) {
+    .section-2 {
+      flex-direction: column;
+      align-items: center;
+
+      .card-about {
+        width: 100%;
+        margin-bottom: 2em;
+      }
+    }
+
+    .section-4 {
+      .auto-grid {
+        grid-template-columns: repeat(
+          auto-fill,
+          minmax(var(--auto-grid-min-size, 12rem), 1fr)
+        );
+      }
+    }
   }
 }

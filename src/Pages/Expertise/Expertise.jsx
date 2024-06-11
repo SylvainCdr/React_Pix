@@ -55,7 +55,7 @@ function Expertise() {
       <div className={styles['slides-section']} id="videoprotection">
         <h2>Vidéoprotection </h2>
         <div className={styles['slide-container']}>
-          <div className={styles.slide} data-aos="fade-up-right">
+          <div className={styles.slide} data-aos="slide-up">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-camera-visible.jpg"
               alt=""
@@ -87,7 +87,7 @@ function Expertise() {
             </p>
           </div>
   
-          <div className={styles.slide} data-aos="fade-up-left">
+          <div className={styles.slide} data-aos="slide-up">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-camera-specifique.jpg"
               alt=""
@@ -105,7 +105,7 @@ function Expertise() {
       <div className={styles['slides-section']} id="analyse">
         <h2>Analyse d'image</h2>
         <div className={styles['slide-container']}>
-          <div className={styles.slide} data-aos="fade-up-right">
+          <div className={styles.slide} data-aos="slide-up">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-analyse-temps-reel.jpg"
               alt=""
@@ -133,7 +133,7 @@ function Expertise() {
             </p>
           </div>
   
-          <div className={styles.slide} data-aos="fade-up-left">
+          <div className={styles.slide} data-aos="slide-up">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-business-intelligence.jpg"
               alt=""
@@ -151,7 +151,7 @@ function Expertise() {
       <div className={styles['slides-section']} id="access">
         <h2>Contrôle d'accès</h2>
         <div className={styles['slide-container']}>
-          <div className={styles.slide} data-aos="fade-up-right">
+          <div className={styles.slide} data-aos="slide-up">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-controle-acces.jpg"
               alt=""
@@ -179,7 +179,7 @@ function Expertise() {
             </p>
           </div>
   
-          <div className={styles.slide} data-aos="fade-up-left">
+          <div className={styles.slide} data-aos="slide-up">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-full-integration.jpg"
               alt=""
@@ -198,7 +198,7 @@ function Expertise() {
       <div className={styles['slides-section']} id="cloud">
         <h2>Cloud et objets connectés</h2>
         <div className={styles['slide-container']}>
-          <div className={styles.slide} data-aos="fade-up-right">
+          <div className={styles.slide} data-aos="slide-up">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-cloud.jpg"
               alt=""
@@ -229,7 +229,7 @@ function Expertise() {
             </p>
           </div>
   
-          <div className={styles.slide} data-aos="fade-up-left">
+          <div className={styles.slide} data-aos="slide-up">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-objets-connectes.jpg"
               alt=""
@@ -249,7 +249,7 @@ function Expertise() {
       <div className={styles['slides-section']} id="network">
         <h2>réseaux, si, stockage</h2>
         <div className={styles['slide-container']}>
-          <div className={styles.slide} data-aos="fade-up-right">
+          <div className={styles.slide} data-aos="slide-up">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-reseaux.jpg"
               alt=""
@@ -280,7 +280,7 @@ function Expertise() {
             </p>
           </div>
   
-          <div className={styles.slide} data-aos="fade-up-left">
+          <div className={styles.slide} data-aos="slide-up">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-stockage.jpg"
               alt=""

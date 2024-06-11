@@ -151,16 +151,17 @@
   }
 
   // media queries
-  @media (max-width: 1080px) {
+  @media (max-width: 1024px) {
 
     .hero {
+      height: 50vh;
+
       .title {
-        width: 100%;
-        padding-left: 0;
+        width: 50%;
 
         h1 {
-          font-size: 2rem;
-          line-height: 2rem;
+          font-size: 2.5rem;
+          line-height: 2.5rem;
         }
 
         h2 {
@@ -176,24 +177,20 @@
     }
 
     .forces {
-      display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      li {
-        width: 30%;
-        margin-bottom: 1rem;
-        text-align: center;
-      }
-
-
+      margin: 4em auto;
      
 
-   
-
-
-   
+      i {
+        font-size: 2rem;
+        }
+        
+        li {
+        width: 100%;
+        font-size: 1.2rem;
+        margin-top: 1rem;
+        text-align: center;
+      }
     }
 
     .slides-section {

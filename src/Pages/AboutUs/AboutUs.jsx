@@ -1,6 +1,14 @@
 import styles from "./style.module.scss";
+import { useEffect } from "react";
+import Aos from "aos";
 
 export default function AboutUs() {
+
+useEffect(() => {
+  Aos.init({ duration: 1500 });
+}
+, []);
+
   return (
     <div className={styles['aboutUs-container']}>
       <div className={styles['section-1']}>
@@ -14,7 +22,7 @@ export default function AboutUs() {
       </div>
   
       <div className={styles['section-2']}>
-        <div className={styles['card-about']} data-aos="fade-up" data-aos-duration="1500">
+        <div className={styles['card-about']} data-aos="fade-up" data-aos-duration="1500" >
           <div className={styles.top}>
             <img
               src="https://as2.ftcdn.net/v2/jpg/05/73/57/23/1000_F_573572330_EFcB1C8z5wcthD2H8MjUKFVmBrN9wVdT.jpg"
