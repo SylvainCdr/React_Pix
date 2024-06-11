@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./style.scss";
+import styles from "./style.module.scss";
 import { partners } from "../../Components/HomepagePartners/PartnersData";
 import AOS from "aos";
 
@@ -17,9 +17,9 @@ const Partners = () => {
   }, {});
 
   return (
-    <div className="partners-container">
-      <div className="partners-section1">
-        <div className="partners-intro">
+    <div className={styles['partners-container']}>
+      <div className={styles['partners-section1']}>
+        <div className={styles['partners-intro']}>
           <h1>Nos partenaires</h1>
           <p>
             Découvrez nos partenaires de confiance, leaders mondiaux en sécurité
@@ -42,24 +42,24 @@ const Partners = () => {
           </p>
           <p>Bienvenue chez Pixecurity, où votre sécurité est notre priorité.</p>
         </div>
-
-        <div data-aos="fade-left" className="partner-img"></div>
+  
+        <div data-aos="fade-left" className={styles['partner-img']}></div>
       </div>
-
+  
       {Object.keys(groupedPartners).map((domain, domainIndex) => (
-        <div key={domainIndex} className="domain-title">
-          <h2 >{domain}</h2>
+        <div key={domainIndex} className={styles['domain-title']}>
+          <h2>{domain}</h2>
           {groupedPartners[domain].map((partner, partnerIndex) => (
             <div
               key={partnerIndex}
-              className={`partners-section2 ${partnerIndex % 2 === 0 ? "left" : "right"}`}
+              className={`${styles['partners-section2']} ${partnerIndex % 2 === 0 ? styles.left : styles.right}`}
             >
-              <div className="partner-logo">
+              <div className={styles['partner-logo']}>
                 <a href={partner.website} target="_blank" rel="noreferrer">
                   <img data-aos="zoom-in" src={partner.logo} alt={partner.name} />
                 </a>
               </div>
-              <div className="partner-info">
+              <div className={styles['partner-info']}>
                 <p>{partner.description}</p>
                 <a href={partner.website} target="_blank" rel="noreferrer">
                   {partner.website}
@@ -71,6 +71,8 @@ const Partners = () => {
       ))}
     </div>
   );
-};
-
-export default Partners;
+  };
+  
+  export default Partners;
+  
+  

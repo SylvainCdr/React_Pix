@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./style.scss";
 import useCart from "../../../Components/useCart";
 import Swal from "sweetalert2";
 import { BASE_URL } from "../../../url";
+import styles from "./style.module.scss";
 
 export default function Order() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
@@ -237,228 +237,222 @@ export default function Order() {
       console.error("Erreur lors de la soumission de la commande :", error);
     }
   };
-
   return (
-    <div className="order-container">
-
-      <div className="order-page">
-      <h1>Commande</h1>
-
-      <form onSubmit={handleSubmit}>
-        <h2>
-          {" "}
-          <i class="fa-solid fa-user"></i> ETAPE 1 : Informations personnelles
-        </h2>
-        <div className="customer-infos">
-          <div className="details">
-            Prénom :{" "}
-            <input
-              type="text"
-              name="firstName"
-              placeholder="Prénom"
-              value={user.firstName}
-            />
-            Nom :{" "}
-            <input
-              type="text"
-              name="lastName"
-              placeholder="Nom"
-              value={user.lastName}
-            />
-            Entreprise:{" "}
-            <input
-              type="text"
-              name="company"
-              placeholder="Entreprise"
-              value={user.company}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="contact">
-            Email :{" "}
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={user.email}
-            />
-            Téléphone :{" "}
-            <input
-              type="text"
-              name="phone"
-              placeholder="A renseigner"
-              // si la valeur phone est "non renseigné" alors on affiche un placeholer à renseigner
-              value={user.phone === "non renseigné" ? "" : user.phone}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-
-        <h2>
-          {" "}
-          <i class="fa-solid fa-house"></i> ETAPE 2 : Adresses
-        </h2>
-        <div className="address-details">
-          <div className="billing-address">
-            <p>Adresse de facturation : </p>
-            <input
-              type="text"
-              name="street"
-              placeholder="Numéro et Rue"
-              value={billingAddress.street}
-              onChange={(e) =>
-                setBillingAddress({ ...billingAddress, street: e.target.value })
-              }
-            />
-            <input
-              type="text"
-              name="zip"
-              placeholder="Code Postal"
-              value={billingAddress.zip}
-              onChange={(e) =>
-                setBillingAddress({ ...billingAddress, zip: e.target.value })
-              }
-            />
-            <input
-              type="text"
-              name="city"
-              placeholder="Ville"
-              value={billingAddress.city}
-              onChange={(e) =>
-                setBillingAddress({ ...billingAddress, city: e.target.value })
-              }
-            />
-
-            <select
-              name="country"
-              value={billingAddress.country}
-              onChange={(e) =>
-                setBillingAddress({
-                  ...billingAddress,
-                  country: e.target.value,
-                })
-              }
-            >
-              <option value="">Sélectionnez votre pays</option>
-              <option value="france">France</option>
-              <option value="belgique">Belgique</option>
-              <option value="suisse">Suisse</option>
-              <option value="luxembourg">Luxembourg</option>
-            </select>
-
-<div className="same-address">
-            <input
-              type="checkbox"
-              id="same-address"
-              name="same-address"
-              className="checkbox"
-              onChange={(e) => {
-                if (e.target.checked) {
-                  setOrder((prev) => ({
-                    ...prev,
-                    deliveryAddress: { ...billingAddress },
-                  }));
-                } else {
-                  setOrder((prev) => ({
-                    ...prev,
-                    deliveryAddress: {
-                      street: "",
-                      city: "",
-                      zip: "",
-                      country: "",
-                    },
-                  }));
-                }
-              }}
-            />
-            <label htmlFor="same-address">Adresse de livraison identique</label>
+    <div className={styles['order-container']}>
+  
+      <div className={styles['order-page']}>
+        <h1>Commande</h1>
+  
+        <form onSubmit={handleSubmit}>
+          <h2>
+            {" "}
+            <i className="fa-solid fa-user"></i> ETAPE 1 : Informations personnelles
+          </h2>
+          <div className={styles['customer-infos']}>
+            <div className={styles.details}>
+              Prénom :{" "}
+              <input
+                type="text"
+                name="firstName"
+                placeholder="Prénom"
+                value={user.firstName}
+              />
+              Nom :{" "}
+              <input
+                type="text"
+                name="lastName"
+                placeholder="Nom"
+                value={user.lastName}
+              />
+              Entreprise:{" "}
+              <input
+                type="text"
+                name="company"
+                placeholder="Entreprise"
+                value={user.company}
+                onChange={handleChange}
+              />
             </div>
-
-            {/* input de type checkbox pour permettre à l'utilisateur de remplir les champs égal a la billingaddress  */}
+  
+            <div className={styles.contact}>
+              Email :{" "}
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={user.email}
+              />
+              Téléphone :{" "}
+              <input
+                type="text"
+                name="phone"
+                placeholder="A renseigner"
+                // si la valeur phone est "non renseigné" alors on affiche un placeholer à renseigner
+                value={user.phone === "non renseigné" ? "" : user.phone}
+                onChange={handleChange}
+              />
+            </div>
           </div>
-
-          <div className="delivery-address">
-            <p>Adresse de livraison : </p>
-            <input
-              type="text"
-              name="street"
-              placeholder="Numéro et Rue"
-              value={order.deliveryAddress.street}
-              onChange={handleChange}
-            />
-            <input
-              type="text"
-              name="zip"
-              placeholder="Code Postal"
-              value={order.deliveryAddress.zip}
-              onChange={handleChange}
-            />
-            <input
-              type="text"
-              name="city"
-              placeholder="Ville"
-              value={order.deliveryAddress.city}
-              onChange={handleChange}
-            />
-
-            <select
-              name="country"
-              value={order.deliveryAddress.country}
-              onChange={handleChange}
-            >
-              <option value="">Sélectionnez votre pays</option>
-              <option value="france">France</option>
-              <option value="belgique">Belgique</option>
-              <option value="suisse">Suisse</option>
-              <option value="luxembourg">Luxembourg</option>
-            </select>
+  
+          <h2>
+            {" "}
+            <i className="fa-solid fa-house"></i> ETAPE 2 : Adresses
+          </h2>
+          <div className={styles['address-details']}>
+            <div className={styles['billing-address']}>
+              <p>Adresse de facturation : </p>
+              <input
+                type="text"
+                name="street"
+                placeholder="Numéro et Rue"
+                value={billingAddress.street}
+                onChange={(e) =>
+                  setBillingAddress({ ...billingAddress, street: e.target.value })
+                }
+              />
+              <input
+                type="text"
+                name="zip"
+                placeholder="Code Postal"
+                value={billingAddress.zip}
+                onChange={(e) =>
+                  setBillingAddress({ ...billingAddress, zip: e.target.value })
+                }
+              />
+              <input
+                type="text"
+                name="city"
+                placeholder="Ville"
+                value={billingAddress.city}
+                onChange={(e) =>
+                  setBillingAddress({ ...billingAddress, city: e.target.value })
+                }
+              />
+  
+              <select
+                name="country"
+                value={billingAddress.country}
+                onChange={(e) =>
+                  setBillingAddress({
+                    ...billingAddress,
+                    country: e.target.value,
+                  })
+                }
+              >
+                <option value="">Sélectionnez votre pays</option>
+                <option value="france">France</option>
+                <option value="belgique">Belgique</option>
+                <option value="suisse">Suisse</option>
+                <option value="luxembourg">Luxembourg</option>
+              </select>
+  
+              <div className={styles['same-address']}>
+                <input
+                  type="checkbox"
+                  id="same-address"
+                  name="same-address"
+                  className={styles.checkbox}
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      setOrder((prev) => ({
+                        ...prev,
+                        deliveryAddress: { ...billingAddress },
+                      }));
+                    } else {
+                      setOrder((prev) => ({
+                        ...prev,
+                        deliveryAddress: {
+                          street: "",
+                          city: "",
+                          zip: "",
+                          country: "",
+                        },
+                      }));
+                    }
+                  }}
+                />
+                <label htmlFor="same-address">Adresse de livraison identique</label>
+              </div>
+            </div>
+  
+            <div className={styles['delivery-address']}>
+              <p>Adresse de livraison : </p>
+              <input
+                type="text"
+                name="street"
+                placeholder="Numéro et Rue"
+                value={order.deliveryAddress.street}
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                name="zip"
+                placeholder="Code Postal"
+                value={order.deliveryAddress.zip}
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                name="city"
+                placeholder="Ville"
+                value={order.deliveryAddress.city}
+                onChange={handleChange}
+              />
+  
+              <select
+                name="country"
+                value={order.deliveryAddress.country}
+                onChange={handleChange}
+              >
+                <option value="">Sélectionnez votre pays</option>
+                <option value="france">France</option>
+                <option value="belgique">Belgique</option>
+                <option value="suisse">Suisse</option>
+                <option value="luxembourg">Luxembourg</option>
+              </select>
+            </div>
           </div>
-        </div>
-
-        <div className="deliveryAndPayment">
-          <div className="delivery-options">
-            <h2>
-              <i class="fa-solid fa-truck"></i> ETAPE 3 : Mode de livraison{" "}
-            </h2>
-            <select
-              name="deliveryMethod"
-              value={order.delivery.method}
-              onChange={handleChange}
-            >
-              <option value="">Sélectionnez le mode de livraison</option>
-              <option value="dhl">DHL</option>
-              <option value="chronopost">chronopost</option>
-            </select>
-            <img src="https://www.chronopost.fr/sites/chronopost/themes/custom/chronopost/images/chronopost_logo.png" className="chrono" alt="chronopost" />
-            <img src="https://www.dhl.com/content/dam/dhl/global/core/images/logos/dhl-logo.svg" alt="DHL" />
-            
+  
+          <div className={styles.deliveryAndPayment}>
+            <div className={styles['delivery-options']}>
+              <h2>
+                <i className="fa-solid fa-truck"></i> ETAPE 3 : Mode de livraison{" "}
+              </h2>
+              <select
+                name="deliveryMethod"
+                value={order.delivery.method}
+                onChange={handleChange}
+              >
+                <option value="">Sélectionnez le mode de livraison</option>
+                <option value="dhl">DHL</option>
+                <option value="chronopost">chronopost</option>
+              </select>
+              <img src="https://www.chronopost.fr/sites/chronopost/themes/custom/chronopost/images/chronopost_logo.png" className={styles.chrono} alt="chronopost" />
+              <img src="https://www.dhl.com/content/dam/dhl/global/core/images/logos/dhl-logo.svg" alt="DHL" />
+            </div>
+  
+            <div className={styles['payment-options']}>
+              <h2>
+                <i className="fa-regular fa-credit-card"></i> ETAPE 4 : Options de
+                paiement
+              </h2>
+  
+              <select
+                name="paymentMethod"
+                value={order.payment.method}
+                onChange={handleChange}
+              >
+                <option value="">Sélectionnez le mode de paiement</option>
+                <option value="carte">Carte</option>
+                <option value="virement">Virement</option>
+              </select>
+            </div>
           </div>
-
-          <div className="payment-options">
-            <h2>
-              <i class="fa-regular fa-credit-card"></i> ETAPE 4 : Options de
-              paiement
-            </h2>
-
-            <select
-              name="paymentMethod"
-              value={order.payment.method}
-              onChange={handleChange}
-            >
-              <option value="">Sélectionnez le mode de paiement</option>
-              <option value="carte">Carte</option>
-              <option value="virement">Virement</option>
-            </select>
-          </div>
-        </div>
-
-        <button type="submit">Passer au paiement</button>
-      </form>
-
-
-
+  
+          <button type="submit">Passer au paiement</button>
+        </form>
       </div>
     </div>
   );
+
 }

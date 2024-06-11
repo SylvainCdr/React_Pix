@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import "./style.scss";
+import styles from "./style.module.scss";
 import { NavLink } from "react-router-dom";
 import Aos from "aos";
 import { BASE_URL } from "../../../url";
@@ -125,8 +125,8 @@ export default function Register() {
   }, []);
 
   return (
-    <div className="register-container">
-      <div data-aos="fade-right" className="section-1">
+    <div className={styles['register-container']}>
+      <div data-aos="fade-right" className={styles['section-1']}>
         <h1>Inscription </h1>
         <p>Créez votre compte pour accéder à notre boutique</p>
         <form onSubmit={handleSubmit}>
@@ -140,9 +140,9 @@ export default function Register() {
             onChange={handleFirstNameChange}
           />
           {firstNameError && (
-            <span className="error-message">{firstNameError}</span>
+            <span className={styles['error-message']}>{firstNameError}</span>
           )}
-
+  
           <label htmlFor="lastName">Nom</label>
           <input
             type="text"
@@ -153,9 +153,9 @@ export default function Register() {
             onChange={handleLastNameChange}
           />
           {lastNameError && (
-            <span className="error-message">{lastNameError}</span>
+            <span className={styles['error-message']}>{lastNameError}</span>
           )}
-
+  
           <label htmlFor="company">Entreprise (optionnel)</label>
           <input
             type="text"
@@ -163,7 +163,7 @@ export default function Register() {
             id="company"
             onChange={(e) => setCompany(e.target.value)}
           />
-
+  
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -173,8 +173,10 @@ export default function Register() {
             value={email}
             onChange={handleEmailChange}
           />
-          {emailError && <span className="error-message">{emailError}</span>}
-
+          {emailError && (
+            <span className={styles['error-message']}>{emailError}</span>
+          )}
+  
           <label htmlFor="password">Mot de passe</label>
           <input
             type="password"
@@ -185,34 +187,33 @@ export default function Register() {
             onChange={handlePasswordChange}
           />
           {passwordError && (
-            <span className="error-message">{passwordError}</span>
+            <span className={styles['error-message']}>{passwordError}</span>
           )}
-
+  
           {/* checkbox pour les CGV et la politique de confidentialité */}
-          <div className="cgv">
-          <input type="checkbox"  name="cgu"  id="cgu" required />
-          <label htmlFor="cgu">
-            J'accepte les 
-            <a href="/cgv" target="_blank">
-              CGV
-            </a>
-            et la
-            <a href="/rgpd" target="_blank">
-              politique de confidentialité
-            </a>
-          </label>
+          <div className={styles.cgv}>
+            <input type="checkbox" name="cgu" id="cgu" required />
+            <label htmlFor="cgu">
+              J'accepte les 
+              <a href="/cgv" target="_blank">
+                CGV
+              </a>
+              et la
+              <a href="/rgpd" target="_blank">
+                politique de confidentialité
+              </a>
+            </label>
           </div>
-
-
+  
           <button>S'enregistrer</button>
-
+  
           <span>――――― OU ―――――</span>
           <NavLink to="/connexion"><button> Se connecter</button></NavLink>
         </form>
       </div>
-
+  
       {errors && (
-        <div className="validation-errors">
+        <div className={styles['validation-errors']}>
           <p>Erreur(s) de validation :</p>
           <ul>
             {errors.map((error, index) => (
@@ -221,13 +222,8 @@ export default function Register() {
           </ul>
         </div>
       )}
-      {/* <div  data-aos="fade-left" className="section-2">
-        <h2 data-aos="flip-left">Let's secure the future together</h2>
-        <NavLink to="/contact">
-          {" "}
-          <button>Un Projet ? Contactez-nous</button>
-        </NavLink>
-      </div> */}
+
     </div>
   );
-}
+  }
+  

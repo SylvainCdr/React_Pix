@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./style.scss";
+import styles from "./style.module.scss";
 import Swal from "sweetalert2";
 import { BASE_URL } from "../../../url";
 
@@ -82,21 +82,21 @@ export default function EditOrders() {
   };
 
   return (
-    <div className="edit-order-container">
+    <div className={styles['edit-order-container']}>
       <h2>Modification - Commande n°{orderId}</h2>
       <h3>
         Date de commande : {new Date(order.orderDate).toLocaleDateString()}
       </h3>
-
-      <div className="edit-order-form">
-        <div className="section-1">
+  
+      <div className={styles['edit-order-form']}>
+        <div className={styles['section-1']}>
           <h4>
             Client : {user.lastName} {user.firstName}
           </h4>
           <h4>Entreprise : {user.company}</h4>
           <h4>Email : {user.email}</h4>
           <h4>Téléphone : {user.phone}</h4>
-
+  
           <h4>Méthode de livraison : {delivery && delivery.method}</h4>
           <h4>
             Frais de livraison :{" "}
@@ -107,17 +107,17 @@ export default function EditOrders() {
             Paiement :{" "}
             {payment && payment.paid ? "Payé" : "En attente de paiement"}
           </h4>
-
+  
           <h4>
             Total de la commande :{" "}
             {order && order.totalAmount && order.totalAmount.toFixed(2)} €
           </h4>
         </div>
-
-        <div className="section-2">
+  
+        <div className={styles['section-2']}>
           <form onSubmit={handleSubmit}>
             <h4>Adresse de facturation :</h4>
-            <label html="billingAddress">Numéro et rue</label>
+            <label htmlFor="billingAddress">Numéro et rue</label>
             <input
               type="text"
               id="billingAddress"
@@ -129,7 +129,7 @@ export default function EditOrders() {
                 })
               }
             />
-            <label html="billingAddress">Code postal</label>
+            <label htmlFor="billingAddress">Code postal</label>
             <input
               type="text"
               id="zip"
@@ -141,7 +141,7 @@ export default function EditOrders() {
                 })
               }
             />
-            <label html="billingAddress">Ville</label>
+            <label htmlFor="billingAddress">Ville</label>
             <input
               type="text"
               id="city"
@@ -153,7 +153,7 @@ export default function EditOrders() {
                 })
               }
             />
-            <label html="billingAddress">Pays</label>
+            <label htmlFor="billingAddress">Pays</label>
             <input
               type="text"
               id="country"
@@ -165,9 +165,9 @@ export default function EditOrders() {
                 })
               }
             />
-
+  
             <h4>Adresse de livraison :</h4>
-            <label html="deliveryAddress">Numéro et rue</label>
+            <label htmlFor="deliveryAddress">Numéro et rue</label>
             <input
               type="text"
               id="deliveryAddress"
@@ -179,7 +179,7 @@ export default function EditOrders() {
                 })
               }
             />
-            <label html="deliveryAddress">Code postal</label>
+            <label htmlFor="deliveryAddress">Code postal</label>
             <input
               type="text"
               id="zip"
@@ -191,7 +191,7 @@ export default function EditOrders() {
                 })
               }
             />
-            <label html="deliveryAddress">Ville</label>
+            <label htmlFor="deliveryAddress">Ville</label>
             <input
               type="text"
               id="city"
@@ -203,7 +203,7 @@ export default function EditOrders() {
                 })
               }
             />
-            <label html="deliveryAddress">Pays</label>
+            <label htmlFor="deliveryAddress">Pays</label>
             <input
               type="text"
               id="country"
@@ -215,8 +215,8 @@ export default function EditOrders() {
                 })
               }
             />
-
-            <label className="h4" htmlFor="status">Statut de la commande</label>
+  
+            <label className={styles.h4} htmlFor="status">Statut de la commande</label>
             <select
               id="status"
               value={status}
@@ -232,4 +232,5 @@ export default function EditOrders() {
       </div>
     </div>
   );
-}
+  }
+  

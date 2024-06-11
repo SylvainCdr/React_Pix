@@ -1,9 +1,9 @@
 import React from "react";
-import "./style.scss";
+import styles from "./style.module.scss";
 
 export default function Rgpd() {
   return (
-    <div className="rgpd-container">   
+    <div className={styles["rgpd-container"]}>
       <h1>Politique de Confidentialité</h1>
       <p>
         Cette Politique de Confidentialité décrit la manière dont Pixecurity recueille, utilise et protège les informations que vous nous

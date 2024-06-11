@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./style.scss";
+import styles from "./style.module.scss";
 import Swal from "sweetalert2";
 import AOS from "aos";
 import { BASE_URL } from "../../url";
@@ -141,10 +141,10 @@ function Contact() {
   }, []);
 
   return (
-    <div className="contact-container">
-      <div className="contact-section">
+    <div className={styles['contact-container']}>
+      <div className={styles['contact-section']}>
         {/* CARTE DE VISITE/CONTACT */}
-        <div data-aos="flip-down" className="visit-card">
+        <div data-aos="flip-down" className={styles['visit-card']}>
           <h2>Contactez-nous</h2>
           <h1>Let's Get In Touch</h1>
           <h3>
@@ -152,7 +152,7 @@ function Contact() {
             quelques mots. Nous vous recontacterons dans les plus brefs délais
             pour lancer le projet.
           </h3>
-
+  
           <p>
             <img src="assets/logo-dark.svg" alt="" />
           </p>
@@ -174,21 +174,21 @@ function Contact() {
             78600 Maisons-Laffitte
           </p>
         </div>
-
-        <div data-aos="flip-up" className="map">
+  
+        <div data-aos="flip-up" className={styles.map}>
           {/* CARTE GOOGLE MAPS */}
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2620.3192053317075!2d2.1426642!3d48.9474075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e661bf4bc8b7a5%3A0x530ca1d69735aaaf!2sPixecurity!5e0!3m2!1sen!2sfr!4v1707475449842!5m2!1sen!2sfr"
             width="600"
             height="450"
-            allowfullscreen=""
+            allowFullScreen=""
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
+            referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
       </div>
-
-      <div data-aos="flip-right" className="contact-form">
+  
+      <div data-aos="flip-right" className={styles['contact-form']}>
         {/* DEBUT FORMULAIRE DE CONTACT */}
         <form onSubmit={handleFormSubmit}>
           <label htmlFor="lastname">Nom :</label>
@@ -202,9 +202,9 @@ function Contact() {
           />
           {/* AFFICHAGE DU MESSAGE D'ERREUR EN LIVE SI LE CHAMP EST INCORRECT */}
           {lastnameError && (
-            <span className="error-message">{lastnameError}</span>
+            <span className={styles['error-message']}>{lastnameError}</span>
           )}
-
+  
           <label htmlFor="firstname">Prénom :</label>
           <input
             type="text"
@@ -216,9 +216,9 @@ function Contact() {
           />
           {/* AFFICHAGE DU MESSAGE D'ERREUR EN LIVE SI LE CHAMP EST INCORRECT */}
           {firstnameError && (
-            <span className="error-message">{firstnameError}</span>
+            <span className={styles['error-message']}>{firstnameError}</span>
           )}
-
+  
           <label htmlFor="company">Entreprise (optionnel) :</label>
           <input
             type="text"
@@ -229,9 +229,9 @@ function Contact() {
           />
           {/* AFFICHAGE DU MESSAGE D'ERREUR EN LIVE SI LE CHAMP EST INCORRECT */}
           {companyError && (
-            <span className="error-message">{companyError}</span>
+            <span className={styles['error-message']}>{companyError}</span>
           )}
-
+  
           <label htmlFor="email">Email :</label>
           <input
             type="email"
@@ -241,8 +241,10 @@ function Contact() {
             value={email}
             onChange={handleEmailChange}
           />
-          {emailError && <span className="error-message">{emailError}</span>}
-
+          {emailError && (
+            <span className={styles['error-message']}>{emailError}</span>
+          )}
+  
           <label htmlFor="message">Message :</label>
           <textarea
             id="message"
@@ -252,15 +254,18 @@ function Contact() {
             value={message}
             onChange={handleMessageChange}
           />
-          {messageError && <span className="error-message">{messageError}</span>}
-
-          <input type="submit" value="Envoyer" className="submitButton" />
+          {messageError && (
+            <span className={styles['error-message']}>{messageError}</span>
+          )}
+  
+          <input type="submit" value="Envoyer" className={styles.submitButton} />
         </form>
         {/* FIN FORMULAIRE DE CONTACT */}
       </div>
     </div>
   );
-}
+  }
+  
 
 export default Contact;
 

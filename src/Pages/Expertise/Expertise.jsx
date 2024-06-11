@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./style.scss";
+import styles from "./style.module.scss";
 import AOS from "aos";
 
 function Expertise() {
@@ -10,55 +10,52 @@ function Expertise() {
   }, []);
 
   return (
-    <div className="expertise-container">
+    <div className={styles['expertise-container']}>
       {/* <h1>Des experts avant tout</h1> */}
-
-      <div className="hero">
-        <div data-aos="fade-right" className="title">
+  
+      <div className={styles.hero}>
+        <div data-aos="fade-right" className={styles.title}>
           <h1>
             Notre Expertise : <br /> Votre protection, notre engagement
           </h1>
           <h2>Une sécurité complète</h2>
-          <p className="description">
+          <p className={styles.description}>
             Avec Pixecurity, votre sûreté est entre de bonnes mains à chaque
             étape, de la conception à la certification.
           </p>
         </div>
       </div>
-      <div className="forces">
+      <div className={styles.forces}>
         <li>
-          <i class="fa-regular fa-circle-check" data-aos="zoom-in"></i> Des
+          <i className="fa-regular fa-circle-check" data-aos="zoom-in"></i> Des
           outils électroniques de pointe, taillés sur mesure pour répondre à vos
           besoins.
         </li>
         <li>
-          {" "}
-          <i class="fa-regular fa-circle-check" data-aos="zoom-in"></i>
-          Une plateforme de gestion de projets élaborée en interne, offrant une
+          <i className="fa-regular fa-circle-check" data-aos="zoom-in"></i> Une
+          plateforme de gestion de projets élaborée en interne, offrant une
           interaction aisée avec nos experts.
         </li>
         <li>
-          <i class="fa-regular fa-circle-check" data-aos="zoom-in"></i>
-          Des solutions de développement sur mesure, conçues spécialement pour
+          <i className="fa-regular fa-circle-check" data-aos="zoom-in"></i> Des
+          solutions de développement sur mesure, conçues spécialement pour
           vous.
         </li>
         <li>
-          <i class="fa-regular fa-circle-check" data-aos="zoom-in"></i>
-          Des mesures de cybersécurité avancées pour une protection optimale.
+          <i className="fa-regular fa-circle-check" data-aos="zoom-in"></i> Des
+          mesures de cybersécurité avancées pour une protection optimale.
         </li>
         <li>
-          <i class="fa-regular fa-circle-check" data-aos="zoom-in"></i>
-          La délivrance de certifications de conformité par nos consultants
+          <i className="fa-regular fa-circle-check" data-aos="zoom-in"></i> La
+          délivrance de certifications de conformité par nos consultants
           spécialisés.
         </li>
       </div>
-
-      {/* ---------------------------- */}
-
-      <div className="slides-section" id="videoprotection">
+  
+      <div className={styles['slides-section']} id="videoprotection">
         <h2>Vidéoprotection </h2>
-        <div className="slide-container">
-          <div className="slide" data-aos="fade-up-right">
+        <div className={styles['slide-container']}>
+          <div className={styles.slide} data-aos="fade-up-right">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-camera-visible.jpg"
               alt=""
@@ -73,8 +70,8 @@ function Expertise() {
               typologie de caméras.
             </p>
           </div>
-
-          <div className="slide" data-aos="slide-up">
+  
+          <div className={styles.slide} data-aos="slide-up">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/videoprotection.png"
               alt=""
@@ -89,8 +86,8 @@ function Expertise() {
               caméra thermique idéale.
             </p>
           </div>
-
-          <div className="slide" data-aos="fade-up-left">
+  
+          <div className={styles.slide} data-aos="fade-up-left">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-camera-specifique.jpg"
               alt=""
@@ -104,11 +101,11 @@ function Expertise() {
           </div>
         </div>
       </div>
-
-      <div className="slides-section" id="analyse">
+  
+      <div className={styles['slides-section']} id="analyse">
         <h2>Analyse d'image</h2>
-        <div className="slide-container">
-          <div className="slide" data-aos="fade-up-right">
+        <div className={styles['slide-container']}>
+          <div className={styles.slide} data-aos="fade-up-right">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-analyse-temps-reel.jpg"
               alt=""
@@ -121,8 +118,8 @@ function Expertise() {
               machine-learning...
             </p>
           </div>
-
-          <div className="slide" data-aos="slide-up">
+  
+          <div className={styles.slide} data-aos="slide-up">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/analyse-image.png"
               alt=""
@@ -135,8 +132,8 @@ function Expertise() {
               le client.
             </p>
           </div>
-
-          <div className="slide" data-aos="fade-up-left">
+  
+          <div className={styles.slide} data-aos="fade-up-left">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-business-intelligence.jpg"
               alt=""
@@ -150,13 +147,11 @@ function Expertise() {
           </div>
         </div>
       </div>
-
-      {/* ---------------------------- */}
-
-      <div className="slides-section" id="access">
+  
+      <div className={styles['slides-section']} id="access">
         <h2>Contrôle d'accès</h2>
-        <div className="slide-container">
-          <div className="slide" data-aos="fade-up-right">
+        <div className={styles['slide-container']}>
+          <div className={styles.slide} data-aos="fade-up-right">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-controle-acces.jpg"
               alt=""
@@ -169,8 +164,8 @@ function Expertise() {
               sur les solutions : Til, Primion, Nedap.{" "}
             </p>
           </div>
-
-          <div className="slide" data-aos="slide-up">
+  
+          <div className={styles.slide} data-aos="slide-up">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/controle-acces.png"
               alt=""
@@ -183,8 +178,8 @@ function Expertise() {
               recommandations de la RGPD ainsi que celles de l'ANSSI.{" "}
             </p>
           </div>
-
-          <div className="slide" data-aos="fade-up-left">
+  
+          <div className={styles.slide} data-aos="fade-up-left">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-full-integration.jpg"
               alt=""
@@ -199,13 +194,11 @@ function Expertise() {
           </div>
         </div>
       </div>
-
-      {/* ---------------------------- */}
-
-      <div className="slides-section" id="cloud">
+  
+      <div className={styles['slides-section']} id="cloud">
         <h2>Cloud et objets connectés</h2>
-        <div className="slide-container">
-          <div className="slide" data-aos="fade-up-right">
+        <div className={styles['slide-container']}>
+          <div className={styles.slide} data-aos="fade-up-right">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-cloud.jpg"
               alt=""
@@ -220,8 +213,8 @@ function Expertise() {
               SAS.
             </p>
           </div>
-
-          <div className="slide" data-aos="slide-up">
+  
+          <div className={styles.slide} data-aos="slide-up">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/cloud.png"
               alt=""
@@ -235,8 +228,8 @@ function Expertise() {
               philosophie de sureté.
             </p>
           </div>
-
-          <div className="slide" data-aos="fade-up-left">
+  
+          <div className={styles.slide} data-aos="fade-up-left">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-objets-connectes.jpg"
               alt=""
@@ -252,13 +245,11 @@ function Expertise() {
           </div>
         </div>
       </div>
-
-      {/* ---------------------------- */}
-
-      <div className="slides-section" id="network">
+  
+      <div className={styles['slides-section']} id="network">
         <h2>réseaux, si, stockage</h2>
-        <div className="slide-container">
-          <div className="slide" data-aos="fade-up-right">
+        <div className={styles['slide-container']}>
+          <div className={styles.slide} data-aos="fade-up-right">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-reseaux.jpg"
               alt=""
@@ -274,8 +265,8 @@ function Expertise() {
               via un cloud souverain (OVH).
             </p>
           </div>
-
-          <div className="slide" data-aos="slide-up">
+  
+          <div className={styles.slide} data-aos="slide-up">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/reseau-stockage.png"
               alt=""
@@ -288,8 +279,8 @@ function Expertise() {
               pré-requis (active directory, choix matériel).
             </p>
           </div>
-
-          <div className="slide" data-aos="fade-up-left">
+  
+          <div className={styles.slide} data-aos="fade-up-left">
             <img
               src="https://www.pixecurity.com/wp-content/uploads/2021/04/skills-stockage.jpg"
               alt=""
@@ -305,10 +296,9 @@ function Expertise() {
           </div>
         </div>
       </div>
-
-      {/* ---------------------------- */}
     </div>
   );
-}
-
-export default Expertise;
+  };
+  
+  export default Expertise;
+  

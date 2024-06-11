@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./style.scss";
+import styles from "./style.module.scss";
 import HomepageCustomersSlider from "../../Components/HomepageCustomersSlider/HomepageCustomersSlider";
 import Hero from "../../Components/HomepageHero/HomepageHero";
 import { NavLink } from "react-router-dom";
@@ -16,24 +16,24 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="homepage-container">
+    <div className={styles['homepage-container']}>
       <Hero />
-
-      <div className="section1-intro">
-        <div className="section1-img"></div>
-
-        <div className="section1-text">
+  
+      <div className={styles['section1-intro']}>
+        <div className={styles['section1-img']}></div>
+  
+        <div className={styles['section1-text']}>
           <p>
-            La <strong>sécurité</strong> ne dépend plus de la force brute, mais
-            de <strong>l'intelligence</strong>. <br /> Chez{" "}
-            <strong>Pixecurity</strong>, nous sommes les fournisseurs de
-            systèmes de <strong>sûreté</strong> intelligents. <br />
+            La <strong>sécurité</strong> ne dépend plus de la force brute, mais de{" "}
+            <strong>l'intelligence</strong>. <br /> Chez{" "}
+            <strong>Pixecurity</strong>, nous sommes les fournisseurs de systèmes
+            de <strong>sûreté</strong> intelligents. <br />
             Notre <strong>mission</strong> : vous accompagner avec les{" "}
             <strong>meilleurs</strong> produits et des{" "}
-            <strong>solutions</strong> sur-mesure, repensant la sécurité selon
-            vos besoins.
+            <strong>solutions</strong> sur-mesure, repensant la sécurité selon vos
+            besoins.
           </p>
-          <div data-aos="zoom-in" className="icons">
+          <div data-aos="zoom-in" className={styles.icons}>
             <img src="../assets/icons/ico3.png" alt="" />
             <img src="../assets/icons/ico2.png" alt="" />
             <img src="../assets/icons/ico1.png" alt="" />
@@ -41,10 +41,8 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-
-
-      <div className="section2-offer">
+  
+      <div className={styles['section2-offer']}>
         <h2>Une offre pensée autrement</h2>
         <p>
           La protection de vos données personnelles certifiée Pixecurity c'est :
@@ -57,13 +55,11 @@ export default function Home() {
           solutions de sureté 3.0
         </p>
       </div>
-
-
-        <HomepageSkills />
   
-
-      <div className="section4-aboutUs">
-        <div className="section4-text">
+      <HomepageSkills />
+  
+      <div className={styles['section4-aboutUs']}>
+        <div className={styles['section4-text']}>
           <h2>Qui sommes nous ?</h2>
           <p>
             Des ingénieurs avant-gardistes. Des experts 3.0, natifs du
@@ -74,18 +70,18 @@ export default function Home() {
             exigences.
           </p>
           <NavLink to="/a-propos">
-            {" "}
-            <button>Notre équipe</button>{" "}
+            <button>Notre équipe</button>
           </NavLink>
         </div>
-        <div className="section4-img"></div>
+        <div className={styles['section4-img']}></div>
       </div>
-
+  
       <HomepageCountUp />
-
+  
       <HomepagePartners />
-
+  
       <HomepageCustomersSlider />
     </div>
   );
+
 }

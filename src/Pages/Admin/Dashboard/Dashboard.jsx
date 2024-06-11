@@ -1,4 +1,4 @@
-import "./style.scss";
+import styles from "./style.module.scss";
 import React, { useState, useEffect } from "react";
 import AdminNav from "../../../Components/AdminNav/AdminNav";
 import { BASE_URL } from "../../../url";
@@ -118,16 +118,15 @@ export default function Dashboard() {
         setTopFavorites(sortedFavorites.slice(0, 6));
       });
   }, []);
-
   return (
-    <div class="admin-dashboard-container">
-      <div className="admin-nav">
+    <div className={styles['admin-dashboard-container']}>
+      <div className={styles['admin-nav']}>
         <AdminNav />
       </div>
-      <div className="admin-dashboard">
+      <div className={styles['admin-dashboard']}>
         <h1>ESPACE ADMINISTRATION</h1>
-        <div className="top">
-          <div className="recap-users">
+        <div className={styles.top}>
+          <div className={styles['recap-users']}>
             <h2>
               Total utilisateurs inscrits : <br />
               <br />
@@ -161,8 +160,8 @@ export default function Dashboard() {
               </tbody>
             </table>
           </div>
-
-          <div className="recap-orders">
+  
+          <div className={styles['recap-orders']}>
             <h2>
               Total commandes passées : <br />
               <br />
@@ -173,9 +172,9 @@ export default function Dashboard() {
               <br />
               <span>{amountAverage.toFixed(2)} €</span>
             </h2>
-
+  
             <h3>6 dernières commandes : </h3>
-
+  
             <table>
               <thead>
                 <tr>
@@ -198,8 +197,8 @@ export default function Dashboard() {
             </table>
           </div>
         </div>
-        <div className="bottom">
-          <div className="recap-products">
+        <div className={styles.bottom}>
+          <div className={styles['recap-products']}>
             <h2>
               Total catégories enregistrées :<br />
               <br />
@@ -220,4 +219,5 @@ export default function Dashboard() {
       </div>
     </div>
   );
-}
+  }
+  

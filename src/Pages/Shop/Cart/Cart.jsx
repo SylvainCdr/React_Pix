@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "./style.scss";
+import styles from "./style.module.scss"; // Import des styles CSS Modules
 import useCart from "../../../Components/useCart";
 import { NavLink, useNavigate } from "react-router-dom";
 import AOS from "aos";
+import "aos/dist/aos.css"; // Import des styles d'AOS
 import ShopProductsCarousel from "../../../Components/ShopProductsCarousel/ShopProductsCarousel";
 import { BASE_URL } from "../../../url";
 
@@ -90,9 +91,9 @@ export default function Cart() {
   // Condition pour afficher un message si le panier est vide
   if (cart.length === 0) {
     return (
-      <div className="cart-container">
+      <div className={styles["cart-container"]}>
         <h1>Panier</h1>
-        <div className="empty-cart-message">
+        <div className={styles["empty-cart-message"]}>
           <p>Vous n'avez pas encore de produits dans votre panier.</p>
           <NavLink to="/boutique">
             <button>Visiter la boutique</button>
@@ -104,22 +105,22 @@ export default function Cart() {
   }
 
   return (
-    <div className="cart-container">
-      <div className="cart-content">
+    <div className={styles["cart-container"]}>
+      <div className={styles["cart-content"]}>
         <h1>Panier</h1>
-        <div className="shopping-cart">
-          <div className="column-labels">
-            <label className="product-image">Image</label>
-            <label className="product-details">Produit</label>
-            <label className="product-price">Prix HT</label>
-            <label className="product-quantity">Quantité</label>
-            <label className="product-removal">Supprimer</label>
-            <label className="product-line-price">Total HT</label>
+        <div className={styles["shopping-cart"]}>
+          <div className={styles["column-labels"]}>
+            <label className={styles["product-image"]}>Image</label>
+            <label className={styles["product-details"]}>Produit</label>
+            <label className={styles["product-price"]}>Prix HT</label>
+            <label className={styles["product-quantity"]}>Quantité</label>
+            <label className={styles["product-removal"]}>Supprimer</label>
+            <label className={styles["product-line-price"]}>Total HT</label>
           </div>
 
           {cart.map((product, index) => (
-            <div className="product" key={index}>
-              <div className="product-image">
+            <div className={styles["product"]} key={index}>
+              <div className={styles["product-image"]}>
                 <img
                   src={
                     product.image && product.image.startsWith("http")
@@ -129,74 +130,75 @@ export default function Cart() {
                   alt={product.name}
                 />
               </div>
-              <div className="product-details">
-                <div className="product-title">
+              <div className={styles["product-details"]}>
+                <div className={styles["product-title"]}>
                   {product.name}
                   <p>Réf : {product.ref}</p>
                 </div>
-                <p className="product-description">{product.description}</p>
+                <p className={styles["product-description"]}>{product.description}</p>
               </div>
               {JSON.parse(localStorage.getItem("user"))?.discount > 0 && (
-                <div className="discount-badge">
+                <div className={styles["discount-badge"]}>
                   - {JSON.parse(localStorage.getItem("user")).discount} %
                 </div>
               )}
               {JSON.parse(localStorage.getItem("user"))?.discount > 0 ? (
-                <div className="product-price">
-                  <span className="base-price">{product.price.toFixed(2)} €</span>
+                <div className={styles["product-price"]}>
+                  <span className={styles["base-price"]}>{product.price.toFixed(2)} €</span>
                 </div>
               ) : (
-                <div className="product-price">{product.price.toFixed(2)} €</div>
+                <div className={styles["product-price"]}>{product.price.toFixed(2)} €</div>
               )}
-              <div className="product-quantity">
+              <div className={styles["product-quantity"]}>
                 <input
                   type="number"
                   value={product.quantity}
                   onChange={(e) => handleQuantityChange(product, parseInt(e.target.value))}
                 />
               </div>
-              <div className="product-removal">
+              <div className={styles["product-removal"]}>
                 <a
-                  className="remove-product"
+                  className={styles["remove-product"]}
                   onClick={() => handleRemoveFromCart(product)}
                 >
                   Supprimer
                 </a>
               </div>
-              <div className="product-line-price">
+              <div className={styles["product-line-price"]}>
                 {(product.quantity * product.price).toFixed(2)} €
               </div>
             </div>
           ))}
 
-          <div className="totals">
-            <div className="totals-item">
+          <div className={styles["totals"]}>
+            <div className={styles["totals-item"]}>
               <label>Sous-total</label>
-              <div className="totals-value" id="cart-subtotal">
+              <div className={styles["totals-value"]} id="cart-subtotal">
                 {subTotal.toFixed(2)} €
               </div>
             </div>
-            <div className="totals-item">
+            <div className={styles["totals-item"]} id="cart-tax">
               <label>TVA (20%)</label>
-              <div className="totals-value" id="cart-tax">
+
+              <div className={styles["totals-value"]} id="cart-tax">
                 {tax.toFixed(2)} €
               </div>
             </div>
-            <div className="totals-item">
+            <div className={styles["totals-item"]} id="cart-shipping">
               <label>Frais de livraison</label>
-              <div className="totals-value" id="cart-shipping">
+              <div className={styles["totals-value"]} id="cart-shipping">
                 {shippingCost.toFixed(2)} €
               </div>
             </div>
-            <div className="totals-item totals-item-total">
+            <div className={`${styles["totals-item"]} ${styles["totals-item-total"]}`} id="cart-total">
               <label>Total</label>
-              <div className="totals-value" id="cart-total">
+              <div className={styles["totals-value"]} id="cart-total">
                 {totalAmount.toFixed(2)} €
               </div>
             </div>
           </div>
 
-          <button onClick={handleOrder} className="checkout">
+          <button onClick={handleOrder} className={styles["checkout"]}>
             Commander
           </button>
         </div>

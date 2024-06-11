@@ -2,7 +2,7 @@ import { useAppContext } from "../../appContext";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import "./style.scss";
+import styles from "./style.module.scss";
 import Cookies from "js-cookie";
 import Aos from "aos";
 import PasswordResetModal from "../../../Components/ResetPasswordModal/ResetPasswordModal";
@@ -136,21 +136,21 @@ export default function Login() {
   }, []);
 
   return (
-    <div className="login-container">
-      <div data-aos="fade-right" className="section-1">
+    <div className={styles['login-container']}>
+      <div data-aos="fade-right" className={styles['section-1']}>
         <img src="./../../assets/logo-clear.svg" alt="" />
       </div>
-      <div data-aos="fade-left" className="section-2">
+      <div data-aos="fade-left" className={styles['section-2']}>
         <h1>Connexion</h1>
-        {/* // J'ecoute l'evennement onSubmit qui s'execute quand on soumet le formulaire (que ce soit avec la touche entrée ou le bouton envoyer)
-        // Et l'evennement appel ma fonction handleSubmit */}
+        {/* J'écoute l'événement onSubmit qui s'exécute quand on soumet le formulaire (que ce soit avec la touche entrée ou le bouton envoyer)
+            Et l'événement appelle ma fonction handleSubmit */}
         <form onSubmit={handleSubmit}>
           <label htmlFor="email">Email</label>
-          {/* Pour chaques input, j'ecoute l'evennement onChange afin de mettre a jour ma variable en fonction de mon input */}
-          {/* Ca permet d'avoir en temps réel le contenu de l'input dans ma variable correspondante */}
-          {/* Pour recuperer le contenu de l'input, je recupère l'evennement (la variable "e") */}
-          {/* Dans cet evennement, je recupère ma cible (donc l'input) puis sa valeur */}
-          {/* et j'utilise le setLastName pour définir ma variable avec le contenu de mon input */}
+          {/* Pour chaque input, j'écoute l'événement onChange afin de mettre à jour ma variable en fonction de mon input */}
+          {/* Cela permet d'avoir en temps réel le contenu de l'input dans ma variable correspondante */}
+          {/* Pour récupérer le contenu de l'input, je récupère l'événement (la variable "e") */}
+          {/* Dans cet événement, je récupère ma cible (donc l'input) puis sa valeur */}
+          {/* et j'utilise le setEmail pour définir ma variable avec le contenu de mon input */}
           <input
             type="email"
             name="email"
@@ -165,17 +165,17 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button>Se connecter</button>
-
         </form>
-          <a onClick={() => setShowModal(true)}>Mot de passe oublié ?</a>
-
-          {/* Composant PasswordResetModal */}
-          <PasswordResetModal
-            show={showModal}
-            onClose={() => setShowModal(false)}
-            onResetPassword={handleResetPassword}
-          />
+        <a onClick={() => setShowModal(true)}>Mot de passe oublié ?</a>
+        {/* Composant PasswordResetModal */}
+        <PasswordResetModal
+          show={showModal}
+          onClose={() => setShowModal(false)}
+          onResetPassword={handleResetPassword}
+        />
       </div>
     </div>
   );
-}
+  }
+
+  

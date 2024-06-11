@@ -1,5 +1,5 @@
 import React from 'react';
-import "./style.scss";
+import styles from './style.module.scss';
 import AdminProductForm from "../../../Components/AdminProductForm/AdminProductForm";
 import Swal from "sweetalert2";
 import { BASE_URL } from "../../../url";
@@ -49,7 +49,7 @@ function AddProduct() {
     };
 
     return (
-        <div className="add-product">
+        <div className={styles["add-product-container"]}>
             <h1>ADMINISTRATION - 
             <span> Ajouter un produit</span> </h1>
             <AdminProductForm onSubmit={handleAddProduct} />

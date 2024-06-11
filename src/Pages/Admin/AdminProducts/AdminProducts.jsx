@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./style.scss";
+import styles from "./style.module.scss";
 import Swal from "sweetalert2";
 import AdminProductForm from "../../../Components/AdminProductForm/AdminProductForm";
 import { BASE_URL } from "../../../url";
@@ -142,152 +142,145 @@ const filteredProducts = products.filter((product) => {
 });
 
 
-  return (
-    <div className="admin-products">
-       <h1>ADMINISTRATION - 
-            <span> Produits </span></h1>
+return (
+  <div className={styles['admin-products']}>
+    <h1>ADMINISTRATION - 
+      <span> Produits </span>
+    </h1>
 
-      <div className="admin-products-dashboard">
-        <div className="admin-products-aside">
-          <h3>Filtrer par Catégorie</h3>
-          {Array.from(new Set(products.map((product) => product.category))).map(
-            (category) => (
-              <div key={category}>
-                <input
-                  type="checkbox"
-                  id={`category-${category}`}
-                  checked={categoryFilter.includes(category)}
-                  onChange={() => handleCategoryFilterChange(category)}
-                />
-                <label htmlFor={`category-${category}`}>{category}</label>
-              </div>
-            )
-          )}
-
-          <h3>Filtrer par Sous-catégorie</h3>
-          {Array.from(
-            new Set(
-              products
-                .filter((product) =>
-                  categoryFilter.length === 0
-                    ? true
-                    : categoryFilter.includes(product.category)
-                )
-                .map((product) => product.subcategory)
-            )
-          ).map((subcategory) => (
-            <div key={subcategory}>
+    <div className={styles['admin-products-dashboard']}>
+      <div className={styles['admin-products-aside']}>
+        <h3>Filtrer par Catégorie</h3>
+        {Array.from(new Set(products.map((product) => product.category))).map(
+          (category) => (
+            <div key={category}>
               <input
                 type="checkbox"
-                id={`subcategory-${subcategory}`}
-                checked={subcategoryFilter.includes(subcategory)}
-                onChange={() => handleSubcategoryFilterChange(subcategory)}
+                id={`category-${category}`}
+                checked={categoryFilter.includes(category)}
+                onChange={() => handleCategoryFilterChange(category)}
               />
-              <label htmlFor={`subcategory-${subcategory}`}>
-                {subcategory}
-              </label>
+              <label htmlFor={`category-${category}`}>{category}</label>
             </div>
-          ))}
+          )
+        )}
 
-          <h3>Filtrer par Marque</h3>
-          {Array.from(new Set(products.map((product) => product.brand))).map(
-            (brand) => (
-              <div key={brand}>
-                <input
-                  type="checkbox"
-                  id={`brand-${brand}`}
-                  checked={brandFilter.includes(brand)}
-                  onChange={() => handleBrandFilterChange(brand)}
-                />
-                <label htmlFor={`brand-${brand}`}>{brand}</label>
-              </div>
-            )
-          )}
-        </div>
-
-        
-
-        <div className="admin-products-display">
-          {selectedProduct ? (
-            <AdminProductForm
-              productToEdit={selectedProduct}
-              onSubmit={() => {
-                setSelectedProduct(null);
-              }}
+        <h3>Filtrer par Sous-catégorie</h3>
+        {Array.from(
+          new Set(
+            products
+              .filter((product) =>
+                categoryFilter.length === 0
+                  ? true
+                  : categoryFilter.includes(product.category)
+              )
+              .map((product) => product.subcategory)
+          )
+        ).map((subcategory) => (
+          <div key={subcategory}>
+            <input
+              type="checkbox"
+              id={`subcategory-${subcategory}`}
+              checked={subcategoryFilter.includes(subcategory)}
+              onChange={() => handleSubcategoryFilterChange(subcategory)}
             />
-          ) : (
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Photo</th>
-                  <th scope="col">Nom</th>
-                  <th scope="col">Réf</th>
-                  <th scope="col">Catégorie</th>
-                  <th scope="col">Sous-catégorie</th>
-                  <th scope="col">Marque</th>
-                  <th scope="col">Prix</th>
-                  <th scope="col">updated</th>
-                  <th scope="col">Actions</th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
+            <label htmlFor={`subcategory-${subcategory}`}>
+              {subcategory}
+            </label>
+          </div>
+        ))}
+
+        <h3>Filtrer par Marque</h3>
+        {Array.from(new Set(products.map((product) => product.brand))).map(
+          (brand) => (
+            <div key={brand}>
+              <input
+                type="checkbox"
+                id={`brand-${brand}`}
+                checked={brandFilter.includes(brand)}
+                onChange={() => handleBrandFilterChange(brand)}
+              />
+              <label htmlFor={`brand-${brand}`}>{brand}</label>
+            </div>
+          )
+        )}
+      </div>
+
+      <div className={styles['admin-products-display']}>
+        {selectedProduct ? (
+          <AdminProductForm
+            productToEdit={selectedProduct}
+            onSubmit={() => {
+              setSelectedProduct(null);
+            }}
+          />
+        ) : (
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th scope="col">Photo</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Réf</th>
+                <th scope="col">Catégorie</th>
+                <th scope="col">Sous-catégorie</th>
+                <th scope="col">Marque</th>
+                <th scope="col">Prix</th>
+                <th scope="col">updated</th>
+                <th scope="col">Actions</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredProducts.map((product) => (
+                <tr key={product._id}>
+                  <td>
+                    {/* on affiche soit l'image stockée sur le serveur, soit l'url de l'image si elle est stockée sur un site externe */}
+                    {product.image.startsWith("http") ? (
+                      <img src={product.image} alt="" />
+                    ) : (
+                      <img
+                        src={`${BASE_URL}${product.image}`}
+                        alt=""
+                      />
+                    )}
+                  </td>
+                  {/* <td>{product.name}</td>
+                  // lien vers la page produit */}
+                  <td><a href={`${BASE_URL}/boutique/produit/${product._id}`}>{product.name}</a></td>
+                  <td>{product.ref}</td>
+                  <td>{product.category}</td>
+                  <td>{product.subcategory}</td>
+                  <td>{product.brand}</td>
+                  <td>{product.price} €</td>
+                  <td>{new Date(product.updatedAt).toLocaleDateString()}</td>
+                  <td>
+                    <button
+                      onClick={() => {
+                        editProduct(product._id);
+                      }}
+                      className={styles['modify-btn']}
+                    >
+                      Modifier
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => {
+                        deleteProduct(product._id);
+                      }}
+                      className={styles['delete-btn']}
+                    >
+                      Supprimer
+                    </button>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {filteredProducts.map((product) => (
-                  <tr key={product._id}>
-                    <td>
-                      {/* on affiche soit l'image stockée sur le serveur, soit l'url de l'image si elle est stockée sur un site externe */}
-                      {product.image.startsWith("http") ? (
-                        <img src={product.image} alt="" />
-                      ) : (
-                        <img
-                          src={`${BASE_URL}${product.image}`}
-                          alt=""
-                        />
-                      )}
-                    </td>
-                    {/* <td>{product.name}</td>
-                    // lien vers la page produit */}
-                    <td><a href={`${BASE_URL}/boutique/produit/${product._id}`}>{product.name}</a></td>
-                    <td>{product.ref}</td>
-                    <td>{product.category}</td>
-                    <td>{product.subcategory}</td>
-                    <td>{product.brand}</td>
-                    <td>{product.price} €</td>
-          
-             
-                    <td>{new Date(product.updatedAt).toLocaleDateString()}</td>
-
-
-
-
-                    <td >
-                      <button
-                        onClick={() => {
-                          editProduct(product._id);
-                        }}
-                        className="modify-btn"
-                      >
-                        Modifier
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        onClick={() => {
-                          deleteProduct(product._id);
-                        }}
-                        className="delete-btn"
-                      >
-                        Supprimer
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
-  );
+  </div>
+);
 }

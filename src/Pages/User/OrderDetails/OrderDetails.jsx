@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "./style.scss";
+import styles from "./style.module.scss";
 import DeliveryTimeline from "../../../Components/DeliveryTimeline/DeliveryTimeline";
 import Aos from "aos";
 import { BASE_URL } from "../../../url";
+
 
 export default function OrderDetails() {
 
@@ -52,47 +53,49 @@ export default function OrderDetails() {
     }, []);
 
     return (
-
-        <div data-aos="flip-down" className="order-details-container">
-            <h2>DETAILS DE COMMANDE </h2>
-            <div className="order-details">
-                <div className="order-details-header">
-                    <h3>Commande N° {orderId}</h3>
-                   
-                    <p> Date de la commande : {new Date(orderDate).toLocaleDateString()}</p>
-                     {/* Intégration de la timeline */}
-            <DeliveryTimeline status={status} />
-                </div>
-                <div className="order-details-content">
-                    <div className="order-details-delivery">
-                        <h4>Livraison</h4>
-                        <p>Méthode de livraison : {deliveryMethod}</p>
-                        <p>Frais de livraison : {deliveryFee.toFixed(2)} €</p>
-                        <p>Adresse de livraison : {deliveryAddress.street}, {deliveryAddress.zip} {deliveryAddress.city}, {deliveryAddress.country}</p>
-                    </div>
-                    <div className="order-details-payment">
-                        <h4>Paiement</h4>
-                        <p>Méthode de paiement : {paymentMethod}</p>
-                        <p>Statut du paiement : {paid ? "Payé" : "Non payé"}</p>
-                    </div>
-                    <div className="order-details-items">
-                        <h4>Produits</h4>
-                        <ul>
-                            {items.map((item) => (
-                                <li key={item._id}>
-                                    <p>{item.name} - {item.quantity} x {item.priceAtOrderTime.toFixed(2)} €</p>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div className="order-details-total">
-                        <h4>Total</h4>
-                        <p>Total de la commande : {totalAmount.toFixed(2)} €</p>
-                    </div>
-                </div>
+        <div data-aos="flip-down" className={styles['order-details-container']}>
+          <h2>DETAILS DE COMMANDE </h2>
+          <div className={styles['order-details']}>
+            <div className={styles['order-details-header']}>
+              <h3>Commande N° {orderId}</h3>
+              <p>Date de la commande : {new Date(orderDate).toLocaleDateString()}</p>
+              {/* Intégration de la timeline */}
+              <DeliveryTimeline status={status} />
             </div>
+            <div className={styles['order-details-content']}>
+              <div className={styles['order-details-delivery']}>
+                <h4>Livraison</h4>
+                <p>Méthode de livraison : {deliveryMethod}</p>
+                <p>Frais de livraison : {deliveryFee.toFixed(2)} €</p>
+                <p>
+                  Adresse de livraison : {deliveryAddress.street}, {deliveryAddress.zip}{" "}
+                  {deliveryAddress.city}, {deliveryAddress.country}
+                </p>
+              </div>
+              <div className={styles['order-details-payment']}>
+                <h4>Paiement</h4>
+                <p>Méthode de paiement : {paymentMethod}</p>
+                <p>Statut du paiement : {paid ? "Payé" : "Non payé"}</p>
+              </div>
+              <div className={styles['order-details-items']}>
+                <h4>Produits</h4>
+                <ul>
+                  {items.map((item) => (
+                    <li key={item._id}>
+                      <p>
+                        {item.name} - {item.quantity} x {item.priceAtOrderTime.toFixed(2)} €
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className={styles['order-details-total']}>
+                <h4>Total</h4>
+                <p>Total de la commande : {totalAmount.toFixed(2)} €</p>
+              </div>
             </div>
-
-    );
+          </div>
+        </div>
+      );
 
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./style.scss";
+import styles from "./style.module.scss";
 import AdminUserForm from "../../../Components/AdminUserForm/AdminUserForm";
 import Swal from "sweetalert2";
 import { BASE_URL } from "../../../url";
@@ -67,13 +67,15 @@ export default function EditUser() {
     };
 
     return (
-        <div className="edit-user">
-            <h1>ADMINISTRATION - 
-            <span> Modifier un utilisateur</span></h1>
-            <AdminUserForm 
+        <div className={styles['edit-user']}>
+          <h1>ADMINISTRATION - 
+            <span> Modifier un utilisateur</span>
+          </h1>
+          <AdminUserForm 
             userToEdit={userToEdit}
             onSubmit={(editedUser) => handleEditUser(editedUser)}
-            />
+          />
         </div>
-    );
-}
+      );
+      }
+      

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import "./style.scss";
+import styles from "./style.module.scss";
 import { NavLink, useNavigate } from "react-router-dom";
 import useFavorites from "../../../Components/useFavorites";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
@@ -87,23 +87,25 @@ export default function UserAccount() {
 
 
   return (
-    <div className="user-account-container">
-      <div className="user-menu">
-        <aside className="user-account-nav">
+    <div className={styles['user-account-container']}>
+      <div className={styles['user-menu']}>
+        <aside className={styles['user-account-nav']}>
           <h2>Mon compte</h2>
           <ul>
             <NavLink
-              className="active"
+              className={styles.active}
               onClick={() => handleTabClick("favoris")}
             >
               <li>Mes Produits Favoris</li>
             </NavLink>
-            <NavLink className="active" onClick={() => handleTabClick("infos")}>
+            <NavLink
+              className={styles.active}
+              onClick={() => handleTabClick("infos")}
+            >
               <li>Mes informations</li>
             </NavLink>
-
             <NavLink
-              className="active"
+              className={styles.active}
               onClick={() => handleTabClick("commandes")}
             >
               <li>Mes commandes</li>
@@ -111,24 +113,23 @@ export default function UserAccount() {
           </ul>
         </aside>
       </div>
-
-      <div className="user-dashboard">
+  
+      <div className={styles['user-dashboard']}>
         <h3>
           {selectedTab === "favoris" && "Mes produits favoris"}
           {selectedTab === "infos" && "Mes informations"}
           {selectedTab === "commandes" && "Mes commandes"}
         </h3>
-
+  
         {selectedTab === "infos" && (
-          <div data-aos="fade-up" className="user-infos">
-            <div className="grid-infos">
-              <div className="perso">
+          <div data-aos="fade-up" className={styles['user-infos']}>
+            <div className={styles['grid-infos']}>
+              <div className={styles.perso}>
                 <h4>Informations personnelles</h4>
                 <p>Nom : {userData.lastName}</p>
                 <p>Prénom : {userData.firstName}</p>
                 <p>Entreprise : {userData.company}</p>
                 <p>
-                  {" "}
                   Date d'inscription :{" "}
                   {new Date(userData.created).toLocaleDateString()}
                 </p>
@@ -136,14 +137,14 @@ export default function UserAccount() {
                   <p>Remise accordée : {userData.discount}%</p>
                 )}
               </div>
-              <div className="address">
+              <div className={styles.address}>
                 <h4>Adresse de facturation</h4>
                 <p>Adresse : {userData.billingAddress.street}</p>
                 <p>Ville : {userData.billingAddress.city}</p>
                 <p>Code postal : {userData.billingAddress.zip}</p>
                 <p>Pays : {userData.billingAddress.country}</p>
               </div>
-              <div className="contact">
+              <div className={styles.contact}>
                 <h4>Informations de contact</h4>
                 <p>Email : {userData.email}</p>
                 <p>Téléphone : {userData.phone}</p>
@@ -154,16 +155,16 @@ export default function UserAccount() {
             </NavLink>
           </div>
         )}
-
+  
         {selectedTab === "favoris" && (
-          <div className="user-favorites">
-            <div className="favorites-grid">
+          <div className={styles['user-favorites']}>
+            <div className={styles['favorites-grid']}>
               {favorites.length > 0 ? (
                 favorites.map((favorite) => {
                   const product = products.find(
                     (item) => item._id === favorite.product_id
                   );
-
+  
                   return (
                     <div data-aos="fade-up" key={favorite.product_id}>
                       <ProductCard
@@ -178,23 +179,22 @@ export default function UserAccount() {
                   );
                 })
               ) : (
-                <div className="no-favorites-orders-msg">
-                <p>Vous n'avez pas encore de produits favoris.</p>
-                <NavLink to="/boutique"> <button>Visiter la boutique</button></NavLink>
+                <div className={styles['no-favorites-orders-msg']}>
+                  <p>Vous n'avez pas encore de produits favoris.</p>
+                  <NavLink to="/boutique">
+                    <button>Visiter la boutique</button>
+                  </NavLink>
                 </div>
-
-                
-
               )}
             </div>
           </div>
         )}
-
+  
         {selectedTab === "commandes" && (
-          <div data-aos="fade-up" className="user-orders">
+          <div data-aos="fade-up" className={styles['user-orders']}>
             {orders.length > 0 ? (
               orders.map((order) => (
-                <div className="order" key={order._id}>
+                <div className={styles.order} key={order._id}>
                   <table>
                     <thead>
                       <tr>
@@ -210,13 +210,13 @@ export default function UserAccount() {
                     <tbody>
                       <tr>
                         <td>{order._id}</td>
-
+  
                         <td>
                           {order.orderDate
                             ? new Date(order.orderDate).toLocaleDateString()
                             : "Date inconnue"}
                         </td>
-
+  
                         <td>
                           {order.items.map((product) => (
                             <p key={product._id}>
@@ -243,9 +243,11 @@ export default function UserAccount() {
                 </div>
               ))
             ) : (
-              <div className="no-favorites-orders-msg">
-              <p>Vous n'avez pas encore de commandes.</p>
-              <NavLink to="/boutique"> <button>Visiter la boutique</button></NavLink>
+              <div className={styles['no-favorites-orders-msg']}>
+                <p>Vous n'avez pas encore de commandes.</p>
+                <NavLink to="/boutique">
+                  <button>Visiter la boutique</button>
+                </NavLink>
               </div>
             )}
           </div>
@@ -253,4 +255,5 @@ export default function UserAccount() {
       </div>
     </div>
   );
+
 }

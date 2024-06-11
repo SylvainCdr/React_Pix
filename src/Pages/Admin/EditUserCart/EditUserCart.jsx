@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./style.scss";
+import styles from "./style.module.scss";
 import useCart from "../../../Components/useCart";
 import { BASE_URL } from "../../../url";
 
@@ -107,7 +107,7 @@ export default function EditUserCart() {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="editUserCart-container">
+    <div className={styles['editUserCart-container']}>
       <h1>Modification du panier de {user.name || userId}</h1>
       <table>
         <thead>
@@ -157,13 +157,13 @@ export default function EditUserCart() {
           ))}
         </tbody>
       </table>
-      <div className="cart-summary">
+      <div className={styles['cart-summary']}>
         <p>Total (HT) : {totalHT.toFixed(2)} €</p>
         <p>TVA (20%) : {tva.toFixed(2)} €</p>
         <p>Frais de port : {SHIPPING_COST.toFixed(2)} €</p>
         <p>Total (TTC) : {totalWithTaxAndShipping.toFixed(2)} €</p>
       </div>
-      <div className="add-select">
+      <div className={styles['add-select']}>
         <select
           value={selectedProductId}
           onChange={(e) => setSelectedProductId(e.target.value)}
@@ -179,9 +179,10 @@ export default function EditUserCart() {
         </select>
         <button onClick={handleAddProduct}>Ajouter au panier</button>
       </div>
-      <button onClick={() => navigate("/admin/paniers")} className="update-cart-btn">
+      <button onClick={() => navigate("/admin/paniers")} className={styles['update-cart-btn']}>
         Enregistrer les modifications
       </button>
     </div>
   );
-}
+  }
+  

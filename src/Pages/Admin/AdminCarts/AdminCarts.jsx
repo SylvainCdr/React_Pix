@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./style.scss";
+import styles from "./style.module.scss";
 import AdminCartModal from "../../../Components/AdminCartModal/AdminCartModal";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../../url";
@@ -38,9 +38,9 @@ export default function AdminCarts() {
   };
 
   return (
-    <div className="adminCarts-container">
+    <div className={styles['adminCarts-container']}>
       <h1>Paniers en cours </h1>
-      <div className="carts-list">
+      <div className={styles['carts-list']}>
         <table>
           <thead>
             <tr>
@@ -80,14 +80,15 @@ export default function AdminCarts() {
                     <button onClick={() => handleViewClick(cart)}>Voir</button>
                   </td>
                   <td>
-                    <button onClick={() => handleEditClick(cart)} className="modify-btn">Modifier</button>
+                    <button onClick={() => handleEditClick(cart)} className={styles['modify-btn']}>Modifier</button>
                   </td>
                 </tr>
               ))}
           </tbody>
         </table>
       </div>
-      {showModal && <AdminCartModal cart={selectedCart} user={{ username: selectedCart.username }} contact={{ contact: selectedCart.contact}} onClose={handleCloseModal} />}
+      {showModal && <AdminCartModal cart={selectedCart} user={{ username: selectedCart.username }} contact={{ contact: selectedCart.contact }} onClose={handleCloseModal} />}
     </div>
   );
-}
+  }
+  

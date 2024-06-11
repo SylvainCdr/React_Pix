@@ -1,9 +1,9 @@
 import React from "react";
-import "./style.scss";
+import styles from "./style.module.scss";
 
 export default function Cgv() {
   return (
-    <div className="cgv-container">
+    <div className={styles["cgv-container"]}>
       <h1>Conditions générales de vente Pixecurity </h1>
 
       <h2>1 - Opposabilité des présentes conditions générales de vente </h2>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import './style.scss';
+import styles from "./style.module.scss";
 import Swal from "sweetalert2";
 import { BASE_URL } from "../../../url";
 
@@ -139,11 +139,11 @@ export default function InfosUpdate() {
   };
 
   return (
-    <div className="infosUpdate-container">
+    <div className={styles['infosUpdate-container']}>
       <h1>Modifier mes informations</h1>
       <form onSubmit={handleSubmit}>
-        <div className="update-form">
-          <div className="form-group">
+        <div className={styles['update-form']}>
+          <div className={styles['form-group']}>
             <label htmlFor="firstName">Prénom</label>
             <input
               type="text"
@@ -152,7 +152,7 @@ export default function InfosUpdate() {
               value={user.firstName}
               onChange={handleChange}
             />
-            {errors.firstName && <span className="error">{errors.firstName}</span>}
+            {errors.firstName && <span className={styles.error}>{errors.firstName}</span>}
             
             <label htmlFor="lastName">Nom</label>
             <input
@@ -162,7 +162,7 @@ export default function InfosUpdate() {
               value={user.lastName}
               onChange={handleChange}
             />
-            {errors.lastName && <span className="error">{errors.lastName}</span>}
+            {errors.lastName && <span className={styles.error}>{errors.lastName}</span>}
             
             <label htmlFor="company">Entreprise</label>
             <input
@@ -172,7 +172,7 @@ export default function InfosUpdate() {
               value={user.company}
               onChange={handleChange}
             />
-            {errors.company && <span className="error">{errors.company}</span>}
+            {errors.company && <span className={styles.error}>{errors.company}</span>}
             
             <label htmlFor="email">Email</label>
             <input
@@ -192,10 +192,10 @@ export default function InfosUpdate() {
               value={user.phone}
               onChange={handleChange}
             />
-            {errors.phone && <span className="error">{errors.phone}</span>}
+            {errors.phone && <span className={styles.error}>{errors.phone}</span>}
           </div>
           
-          <div className="form-group">
+          <div className={styles['form-group']}>
             <label htmlFor="street">Adresse</label>
             <input
               type="text"
@@ -204,7 +204,7 @@ export default function InfosUpdate() {
               value={user.billingAddress.street}
               onChange={handleAddressChange}
             />
-            {errors.street && <span className="error">{errors.street}</span>}
+            {errors.street && <span className={styles.error}>{errors.street}</span>}
             
             <label htmlFor="city">Ville</label>
             <input
@@ -214,7 +214,7 @@ export default function InfosUpdate() {
               value={user.billingAddress.city}
               onChange={handleAddressChange}
             />
-            {errors.city && <span className="error">{errors.city}</span>}
+            {errors.city && <span className={styles.error}>{errors.city}</span>}
             
             <label htmlFor="zip">Code postal</label>
             <input
@@ -224,7 +224,7 @@ export default function InfosUpdate() {
               value={user.billingAddress.zip}
               onChange={handleAddressChange}
             />
-            {errors.zip && <span className="error">{errors.zip}</span>}
+            {errors.zip && <span className={styles.error}>{errors.zip}</span>}
             
             <label htmlFor="country">Pays</label>
             <input
@@ -234,11 +234,12 @@ export default function InfosUpdate() {
               value={user.billingAddress.country}
               onChange={handleAddressChange}
             />
-            {errors.country && <span className="error">{errors.country}</span>}
+            {errors.country && <span className={styles.error}>{errors.country}</span>}
           </div>
         </div>
         <button type="submit">Enregistrer les modifications</button>
       </form>
     </div>
   );
+  
 }

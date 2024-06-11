@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Aos from "aos";
-import "./style.scss";
+import styles from "./style.module.scss";
 import Swal from "sweetalert2";
 import { BASE_URL } from "../../../url";
 
@@ -104,15 +104,13 @@ export default function ResetPassword() {
         text: "Mot de passe réinitialisé avec succès!",
         showConfirmButton: false,
         timer: 3000,
-       
+
         timerProgressBar: true,
       });
-         // Rediriger l'utilisateur vers la page de connexion après 3 secondes
-        setTimeout(() => {
-            window.location.replace("/connexion");
-            }
-        , 3000);
-
+      // Rediriger l'utilisateur vers la page de connexion après 3 secondes
+      setTimeout(() => {
+        window.location.replace("/connexion");
+      }, 3000);
     } catch (error) {
       console.error(
         "Erreur lors de la réinitialisation du mot de passe :",
@@ -122,17 +120,15 @@ export default function ResetPassword() {
   };
 
   return (
-    <div className="resetPassword-container">
-      <div data-aos="fade-right" className="section-1">
+    <div className={styles["resetPassword-container"]}>
+      <div data-aos="fade-right" className={styles["section-1"]}>
         <img src="./../../assets/logo-dark.svg" alt="" />
       </div>
-      <div data-aos="fade-left" className="section-2">
+      <div data-aos="fade-left" className={styles["section-2"]}>
         <h1>
-          {" "}
           Réinitialisation <br />
-          du mot de passe{" "}
+          du mot de passe
         </h1>
-       
         <form onSubmit={handleResetPassword}>
           <label htmlFor="password">Nouveau mot de passe</label>
           <input
@@ -142,7 +138,7 @@ export default function ResetPassword() {
             onChange={handlePasswordChange}
           />
           {passwordError && (
-            <span className="error-message">{passwordError}</span>
+            <span className={styles["error-message"]}>{passwordError}</span>
           )}
 
           <label htmlFor="confirmPassword">Confirmer le mot de passe</label>

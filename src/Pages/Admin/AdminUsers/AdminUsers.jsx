@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./style.scss";
+import styles from "./style.module.scss";
 import { NavLink } from "react-router-dom";
 import AdminUserForm from "../../../Components/AdminUserForm/AdminUserForm";
 import Swal from "sweetalert2";
@@ -67,65 +67,61 @@ const deleteUser = (id) => {
 
        
 
-    return (
-        <div className="admin-users">
-
-<h1>ADMINISTRATION - 
-            <span> Utilisateurs </span></h1>
-
-{selectedUser ? (
-    <AdminUserForm
-    userToEdit={selectedUser}
-    onSubmit={() => {
-        setSelectedUser(null);
-    }
-    }
-    /> ) : (
+return (
+    <div className={styles['admin-users']}>
+      <h1>ADMINISTRATION - 
+        <span> Utilisateurs </span>
+      </h1>
+  
+      {selectedUser ? (
+        <AdminUserForm
+          userToEdit={selectedUser}
+          onSubmit={() => {
+            setSelectedUser(null);
+          }}
+        /> 
+      ) : (
         <table>
-            <thead>
-                <tr>
-                    <th>Prénom</th>
-                    <th>Nom</th>
-                    <th>Entreprise</th>
-                    <th>Email</th>
-                    <th>Rôle <br />(user / admin)</th>
-                    <th>Remise</th>
-                    <th>Création <br />compte</th>
-                    <th>Modification <br />compte</th>
-                    <th>Actions</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {users.map((user) => (
-                    <tr key={user._id}>
-                        <td>{user.firstName}</td>
-                        <td>{user.lastName}</td>
-                        <td>{user.company}</td>
-                        <td>{user.email}</td>
-                        <td>{user.role}</td>
-                        <td>{user.discount} %</td>
-                    
-                        <td>{new Date(user.created).toLocaleDateString()}</td>
-                        
-                        {/* // Ajout de la date de modification si elle est différente de la date de création, sinon on affiche un tiret */}
-                        <td>{user.updated !== user.created ? new Date(user.updated).toLocaleDateString() : '-'}</td>
-
-
-                      
-                       
-
-
-                      <NavLink to={`/admin/utilisateurs/modification/${user._id}`}><button className="modify-btn" >Modifier</button></NavLink>
-
-                        <td>
-                            <button className ="delete-btn" onClick={() => deleteUser(user._id)}>Supprimer</button>
-                        </td>
-                    </tr>
-                ))}
-            </tbody>
+          <thead>
+            <tr>
+              <th>Prénom</th>
+              <th>Nom</th>
+              <th>Entreprise</th>
+              <th>Email</th>
+              <th>Rôle <br />(user / admin)</th>
+              <th>Remise</th>
+              <th>Création <br />compte</th>
+              <th>Modification <br />compte</th>
+              <th>Actions</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user._id}>
+                <td>{user.firstName}</td>
+                <td>{user.lastName}</td>
+                <td>{user.company}</td>
+                <td>{user.email}</td>
+                <td>{user.role}</td>
+                <td>{user.discount} %</td>
+                <td>{new Date(user.created).toLocaleDateString()}</td>
+                {/* // Ajout de la date de modification si elle est différente de la date de création, sinon on affiche un tiret */}
+                <td>{user.updated !== user.created ? new Date(user.updated).toLocaleDateString() : '-'}</td>
+                <td>
+                  <NavLink to={`/admin/utilisateurs/modification/${user._id}`}>
+                    <button className={styles['modify-btn']}>Modifier</button>
+                  </NavLink>
+                </td>
+                <td>
+                  <button className={styles['delete-btn']} onClick={() => deleteUser(user._id)}>Supprimer</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
-    )}
-        </div>
-    );
-    }
+      )}
+    </div>
+  );
+  }
+  

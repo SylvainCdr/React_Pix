@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "./style.scss";
+import styles from './style.module.scss';
 import AdminProductForm from "../../../Components/AdminProductForm/AdminProductForm";
 import Swal from "sweetalert2";
 import { BASE_URL } from "../../../url";
@@ -66,16 +66,19 @@ function EditProduct() {
     };
 
     return (
-        <div className="edit-product">
-          
-            <h1>ADMINISTRATION - 
-            <span> Modifier un produit</span></h1>
-            <AdminProductForm
-                productToEdit={productToEdit}
-                onSubmit={(editedProduct) => handleEditProduct(editedProduct)}
-            />
+        <div className={styles['edit-product']}>
+          <h1>ADMINISTRATION - 
+            <span> Modifier un produit</span>
+          </h1>
+          <AdminProductForm
+            productToEdit={productToEdit}
+            onSubmit={(editedProduct) => handleEditProduct(editedProduct)}
+          />
         </div>
-    );
-}
+      );
+    }
+      
+      export default EditProduct;
 
-export default EditProduct;
+
+      

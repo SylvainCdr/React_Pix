@@ -1,6 +1,7 @@
+// Product.jsx
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "./style.scss";
+import styles from "./style.module.scss";
 import ShopNav from "../../../Components/ShopNav/ShopNav";
 import ShopSearch from "../../../Components/ShopSearch/ShopSearch";
 import useFavorites from "../../../Components/useFavorites";
@@ -166,17 +167,20 @@ export default function Product() {
     if (userId && product.price && discount) {
       const discountedPrice = calculateDiscount(product.price, discount);
       return (
-        <p className="prices">
-          <span className="original-price">{product.price.toFixed(2)} €</span>
-          <span className="discounted-price">
+        <p className={styles.prices}>
+          <span className={styles["original-price"]}>
+            {product.price.toFixed(2)} €
+          </span>
+          <span className={styles["discounted-price"]}>
             {discountedPrice.toFixed(2)} € <span> HT</span>
           </span>
         </p>
       );
     } else {
       return (
-        <p className="price">
-          {product.price ? product.price.toFixed(2) : "00.00"} € <span>HT</span>
+        <p className={styles.price}>
+          {product.price ? product.price.toFixed(2) : "00.00"} €
+          <span>HT</span>
         </p>
       );
     }
@@ -188,16 +192,18 @@ export default function Product() {
   }, []);
 
   return (
-    <div className="product-container">
+    <div className={styles["product-container"]}>
       <ShopNav />
       <ShopSearch setSearchResults={setSearchResults} />
 
       {searchResults.length === 0 && (
-        <div className="product-page">
-          <div className="product-section1">
-            <div data-aos="zoom-in-right" className="product-img">
+        <div className={styles["product-page"]}>
+          <div className={styles["product-section1"]}>
+            <div data-aos="zoom-in-right" className={styles["product-img"]}>
               {discount !== 0 && (
-                <span className="discount-badge">-{discount}%</span>
+                <span className={styles["discount-badge"]}>
+                  -{discount}%
+                </span>
               )}
 
               <img
@@ -209,7 +215,7 @@ export default function Product() {
                 alt={product.name}
               />
               <p
-                className="like"
+                className={styles.like}
                 data-aos="zoom-in-left"
                 onClick={handleToggleFavoritesClick}
                 style={{ cursor: "pointer" }}
@@ -220,27 +226,30 @@ export default function Product() {
                 ></i>
               </p>
             </div>
-            <div className="product-description">
+            <div className={styles["product-description"]}>
               <h1>{product.name}</h1>
 
               {brandLogo ? (
                 <img
                   src={brandLogo.logo}
                   alt={product.brand}
-                  className="brand-logo"
+                  className={styles["brand-logo"]}
                 />
               ) : (
-                <p className="brand-logo">{product.brand}</p>
+                <p className={styles["brand-logo"]}>{product.brand}</p>
               )}
 
-              <p className="presentation">{product.presentation} </p>
+              <p className={styles.presentation}>{product.presentation} </p>
 
               {/* TODO : Chercher l'etat du stock dans Axonaut */}
-              <p className="stock"> <i class="fa-solid fa-check"></i> Disponible sur commande</p>
-              <div className="delivery">
+              <p className={styles.stock}>
+                <i className="fa-solid fa-check"></i> Disponible sur
+                commande
+              </p>
+              <div className={styles.delivery}>
                 <p>
-                  <i className="fa-solid fa-truck-fast"></i> Livraison sous 2 à
-                  3 semaines
+                  <i className="fa-solid fa-truck-fast"></i> Livraison sous 2
+                  à 3 semaines
                 </p>
                 <img
                   src="https://www.dhl.com/content/dam/dhl/global/core/images/logos/dhl-logo.svg"
@@ -248,27 +257,29 @@ export default function Product() {
                 />
                 <img
                   src="https://www.chronopost.fr/sites/chronopost/themes/custom/chronopost/images/chronopost_logo.png"
-                  className="chrono"
+                  className={styles.chrono}
                   alt="chronopost"
                 />
               </div>
-              <div className="price-addToCart">
+              <div className={styles["price-addToCart"]}>
                 {/* // bouton avec + - pour ajouter ou retirer des produits */}
-                <div className="price">
-                  <p className="prices">{calculateDiscountedPrice()} </p>
+                <div className={styles.price}>
+                  <p className={styles.prices}>
+                    {calculateDiscountedPrice()}{" "}
+                  </p>
                 </div>
-                <div className="quantity">
+                <div className={styles.quantity}>
                   <button
                     onClick={() => setQuantity(quantity - 1)}
                     disabled={quantity === 1}
-                    className="qty-input"
+                    className={styles["qty-input"]}
                   >
                     -
                   </button>
                   <p>{quantity}</p>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="qty-input"
+                    className={styles["qty-input"]}
                   >
                     +
                   </button>
@@ -278,12 +289,12 @@ export default function Product() {
                   Ajouter au panier
                 </button>
               </div>
-              <p className="ref">Référence : {product.ref}</p>
+              <p className={styles.ref}>Référence : {product.ref}</p>
             </div>
           </div>
 
-          <div className="product-section2">
-            <div className="product-details">
+          <div className={styles["product-section2"]}>
+            <div className={styles["product-details"]}>
               <h3>Détails du produit</h3>
               <p>{product.description}</p>
               <table>
@@ -309,16 +320,16 @@ export default function Product() {
                   href={product.pdf}
                   download
                   target="_blank"
-                  className="pdf-link"
+                  className={styles["pdf-link"]}
                 >
-                  Fiche technique <i class="fa-solid fa-file-pdf"></i>
+                  Fiche technique <i className="fa-solid fa-file-pdf"></i>
                 </a>
               )}
             </div>
 
-            <div className="product-suggestions">
+            <div className={styles["product-suggestions"]}>
               <h3>Produits similaires</h3>
-              <div className="suggestions-grid">
+              <div className={styles["suggestions-grid"]}>
                 {suggestion
                   .filter(
                     (item) =>
