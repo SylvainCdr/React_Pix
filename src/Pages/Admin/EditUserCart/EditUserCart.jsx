@@ -2,21 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./style.scss";
 import useCart from "../../../Components/useCart";
+import { BASE_URL } from "../../../url";
 
 export default function EditUserCart() {
   const { id: userId } = useParams();
   const navigate = useNavigate();
   const {
     cart,
-    totalAmount,
-    isAddingToCart,
+
     addToCart,
     fetchCart,
     editQuantity,
     editPrice,
     removeFromCart,
-    cartItemsCount,
-    setCartItemsCount,
   } = useCart(); // Utilisation du hook useCart
 
   const [user, setUser] = useState({});
@@ -36,11 +34,11 @@ export default function EditUserCart() {
       try {
         await fetchCart(userId); // Utilisation de fetchCart du hook useCart
 
-        const userResponse = await fetch(`http://localhost:3001/users/${userId}`);
+        const userResponse = await fetch(`${BASE_URL}/users/${userId}`);
         const userData = await userResponse.json();
         setUser(userData);
 
-        const productsResponse = await fetch("http://localhost:3001/products");
+        const productsResponse = await fetch(`${BASE_URL}/products`);
         const productsData = await productsResponse.json();
         setAvailableProducts(productsData);
 

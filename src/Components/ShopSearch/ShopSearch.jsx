@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import "./style.scss";
 import ProductCard from "../ProductCard/ProductCard";
 import useFavorites from "../useFavorites";
 import useCart from "../useCart";
+import { BASE_URL } from "../../url";
 
 function ShopSearch({ setSearchResults }) {
   const [search, setSearch] = useState("");
@@ -21,7 +21,7 @@ function ShopSearch({ setSearchResults }) {
       setSearching(true);
 
       // Rechercher des produits correspondant à la requête
-      fetch(`http://localhost:3001/search?query=${search}`)
+      fetch(`${BASE_URL}/search?query=${search}`)
         .then((res) => res.json())
         .then((data) => {
           setSearchResultsLocal(data);

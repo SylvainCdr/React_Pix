@@ -9,6 +9,7 @@ import ProductCard from "../../../Components/ProductCard/ProductCard";
 import Swal from "sweetalert2";
 import AOS from "aos";
 import { logos } from "../../Shop/Product/LogosData";
+import { BASE_URL } from "../../../url";
 
 export default function Product() {
   const [product, setProduct] = useState({});
@@ -78,14 +79,14 @@ export default function Product() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:3001/products")
+    fetch(`${BASE_URL}/products`)
       .then((res) => res.json())
       .then((data) => setSuggestion(data));
   }, []);
 
   useEffect(() => {
     if (id) {
-      fetch("http://localhost:3001/products/" + id)
+      fetch(`${BASE_URL}/products/` + id)
         .then((res) => res.json())
         .then((data) => setProduct(data));
     }
@@ -203,7 +204,7 @@ export default function Product() {
                 src={
                   product.image && product.image.startsWith("http")
                     ? product.image
-                    : `http://localhost:3001${product.image}`
+                    : `${BASE_URL}${product.image}`
                 }
                 alt={product.name}
               />

@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import './style.scss';
 import DeliveryTimeline from '../DeliveryTimeline/DeliveryTimeline';
+import { BASE_URL } from '../../url';
 
 
 export default function AdminOrderModal({ order, user, onClose }) {
-    const [products, setProducts] = useState([]);
+    const [, setProducts] = useState([]);
     const [userDetails, setUserDetails] = useState({});
 
     useEffect(() => {
-        fetch(`http://localhost:3001/orders/${order._id}`)
+        fetch(`${BASE_URL}/orders/${order._id}`)
             .then((response) => response.json())
             .then((data) => setProducts(data));
     }, [order]);
 
   // on récupère les infos de l'utilisateur qui a passé la commande, notament la billingAddress
     useEffect(() => {
-        fetch(`http://localhost:3001/users/${order.user}`)
+        fetch(`${BASE_URL}/users/${order.user}`)
             .then((response) => response.json())
             .then((data) => setUserDetails(data));
     }
@@ -23,7 +24,7 @@ export default function AdminOrderModal({ order, user, onClose }) {
 
     const [billingAddress, setBillingAddress] = useState({});
     useEffect(() => {
-        fetch(`http://localhost:3001/users/${order.user}`)
+        fetch(`${BASE_URL}/users/${order.user}`)
             .then((response) => response.json())
             .then((data) => setBillingAddress(data.billingAddress));
     }, [order]);

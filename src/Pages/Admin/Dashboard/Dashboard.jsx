@@ -1,6 +1,7 @@
 import "./style.scss";
 import React, { useState, useEffect } from "react";
 import AdminNav from "../../../Components/AdminNav/AdminNav";
+import { BASE_URL } from "../../../url";
 
 export default function Dashboard() {
   const [newUsers, setNewUsers] = useState([]);
@@ -12,11 +13,11 @@ export default function Dashboard() {
   const [totalOrders, setTotalOrders] = useState(0);
   const [amountAverage, setAmountAverage] = useState(0);
   const [conversionRate, setConversionRate] = useState(0);
-  const [userFavorites, setUserFavorites] = useState([]);
-  const [topFavorites, setTopFavorites] = useState([]);
+  const [, setUserFavorites] = useState([]);
+  const [, setTopFavorites] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/users")
+    fetch(`${BASE_URL}/users`)
       .then((res) => res.json())
       .then((data) => {
         const reversedData = data.reverse();
@@ -27,7 +28,7 @@ export default function Dashboard() {
 
   // on compte le nombre de catégories et subcatégories existantes dans la collection products
   useEffect(() => {
-    fetch("http://localhost:3001/products")
+    fetch(`${BASE_URL}/products`)
       .then((res) => res.json())
       .then((data) => {
         let categories = [];
@@ -50,7 +51,7 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:3001/allOrders")
+    fetch(`${BASE_URL}/allOrders`)
       .then((res) => res.json())
       .then((data) => {
         const reversedData = data.reverse();
@@ -65,7 +66,7 @@ export default function Dashboard() {
         const userIds = data.map((order) => order.user);
         Promise.all(
           userIds.map((userId) =>
-            fetch(`http://localhost:3001/users/${userId}`).then((res) =>
+            fetch(`${BASE_URL}/users/${userId}`).then((res) =>
               res.json()
             )
           )
@@ -79,13 +80,10 @@ export default function Dashboard() {
       });
   }, [totalUsers]);
 
-  // on va chercher le top 6 des produits les plus likés,
-  // nous devons donc récupérer les favorites dans tous les objets utilisateurs
-  // puis les compter pour chaque produit
-  // puis les trier pour obtenir le top 6
+
 
   useEffect(() => {
-    fetch("http://localhost:3001/users")
+    fetch(`${BASE_URL}/users`)
       .then((res) => res.json())
       .then((data) => {
         let favorites = [];

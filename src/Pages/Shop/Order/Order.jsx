@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./style.scss";
 import useCart from "../../../Components/useCart";
 import Swal from "sweetalert2";
+import { BASE_URL } from "../../../url";
 
 export default function Order() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
@@ -97,7 +98,7 @@ export default function Order() {
       }));
       // Envoyer une requête PUT pour mettre à jour l'utilisateur sur le serveur
       const updatedUser = { ...user, [name]: value };
-      fetch(`http://localhost:3001/users/${user._id}`, {
+      fetch(`${BASE_URL}/users/${user._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -165,7 +166,7 @@ export default function Order() {
   
       // Envoyer une requête pour mettre à jour l'utilisateur sur le serveur
       const updateUserResponse = await fetch(
-        `http://localhost:3001/users/${user._id}`,
+        `${BASE_URL}/users/${user._id}`,
         {
           method: "PUT",
           headers: {
@@ -177,7 +178,7 @@ export default function Order() {
 
       if (updateUserResponse.ok) {
         // Ensuite, envoyer la commande avec les détails mis à jour de l'utilisateur
-        const response = await fetch("http://localhost:3001/orders", {
+        const response = await fetch(`${BASE_URL}/orders`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -188,14 +189,14 @@ export default function Order() {
         if (response.ok) {
           // Supprimer le panier de l'utilisateur une fois la commande soumise avec succès
           const resetCartResponse = await fetch(
-            `http://localhost:3001/users/${user._id}/reset-cart`,
+            `${BASE_URL}/users/${user._id}/reset-cart`,
             {
               method: "PUT",
             }
           );
 
           // Envoi d'un email de confirmation de commande
-          const emailResponse = await fetch("http://localhost:3001/order-confirmation", {
+          const emailResponse = await fetch(`${BASE_URL}/order-confirmation`, {
     method: "POST",
     headers: {
         "Content-Type": "application/json",

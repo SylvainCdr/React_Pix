@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./style.scss";
 import Swal from "sweetalert2";
 import AOS from "aos";
+import { BASE_URL } from "../../url";
 
 function Contact() {
   // DECLARATION DES VARIABLES D'ETAT POUR LES CHAMPS DU FORMULAIRE
@@ -93,7 +94,7 @@ function Contact() {
     console.log("Message:", message);
 
     // ENVOI DES DONNEES DU FORMULAIRE VERS LE BACKEND
-    const response = await fetch("http://localhost:3001/contact", {
+    const response = await fetch(`${BASE_URL}/contact`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ lastname, firstname, company, email, message }),

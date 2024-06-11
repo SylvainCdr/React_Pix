@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./style.scss";
 import AdminUserForm from "../../../Components/AdminUserForm/AdminUserForm";
 import Swal from "sweetalert2";
+import { BASE_URL } from "../../../url";
 
 export default function EditUser() {
     const [userToEdit, setUserToEdit] = useState(null);
@@ -10,7 +11,7 @@ export default function EditUser() {
         const fetchUserToEdit = async () => {
             try {
                 const userId = window.location.pathname.split("/").pop();
-                const response = await fetch(`http://localhost:3001/users/${userId}`);
+                const response = await fetch(`${BASE_URL}/users/${userId}`);
                 const userData = await response.json();
                 console.log("userData:", userData);
                 setUserToEdit(userData);
@@ -25,7 +26,7 @@ export default function EditUser() {
 
     const handleEditUser = async (user) => {
         try {
-            const response = await fetch(`http://localhost:3001/users/${user._id}`, {
+            const response = await fetch(`${BASE_URL}/users/${user._id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

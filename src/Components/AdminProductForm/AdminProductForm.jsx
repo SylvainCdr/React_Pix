@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.scss";
+import { BASE_URL } from "../../url";
 
 export default function AdminProductForm({ onSubmit, productToEdit }) {
   const [name, setName] = useState("");
@@ -271,7 +272,7 @@ if (imageFile) {
   console.log(imageFile.name);
 
   try {
-    const response = await fetch("http://localhost:3001/upload", {
+    const response = await fetch(`${BASE_URL}/upload`, {
       method: "POST",
       body: formData,
     });

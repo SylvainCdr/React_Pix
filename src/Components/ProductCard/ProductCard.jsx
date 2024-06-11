@@ -4,6 +4,7 @@ import "./style.scss";
 import Swal from "sweetalert2";
 import Aos from "aos";
 import { logos } from "../../Pages/Shop/Product/LogosData";
+import { BASE_URL } from "../../url";
 
 const ProductCard = ({
   product,
@@ -159,7 +160,7 @@ const ProductCard = ({
                         <img src={product.image} alt="" className="product-img" />
                       ) : (
                         <img
-                          src={`http://localhost:3001${product.image}`}
+                          src={`${BASE_URL}${product.image}`}
                           alt="" 
                           className="product-img"
                         />

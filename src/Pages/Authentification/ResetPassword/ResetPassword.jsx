@@ -3,11 +3,12 @@ import { useParams } from "react-router-dom";
 import Aos from "aos";
 import "./style.scss";
 import Swal from "sweetalert2";
+import { BASE_URL } from "../../../url";
 
 export default function ResetPassword() {
   const { token } = useParams(); // Extrait le jeton JWT de l'URL
-  const [userEmail, setUserEmail] = useState(""); // État pour stocker l'e-mail de l'utilisateur
-  const [password, setPassword] = useState("");
+  const [, setUserEmail] = useState(""); // État pour stocker l'e-mail de l'utilisateur
+  const [, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
   useEffect(() => {
@@ -75,7 +76,7 @@ export default function ResetPassword() {
 
     try {
       // Envoi de la requête au backend pour réinitialiser le mot de passe
-      const response = await fetch("http://localhost:3001/set-new-password", {
+      const response = await fetch(`${BASE_URL}/set-new-password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

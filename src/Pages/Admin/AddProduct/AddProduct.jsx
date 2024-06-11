@@ -2,12 +2,13 @@ import React from 'react';
 import "./style.scss";
 import AdminProductForm from "../../../Components/AdminProductForm/AdminProductForm";
 import Swal from "sweetalert2";
+import { BASE_URL } from "../../../url";
 
 function AddProduct() {
   
     const handleAddProduct = async (product) => {
         try {
-            const response = await fetch("http://localhost:3001/products", {
+            const response = await fetch(`${BASE_URL}/products`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

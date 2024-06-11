@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./style.scss";
 import AdminOrderModal from "../../../Components/AdminOrderModal/AdminOrderModal";
 import { NavLink } from "react-router-dom";
+import { BASE_URL } from "../../../url";
 
 export default function AdminOrders() {
   const [orders, setOrders] = useState([]);
@@ -9,7 +10,7 @@ export default function AdminOrders() {
   const [selectedOrderId, setSelectedOrderId] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3001/allOrders")
+    fetch(`${BASE_URL}/allOrders`)
       .then((response) => response.json())
       .then((data) => {
         // Trier les commandes par date de commande, de la plus récente à la plus ancienne
@@ -21,7 +22,7 @@ export default function AdminOrders() {
   useEffect(() => {
     const userIds = orders.map((order) => order.user);
     userIds.forEach((userId) => {
-      fetch(`http://localhost:3001/users/${userId}`)
+      fetch(`${BASE_URL}/users/${userId}`)
         .then((response) => response.json())
         .then((userData) => {
           setUsers((prevUsers) => ({

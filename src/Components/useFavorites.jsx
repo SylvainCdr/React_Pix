@@ -1,8 +1,9 @@
 import { useState, useCallback } from "react";
+import { BASE_URL } from "../url";
 
 const useFavorites = () => {
-  const [isAddingToFavorites, setIsAddingToFavorites] = useState(false);
-  const [isInFavorites, setIsInFavorites] = useState(false);
+  const [, setIsAddingToFavorites] = useState(false);
+  const [, setIsInFavorites] = useState(false);
 
   const addToFavorites = async (
     userId,
@@ -16,7 +17,7 @@ const useFavorites = () => {
       setIsAddingToFavorites(true);
 
       const response = await fetch(
-        `http://localhost:3001/users/${userId}/add-favorite`,
+        `${BASE_URL}/users/${userId}/add-favorite`,
         {
           method: "POST",
           headers: {
@@ -51,7 +52,7 @@ const useFavorites = () => {
   const checkFavorite = useCallback(async (userId, productId) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/users/${userId}/check-favorite/${productId}`
+        `${BASE_URL}/users/${userId}/check-favorite/${productId}`
       );
 
       if (response.ok) {
@@ -73,7 +74,7 @@ const useFavorites = () => {
       setIsAddingToFavorites(true);
 
       const response = await fetch(
-        `http://localhost:3001/users/${userId}/delete-favorite/${productId}`,
+        `${BASE_URL}/users/${userId}/delete-favorite/${productId}`,
         {
           method: "DELETE",
         }
@@ -98,7 +99,7 @@ const useFavorites = () => {
   const getFavorites = useCallback(async (userId) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/users/${userId}/favorites`
+        `${BASE_URL}/users/${userId}/favorites`
       );
       if (response.ok) {
         const data = await response.json();

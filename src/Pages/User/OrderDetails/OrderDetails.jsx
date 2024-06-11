@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./style.scss";
 import DeliveryTimeline from "../../../Components/DeliveryTimeline/DeliveryTimeline";
 import Aos from "aos";
+import { BASE_URL } from "../../../url";
 
 export default function OrderDetails() {
 
@@ -9,12 +10,12 @@ export default function OrderDetails() {
    const orderId = window.location.pathname.split("/").pop();
     console.log(orderId);
 
-    const [order, setOrder] = useState({});
+    const [, setOrder] = useState({});
     const [totalAmount, setTotalAmount] = useState(0);
-    const [delivery, setDelivery] = useState({});
-    const [payment, setPayment] = useState({});
+    const [, setDelivery] = useState({});
+    const [, setPayment] = useState({});
     const [items, setItems] = useState([]);
-    const [user, setUser] = useState({});
+    const [, setUser] = useState({});
     const [status, setStatus] = useState("");
     const [orderDate, setOrderDate] = useState("");
     const [deliveryAddress, setDeliveryAddress] = useState({});
@@ -24,7 +25,7 @@ export default function OrderDetails() {
     const [paid, setPaid] = useState(false);
 
     useEffect(() => {
-        fetch(`http://localhost:3001/orders/${orderId}`)
+        fetch(`${BASE_URL}/orders/${orderId}`)
             .then((response) => response.json())
             .then((data) => {
                 setOrder(data);

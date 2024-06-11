@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import "./style.scss";
+import { BASE_URL } from "../../url";
 
 const PasswordResetModal = ({ show, onClose, onResetPassword, checkEmail }) => {
   const [email, setEmail] = useState("");
@@ -14,7 +15,7 @@ const PasswordResetModal = ({ show, onClose, onResetPassword, checkEmail }) => {
 
   const checkEmailExists = async (email) => {
     try {
-      const response = await fetch("http://localhost:3001/check-email", {
+      const response = await fetch(`${BASE_URL}/check-email`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

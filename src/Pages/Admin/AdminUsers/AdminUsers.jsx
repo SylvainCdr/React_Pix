@@ -3,6 +3,7 @@ import "./style.scss";
 import { NavLink } from "react-router-dom";
 import AdminUserForm from "../../../Components/AdminUserForm/AdminUserForm";
 import Swal from "sweetalert2";
+import { BASE_URL } from "../../../url";
 
 
 
@@ -15,7 +16,7 @@ export default function AdminUsers() {
 
 
     useEffect(() => {
-        fetch('http://localhost:3001/users')
+        fetch(`${BASE_URL}/users`)
             .then((response) => response.json())
             .then((data) => setUsers(data.reverse()));
     }
@@ -38,7 +39,7 @@ const deleteUser = (id) => {
         confirmButtonText: "Oui",
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`http://localhost:3001/users/${id}`, {
+            fetch(`${BASE_URL}/users/${id}`, {
                 method: "DELETE",
             })
                 .then(() => {

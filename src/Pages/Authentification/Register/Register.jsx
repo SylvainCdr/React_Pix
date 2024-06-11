@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import "./style.scss";
 import { NavLink } from "react-router-dom";
 import Aos from "aos";
+import { BASE_URL } from "../../../url";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -86,7 +87,7 @@ export default function Register() {
       company,
     };
 
-    fetch("http://localhost:3001/register", {
+    fetch(`${BASE_URL}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./style.scss";
 import AdminProductForm from "../../../Components/AdminProductForm/AdminProductForm";
 import Swal from "sweetalert2";
+import { BASE_URL } from "../../../url";
 
 function EditProduct() {
     const [productToEdit, setProductToEdit] = useState(null);
@@ -10,7 +11,7 @@ function EditProduct() {
         const fetchProductToEdit = async () => {
             try {
                 const productId = window.location.pathname.split("/").pop();
-                const response = await fetch(`http://localhost:3001/products/${productId}`);
+                const response = await fetch(`${BASE_URL}/products/${productId}`);
                 const productData = await response.json();
                 console.log("productData:", productData);
                 setProductToEdit(productData);
@@ -24,7 +25,7 @@ function EditProduct() {
 
     const handleEditProduct = async (product) => {
         try {
-            const response = await fetch(`http://localhost:3001/products/${product._id}`, {
+            const response = await fetch(`${BASE_URL}/products/${product._id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

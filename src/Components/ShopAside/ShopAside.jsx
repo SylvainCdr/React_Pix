@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.scss";
+import { BASE_URL } from "../../url";
 
 export default function ShopAside({
   setFilteredProducts,
@@ -67,7 +68,7 @@ export default function ShopAside({
   useEffect(() => {
     const fetchProductsAndBrands = async () => {
       try {
-        let url = `http://localhost:3001/products?`;
+        let url = `${BASE_URL}/products?`;
         if (subcategory) {
           url += `subcategory=${encodeURIComponent(subcategory)}&`;
         }

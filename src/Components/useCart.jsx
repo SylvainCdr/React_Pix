@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { BASE_URL } from "../url";
 
 const useCart = () => {
   // États du panier
@@ -22,7 +23,7 @@ const useCart = () => {
   const fetchCart = async (userId) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/users/${userId}/cart`
+        `${BASE_URL}/users/${userId}/cart`
       );
       if (response.ok) {
         const data = await response.json();
@@ -40,7 +41,7 @@ const useCart = () => {
   const editQuantity = async (userId, productId, quantity) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/users/${userId}/edit-cart/${productId}`,
+        `${BASE_URL}/users/${userId}/edit-cart/${productId}`,
         {
           method: "PUT",
           headers: {
@@ -66,7 +67,7 @@ const useCart = () => {
   const editPrice = async (userId, productId, price) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/users/${userId}/edit-cart/${productId}`,
+        `${BASE_URL}users/${userId}/edit-cart/${productId}`,
         {
           method: "PUT",
           headers: {
@@ -109,7 +110,7 @@ const useCart = () => {
         (product) => product.product_id === productId
       );
 
-      let url = `http://localhost:3001/users/${userId}/add-cart/${productId}`;
+      let url = `${BASE_URL}/users/${userId}/add-cart/${productId}`;
       let method = "POST";
       let body = {
         product_id: productId,
@@ -125,7 +126,7 @@ const useCart = () => {
         const updatedCart = [...cart];
         updatedCart[existingProductIndex].quantity += quantity;
         setCart(updatedCart);
-        url = `http://localhost:3001/users/${userId}/add-cart/${productId}`;
+        url = `${BASE_URL}/users/${userId}/add-cart/${productId}`;
         method = "POST";
         body = {
           product_id: productId,
@@ -161,7 +162,7 @@ const useCart = () => {
   const removeFromCart = async (userId, productId) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/users/${userId}/delete-cart/${productId}`,
+        `${BASE_URL}/users/${userId}/delete-cart/${productId}`,
         {
           method: "DELETE",
           headers: {

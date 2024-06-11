@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./style.scss";
 import Swal from "sweetalert2";
+import { BASE_URL } from "../../../url";
 
 export default function EditOrders() {
   const [order, setOrder] = useState({});
@@ -15,13 +16,13 @@ export default function EditOrders() {
   const orderId = window.location.pathname.split("/").pop();
 
   useEffect(() => {
-    fetch(`http://localhost:3001/orders/${orderId}`)
+    fetch(`${BASE_URL}/orders/${orderId}`)
       .then((response) => response.json())
       .then((data) => setOrder(data));
   }, [orderId]);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/users/${order.user}`)
+    fetch(`${BASE_URL}/users/${order.user}`)
       .then((response) => response.json())
       .then((data) => {
         setUser(data);
@@ -46,7 +47,7 @@ export default function EditOrders() {
       billingAddress, // Ceci remplace l'ancienne billingAddress par la nouvelle
     };
 
-    fetch(`http://localhost:3001/orders/${orderId}`, {
+    fetch(`${BASE_URL}/orders/${orderId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -61,7 +62,7 @@ export default function EditOrders() {
       .then((response) => response.json())
       .then((data) => console.log(data));
 
-    fetch(`http://localhost:3001/users/${user._id}`, {
+    fetch(`${BASE_URL}/users/${user._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedUser), // Envoyez l'objet utilisateur mis à jour

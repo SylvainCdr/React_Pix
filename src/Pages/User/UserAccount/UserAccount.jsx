@@ -6,6 +6,7 @@ import ProductCard from "../../../Components/ProductCard/ProductCard";
 import useCart from "../../../Components/useCart";
 import DeliveryTimeline from "../../../Components/DeliveryTimeline/DeliveryTimeline";
 import AOS from "aos";
+import { BASE_URL } from "../../../url";
 
 export default function UserAccount() {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ export default function UserAccount() {
     if (userData) {
       try {
         const [productsData, favoritesData] = await Promise.all([
-          fetch("http://localhost:3001/products").then((res) => res.json()),
+          fetch(`${BASE_URL}/products`).then((res) => res.json()),
           getFavorites(userData._id),
         ]);
 
@@ -51,7 +52,7 @@ export default function UserAccount() {
     const fetchOrders = async () => {
       if (userData) {
         try {
-          const response = await fetch(`http://localhost:3001/orders?userId=${userData._id}`);
+          const response = await fetch(`${BASE_URL}/orders?userId=${userData._id}`);
           const data = await response.json();
           const sortedOrders = data.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
           setOrders(sortedOrders);

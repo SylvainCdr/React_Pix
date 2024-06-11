@@ -6,13 +6,14 @@ import "./style.scss";
 import Cookies from "js-cookie";
 import Aos from "aos";
 import PasswordResetModal from "../../../Components/ResetPasswordModal/ResetPasswordModal";
+import { BASE_URL } from "../../../url";
 
 export default function Login() {
   // J'importe le hook useNavigate de react-router-dom
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [authenticated, setAuthenticated] = useState(false);
+  const [, setAuthenticated] = useState(false);
 
   // on récupère le setUser afin de mettre à jour le contexte
   const { setUser } = useAppContext();
@@ -26,7 +27,7 @@ export default function Login() {
   const checkAuth = async () => {
     try {
       // On envoie une requête au serveur pour vérifier si l'utilisateur est connecté
-      const response = await fetch("http://localhost:3001/check-auth", {
+      const response = await fetch(`${BASE_URL}check-auth`, {
         method: "GET",
         headers: {
           // On envoie le token stocké dans les cookies
@@ -50,7 +51,7 @@ export default function Login() {
     e.preventDefault();
     try {
       // Envoi des données de connexion au serveur
-      const response = await fetch("http://localhost:3001/login", {
+      const response = await fetch(`${BASE_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -94,7 +95,7 @@ export default function Login() {
 
   const handleResetPassword = async (clientEmail) => {
     try {
-      const response = await fetch("http://localhost:3001/reset-password", {
+      const response = await fetch(`${BASE_URL}/reset-password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -102,7 +103,7 @@ export default function Login() {
         body: JSON.stringify({ clientEmail }),
       });
       console.log(showModal);
-      const data = await response.json();
+      // const data = await response.json();
       if (response.status === 404) {
         Swal.fire({
           icon: "error",

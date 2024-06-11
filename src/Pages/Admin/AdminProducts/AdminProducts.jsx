@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./style.scss";
 import Swal from "sweetalert2";
 import AdminProductForm from "../../../Components/AdminProductForm/AdminProductForm";
+import { BASE_URL } from "../../../url";
 
 export default function AdminProducts() {
   const [products, setProducts] = useState([]);
@@ -12,7 +13,7 @@ export default function AdminProducts() {
   const [brandFilter, setBrandFilter] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/products")
+    fetch(`${BASE_URL}/products`)
       .then((res) => res.json())
       .then((data) => setProducts(data.reverse()));
   }, []);
@@ -34,7 +35,7 @@ export default function AdminProducts() {
       confirmButtonText: "Oui",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3001/products/${id}`, {
+        fetch(`${BASE_URL}/products/${id}`, {
           method: "DELETE",
         })
           .then(() => {
@@ -240,14 +241,14 @@ const filteredProducts = products.filter((product) => {
                         <img src={product.image} alt="" />
                       ) : (
                         <img
-                          src={`http://localhost:3001${product.image}`}
+                          src={`${BASE_URL}${product.image}`}
                           alt=""
                         />
                       )}
                     </td>
                     {/* <td>{product.name}</td>
                     // lien vers la page produit */}
-                    <td><a href={`http://localhost:3000/boutique/produit/${product._id}`}>{product.name}</a></td>
+                    <td><a href={`${BASE_URL}/boutique/produit/${product._id}`}>{product.name}</a></td>
                     <td>{product.ref}</td>
                     <td>{product.category}</td>
                     <td>{product.subcategory}</td>

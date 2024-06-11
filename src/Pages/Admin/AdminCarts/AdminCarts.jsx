@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./style.scss";
 import AdminCartModal from "../../../Components/AdminCartModal/AdminCartModal";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../../url";
 
 export default function AdminCarts() {
   const [allCarts, setAllCarts] = useState([]);
@@ -11,7 +12,7 @@ export default function AdminCarts() {
 
   // Fetch all carts from the server
   useEffect(() => {
-    fetch("http://localhost:3001/all-carts")
+    fetch(`${BASE_URL}/all-carts`)
       .then((response) => response.json())
       .then((data) => {
         setAllCarts(data);

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './style.scss';
 import Swal from "sweetalert2";
+import { BASE_URL } from "../../../url";
 
 export default function InfosUpdate() {
   const [user, setUser] = useState({
@@ -22,7 +23,7 @@ export default function InfosUpdate() {
   useEffect(() => {
     const userId = JSON.parse(localStorage.getItem("user"))._id;
 
-    fetch(`http://localhost:3001/users/${userId}`)
+    fetch(`${BASE_URL}/users/${userId}`)
       .then((response) => response.json())
       .then((data) => {
         setUser(data);
@@ -101,7 +102,7 @@ export default function InfosUpdate() {
       return;
     }
 
-    fetch(`http://localhost:3001/users/${user._id}`, {
+    fetch(`${BASE_URL}/users/${user._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

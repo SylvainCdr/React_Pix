@@ -1,6 +1,5 @@
-import React, { useState, useEffect} from "react";
-import {useLocation, useParams } from "react-router-dom";
-import "./style.scss";
+import React, { useState, useEffect } from "react";
+import { useLocation, useParams } from "react-router-dom";
 import ShopNav from "../../../Components/ShopNav/ShopNav";
 import ShopSearch from "../../../Components/ShopSearch/ShopSearch";
 import ShopAside from "../../../Components/ShopAside/ShopAside";
@@ -9,6 +8,9 @@ import useFavorites from "../../../Components/useFavorites";
 import useCart from "../../../Components/useCart";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { BASE_URL } from "../../../url";
+
+// Import the CSS module
+import styles from "./style.module.scss";
 
 const Products = () => {
   const { category, subcategory } = useParams();
@@ -32,12 +34,8 @@ const Products = () => {
     const fetchProducts = async () => {
       setLoading(true); // Set loading to true before starting the fetch
       const apiUrl = subcategory
-        ? `${BASE_URL}/products?category=${encodeURIComponent(
-            category
-          )}&subcategory=${encodeURIComponent(subcategory)}`
-        : `${BASE_URL}/products?category=${encodeURIComponent(
-            category
-          )}`;
+        ? `${BASE_URL}/products?category=${encodeURIComponent(category)}&subcategory=${encodeURIComponent(subcategory)}`
+        : `${BASE_URL}/products?category=${encodeURIComponent(category)}`;
 
       try {
         const response = await fetch(apiUrl);
@@ -54,13 +52,13 @@ const Products = () => {
   }, [location.pathname, category, subcategory]);
 
   return (
-    <div className="products-container">
+    <div className={styles["products-container"]}>
       <ShopNav />
 
       <ShopSearch setSearchResults={setSearchResults} />
 
       {loading && (
-        <div className="sweet-loading">
+        <div className={styles["sweet-loading"]}>
           <PropagateLoader
             color={color}
             loading={loading}
@@ -73,14 +71,10 @@ const Products = () => {
       )}
 
       {searchResults.length === 0 && (
-        <div className="aside-products">
-          <ShopAside
-            setFilteredProducts={setProducts}
-            subcategory={subcategory}
-            category={category}
-          />
+        <div className={styles["aside-products"]}>
+          <ShopAside setFilteredProducts={setProducts} subcategory={subcategory} category={category} />
 
-          <div className="products-grid">
+          <div className={styles["products-grid"]}>
             {products.map((item) => (
               <ProductCard
                 key={item._id}

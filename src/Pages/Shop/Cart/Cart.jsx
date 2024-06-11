@@ -4,16 +4,17 @@ import useCart from "../../../Components/useCart";
 import { NavLink, useNavigate } from "react-router-dom";
 import AOS from "aos";
 import ShopProductsCarousel from "../../../Components/ShopProductsCarousel/ShopProductsCarousel";
+import { BASE_URL } from "../../../url";
 
 export default function Cart() {
   const { fetchCart, editQuantity, removeFromCart, cart } = useCart();
   const navigate = useNavigate();
   const [subTotal, setSubTotal] = useState(0);
   const [tax, setTax] = useState(0);
-  const [shippingCost, setShippingCost] = useState(20);
+  const [shippingCost, ] = useState(20);
   const [totalAmount, setTotalAmount] = useState(0);
   const [carouselProducts, setCarouselProducts] = useState([]);
-  const [error, setError] = useState(null);
+  const [, setError] = useState(null);
 
   // useEffect pour récupérer le panier de l'utilisateur grâce à son ID stocké dans le localStorage
   useEffect(() => {
@@ -29,7 +30,7 @@ export default function Cart() {
   useEffect(() => {
     const userDataString = localStorage.getItem("user");
     if (userDataString) {
-      const discount = JSON.parse(userDataString).discount;
+      // const discount = JSON.parse(userDataString).discount;
       const calculatedSubTotal = cart.reduce((acc, product) => {
         const discountedPrice = product.price; // Appliquer le rabais au prix du produit
         return acc + product.quantity * discountedPrice;
@@ -52,7 +53,7 @@ export default function Cart() {
 
   // useEffect pour récupérer 10 produits random 
   useEffect(() => {
-    fetch("http://localhost:3001/products")
+    fetch(`${BASE_URL}/products`)
       .then((res) => res.json())
       .then((data) => {
         const randomProducts = data.sort(() => 0.5 - Math.random()).slice(0, 10);
@@ -123,7 +124,7 @@ export default function Cart() {
                   src={
                     product.image && product.image.startsWith("http")
                       ? product.image
-                      : `http://localhost:3001${product.image}`
+                      : `${BASE_URL}${product.image}`
                   }
                   alt={product.name}
                 />
