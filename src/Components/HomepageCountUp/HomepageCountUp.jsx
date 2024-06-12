@@ -10,6 +10,7 @@ export default function HomepageCountUp() {
   const animateCountUp = (el) => {
     let frame = 0;
     const countTo = parseInt(el.innerHTML, 10);
+    console.log("Animating count up to:", countTo); // Log for debugging
 
     const counter = setInterval(() => {
       frame++;
@@ -31,6 +32,7 @@ export default function HomepageCountUp() {
       (entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            console.log("Element is intersecting:", entry.target); // Log for debugging
             animateCountUp(entry.target);
             observer.unobserve(entry.target); // Arrêter d'observer une fois animé
           }
@@ -38,8 +40,11 @@ export default function HomepageCountUp() {
       },
       { threshold: 0.5 } // Déclencher quand 50% de l'élément est visible
     );
+
     // Ajouter chaque élément .timer à observer
     const countupEls = document.querySelectorAll(`.${styles.timer}`);
+    console.log("Countup elements found:", countupEls); // Log for debugging
+
     countupEls.forEach((el) => {
       observer.observe(el);
     });

@@ -6,11 +6,6 @@ import AOS from "aos";
 export default function HomepageHero() {
   const videoRef = useRef(null);
 
-  // useEffect(() => {
-  //   if (videoRef.current) {
-  //     videoRef.current.play();
-  //   }
-  // }, []); // Le tableau vide signifie que cela ne s'exécute qu'une seule fois au montage du composant
 
   useEffect(() => {
     AOS.init({
@@ -37,16 +32,13 @@ export default function HomepageHero() {
             data-aos="fade-up"
             data-aos-duration="3000"
           >
-            Confiez votre sûreté à l'intelligence de Pixecurity
+            Pixecurity : Votre partenaire en sécurité intelligente
           </h1>
           <NavLink to="/boutique">
             <button>Visiter la boutique</button>
           </NavLink>
         </div>
         
-        {/* <video ref={videoRef} id="video-background" loop playsInline autoPlay>
-          <source src="assets/hero4.mp4" type="video/mp4" />
-        </video> */}
       </div>
     );
   

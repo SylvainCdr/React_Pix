@@ -7,7 +7,7 @@
     display: flex;
     justify-content: center;
     padding-bottom: 5em;
-    padding-left: 10em;
+    padding-left: 8em;
 
     .partners-intro {
       padding: 2em 0em 0em 2em;
@@ -142,6 +142,7 @@
   @media screen and (max-width: 1280px) {
     .partners-section1 {
       flex-direction: column;
+      padding-left: 0;
 
       .partners-intro {
         width: 100%;
@@ -150,7 +151,7 @@
 
       .partner-img {
         width: 100%;
-        height: 15em;
+        height: 13em;
       }
     }
 

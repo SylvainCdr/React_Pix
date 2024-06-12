@@ -200,8 +200,8 @@ export default function UserAccount() {
                       <tr>
                         <th>N° de commande</th>
                         <th>Date</th>
-                        <th>Produits</th>
-                        <th>Total</th>
+                        <th className={styles.mobile}>Produits</th>
+                        <th className={styles.mobile}>Total</th>
                         {/* <th>Statut</th> */}
                         <th>Détails</th>
                       </tr>
@@ -217,7 +217,7 @@ export default function UserAccount() {
                             : "Date inconnue"}
                         </td>
   
-                        <td>
+                        <td className={styles.mobile}>
                           {order.items.map((product) => (
                             <p key={product._id}>
                               {product.name} <span>x {product.quantity}</span>
@@ -225,7 +225,7 @@ export default function UserAccount() {
                           ))}
                         </td>
                         {/* // Calcul du total de la commande, on arrondi à 2 chiffres après la virgule */}
-                        <td> {order.totalAmount.toFixed(2)} € </td>
+                        <td className={styles.mobile}> {order.totalAmount.toFixed(2)} € </td>
                         {/* <td>{order.status}</td> */}
                         <td>
                           <NavLink to={`/mon-compte/commande/${order._id}`}>
