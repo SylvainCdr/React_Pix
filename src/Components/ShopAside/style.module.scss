@@ -1,9 +1,9 @@
 .shopAside_container {
   width: 15%;
-  min-width: 8em;
+  min-width: 7em;
   background-color: rgba(199, 199, 199, 0.38);
   margin: 1em;
-  padding: 0.5em;
+  padding: 0.3em;
   border-radius: 0.3rem;
   -webkit-border-radius: 0.3rem;
   -moz-border-radius: 0.3rem;
@@ -13,7 +13,7 @@
   h2 {
     color: white;
     background-color: var(--sunset1);
-    padding: 0.4em;
+    padding: 0.3em;
     font-size: 1.1rem;
     margin-bottom: 1rem;
     border-radius: 0.3em;
@@ -40,20 +40,7 @@
       }
     }
   }
-
-  @media screen and (max-width: 1024px) {
-    .shopAside-container {
-      h2 {
-        font-size: 0.9rem;
-      }
-
-      .filter {
-        label,
-        span,
-        li {
-          font-size: 0.8rem;
-        }
-      }
-    }
-  }
 }
+
+
+

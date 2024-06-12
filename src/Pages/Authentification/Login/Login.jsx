@@ -138,7 +138,6 @@ export default function Login() {
   return (
     <div className={styles['login-container']}>
       <div data-aos="fade-right" className={styles['section-1']}>
-        <img src="./../../assets/logo-clear.svg" alt="" />
       </div>
       <div data-aos="fade-left" className={styles['section-2']}>
         <h1>Connexion</h1>

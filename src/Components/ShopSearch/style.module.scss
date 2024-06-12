@@ -1,6 +1,6 @@
 .search-container {
   max-width: 1440px;
-  margin : 0 auto;
+  margin: 0 auto;
 
   .search-msg {
     display: flex;
@@ -31,8 +31,7 @@
       -moz-border-radius: 0.3em;
       -ms-border-radius: 0.3em;
       -o-border-radius: 0.3em;
-      &:focus 
-{
+      &:focus {
         box-shadow: 0.1rem 0.2rem 0.2rem 0rem rgba(0, 0, 0, 0.2);
       }
 
@@ -43,12 +42,9 @@
       }
     }
 
- 
-   button {  
-
-    margin-left: 1em;
-    padding : 0.35em 1em;
-
+    button {
+      margin-left: 1em;
+      padding: 0.35em 1em;
     }
   }
 

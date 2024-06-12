@@ -26,27 +26,30 @@ function Expertise() {
         </div>
       </div>
       <div className={styles.forces}>
+          <i className="fa-regular fa-circle-check" data-aos="zoom-in"></i>
         <li>
-          <i className="fa-regular fa-circle-check" data-aos="zoom-in"></i> Des
-          outils électroniques de pointe, taillés sur mesure pour répondre à vos
+        Des outils électroniques de pointe, taillés sur mesure pour répondre à vos
           besoins.
         </li>
+        <i className="fa-regular fa-circle-check" data-aos="zoom-in"></i> 
         <li>
-          <i className="fa-regular fa-circle-check" data-aos="zoom-in"></i> Une
+          Une
           plateforme de gestion de projets élaborée en interne, offrant une
           interaction aisée avec nos experts.
         </li>
+        
+        <i className="fa-regular fa-circle-check" data-aos="zoom-in"></i>
         <li>
-          <i className="fa-regular fa-circle-check" data-aos="zoom-in"></i> Des
+           Des
           solutions de développement sur mesure, conçues spécialement pour
           vous.
         </li>
-        <li>
-          <i className="fa-regular fa-circle-check" data-aos="zoom-in"></i> Des
+        <i className="fa-regular fa-circle-check" data-aos="zoom-in"></i><li>
+           Des
           mesures de cybersécurité avancées pour une protection optimale.
         </li>
-        <li>
-          <i className="fa-regular fa-circle-check" data-aos="zoom-in"></i> La
+        <i className="fa-regular fa-circle-check" data-aos="zoom-in"></i><li>
+           La
           délivrance de certifications de conformité par nos consultants
           spécialisés.
         </li>

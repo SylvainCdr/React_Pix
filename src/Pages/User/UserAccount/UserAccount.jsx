@@ -96,19 +96,19 @@ export default function UserAccount() {
               className={styles.active}
               onClick={() => handleTabClick("favoris")}
             >
-              <li>Mes Produits Favoris</li>
+              <li><i class="fa-solid fa-heart"></i></li>
             </NavLink>
             <NavLink
               className={styles.active}
               onClick={() => handleTabClick("infos")}
             >
-              <li>Mes informations</li>
+              <li><i class="fa-solid fa-user-pen"></i></li>
             </NavLink>
             <NavLink
               className={styles.active}
               onClick={() => handleTabClick("commandes")}
             >
-              <li>Mes commandes</li>
+              <li><i class="fa-solid fa-basket-shopping"></i></li>
             </NavLink>
           </ul>
         </aside>
@@ -166,7 +166,7 @@ export default function UserAccount() {
                   );
   
                   return (
-                    <div data-aos="fade-up" key={favorite.product_id}>
+                    <div data-aos="fade-up" key={favorite.product_id} className={styles.productCard}>
                       <ProductCard
                         product={product}
                         addToCart={addToCart}

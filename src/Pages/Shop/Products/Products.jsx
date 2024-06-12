@@ -77,16 +77,16 @@ const Products = () => {
           <div className={styles["products-grid"]}>
             {products.map((item) => (
               <ProductCard
-                key={item._id}
-                product={item}
-                userId={userId}
-                addToFavorites={addToFavorites}
-                removeFromFavorites={removeFromFavorites}
-                checkFavorite={checkFavorite}
-                addToCart={addToCart}
+              key={item._id}
+              product={item}
+              userId={userId}
+              addToFavorites={addToFavorites}
+              removeFromFavorites={removeFromFavorites}
+              checkFavorite={checkFavorite}
+              addToCart={addToCart}
               />
-            ))}
-          </div>
+              ))}
+            </div>
         </div>
       )}
     </div>
