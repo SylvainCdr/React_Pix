@@ -20,6 +20,8 @@ function ShopNav() {
       );
   }, []);
 
+  console.log(categories);
+
   useEffect(() => {
     // Charger les sous-catégories pour chaque catégorie
     const fetchSubcategories = async () => {
@@ -63,35 +65,42 @@ function ShopNav() {
     setOpenCategory(null); // Fermer le dropdown de la catégorie lorsqu'on clique sur une sous-catégorie
   };
 
-  // // Modification de l'ordre des catégories
-  // const order = ["Caméras", "Réseau", "Logiciels", "Autres"];
-
-  // Trier les catégories selon l'ordre spécifié
-  // const sortedCategories = categories.sort((a, b) => order.indexOf(a.name) - order.indexOf(b.name));
-
   return (
     <div className={styles["shopNav-container"]}>
       <ul>
-        {/* création d'une li pour chaque catégorie trouvée dans la base de données */}
-       
         {categories.map((category) => (
           <li key={category.id} className={styles.dropdown}>
-            <label htmlFor={category.name} data-toggle="dropdown" onClick={() => toggleCategory(category.name)}>{category.name}</label>
-            <input type="checkbox" id={category.name} style={{ display: "none" }} />
-            <ul className={styles["dropdown-menu"]} style={{ display: openCategory === category.name ? "block" : "none" }}>
+            <label
+              htmlFor={category.name}
+              data-toggle="dropdown"
+              onClick={() => toggleCategory(category.name)}
+            >
+              {category.name}
+            </label>
+            <input
+              type="checkbox"
+              id={category.name}
+              style={{ display: "none" }}
+            />
+            <ul
+              className={styles["dropdown-menu"]}
+              style={{
+                display: openCategory === category.name ? "block" : "none",
+              }}
+            >
               {subcategoriesMap[category.name]?.map((subcategory) => (
                 <li key={subcategory.id}>
                   <Link
                     to={`/boutique/${category.name}/${subcategory.name}`}
                     onClick={() => toggleSubcategory(subcategory.name)}
-                    className={openSubcategory === subcategory.name ? styles.active : ""}
+                    className={
+                      openSubcategory === subcategory.name ? styles.active : ""
+                    }
                   >
                     {subcategory.name}
                   </Link>
                 </li>
-              ))
-              }
-              {/* création d'une li pour tous les produits de chaque catégorie */}
+              ))}
               <li>
                 <Link to={`/boutique/${category.name}`}>Tous les produits</Link>
               </li>

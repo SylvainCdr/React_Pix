@@ -30,6 +30,8 @@ import Partners from "./Pages/Partners/Partners";
 import { Provider, CartProvider } from "./Pages/appContext";
 import ScrollToTop from "./Components/scrollToTop";
 import EditUserCart from "./Pages/Admin/EditUserCart/EditUserCart";
+import Prestashop from "./Pages/Prestashop/Prestashop";
+
 
 // on importe le hook useLocalStorage pour stocker l'utilisateur dans le local storage
 import useLocalStorage from "use-local-storage";
@@ -108,6 +110,7 @@ function App() {
               <Route path="/rgpd" element={<Rgpd />} />
               <Route path="/cgv" element={<Cgv />} />
               <Route path="/partenaires" element={<Partners />} />
+              <Route path="/prestashop" element={<Prestashop />} />
             </Route>
           </Routes>
         </BrowserRouter>
