@@ -15,7 +15,7 @@ const useCart = () => {
 
   // Calcul du montant total du panier
   const totalAmount = cart.reduce(
-    (acc, product) => acc + product.quantity * product.price * 1.2 + 9.9,
+    (acc, product) => acc + product.quantity * product.price * 1.2 + 20,
     0
   );
 
