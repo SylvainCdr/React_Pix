@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { BASE_URL } from "../../url";
+import Swal from "sweetalert2";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const PaymentForm = ({ totalAmount }) => {
+const PaymentForm = ({ totalAmount, onPaymentSuccess }) => {
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState("");
@@ -56,8 +57,14 @@ const PaymentForm = ({ totalAmount }) => {
       setError(null);
       setProcessing(false);
       setSucceeded(true);
+      onPaymentSuccess();
+
+
+
+   
     }
-  };
+  }
+
 
   return (
     <form id="payment-form" onSubmit={handleSubmit} className="paymentContainer">
@@ -89,10 +96,10 @@ const PaymentForm = ({ totalAmount }) => {
   );
 };
 
-const StripeWrapper = ({ totalAmount }) => {
+const StripeWrapper = ({ totalAmount, onPaymentSuccess }) => {
   return (
     <Elements stripe={stripePromise}>
-      <PaymentForm totalAmount={totalAmount} />
+      <PaymentForm totalAmount={totalAmount} onPaymentSuccess={onPaymentSuccess} />
     </Elements>
   );
 };
