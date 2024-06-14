@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "next/navigation";
 import Aos from "aos";
 import styles from "./style.module.scss";
 import Swal from "sweetalert2";
-import { BASE_URL } from "../../../url";
+import { BASE_URL } from "@/url";
 
 export default function ResetPassword() {
-  const { token } = useParams(); // Extrait le jeton JWT de l'URL
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token"); // Extrait le jeton JWT de l'URL
   const [, setUserEmail] = useState(""); // État pour stocker l'e-mail de l'utilisateur
   const [, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -22,7 +23,7 @@ export default function ResetPassword() {
       .catch((error) => {
         console.error(
           "Erreur lors de la récupération de l'e-mail de l'utilisateur :",
-          error,
+          error
         );
       });
 
@@ -35,14 +36,14 @@ export default function ResetPassword() {
     setPasswordError(
       isValidPassword(value)
         ? ""
-        : "Mot de passe invalide (au moins 8 caractères, 1 majuscule, 1 minuscule, 1 chiffre, 1 caractère spécial)",
+        : "Mot de passe invalide (au moins 8 caractères, 1 majuscule, 1 minuscule, 1 chiffre, 1 caractère spécial)"
     );
   };
 
   // Fonction pour valider le format du mot de passe
   const isValidPassword = (password) =>
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
-      password,
+      password
     );
 
   // Fonction pour réinitialiser le mot de passe
@@ -114,7 +115,7 @@ export default function ResetPassword() {
     } catch (error) {
       console.error(
         "Erreur lors de la réinitialisation du mot de passe :",
-        error,
+        error
       );
     }
   };

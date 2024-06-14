@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
 import styles from "./style.module.scss";
-import useCart from "../../../Components/useCart";
-import { BASE_URL } from "../../../url";
+import useCart from "@/Components/useCart";
+import { BASE_URL } from "@/url";
+import { useRouter } from "next/router";
+import { useParams } from "next/navigation";
 
 export default function EditUserCart() {
-  const { id: userId } = useParams();
-  const navigate = useNavigate();
+  const params = useParams();
+  const userId = params?.id;
+  const router = useRouter();
   const {
     cart,
-
     addToCart,
     fetchCart,
     editQuantity,
     editPrice,
     removeFromCart,
-  } = useCart(); // Utilisation du hook useCart
+  } = useCart();
 
   const [user, setUser] = useState({});
   const [availableProducts, setAvailableProducts] = useState([]);
@@ -61,7 +62,7 @@ export default function EditUserCart() {
     const calculateTotals = () => {
       const subtotal = cart.reduce(
         (sum, product) => sum + product.price * product.quantity,
-        0,
+        0
       );
       const calculatedTva = subtotal * TAX_RATE;
       const totalWithTax = subtotal + calculatedTva;
@@ -79,7 +80,7 @@ export default function EditUserCart() {
     if (!selectedProductId) return;
 
     const selectedProduct = availableProducts.find(
-      (product) => product._id === selectedProductId,
+      (product) => product._id === selectedProductId
     );
 
     addToCart(
@@ -89,7 +90,7 @@ export default function EditUserCart() {
       selectedProduct.ref,
       1, // Quantity: you can set it to 1 or change it as needed
       selectedProduct.price,
-      selectedProduct.image,
+      selectedProduct.image
     );
   };
 
@@ -183,7 +184,7 @@ export default function EditUserCart() {
         <button onClick={handleAddProduct}>Ajouter au panier</button>
       </div>
       <button
-        onClick={() => navigate("/admin/paniers")}
+        onClick={() => router.push("/admin/paniers")}
         className={styles["update-cart-btn"]}
       >
         Enregistrer les modifications

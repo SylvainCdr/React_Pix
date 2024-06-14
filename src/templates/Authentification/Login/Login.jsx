@@ -1,6 +1,6 @@
 import { useAppContext } from "../../appContext";
 import { useState, useEffect } from "react";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import styles from "./style.module.scss";
 import Cookies from "js-cookie";
@@ -9,7 +9,6 @@ import PasswordResetModal from "@/Components/ResetPasswordModal/ResetPasswordMod
 import { BASE_URL } from "@/url";
 
 export default function Login() {
-  // J'importe le hook useNavigate de react-router-dom
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
