@@ -1,16 +1,18 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./style.module.scss";
-import { NavLink, useNavigate } from "react-router-dom";
 import useFavorites from "@/Components/useFavorites";
 import ProductCard from "@/Components/ProductCard/ProductCard";
 import useCart from "@/Components/useCart";
 import DeliveryTimeline from "@/Components/DeliveryTimeline/DeliveryTimeline";
 import AOS from "aos";
 import { BASE_URL } from "@/url";
+import { useRouter } from "next/router";
+import { useGetUser } from "@/Components/useGetUser";
+import Link from "next/link";
 
 export default function UserAccount() {
-  const navigate = useNavigate();
-  const [userData, setUserData] = useState(null);
+  const router = useRouter();
+
   const [selectedTab, setSelectedTab] = useState("favoris");
   const [products, setProducts] = useState([]);
   const [favorites, setFavorites] = useState([]);
@@ -19,22 +21,21 @@ export default function UserAccount() {
   const { getFavorites, removeFromFavorites, checkFavorite, addToFavorites } =
     useFavorites();
   const { addToCart } = useCart();
+  const user = useGetUser();
+  const userId = user?._id;
+
+  // useEffect(() => {
+  //   if (!user) router.push("/connexion"); // Redirigez vers la page de connexion si l'utilisateur n'est pas connecté
+  // }, [router, user]);
 
   useEffect(() => {
-    const userDataString = localStorage.getItem("user");
-    if (userDataString) {
-      setUserData(JSON.parse(userDataString));
-    } else {
-      navigate("/login"); // Redirigez vers la page de connexion si l'utilisateur n'est pas connecté
-    }
-  }, [navigate]);
+    async function fetchUserData() {
+      if (!userId) return;
 
-  const fetchUserData = useCallback(async () => {
-    if (userData) {
       try {
         const [productsData, favoritesData] = await Promise.all([
           fetch(`${BASE_URL}/products`).then((res) => res.json()),
-          getFavorites(userData._id),
+          getFavorites(userId),
         ]);
 
         setProducts(productsData);
@@ -43,35 +44,28 @@ export default function UserAccount() {
         console.error("Error fetching data:", error);
       }
     }
-  }, [userData, getFavorites]);
 
-  useEffect(() => {
     fetchUserData();
-  }, [fetchUserData]);
+  }, [userId, getFavorites]);
 
   useEffect(() => {
     const fetchOrders = async () => {
-      if (userData) {
-        try {
-          const response = await fetch(
-            `${BASE_URL}/orders?userId=${userData._id}`
-          );
-          const data = await response.json();
-          const sortedOrders = data.sort(
-            (a, b) => new Date(b.orderDate) - new Date(a.orderDate)
-          );
-          setOrders(sortedOrders);
-        } catch (error) {
-          console.error(
-            "Erreur lors de la récupération des commandes :",
-            error
-          );
-        }
+      if (!userId) return;
+
+      try {
+        const response = await fetch(`${BASE_URL}/orders?userId=${userId}`);
+        const data = await response.json();
+        const sortedOrders = data.sort(
+          (a, b) => new Date(b.orderDate) - new Date(a.orderDate)
+        );
+        setOrders(sortedOrders);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des commandes :", error);
       }
     };
 
     fetchOrders();
-  }, [userData]);
+  }, [userId]);
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -85,13 +79,11 @@ export default function UserAccount() {
     const product = products.find((item) => item._id === productId);
     const product_id = product?.product_id;
     if (product_id) {
-      navigate(`/product/${product_id}`);
+      router.push(`/product/${product_id}`);
     }
   };
 
-  if (!userData) {
-    return null; // Ou affichez un message de chargement si nécessaire
-  }
+  if (!user) return null; // Ou affichez un message de chargement si nécessaire
 
   return (
     <div className={styles["user-account-container"]}>
@@ -99,30 +91,30 @@ export default function UserAccount() {
         <aside className={styles["user-account-nav"]}>
           <h2>Mon compte</h2>
           <ul>
-            <NavLink
+            <button
               className={styles.active}
               onClick={() => handleTabClick("favoris")}
             >
               <li>
                 <i class="fa-solid fa-heart"></i>
               </li>
-            </NavLink>
-            <NavLink
+            </button>
+            <button
               className={styles.active}
               onClick={() => handleTabClick("infos")}
             >
               <li>
                 <i class="fa-solid fa-user-pen"></i>
               </li>
-            </NavLink>
-            <NavLink
+            </button>
+            <button
               className={styles.active}
               onClick={() => handleTabClick("commandes")}
             >
               <li>
                 <i class="fa-solid fa-basket-shopping"></i>
               </li>
-            </NavLink>
+            </button>
           </ul>
         </aside>
       </div>
@@ -139,33 +131,33 @@ export default function UserAccount() {
             <div className={styles["grid-infos"]}>
               <div className={styles.perso}>
                 <h4>Informations personnelles</h4>
-                <p>Nom : {userData.lastName}</p>
-                <p>Prénom : {userData.firstName}</p>
-                <p>Entreprise : {userData.company}</p>
+                <p>Nom : {user.lastName}</p>
+                <p>Prénom : {user.firstName}</p>
+                <p>Entreprise : {user.company}</p>
                 <p>
                   Date d'inscription :{" "}
-                  {new Date(userData.created).toLocaleDateString()}
+                  {new Date(user.created).toLocaleDateString()}
                 </p>
-                {userData.discount !== 0 && (
-                  <p>Remise accordée : {userData.discount}%</p>
+                {user.discount !== 0 && (
+                  <p>Remise accordée : {user.discount}%</p>
                 )}
               </div>
               <div className={styles.address}>
                 <h4>Adresse de facturation</h4>
-                <p>Adresse : {userData.billingAddress.street}</p>
-                <p>Ville : {userData.billingAddress.city}</p>
-                <p>Code postal : {userData.billingAddress.zip}</p>
-                <p>Pays : {userData.billingAddress.country}</p>
+                <p>Adresse : {user.billingAddress.street}</p>
+                <p>Ville : {user.billingAddress.city}</p>
+                <p>Code postal : {user.billingAddress.zip}</p>
+                <p>Pays : {user.billingAddress.country}</p>
               </div>
               <div className={styles.contact}>
                 <h4>Informations de contact</h4>
-                <p>Email : {userData.email}</p>
-                <p>Téléphone : {userData.phone}</p>
+                <p>Email : {user.email}</p>
+                <p>Téléphone : {user.phone}</p>
               </div>
             </div>
-            <NavLink to="/mon-compte/modification">
+            <Link href="/mon-compte/modification">
               <button>Modifier</button>
-            </NavLink>
+            </Link>
           </div>
         )}
 
@@ -198,9 +190,9 @@ export default function UserAccount() {
               ) : (
                 <div className={styles["no-favorites-orders-msg"]}>
                   <p>Vous n'avez pas encore de produits favoris.</p>
-                  <NavLink to="/boutique">
+                  <Link href="/boutique">
                     <button>Visiter la boutique</button>
-                  </NavLink>
+                  </Link>
                 </div>
               )}
             </div>

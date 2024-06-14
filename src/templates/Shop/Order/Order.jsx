@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
-import useCart from "../../../Components/useCart";
+import React, { useState } from "react";
+import useCart from "@/Components/useCart";
 import Swal from "sweetalert2";
-import { BASE_URL } from "../../../url";
+import { BASE_URL } from "@/url";
 import styles from "./style.module.scss";
+import { useGetUser } from "@/Components/useGetUser";
 
 export default function Order() {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  const user = useGetUser();
   const { cart, totalAmount } = useCart();
 
   // Définir les champs de l'adresse de facturation et du numéro de téléphone dans l'état local
@@ -18,8 +19,8 @@ export default function Order() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [company, setCompany] = useState("");
 
-  const [order, setOrder] = useState({
-    user: user._id,
+  const order = {
+    user: user?._id,
     deliveryAddress: { street: "", city: "", zip: "", country: "" },
     items: [],
     delivery: {
@@ -27,28 +28,21 @@ export default function Order() {
       fee: "9.90",
     },
     orderDate: new Date().toLocaleDateString(),
-
     status: "pending",
     payment: {
       method: "",
       paid: false,
     },
-    totalAmount: "",
-  });
-
-  useEffect(() => {
-    setOrder((prevOrder) => ({
-      ...prevOrder,
-      items: cart.map((product) => ({
+    totalAmount,
+    items:
+      cart?.map((product) => ({
         product: product._id,
         name: product.name,
         ref: product.ref,
         quantity: product.quantity,
         priceAtOrderTime: product.price,
-      })),
-      totalAmount: totalAmount,
-    }));
-  }, [cart]);
+      })) ?? [],
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -186,7 +180,7 @@ export default function Order() {
             `${BASE_URL}/users/${user._id}/reset-cart`,
             {
               method: "PUT",
-            },
+            }
           );
 
           // Envoi d'un email de confirmation de commande
@@ -227,6 +221,8 @@ export default function Order() {
       console.error("Erreur lors de la soumission de la commande :", error);
     }
   };
+
+  if (!user) return null;
   return (
     <div className={styles["order-container"]}>
       <div className={styles["order-page"]}>

@@ -1,93 +1,54 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./style.module.scss"; // Import des styles CSS Modules
 import useCart from "@/Components/useCart";
-import { NavLink, useNavigate } from "react-router-dom";
+import Link from "next/link";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import des styles d'AOS
 import ShopProductsCarousel from "@/Components/ShopProductsCarousel/ShopProductsCarousel";
 import { BASE_URL } from "@/url";
+import { useRouter } from "next/router";
+import { useGetUser } from "@/Components/useGetUser";
 
-export default function Cart() {
+export default function Cart({ carouselProducts }) {
+  const router = useRouter();
   const { fetchCart, editQuantity, removeFromCart, cart } = useCart();
-  const navigate = useNavigate();
-  const [subTotal, setSubTotal] = useState(0);
-  const [tax, setTax] = useState(0);
-  const [shippingCost] = useState(20);
-  const [totalAmount, setTotalAmount] = useState(0);
-  const [carouselProducts, setCarouselProducts] = useState([]);
-  const [, setError] = useState(null);
+  const user = useGetUser();
+  const userId = user?.id;
 
   // useEffect pour récupérer le panier de l'utilisateur grâce à son ID stocké dans le localStorage
   useEffect(() => {
-    const userDataString = localStorage.getItem("user");
-    if (userDataString) {
-      const userData = JSON.parse(userDataString);
-      const userId = userData._id;
-      fetchCart(userId);
-    }
-  }, []);
+    if (userId) fetchCart(userId);
+  }, [userId]);
 
-  // useEffect pour recalculer le sous-total, la TVA et le total
-  useEffect(() => {
-    const userDataString = localStorage.getItem("user");
-    if (userDataString) {
-      // const discount = JSON.parse(userDataString).discount;
-      const calculatedSubTotal = cart.reduce((acc, product) => {
-        const discountedPrice = product.price; // Appliquer le rabais au prix du produit
-        return acc + product.quantity * discountedPrice;
-      }, 0);
-      setSubTotal(calculatedSubTotal);
-      setTax(calculatedSubTotal * 0.2);
-      setTotalAmount(
-        calculatedSubTotal + calculatedSubTotal * 0.2 + shippingCost
-      );
-    }
-  }, [cart]);
+  const calculatedSubTotal =
+    cart?.reduce((acc, product) => {
+      const discountedPrice = product.price; // Appliquer le rabais au prix du produit
+      return acc + product.quantity * discountedPrice;
+    }, 0) ?? 0;
+  const tax = calculatedSubTotal * 0.2;
+  const shippingCost = 20;
+  const totalAmount =
+    calculatedSubTotal + calculatedSubTotal * 0.2 + shippingCost;
+  const discount = user?.discount;
 
   const handleOrder = () => {
-    navigate("./commande");
+    router.push("/commande");
   };
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
 
-  // useEffect pour récupérer 10 produits random
-  useEffect(() => {
-    fetch(`${BASE_URL}/products`)
-      .then((res) => res.json())
-      .then((data) => {
-        const randomProducts = data
-          .sort(() => 0.5 - Math.random())
-          .slice(0, 10);
-        setCarouselProducts(randomProducts);
-      })
-      .catch((err) => {
-        setError("Erreur lors du chargement des produits.");
-        console.error(err);
-      });
-  }, []);
-
   // Fonction pour modifier la quantité d'un produit dans le panier
   const handleQuantityChange = (product, newValue) => {
     if (newValue >= 1) {
-      const userDataString = localStorage.getItem("user");
-      if (userDataString) {
-        const userData = JSON.parse(userDataString);
-        const userId = userData._id;
-        editQuantity(userId, product.product_id, newValue);
-      }
+      editQuantity(userId, product.product_id, newValue);
     }
   };
 
   // Fonction pour supprimer un produit du panier
   const handleRemoveFromCart = (product) => {
-    const userDataString = localStorage.getItem("user");
-    if (userDataString) {
-      const userData = JSON.parse(userDataString);
-      const userId = userData._id;
-      removeFromCart(userId, product.product_id);
-    }
+    removeFromCart(userId, product.product_id);
   };
 
   // Condition pour afficher un message si le panier est vide
@@ -97,9 +58,9 @@ export default function Cart() {
         <h1>Panier</h1>
         <div className={styles["empty-cart-message"]}>
           <p>Vous n'avez pas encore de produits dans votre panier.</p>
-          <NavLink to="/boutique">
+          <Link href="/boutique">
             <button>Visiter la boutique</button>
-          </NavLink>
+          </Link>
           <ShopProductsCarousel carouselProducts={carouselProducts} />
         </div>
       </div>
@@ -120,7 +81,7 @@ export default function Cart() {
             <label className={styles["product-line-price"]}>Total HT</label>
           </div>
 
-          {cart.map((product, index) => (
+          {cart?.map((product, index) => (
             <div className={styles["product"]} key={index}>
               <div className={styles["product-image"]}>
                 <img
@@ -141,20 +102,18 @@ export default function Cart() {
                   {product.description}
                 </p>
               </div>
-              {JSON.parse(localStorage.getItem("user"))?.discount > 0 && (
-                <div className={styles["discount-badge"]}>
-                  - {JSON.parse(localStorage.getItem("user")).discount} %
-                </div>
+              {discount > 0 && (
+                <div className={styles["discount-badge"]}>- {discount} %</div>
               )}
-              {JSON.parse(localStorage.getItem("user"))?.discount > 0 ? (
+              {discount > 0 ? (
                 <div className={styles["product-price"]}>
                   <span className={styles["base-price"]}>
-                    {product.price.toFixed(2)} €
+                    {product.price?.toFixed(2)} €
                   </span>
                 </div>
               ) : (
                 <div className={styles["product-price"]}>
-                  {product.price.toFixed(2)} €
+                  {product.price?.toFixed(2)} €
                 </div>
               )}
               <div className={styles["product-quantity"]}>

@@ -96,8 +96,8 @@ function App() {
               /> */}
 
               {/* <Route path="/boutique/produit/:id" element={<Product />} /> */}
-              <Route path="/panier" element={<Cart />} />
-              <Route path="/panier/commande" element={<Order />} />
+              {/* <Route path="/panier" element={<Cart />} /> */}
+              {/* <Route path="/panier/commande" element={<Order />} /> */}
 
               <Route path="/mon-compte" element={<UserAccount />} />
               <Route
