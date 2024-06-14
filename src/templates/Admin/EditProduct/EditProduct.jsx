@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./style.module.scss";
-import AdminProductForm from "../../../Components/AdminProductForm/AdminProductForm";
+import AdminProductForm from "@/Components/AdminProductForm/AdminProductForm";
 import Swal from "sweetalert2";
-import { BASE_URL } from "../../../url";
+import { BASE_URL } from "@/url";
 
 function EditProduct() {
   const [productToEdit, setProductToEdit] = useState(null);
@@ -18,7 +18,7 @@ function EditProduct() {
       } catch (error) {
         console.error(
           "Erreur lors de la récupération du produit à éditer :",
-          error,
+          error
         );
       }
     };

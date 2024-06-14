@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./style.module.scss";
 import Swal from "sweetalert2";
-import { BASE_URL } from "../../../url";
+import { BASE_URL } from "@/url";
+import { useParams } from "next/navigation";
 
 export default function EditOrders() {
   const [order, setOrder] = useState({});
@@ -13,7 +14,8 @@ export default function EditOrders() {
   const [payment, setPayment] = useState({});
   const [totalAmount, setTotalAmount] = useState(0);
 
-  const orderId = window.location.pathname.split("/").pop();
+  const params = useParams();
+  const orderId = params?.id;
 
   useEffect(() => {
     fetch(`${BASE_URL}/orders/${orderId}`)

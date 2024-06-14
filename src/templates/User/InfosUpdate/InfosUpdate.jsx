@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./style.module.scss";
 import Swal from "sweetalert2";
-import { BASE_URL } from "../../../url";
+import { BASE_URL } from "@/url";
 
 export default function InfosUpdate() {
   const [user, setUser] = useState({
@@ -21,7 +21,7 @@ export default function InfosUpdate() {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    const userId = JSON.parse(localStorage.getItem("user"))._id;
+    const userId = JSON.parse(localStorage.getItem("user"))?._id;
 
     fetch(`${BASE_URL}/users/${userId}`)
       .then((response) => response.json())
@@ -222,7 +222,7 @@ export default function InfosUpdate() {
               type="text"
               id="street"
               name="street"
-              value={user.billingAddress.street}
+              value={user.billingAddress?.street}
               onChange={handleAddressChange}
             />
             {errors.street && (
@@ -234,7 +234,7 @@ export default function InfosUpdate() {
               type="text"
               id="city"
               name="city"
-              value={user.billingAddress.city}
+              value={user.billingAddress?.city}
               onChange={handleAddressChange}
             />
             {errors.city && <span className={styles.error}>{errors.city}</span>}
@@ -244,7 +244,7 @@ export default function InfosUpdate() {
               type="text"
               id="zip"
               name="zip"
-              value={user.billingAddress.zip}
+              value={user.billingAddress?.zip}
               onChange={handleAddressChange}
             />
             {errors.zip && <span className={styles.error}>{errors.zip}</span>}
@@ -254,7 +254,7 @@ export default function InfosUpdate() {
               type="text"
               id="country"
               name="country"
-              value={user.billingAddress.country}
+              value={user.billingAddress?.country}
               onChange={handleAddressChange}
             />
             {errors.country && (

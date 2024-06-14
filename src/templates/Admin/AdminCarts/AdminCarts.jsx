@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styles from "./style.module.scss";
-import AdminCartModal from "../../../Components/AdminCartModal/AdminCartModal";
-import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../../../url";
+import AdminCartModal from "@/Components/AdminCartModal/AdminCartModal";
+import { BASE_URL } from "@/url";
+import { useRouter } from "next/router";
 
 export default function AdminCarts() {
   const [allCarts, setAllCarts] = useState([]);
   const [selectedCart, setSelectedCart] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const navigate = useNavigate(); // Corrected here
+  const router = useRouter(); // Corrected here
 
   // Fetch all carts from the server
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function AdminCarts() {
   };
 
   const handleEditClick = (cart) => {
-    navigate(`/admin/panier/modification/${cart.userId}`);
+    router.push(`/admin/paniers/modification/${cart.userId}`);
   };
 
   return (
@@ -78,7 +78,7 @@ export default function AdminCarts() {
                           cart.cart.reduce((latest, product) => {
                             const productDate = new Date(product.created);
                             return productDate > latest ? productDate : latest;
-                          }, new Date(0)),
+                          }, new Date(0))
                         ).toLocaleDateString("fr-FR")
                       : "Aucune date"}
                   </td>

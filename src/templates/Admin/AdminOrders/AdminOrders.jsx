@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./style.module.scss";
-import AdminOrderModal from "../../../Components/AdminOrderModal/AdminOrderModal";
-import { NavLink } from "react-router-dom";
-import { BASE_URL } from "../../../url";
+import AdminOrderModal from "@/Components/AdminOrderModal/AdminOrderModal";
+import Link from "next/link";
+import { BASE_URL } from "@/url";
 
 export default function AdminOrders() {
   const [orders, setOrders] = useState([]);
@@ -15,7 +15,7 @@ export default function AdminOrders() {
       .then((data) => {
         // Trier les commandes par date de commande, de la plus récente à la plus ancienne
         const sortedOrders = data.sort(
-          (a, b) => new Date(b.orderDate) - new Date(a.orderDate),
+          (a, b) => new Date(b.orderDate) - new Date(a.orderDate)
         );
         setOrders(sortedOrders);
       });
@@ -39,6 +39,7 @@ export default function AdminOrders() {
   const handleDetails = (orderId) => {
     setSelectedOrderId(orderId);
   };
+
   return (
     <div className={styles["admin-orders"]}>
       <h1>Commandes</h1>
@@ -81,9 +82,9 @@ export default function AdminOrders() {
                 </button>
               </td>
               <td>
-                <NavLink to={`/admin/commande/modification/${order._id}`}>
+                <Link href={`/admin/commandes/modification/${order._id}`}>
                   <button className={styles["modify-btn"]}>Modifier</button>{" "}
-                </NavLink>
+                </Link>
               </td>
             </tr>
           ))}

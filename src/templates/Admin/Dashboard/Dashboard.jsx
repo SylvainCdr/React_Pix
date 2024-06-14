@@ -1,7 +1,7 @@
 import styles from "./style.module.scss";
 import React, { useState, useEffect } from "react";
-import AdminNav from "../../../Components/AdminNav/AdminNav";
-import { BASE_URL } from "../../../url";
+import AdminNav from "@/Components/AdminNav/AdminNav";
+import { BASE_URL } from "@/url";
 
 export default function Dashboard() {
   const [newUsers, setNewUsers] = useState([]);
@@ -58,7 +58,7 @@ export default function Dashboard() {
         setNewOrders(reversedData.slice(0, 6));
         setTotalOrders(reversedData.length);
         setAmountAverage(
-          data.reduce((acc, order) => acc + order.totalAmount, 0) / data.length,
+          data.reduce((acc, order) => acc + order.totalAmount, 0) / data.length
         );
         setConversionRate(data.length / totalUsers);
 
@@ -66,8 +66,8 @@ export default function Dashboard() {
         const userIds = data.map((order) => order.user);
         Promise.all(
           userIds.map((userId) =>
-            fetch(`${BASE_URL}/users/${userId}`).then((res) => res.json()),
-          ),
+            fetch(`${BASE_URL}/users/${userId}`).then((res) => res.json())
+          )
         ).then((userNames) => {
           const ordersWithNames = data.map((order, index) => ({
             ...order,
@@ -106,7 +106,7 @@ export default function Dashboard() {
 
         // on trie les produits par nombre de likes
         const sortedFavorites = Object.entries(groupedFavorites).sort(
-          (a, b) => b[1] - a[1],
+          (a, b) => b[1] - a[1]
         );
 
         console.log("sortedFavorites:", sortedFavorites);

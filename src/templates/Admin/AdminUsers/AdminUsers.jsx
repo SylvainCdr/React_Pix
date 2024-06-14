@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styles from "./style.module.scss";
-import { NavLink } from "react-router-dom";
-import AdminUserForm from "../../../Components/AdminUserForm/AdminUserForm";
+import Link from "next/link";
+import AdminUserForm from "@/Components/AdminUserForm/AdminUserForm";
 import Swal from "sweetalert2";
-import { BASE_URL } from "../../../url";
+import { BASE_URL } from "@/url";
 
 export default function AdminUsers() {
   const [users, setUsers] = useState([]);
@@ -37,7 +37,7 @@ export default function AdminUsers() {
         })
           .then(() => {
             setUsers((prevUsers) =>
-              prevUsers.filter((user) => user._id !== id),
+              prevUsers.filter((user) => user._id !== id)
             );
           })
           .then(() => {
@@ -52,7 +52,7 @@ export default function AdminUsers() {
             });
           })
           .catch((error) =>
-            console.log("Erreur lors de la suppression :", error),
+            console.log("Erreur lors de la suppression :", error)
           );
       }
     });
@@ -113,9 +113,9 @@ export default function AdminUsers() {
                     : "-"}
                 </td>
                 <td>
-                  <NavLink to={`/admin/utilisateurs/modification/${user._id}`}>
+                  <Link href={`/admin/utilisateurs/modification/${user._id}`}>
                     <button className={styles["modify-btn"]}>Modifier</button>
-                  </NavLink>
+                  </Link>
                 </td>
                 <td>
                   <button

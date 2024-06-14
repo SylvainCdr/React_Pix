@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./style.module.scss";
-import AdminUserForm from "../../../Components/AdminUserForm/AdminUserForm";
+import AdminUserForm from "@/Components/AdminUserForm/AdminUserForm";
 import Swal from "sweetalert2";
-import { BASE_URL } from "../../../url";
+import { BASE_URL } from "@/url";
 
 export default function EditUser() {
   const [userToEdit, setUserToEdit] = useState(null);
@@ -18,7 +18,7 @@ export default function EditUser() {
       } catch (error) {
         console.error(
           "Erreur lors de la récupération de l'utilisateur à éditer :",
-          error,
+          error
         );
       }
     };

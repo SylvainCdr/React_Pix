@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./style.module.scss";
-import AdminProductForm from "../../../Components/AdminProductForm/AdminProductForm";
+import AdminProductForm from "@/Components/AdminProductForm/AdminProductForm";
 import Swal from "sweetalert2";
-import { BASE_URL } from "../../../url";
+import { BASE_URL } from "@/url";
 
 function AddProduct() {
   const handleAddProduct = async (product) => {

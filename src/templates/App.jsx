@@ -61,31 +61,31 @@ function App() {
               {/* Admin routes sécurisées */}
               {user && user.role === "admin" && (
                 <>
-                  <Route path="/admin/dashboard" element={<Dashboard />} />
-                  <Route path="/admin/produits" element={<AdminProducts />} />
-                  <Route
+                  {/* <Route path="/admin/dashboard" element={<Dashboard />} />
+                  <Route path="/admin/produits" element={<AdminProducts />} /> */}
+                  {/* <Route
                     path="/admin/produits/ajout"
                     element={<AddProduct />}
-                  />
-                  <Route
+                  /> */}
+                  {/* <Route
                     path="/admin/produits/modification/:id"
                     element={<EditProduct />}
-                  />
-                  <Route path="/admin/utilisateurs" element={<AdminUsers />} />
-                  <Route
+                  /> */}
+                  {/* <Route path="/admin/utilisateurs" element={<AdminUsers />} /> */}
+                  {/* <Route
                     path="/admin/utilisateurs/modification/:id"
                     element={<EditUser />}
-                  />
-                  <Route path="/admin/commandes" element={<AdminOrders />} />
-                  <Route
+                  /> */}
+                  {/* <Route path="/admin/commandes" element={<AdminOrders />} /> */}
+                  {/* <Route
                     path="/admin/commande/modification/:id"
                     element={<EditOrders />}
-                  />
-                  <Route path="/admin/paniers" element={<AdminCarts />} />
+                  /> */}
+                  {/* <Route path="/admin/paniers" element={<AdminCarts />} />
                   <Route
                     path="/admin/panier/modification/:id"
                     element={<EditUserCart />}
-                  />
+                  /> */}
                 </>
               )}
               {/* <Route path="/boutique" element={<Catalogue />} />
@@ -99,15 +99,15 @@ function App() {
               {/* <Route path="/panier" element={<Cart />} /> */}
               {/* <Route path="/panier/commande" element={<Order />} /> */}
 
-              <Route path="/mon-compte" element={<UserAccount />} />
-              <Route
+              {/* <Route path="/mon-compte" element={<UserAccount />} /> */}
+              {/* <Route
                 path="/mon-compte/commande/:id"
                 element={<OrderDetails />}
-              />
-              <Route
+              /> */}
+              {/* <Route
                 path="/mon-compte/modification"
                 element={<InfosUpdate />}
-              />
+              /> */}
 
               {/* <Route path="/rgpd" element={<Rgpd />} />
               <Route path="/cgv" element={<Cgv />} />
