@@ -10,14 +10,14 @@ export const editQuantity = async (userId, productId, quantity) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ quantity }),
-      }
+      },
     );
     if (response.ok) {
       fetchCart(userId);
     } else {
       console.error(
         "Erreur lors de la modification du panier:",
-        response.status
+        response.status,
       );
     }
   } catch (error) {
@@ -35,20 +35,20 @@ export const editPrice = async (userId, productId, price) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ price }),
-      }
+      },
     );
     if (response.ok) {
       fetchCart(userId);
     } else {
       console.error(
         "Erreur lors de la modification du prix du produit:",
-        response.status
+        response.status,
       );
     }
   } catch (error) {
     console.error(
       "Erreur réseau lors de la modification du prix du produit:",
-      error
+      error,
     );
   }
 };

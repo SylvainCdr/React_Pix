@@ -7,7 +7,7 @@ export default function AdminCartModal({ cart, user, contact, onClose }) {
 
   const subtotal = cart.cart.reduce(
     (acc, product) => acc + product.price * product.quantity,
-    0
+    0,
   );
 
   const tva = subtotal * TAX_RATE;
@@ -15,10 +15,10 @@ export default function AdminCartModal({ cart, user, contact, onClose }) {
   const totalWithTaxAndShipping = totalWithTax + SHIPPING_COST;
 
   return (
-    <div className={styles['cartModal-container']}>
-      <div className={styles['cart-modal']}>
+    <div className={styles["cartModal-container"]}>
+      <div className={styles["cart-modal"]}>
         <div className={styles.close}>
-          <button className={styles['close-button']} onClick={onClose}>
+          <button className={styles["close-button"]} onClick={onClose}>
             x
           </button>
         </div>
@@ -31,11 +31,11 @@ export default function AdminCartModal({ cart, user, contact, onClose }) {
                 cart.cart.reduce((latest, product) => {
                   const productDate = new Date(product.created);
                   return productDate > latest ? productDate : latest;
-                }, new Date(0))
+                }, new Date(0)),
               ).toLocaleDateString("fr-FR")
             : "Aucune date"}
         </p>
-  
+
         <table>
           <thead>
             <tr>
@@ -54,7 +54,7 @@ export default function AdminCartModal({ cart, user, contact, onClose }) {
             ))}
           </tbody>
         </table>
-        <div className={styles['cart-summary']}>
+        <div className={styles["cart-summary"]}>
           <p>Sous-total (HT) : {subtotal.toFixed(2)} €</p>
           <p>TVA (20%) : {tva.toFixed(2)} €</p>
           <p>Frais de port : {SHIPPING_COST.toFixed(2)} €</p>
@@ -63,5 +63,4 @@ export default function AdminCartModal({ cart, user, contact, onClose }) {
       </div>
     </div>
   );
-  }
-  
+}

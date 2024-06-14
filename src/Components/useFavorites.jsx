@@ -11,27 +11,24 @@ const useFavorites = () => {
     productName,
     productPrice,
     productRef,
-    productImage
+    productImage,
   ) => {
     try {
       setIsAddingToFavorites(true);
 
-      const response = await fetch(
-        `${BASE_URL}/users/${userId}/add-favorite`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            product_id: productId,
-            name: productName,
-            price: productPrice,
-            ref: productRef,
-            image: productImage,
-          }),
-        }
-      );
+      const response = await fetch(`${BASE_URL}/users/${userId}/add-favorite`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          product_id: productId,
+          name: productName,
+          price: productPrice,
+          ref: productRef,
+          image: productImage,
+        }),
+      });
 
       if (response.ok) {
         console.log("Produit ajouté aux favoris avec succès!");
@@ -52,7 +49,7 @@ const useFavorites = () => {
   const checkFavorite = useCallback(async (userId, productId) => {
     try {
       const response = await fetch(
-        `${BASE_URL}/users/${userId}/check-favorite/${productId}`
+        `${BASE_URL}/users/${userId}/check-favorite/${productId}`,
       );
 
       if (response.ok) {
@@ -77,7 +74,7 @@ const useFavorites = () => {
         `${BASE_URL}/users/${userId}/delete-favorite/${productId}`,
         {
           method: "DELETE",
-        }
+        },
       );
       console.log("res", response);
 
@@ -98,9 +95,7 @@ const useFavorites = () => {
 
   const getFavorites = useCallback(async (userId) => {
     try {
-      const response = await fetch(
-        `${BASE_URL}/users/${userId}/favorites`
-      );
+      const response = await fetch(`${BASE_URL}/users/${userId}/favorites`);
       if (response.ok) {
         const data = await response.json();
         console.log("Favorites Data:", data); // Add this line for debugging

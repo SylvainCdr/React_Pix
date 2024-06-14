@@ -1,0 +1,26 @@
+// styles.scss
+
+.edit-product {
+  width: 100%;
+  margin-top: 6rem;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2rem;
+  // height: 100vh; // Assurez-vous d'avoir une hauteur appropriée pour le conteneur parent
+
+  h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+    color: #007bff;
+    span {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.2rem;
+      color: white;
+    }
+  }
+}

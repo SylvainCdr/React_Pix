@@ -38,7 +38,7 @@ export default function HomepageCountUp() {
           }
         });
       },
-      { threshold: 0.5 } // Déclencher quand 50% de l'élément est visible
+      { threshold: 0.5 }, // Déclencher quand 50% de l'élément est visible
     );
 
     // Ajouter chaque élément .timer à observer

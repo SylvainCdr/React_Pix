@@ -28,8 +28,6 @@ const PasswordResetModal = ({ show, onClose, onResetPassword, checkEmail }) => {
       throw new Error("Erreur lors de la vérification de l'e-mail");
     }
   };
-  
-  
 
   const handleReset = async () => {
     if (!email) {
@@ -40,7 +38,7 @@ const PasswordResetModal = ({ show, onClose, onResetPassword, checkEmail }) => {
       });
       return;
     }
-  
+
     if (!validateEmail(email)) {
       Swal.fire({
         icon: "error",
@@ -49,7 +47,7 @@ const PasswordResetModal = ({ show, onClose, onResetPassword, checkEmail }) => {
       });
       return;
     }
-  
+
     setIsLoading(true);
     try {
       const response = await checkEmailExists(email);
@@ -80,32 +78,38 @@ const PasswordResetModal = ({ show, onClose, onResetPassword, checkEmail }) => {
       setIsLoading(false);
     }
   };
-  
-  
 
   return (
-    <div className={`${styles['resetPasswordModal']} ${show ? styles['show'] : ""}`}>
-      <div className={styles['modal-content']}>
-        <span className={styles['close']} onClick={onClose}>
+    <div
+      className={`${styles["resetPasswordModal"]} ${show ? styles["show"] : ""}`}
+    >
+      <div className={styles["modal-content"]}>
+        <span className={styles["close"]} onClick={onClose}>
           &times;
         </span>
-        <h2 className={styles['modal-title']}>Réinitialisation du mot de passe</h2>
-        <p className={styles['modal-text']}>
+        <h2 className={styles["modal-title"]}>
+          Réinitialisation du mot de passe
+        </h2>
+        <p className={styles["modal-text"]}>
           Veuillez saisir votre e-mail pour réinitialiser votre mot de passe :
         </p>
-        <input className={styles['email-input']}
+        <input
+          className={styles["email-input"]}
           type="email"
           placeholder="Entrez votre e-mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button className={styles['btn-send']} onClick={handleReset} disabled={isLoading}>
+        <button
+          className={styles["btn-send"]}
+          onClick={handleReset}
+          disabled={isLoading}
+        >
           {isLoading ? "Envoi en cours..." : "Envoyer"}
         </button>
       </div>
     </div>
   );
 };
-
 
 export default PasswordResetModal;

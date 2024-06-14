@@ -16,7 +16,6 @@
     align-self: center;
     align-items: center;
 
-
     img {
       width: 100%;
       transition: transform 0.5s;
@@ -30,7 +29,6 @@
       -moz-transition: transform 0.5s;
       -ms-transition: transform 0.5s;
       -o-transition: transform 0.5s;
-
 
       &:hover {
         transform: scale(1.1);
@@ -64,9 +62,6 @@
 
     a {
       text-decoration: none;
-
-     
-      
     }
   }
 
@@ -79,8 +74,6 @@
     }
   }
 
-
-
   @media screen and (max-width: 1024px) {
     display: flex;
     flex-direction: column-reverse;
@@ -88,7 +81,7 @@
     .partners-logo {
       width: 80%;
       gap: 3em;
-      padding-right : 0em;
+      padding-right: 0em;
     }
 
     .partners-text {
@@ -112,17 +105,10 @@
   }
 
   @media screen and (max-width: 768px) {
-
     .partners-logo {
       width: 80%;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
     }
-
-
-
-   
-    
   }
-
 }

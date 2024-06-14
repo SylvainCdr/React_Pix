@@ -1,7 +1,7 @@
 .skills-container {
   max-width: 1440px;
   margin: 8rem auto;
-  padding : 0 2rem;
+  padding: 0 2rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 5em;
@@ -21,7 +21,6 @@
     -moz-border-radius: 0.5rem;
     -ms-border-radius: 0.5rem;
     -o-border-radius: 0.5rem;
-
 
     img {
       width: 100%;
@@ -108,5 +107,4 @@
   @media screen and (max-width: 768px) {
     grid-template-columns: repeat(1, 1fr);
   }
-
 }

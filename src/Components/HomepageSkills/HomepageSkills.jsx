@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./style.module.scss";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export default function HomepageSkills() {
   return (
@@ -17,7 +17,7 @@ export default function HomepageSkills() {
           nous permet de vous proposer les meilleurs produits.{" "}
         </p>
         <div className={styles["bottom"]}>
-          <Link to="/notre-expertise#videoprotection">
+          <Link href="/notre-expertise#videoprotection">
             <i className="fa-solid fa-arrow-right"></i>
           </Link>
         </div>
@@ -35,7 +35,7 @@ export default function HomepageSkills() {
           marché : Caméras visibles, thermiques, mobiles, fish-eye...
         </p>
         <div className={styles["bottom"]}>
-          <Link to="/notre-expertise#analyse">
+          <Link href="/notre-expertise#analyse">
             <i className="fa-solid fa-arrow-right"></i>
           </Link>
         </div>
@@ -53,7 +53,7 @@ export default function HomepageSkills() {
           leaders du marché.
         </p>
         <div className={styles["bottom"]}>
-          <Link to="/notre-expertise#access">
+          <Link href="/notre-expertise#access">
             <i className="fa-solid fa-arrow-right"></i>
           </Link>
         </div>
@@ -72,7 +72,7 @@ export default function HomepageSkills() {
           les traiter.
         </p>
         <div className={styles["bottom"]}>
-          <Link to="/notre-expertise#cloud">
+          <Link href="/notre-expertise#cloud">
             <i className="fa-solid fa-arrow-right"></i>
           </Link>
         </div>
@@ -91,7 +91,7 @@ export default function HomepageSkills() {
           informatiques.
         </p>
         <div className={styles["bottom"]}>
-          <Link to="/notre-expertise#network">
+          <Link href="/notre-expertise#network">
             <i className="fa-solid fa-arrow-right"></i>
           </Link>
         </div>

@@ -22,7 +22,7 @@ export default function ShopAside({
   const [selectedInfrarouge, setSelectedInfrarouge] = useState([]);
   const [distanceInfrarougeValues, setDistanceInfrarougeValues] = useState([]);
   const [selectedDistanceInfrarouge, setSelectedDistanceInfrarouge] = useState(
-    []
+    [],
   );
   const [installationExtValues, setInstallationExtValues] = useState([]);
   const [selectedInstallationExt, setSelectedInstallationExt] = useState([]);
@@ -96,7 +96,7 @@ export default function ShopAside({
           .map((product) => getProductMegapixels(product))
           .filter((value) => value);
         const uniqueMegapixels = Array.from(new Set(megapixels)).sort(
-          (a, b) => a - b
+          (a, b) => a - b,
         );
         setMegapixelsValues(uniqueMegapixels);
 
@@ -116,7 +116,7 @@ export default function ShopAside({
           .map((product) => getProductsInfrarouge(product).trim())
           .filter((value) => value);
         const uniqueInfrarouge = Array.from(new Set(infrarouge)).sort(
-          (a, b) => a - b
+          (a, b) => a - b,
         );
         setInfrarougeValues(uniqueInfrarouge);
 
@@ -124,7 +124,7 @@ export default function ShopAside({
           .map((product) => getProductsDistanceInfrarouge(product))
           .filter((value) => value);
         const uniqueDistanceInfrarouge = Array.from(
-          new Set(distanceInfrarouge)
+          new Set(distanceInfrarouge),
         ).sort((a, b) => a - b);
         setDistanceInfrarougeValues(uniqueDistanceInfrarouge);
 
@@ -132,7 +132,7 @@ export default function ShopAside({
           .map((product) => getProductsInstallationExt(product).trim())
           .filter((value) => value);
         const uniqueInstallationExt = Array.from(new Set(installationExt)).sort(
-          (a, b) => a - b
+          (a, b) => a - b,
         );
         setInstallationExtValues(uniqueInstallationExt);
 
@@ -140,7 +140,7 @@ export default function ShopAside({
           .map((product) => getProductsNbrePorts(product))
           .filter((value) => value);
         const uniqueNbrePorts = Array.from(new Set(nbrePorts)).sort(
-          (a, b) => a - b
+          (a, b) => a - b,
         );
         setNbrePortsValues(uniqueNbrePorts);
 
@@ -148,7 +148,7 @@ export default function ShopAside({
           .map((product) => getProductsRackable(product).trim())
           .filter((value) => value);
         const uniqueRackable = Array.from(new Set(rackable)).sort(
-          (a, b) => a - b
+          (a, b) => a - b,
         );
         setRackableValues(uniqueRackable);
 
@@ -156,7 +156,7 @@ export default function ShopAside({
           .map((product) => getProductsManageable(product).trim())
           .filter((value) => value);
         const uniqueManageable = Array.from(new Set(manageable)).sort(
-          (a, b) => a - b
+          (a, b) => a - b,
         );
         setManageableValues(uniqueManageable);
 
@@ -170,7 +170,7 @@ export default function ShopAside({
           .map((product) => getProductsPoePlus(product).trim())
           .filter((value) => value);
         const uniquePoePlus = Array.from(new Set(poePlus)).sort(
-          (a, b) => a - b
+          (a, b) => a - b,
         );
         setPoePlusValues(uniquePoePlus);
 
@@ -178,7 +178,7 @@ export default function ShopAside({
           .map((product) => getProductsPoePlusPlus(product).trim())
           .filter((value) => value);
         const uniquePoePlusPlus = Array.from(new Set(poePlusPlus)).sort(
-          (a, b) => a - b
+          (a, b) => a - b,
         );
         setPoePlusPlusValues(uniquePoePlusPlus);
 
@@ -192,7 +192,7 @@ export default function ShopAside({
           .map((product) => getProductsDebitVpn(product).trim())
           .filter((value) => value);
         const uniqueDebitVpn = Array.from(new Set(debitVpn)).sort(
-          (a, b) => a - b
+          (a, b) => a - b,
         );
         setDebitVpnValues(uniqueDebitVpn);
 
@@ -206,7 +206,7 @@ export default function ShopAside({
           .map((product) => getProductsDebitFirewall(product).trim())
           .filter((value) => value);
         const uniqueDebitFirewall = Array.from(new Set(debitFirewall)).sort(
-          (a, b) => a - b
+          (a, b) => a - b,
         );
         setDebitFirewallValues(uniqueDebitFirewall);
 
@@ -214,7 +214,7 @@ export default function ShopAside({
           .map((product) => getProductsVitesse(product).trim())
           .filter((value) => value);
         const uniqueVitesse = Array.from(new Set(vitesse)).sort(
-          (a, b) => a - b
+          (a, b) => a - b,
         );
         setVitesseValues(uniqueVitesse);
 
@@ -222,7 +222,7 @@ export default function ShopAside({
           .map((product) => getProductsTypeWifi(product).trim())
           .filter((value) => value);
         const uniqueTypeWifi = Array.from(new Set(typeWifi)).sort(
-          (a, b) => a - b
+          (a, b) => a - b,
         );
         setTypeWifiValues(uniqueTypeWifi);
 
@@ -230,7 +230,7 @@ export default function ShopAside({
           .map((product) => getProductsAntenne(product).trim())
           .filter((value) => value);
         const uniqueAntenne = Array.from(new Set(antenne)).sort(
-          (a, b) => a - b
+          (a, b) => a - b,
         );
         setAntenneValues(uniqueAntenne);
 
@@ -281,7 +281,7 @@ export default function ShopAside({
 
     if (selectedBrands.length > 0) {
       filtered = filtered.filter((product) =>
-        selectedBrands.includes(product.brand)
+        selectedBrands.includes(product.brand),
       );
     }
 
@@ -291,131 +291,133 @@ export default function ShopAside({
 
     if (selectedMegapixels.length > 0) {
       filtered = filtered.filter((product) =>
-        selectedMegapixels.includes(getProductMegapixels(product))
+        selectedMegapixels.includes(getProductMegapixels(product)),
       );
     }
 
     if (selectedImgSec.length > 0) {
       filtered = filtered.filter((product) =>
-        selectedImgSec.includes(getProductsImgSec(product))
+        selectedImgSec.includes(getProductsImgSec(product)),
       );
     }
 
     if (selectedColor.length > 0) {
       filtered = filtered.filter((product) =>
-        selectedColor.includes(getColor(product).trim())
+        selectedColor.includes(getColor(product).trim()),
       );
     }
 
     if (selectedInfrarouge.length > 0) {
       filtered = filtered.filter((product) =>
-        selectedInfrarouge.includes(getProductsInfrarouge(product).trim())
+        selectedInfrarouge.includes(getProductsInfrarouge(product).trim()),
       );
     }
 
     if (selectedDistanceInfrarouge.length > 0) {
       filtered = filtered.filter((product) =>
         selectedDistanceInfrarouge.includes(
-          getProductsDistanceInfrarouge(product)
-        )
+          getProductsDistanceInfrarouge(product),
+        ),
       );
     }
 
     if (selectedInstallationExt.length > 0) {
       filtered = filtered.filter((product) =>
         selectedInstallationExt.includes(
-          getProductsInstallationExt(product).trim()
-        )
+          getProductsInstallationExt(product).trim(),
+        ),
       );
     }
 
     if (selectedNbrePorts.length > 0) {
       filtered = filtered.filter((product) =>
-        selectedNbrePorts.includes(getProductsNbrePorts(product))
+        selectedNbrePorts.includes(getProductsNbrePorts(product)),
       );
     }
 
     if (selectedRackable.length > 0) {
       filtered = filtered.filter((product) =>
-        selectedRackable.includes(getProductsRackable(product).trim())
+        selectedRackable.includes(getProductsRackable(product).trim()),
       );
     }
 
     if (selectedManageable.length > 0) {
       filtered = filtered.filter((product) =>
-        selectedManageable.includes(getProductsManageable(product).trim())
+        selectedManageable.includes(getProductsManageable(product).trim()),
       );
     }
 
     if (selectedPoe.length > 0) {
       filtered = filtered.filter((product) =>
-        selectedPoe.includes(getProductsPoe(product).trim())
+        selectedPoe.includes(getProductsPoe(product).trim()),
       );
     }
 
     if (selectedPoePlus.length > 0) {
       filtered = filtered.filter((product) =>
-        selectedPoePlus.includes(getProductsPoePlus(product).trim())
+        selectedPoePlus.includes(getProductsPoePlus(product).trim()),
       );
     }
 
     if (selectedPoePlusPlus.length > 0) {
       filtered = filtered.filter((product) =>
-        selectedPoePlusPlus.includes(getProductsPoePlusPlus(product).trim())
+        selectedPoePlusPlus.includes(getProductsPoePlusPlus(product).trim()),
       );
     }
 
     if (selectedUsb.length > 0) {
       filtered = filtered.filter((product) =>
-        selectedUsb.includes(getProductsUsb(product).trim())
+        selectedUsb.includes(getProductsUsb(product).trim()),
       );
     }
 
     if (selectedDebitVpn.length > 0) {
       filtered = filtered.filter((product) =>
-        selectedDebitVpn.includes(getProductsDebitVpn(product).trim())
+        selectedDebitVpn.includes(getProductsDebitVpn(product).trim()),
       );
     }
 
     if (selectedMaxTcp.length > 0) {
       filtered = filtered.filter((product) =>
-        selectedMaxTcp.includes(getProductsMaxTcp(product).trim())
+        selectedMaxTcp.includes(getProductsMaxTcp(product).trim()),
       );
     }
 
     if (selectedDebitFirewall.length > 0) {
       filtered = filtered.filter((product) =>
-        selectedDebitFirewall.includes(getProductsDebitFirewall(product).trim())
+        selectedDebitFirewall.includes(
+          getProductsDebitFirewall(product).trim(),
+        ),
       );
     }
 
     if (selectedVitesse.length > 0) {
       filtered = filtered.filter((product) =>
-        selectedVitesse.includes(getProductsVitesse(product).trim())
+        selectedVitesse.includes(getProductsVitesse(product).trim()),
       );
     }
 
     if (selectedTypeWifi.length > 0) {
       filtered = filtered.filter((product) =>
-        selectedTypeWifi.includes(getProductsTypeWifi(product).trim())
+        selectedTypeWifi.includes(getProductsTypeWifi(product).trim()),
       );
     }
 
     if (selectedAntenne.length > 0) {
       filtered = filtered.filter((product) =>
-        selectedAntenne.includes(getProductsAntenne(product).trim())
+        selectedAntenne.includes(getProductsAntenne(product).trim()),
       );
     }
 
     if (selectedLan.length > 0) {
       filtered = filtered.filter((product) =>
-        selectedLan.includes(getProductsLan(product).trim())
+        selectedLan.includes(getProductsLan(product).trim()),
       );
     }
 
     if (selectedNebula.length > 0) {
       filtered = filtered.filter((product) =>
-        selectedNebula.includes(getProductsNebula(product).trim())
+        selectedNebula.includes(getProductsNebula(product).trim()),
       );
     }
 
@@ -451,7 +453,7 @@ export default function ShopAside({
   const handleBrandFilterChange = (brand) => {
     if (selectedBrands.includes(brand)) {
       setSelectedBrands(
-        selectedBrands.filter((selectedBrand) => selectedBrand !== brand)
+        selectedBrands.filter((selectedBrand) => selectedBrand !== brand),
       );
     } else {
       setSelectedBrands([...selectedBrands, brand]);
@@ -467,7 +469,7 @@ export default function ShopAside({
     const megapixelsValue = parseInt(event.target.value);
     if (selectedMegapixels.includes(megapixelsValue)) {
       setSelectedMegapixels(
-        selectedMegapixels.filter((value) => value !== megapixelsValue)
+        selectedMegapixels.filter((value) => value !== megapixelsValue),
       );
     } else {
       setSelectedMegapixels([...selectedMegapixels, megapixelsValue]);
@@ -482,7 +484,7 @@ export default function ShopAside({
     const imgSecValue = parseInt(event.target.value);
     if (selectedImgSec.includes(imgSecValue)) {
       setSelectedImgSec(
-        selectedImgSec.filter((value) => value !== imgSecValue)
+        selectedImgSec.filter((value) => value !== imgSecValue),
       );
     } else {
       setSelectedImgSec([...selectedImgSec, imgSecValue]);
@@ -510,7 +512,7 @@ export default function ShopAside({
     const infrarougeValue = event.target.value;
     if (selectedInfrarouge.includes(infrarougeValue)) {
       setSelectedInfrarouge(
-        selectedInfrarouge.filter((value) => value !== infrarougeValue)
+        selectedInfrarouge.filter((value) => value !== infrarougeValue),
       );
     } else {
       setSelectedInfrarouge([...selectedInfrarouge, infrarougeValue]);
@@ -526,8 +528,8 @@ export default function ShopAside({
     if (selectedDistanceInfrarouge.includes(distanceInfrarougeValue)) {
       setSelectedDistanceInfrarouge(
         selectedDistanceInfrarouge.filter(
-          (value) => value !== distanceInfrarougeValue
-        )
+          (value) => value !== distanceInfrarougeValue,
+        ),
       );
     } else {
       setSelectedDistanceInfrarouge([
@@ -546,8 +548,8 @@ export default function ShopAside({
     if (selectedInstallationExt.includes(installationExtValue)) {
       setSelectedInstallationExt(
         selectedInstallationExt.filter(
-          (value) => value !== installationExtValue
-        )
+          (value) => value !== installationExtValue,
+        ),
       );
     } else {
       setSelectedInstallationExt([
@@ -565,7 +567,7 @@ export default function ShopAside({
     const nbrePortsValue = parseInt(event.target.value);
     if (selectedNbrePorts.includes(nbrePortsValue)) {
       setSelectedNbrePorts(
-        selectedNbrePorts.filter((value) => value !== nbrePortsValue)
+        selectedNbrePorts.filter((value) => value !== nbrePortsValue),
       );
     } else {
       setSelectedNbrePorts([...selectedNbrePorts, nbrePortsValue]);
@@ -580,7 +582,7 @@ export default function ShopAside({
     const rackableValue = event.target.value;
     if (selectedRackable.includes(rackableValue)) {
       setSelectedRackable(
-        selectedRackable.filter((value) => value !== rackableValue)
+        selectedRackable.filter((value) => value !== rackableValue),
       );
     } else {
       setSelectedRackable([...selectedRackable, rackableValue]);
@@ -595,7 +597,7 @@ export default function ShopAside({
     const manageableValue = event.target.value;
     if (selectedManageable.includes(manageableValue)) {
       setSelectedManageable(
-        selectedManageable.filter((value) => value !== manageableValue)
+        selectedManageable.filter((value) => value !== manageableValue),
       );
     } else {
       setSelectedManageable([...selectedManageable, manageableValue]);
@@ -623,7 +625,7 @@ export default function ShopAside({
     const poePlusValue = event.target.value;
     if (selectedPoePlus.includes(poePlusValue)) {
       setSelectedPoePlus(
-        selectedPoePlus.filter((value) => value !== poePlusValue)
+        selectedPoePlus.filter((value) => value !== poePlusValue),
       );
     } else {
       setSelectedPoePlus([...selectedPoePlus, poePlusValue]);
@@ -638,7 +640,7 @@ export default function ShopAside({
     const poePlusPlusValue = event.target.value;
     if (selectedPoePlusPlus.includes(poePlusPlusValue)) {
       setSelectedPoePlusPlus(
-        selectedPoePlusPlus.filter((value) => value !== poePlusPlusValue)
+        selectedPoePlusPlus.filter((value) => value !== poePlusPlusValue),
       );
     } else {
       setSelectedPoePlusPlus([...selectedPoePlusPlus, poePlusPlusValue]);
@@ -666,7 +668,7 @@ export default function ShopAside({
     const debitVpnValue = event.target.value;
     if (selectedDebitVpn.includes(debitVpnValue)) {
       setSelectedDebitVpn(
-        selectedDebitVpn.filter((value) => value !== debitVpnValue)
+        selectedDebitVpn.filter((value) => value !== debitVpnValue),
       );
     } else {
       setSelectedDebitVpn([...selectedDebitVpn, debitVpnValue]);
@@ -681,7 +683,7 @@ export default function ShopAside({
     const maxTcpValue = event.target.value;
     if (selectedMaxTcp.includes(maxTcpValue)) {
       setSelectedMaxTcp(
-        selectedMaxTcp.filter((value) => value !== maxTcpValue)
+        selectedMaxTcp.filter((value) => value !== maxTcpValue),
       );
     } else {
       setSelectedMaxTcp([...selectedMaxTcp, maxTcpValue]);
@@ -696,7 +698,7 @@ export default function ShopAside({
     const debitFirewallValue = event.target.value;
     if (selectedDebitFirewall.includes(debitFirewallValue)) {
       setSelectedDebitFirewall(
-        selectedDebitFirewall.filter((value) => value !== debitFirewallValue)
+        selectedDebitFirewall.filter((value) => value !== debitFirewallValue),
       );
     } else {
       setSelectedDebitFirewall([...selectedDebitFirewall, debitFirewallValue]);
@@ -711,7 +713,7 @@ export default function ShopAside({
     const vitesseValue = event.target.value;
     if (selectedVitesse.includes(vitesseValue)) {
       setSelectedVitesse(
-        selectedVitesse.filter((value) => value !== vitesseValue)
+        selectedVitesse.filter((value) => value !== vitesseValue),
       );
     } else {
       setSelectedVitesse([...selectedVitesse, vitesseValue]);
@@ -726,7 +728,7 @@ export default function ShopAside({
     const typeWifiValue = event.target.value;
     if (selectedTypeWifi.includes(typeWifiValue)) {
       setSelectedTypeWifi(
-        selectedTypeWifi.filter((value) => value !== typeWifiValue)
+        selectedTypeWifi.filter((value) => value !== typeWifiValue),
       );
     } else {
       setSelectedTypeWifi([...selectedTypeWifi, typeWifiValue]);
@@ -741,7 +743,7 @@ export default function ShopAside({
     const antenneValue = event.target.value;
     if (selectedAntenne.includes(antenneValue)) {
       setSelectedAntenne(
-        selectedAntenne.filter((value) => value !== antenneValue)
+        selectedAntenne.filter((value) => value !== antenneValue),
       );
     } else {
       setSelectedAntenne([...selectedAntenne, antenneValue]);
@@ -769,7 +771,7 @@ export default function ShopAside({
     const nebulaValue = event.target.value;
     if (selectedNebula.includes(nebulaValue)) {
       setSelectedNebula(
-        selectedNebula.filter((value) => value !== nebulaValue)
+        selectedNebula.filter((value) => value !== nebulaValue),
       );
     } else {
       setSelectedNebula([...selectedNebula, nebulaValue]);

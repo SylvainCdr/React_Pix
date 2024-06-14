@@ -1,10 +1,27 @@
 import React from "react";
 import styles from "./style.module.scss";
 
-export default function HomepageCustomersSlider() {
-  
-  const images = ["aphp.png", "argenteuil.png", "channel.png", "coquide.png", "dps.png", "foliateam.png", "foncia.png", "genelec.png", "itq.png", "ministere-aff.png", "ministere-int.png", "ministere-just.png", "onet.png", "pml.png", "primion.png", "securitas.png", "terideal.png"]
+const images = [
+  "aphp.png",
+  "argenteuil.png",
+  "channel.png",
+  "coquide.png",
+  "dps.png",
+  "foliateam.png",
+  "foncia.png",
+  "genelec.png",
+  "itq.png",
+  "ministere-aff.png",
+  "ministere-int.png",
+  "ministere-just.png",
+  "onet.png",
+  "pml.png",
+  "primion.png",
+  "securitas.png",
+  "terideal.png",
+];
 
+export default function HomepageCustomersSlider() {
   return (
     <div className={styles.slider}>
       <h1>Ils nous ont fait confiance :</h1>

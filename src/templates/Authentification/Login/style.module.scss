@@ -1,0 +1,106 @@
+.login-container {
+  display: flex;
+  height: 90vh;
+  background-image: url(https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-position: center;
+  margin: auto;
+
+  .section-2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 3rem;
+      font-weight: 500;
+      margin-bottom: 0.6em;
+      color: var(--sunset1);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 25em;
+      background-color: #1d1d1de0;
+      padding: 2em;
+      border-radius: 0.5em;
+      -webkit-border-radius: 0.5em;
+      -moz-border-radius: 0.5em;
+      -ms-border-radius: 0.5em;
+      -o-border-radius: 0.5em;
+
+      label {
+        margin-bottom: 3px;
+
+        span {
+          color: rgb(167, 167, 167);
+          font-size: 0.8rem;
+        }
+      }
+
+      input {
+        color: white;
+        padding: 6px;
+        margin-bottom: 12px;
+        border: 1px solid #696868;
+        font-size: 14px;
+        background-color: rgba(31, 31, 31, 0.089);
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        -ms-border-radius: 4px;
+        -o-border-radius: 4px;
+      }
+
+      button {
+        margin-top: 1em;
+        padding: 0.35em 1em;
+      }
+
+      .success {
+        margin-top: 20px;
+        color: green;
+        font-weight: bold;
+      }
+
+      .error {
+        margin-top: 20px;
+        color: red;
+        font-weight: bold;
+      }
+    }
+    a {
+      color: #0187db;
+      text-decoration: none;
+      font-weight: 500;
+      margin: 1rem auto;
+      cursor: pointer;
+    }
+
+    a:hover {
+      color: #0460d1;
+    }
+  }
+}
+
+//media queries
+@media (max-width: 768px) {
+  .login-container {
+    background-position: bottom;
+
+    .section-2 {
+      padding: 1em;
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      form {
+        width: 22em;
+      }
+    }
+  }
+}

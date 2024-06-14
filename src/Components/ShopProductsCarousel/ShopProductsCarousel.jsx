@@ -82,7 +82,7 @@ const ShopProductsCarousel = ({ carouselProducts }) => {
         {carouselProducts.map((carouselProduct, index) => {
           const discountedPrice = calculateDiscount(
             carouselProduct.price,
-            discount
+            discount,
           );
           return (
             <div className={styles["product-item"]} key={index}>

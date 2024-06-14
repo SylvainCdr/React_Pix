@@ -16,15 +16,13 @@ const useCart = () => {
   // Calcul du montant total du panier
   const totalAmount = cart.reduce(
     (acc, product) => acc + product.quantity * product.price * 1.2 + 9.9,
-    0
+    0,
   );
 
   // Fonction pour récupérer le panier depuis le serveur
   const fetchCart = async (userId) => {
     try {
-      const response = await fetch(
-        `${BASE_URL}/users/${userId}/cart`
-      );
+      const response = await fetch(`${BASE_URL}/users/${userId}/cart`);
       if (response.ok) {
         const data = await response.json();
         setCart(data);
@@ -48,14 +46,14 @@ const useCart = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ quantity }),
-        }
+        },
       );
       if (response.ok) {
         fetchCart(userId);
       } else {
         console.error(
           "Erreur lors de la modification du panier:",
-          response.status
+          response.status,
         );
       }
     } catch (error) {
@@ -74,20 +72,20 @@ const useCart = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ price }),
-        }
+        },
       );
       if (response.ok) {
         fetchCart(userId);
       } else {
         console.error(
           "Erreur lors de la modification du prix du produit:",
-          response.status
+          response.status,
         );
       }
     } catch (error) {
       console.error(
         "Erreur réseau lors de la modification du prix du produit:",
-        error
+        error,
       );
     }
   };
@@ -100,14 +98,14 @@ const useCart = () => {
     productRef,
     quantity,
     productPrice,
-    productImage
+    productImage,
   ) => {
     try {
       setIsAddingToCart(true);
       const discount = JSON.parse(localStorage.getItem("user"))?.discount;
       const discountedPrice = productPrice - (productPrice * discount) / 100;
       const existingProductIndex = cart.findIndex(
-        (product) => product.product_id === productId
+        (product) => product.product_id === productId,
       );
 
       let url = `${BASE_URL}/users/${userId}/add-cart/${productId}`;
@@ -168,22 +166,22 @@ const useCart = () => {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       if (response.ok) {
         setCart((prevCart) =>
-          prevCart.filter((product) => product.product_id !== productId)
+          prevCart.filter((product) => product.product_id !== productId),
         );
       } else {
         console.error(
           "Erreur lors de la suppression du produit du panier:",
-          response.status
+          response.status,
         );
       }
     } catch (error) {
       console.error(
         "Erreur réseau lors de la suppression du produit du panier:",
-        error
+        error,
       );
     }
   };

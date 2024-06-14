@@ -1,12 +1,11 @@
 import React from "react";
 import styles from "./style.module.scss";
-import { Link, useLocation } from "react-router-dom";
-import { useUser } from "../../Pages/appContext";
+import  Link from "next/link";
+import { useUser } from "../../templates/appContext";
 import Swal from "sweetalert2";
-
+import { usePathname } from "next/navigation";
 
 function Header() {
-
   const user = useUser();
   console.log(user);
 
@@ -47,43 +46,85 @@ function Header() {
     }, 2000);
   };
 
-  const location = useLocation();
+  const pathname = usePathname()
+
 
   return (
     <div className={styles.header_container}>
       <nav className={styles.header__nav}>
         <div className={styles.header__logo}>
-          <Link to="/">
+          <Link href="/">
             <img src="/assets/logo-dark.svg" alt="logo" />
           </Link>
         </div>
 
         <ul>
-          <li className={location.pathname === "/boutique" ? styles.active : ""}>
-            <Link to="/boutique" className={styles.shop} onClick={handleLinkClick}>Boutique</Link>
+          <li
+            className={pathname === "/boutique" ? styles.active : ""}
+          >
+            <Link
+              href="/boutique"
+              className={styles.shop}
+              onClick={handleLinkClick}
+            >
+              Boutique
+            </Link>
           </li>
-          <li className={location.pathname === "/notre-expertise" ? styles.active : ""}>
-            <Link to="/notre-expertise" onClick={handleLinkClick}>Notre expertise</Link>
+          <li
+            className={
+              pathname === "/notre-expertise" ? styles.active : ""
+            }
+          >
+            <Link href="/notre-expertise" onClick={handleLinkClick}>
+              Notre expertise
+            </Link>
           </li>
-          <li className={location.pathname === "/a-propos" ? styles.active : ""}>
-            <Link to="/a-propos" onClick={handleLinkClick}>Qui sommes-nous ?</Link>
+          <li
+            className={pathname === "/a-propos" ? styles.active : ""}
+          >
+            <Link href="/a-propos" onClick={handleLinkClick}>
+              Qui sommes-nous ?
+            </Link>
           </li>
-          <li className={location.pathname === "/contact" ? styles.active : ""}>
-            <Link to="/contact" onClick={handleLinkClick}>Contact</Link>
+          <li className={pathname === "/contact" ? styles.active : ""}>
+            <Link href="/contact" onClick={handleLinkClick}>
+              Contact
+            </Link>
           </li>
           {!user && (
-            <li className={location.pathname === "/inscription" || location.pathname === "/connexion" ? styles.active : ""}>
-              <Link to="/inscription" onClick={handleLinkClick}>Connexion</Link>
+            <li
+              className={
+                pathname === "/inscription" ||
+                pathname === "/connexion"
+                  ? styles.active
+                  : ""
+              }
+            >
+              <Link href="/inscription" onClick={handleLinkClick}>
+                Connexion
+              </Link>
             </li>
           )}
           {user?.role === "user" && (
-            <li className={location.pathname === "/mon-compte" ? styles.active : ""}>
-              <Link to="/mon-compte" onClick={handleLinkClick}>Mon compte</Link>
+            <li
+              className={
+                pathname === "/mon-compte" ? styles.active : ""
+              }
+            >
+              <Link href="/mon-compte" onClick={handleLinkClick}>
+                Mon compte
+              </Link>
             </li>
           )}
           {user?.role === "admin" && (
-            <li className={location.pathname === "/admin/dashboard" ? styles.active : ""} >
-              <Link to="/admin/dashboard" onClick={handleLinkClick}>Administration</Link>
+            <li
+              className={
+                pathname === "/admin/dashboard" ? styles.active : ""
+              }
+            >
+              <Link href="/admin/dashboard" onClick={handleLinkClick}>
+                Administration
+              </Link>
             </li>
           )}
           {user && (
@@ -99,7 +140,7 @@ function Header() {
 
         {user?.role === "user" && (
           <div className={styles.cart}>
-            <Link to="/panier">
+            <Link href="/panier">
               <i className="fa-solid fa-cart-shopping"></i>
             </Link>
           </div>

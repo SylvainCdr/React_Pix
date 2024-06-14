@@ -3,13 +3,11 @@
   width: 100%;
   box-shadow: 0 0 3px rgba(255, 254, 254, 0.5);
   display: flex;
-  min-height : 40vh;
+  min-height: 40vh;
   justify-content: space-around;
 
- 
-
   .section-1 {
-    padding : 0em 2em;
+    padding: 0em 2em;
     width: 35%;
     align-self: center;
 
@@ -29,11 +27,8 @@
     width: 15%;
     margin-top: 2.5em;
 
- 
-    
-
     h4 {
-      font-family: 'barlow condensed', sans-serif;
+      font-family: "barlow condensed", sans-serif;
       text-transform: uppercase;
       font-size: 1.6rem;
       font-weight: 500;
@@ -95,11 +90,8 @@
     .section-3,
     .section-4 {
       width: 100%;
-   text-align: center;
-   justify-content: center  ;
-    
-      
-
+      text-align: center;
+      justify-content: center;
     }
 
     .section-2 {

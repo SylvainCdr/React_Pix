@@ -60,8 +60,6 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
   const [detailsLan, setDetailsLan] = useState("");
   const [detailsNebula, setDetailsNebula] = useState("");
 
-
-
   // Effet pour remplir le formulaire avec les données du produit à éditer
   useEffect(() => {
     if (productToEdit) {
@@ -81,116 +79,116 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
       setSelectedBrand(productToEdit.brand || "defaultBrand");
       // Caractéristiques 2ndaires
       setDetailsDimensions(
-        productToEdit.details ? productToEdit.details.dimensions || "" : ""
+        productToEdit.details ? productToEdit.details.dimensions || "" : "",
       );
       setDetailsPoids(
-        productToEdit.details ? productToEdit.details.poids || "" : ""
+        productToEdit.details ? productToEdit.details.poids || "" : "",
       );
       setDetailsTemp(
-        productToEdit.details ? productToEdit.details.temp || "" : ""
+        productToEdit.details ? productToEdit.details.temp || "" : "",
       );
       setDetailsMegapixels(
-        productToEdit.details ? productToEdit.details.megapixels || "" : ""
+        productToEdit.details ? productToEdit.details.megapixels || "" : "",
       );
       setDetailsDistanceFocale(
-        productToEdit.details ? productToEdit.details.distanceFocale || "" : ""
+        productToEdit.details ? productToEdit.details.distanceFocale || "" : "",
       );
       setDetailsOuverture(
-        productToEdit.details ? productToEdit.details.ouverture || "" : ""
+        productToEdit.details ? productToEdit.details.ouverture || "" : "",
       );
       setDetailsAngleVue(
-        productToEdit.details ? productToEdit.details.angleVue || "" : ""
+        productToEdit.details ? productToEdit.details.angleVue || "" : "",
       );
       setDetailsImgSec(
-        productToEdit.details ? productToEdit.details.imgSec || "" : ""
+        productToEdit.details ? productToEdit.details.imgSec || "" : "",
       );
       setDetailsCapteur(
-        productToEdit.details ? productToEdit.details.capteur || "" : ""
+        productToEdit.details ? productToEdit.details.capteur || "" : "",
       );
       setDetailsResolution(
-        productToEdit.details ? productToEdit.details.resolution || "" : ""
+        productToEdit.details ? productToEdit.details.resolution || "" : "",
       );
       setDetailsCouleur(
-        productToEdit.details ? productToEdit.details.couleur || "" : ""
+        productToEdit.details ? productToEdit.details.couleur || "" : "",
       );
       setDetailsInfrarouge(
-        productToEdit.details ? productToEdit.details.infrarouge || "" : ""
+        productToEdit.details ? productToEdit.details.infrarouge || "" : "",
       );
       setDetailsDistanceInfrarouge(
         productToEdit.details
           ? productToEdit.details.distanceInfrarouge || ""
-          : ""
+          : "",
       );
       setDetailsIndiceProtection(
         productToEdit.details
           ? productToEdit.details.indiceProtection || ""
-          : ""
+          : "",
       );
       setDetailsPuissance(
-        productToEdit.details ? productToEdit.details.puissance || "" : ""
+        productToEdit.details ? productToEdit.details.puissance || "" : "",
       );
       setDetailsInstallationExt(
-        productToEdit.details ? productToEdit.details.installationExt || "" : ""
+        productToEdit.details
+          ? productToEdit.details.installationExt || ""
+          : "",
       );
       setDetailsNbrePorts(
-        productToEdit.details ? productToEdit.details.nbrePorts || "" : ""
+        productToEdit.details ? productToEdit.details.nbrePorts || "" : "",
       );
       setDetailsRackable(
-        productToEdit.details ? productToEdit.details.rackable || "" : ""
+        productToEdit.details ? productToEdit.details.rackable || "" : "",
       );
       setDetailsManageable(
-        productToEdit.details ? productToEdit.details.manageable || "" : ""
+        productToEdit.details ? productToEdit.details.manageable || "" : "",
       );
       setDetailsPoe(
-        productToEdit.details ? productToEdit.details.poe || "" : ""
+        productToEdit.details ? productToEdit.details.poe || "" : "",
       );
       setDetailsPoePlus(
-        productToEdit.details ? productToEdit.details.poePlus || "" : ""
+        productToEdit.details ? productToEdit.details.poePlus || "" : "",
       );
       setDetailsPoePlusPlus(
-        productToEdit.details ? productToEdit.details.poePlusPlus || "" : ""
+        productToEdit.details ? productToEdit.details.poePlusPlus || "" : "",
       );
       setDetailsConsommation(
-        productToEdit.details ? productToEdit.details.consommation || "" : ""
+        productToEdit.details ? productToEdit.details.consommation || "" : "",
       );
       setDetailsGarantie(
-        productToEdit.details ? productToEdit.details.garantie || "" : ""
+        productToEdit.details ? productToEdit.details.garantie || "" : "",
       );
       setDetailsInterface(
-        productToEdit.details ? productToEdit.details.interface || "" : ""
+        productToEdit.details ? productToEdit.details.interface || "" : "",
       );
       setDetailsUsb(
-        productToEdit.details ? productToEdit.details.usb || "" : ""
+        productToEdit.details ? productToEdit.details.usb || "" : "",
       );
       setDetailsPortConsole(
-        productToEdit.details ? productToEdit.details.portConsole || "" : ""
+        productToEdit.details ? productToEdit.details.portConsole || "" : "",
       );
       setDetailsDebitVpn(
-        productToEdit.details ? productToEdit.details.debitVpn || "" : ""
+        productToEdit.details ? productToEdit.details.debitVpn || "" : "",
       );
       setDetailsMaxTcp(
-        productToEdit.details ? productToEdit.details.maxTcp || "" : ""
+        productToEdit.details ? productToEdit.details.maxTcp || "" : "",
       );
       setDetailsDebitFirewall(
-        productToEdit.details ? productToEdit.details.debitFirewall || "" : ""
+        productToEdit.details ? productToEdit.details.debitFirewall || "" : "",
       );
       setDetailsVitesse(
-        productToEdit.details ? productToEdit.details.vitesse || "" : ""
+        productToEdit.details ? productToEdit.details.vitesse || "" : "",
       );
       setDetailsTypeWifi(
-        productToEdit.details ? productToEdit.details.typeWifi || "" : ""
+        productToEdit.details ? productToEdit.details.typeWifi || "" : "",
       );
       setDetailsAntenne(
-        productToEdit.details ? productToEdit.details.antenne || "" : ""
+        productToEdit.details ? productToEdit.details.antenne || "" : "",
       );
       setDetailsLan(
-        productToEdit.details ? productToEdit.details.lan || "" : ""
+        productToEdit.details ? productToEdit.details.lan || "" : "",
       );
       setDetailsNebula(
-        productToEdit.details ? productToEdit.details.nebula || "" : ""
+        productToEdit.details ? productToEdit.details.nebula || "" : "",
       );
-    
-
     }
   }, [productToEdit]);
 
@@ -201,8 +199,7 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
     setImage(URL.createObjectURL(file));
   };
 
-
-// Gérer la soumission du formulaire
+  // Gérer la soumission du formulaire
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -214,8 +211,12 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
       ref,
       presentation,
       description,
-      category: selectedCategory === "newCategory" ? newCategory : selectedCategory,
-      subcategory: selectedSubcategory === "newSubcategory" ? newSubcategory : selectedSubcategory,
+      category:
+        selectedCategory === "newCategory" ? newCategory : selectedCategory,
+      subcategory:
+        selectedSubcategory === "newSubcategory"
+          ? newSubcategory
+          : selectedSubcategory,
       brand: selectedBrand === "newBrand" ? newBrand : selectedBrand,
       price,
       image,
@@ -256,36 +257,30 @@ export default function AdminProductForm({ onSubmit, productToEdit }) {
       antenne: detailsAntenne,
       lan: detailsLan,
       nebula: detailsNebula,
-
-
     };
 
     console.log("Après ajout nouvelle sous-catégorie :", product.subcategory);
 
+    // Télécharger l'image si un fichier est sélectionné
+    if (imageFile) {
+      const formData = new FormData();
+      formData.append("file", imageFile);
+      formData.append("fileName", imageFile.name); // Utilisez `imageFile.name` comme nom de fichier
+      console.log(imageFile.name);
 
+      try {
+        const response = await fetch(`${BASE_URL}/upload`, {
+          method: "POST",
+          body: formData,
+        });
+        const data = await response.json();
+        product.image = data.url;
+      } catch (error) {
+        console.error("Erreur lors de l'upload de l'image:", error);
+        return;
+      }
+    }
 
-// Télécharger l'image si un fichier est sélectionné
-if (imageFile) {
-  const formData = new FormData();
-  formData.append('file', imageFile);
-  formData.append('fileName', imageFile.name); // Utilisez `imageFile.name` comme nom de fichier
-  console.log(imageFile.name);
-
-  try {
-    const response = await fetch(`${BASE_URL}/upload`, {
-      method: "POST",
-      body: formData,
-    });
-    const data = await response.json();
-    product.image = data.url;
-  } catch (error) {
-    console.error("Erreur lors de l'upload de l'image:", error);
-    return;
-  }
-}
-
-
-   
     // Ajouter l'identifiant du produit si disponible
     if (productToEdit && productToEdit._id) {
       product._id = productToEdit._id;
@@ -297,8 +292,8 @@ if (imageFile) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className={styles['admin-product-form']}>
-        <div className={styles['main-details']}>
+      <div className={styles["admin-product-form"]}>
+        <div className={styles["main-details"]}>
           <label htmlFor="name">Nom</label>
           <input
             type="text"
@@ -536,7 +531,13 @@ if (imageFile) {
             value={image}
             onChange={(e) => setImage(e.target.value)}
           />
-          {image && <img src={image} alt="Preview" className={styles['image-preview']} />}
+          {image && (
+            <img
+              src={image}
+              alt="Preview"
+              className={styles["image-preview"]}
+            />
+          )}
 
           <label htmlFor="pdf">URL du PDF</label>
           <input
@@ -547,7 +548,7 @@ if (imageFile) {
             onChange={(e) => setPdf(e.target.value)}
           />
         </div>
-        <div className={styles['details-1']}>
+        <div className={styles["details-1"]}>
           <label htmlFor="detailsDimensions">Dimensions</label>
           <input
             type="text"
@@ -702,7 +703,7 @@ if (imageFile) {
             onChange={(e) => setDetailsRackable(e.target.value)}
           />
         </div>
-        <div className={styles['details-2']}>
+        <div className={styles["details-2"]}>
           <label htmlFor="detailsManageable">Manageable</label>
           <input
             type="text"
@@ -841,7 +842,7 @@ if (imageFile) {
           />
         </div>
       </div>
-      <div className={styles['form-button']}>
+      <div className={styles["form-button"]}>
         <button type="submit">{productToEdit ? "Modifier" : "Ajouter"}</button>{" "}
       </div>
     </form>

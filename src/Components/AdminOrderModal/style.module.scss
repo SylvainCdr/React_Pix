@@ -1,84 +1,84 @@
-
-
 .admin-order-modal {
+  position: absolute;
+  z-index: 1000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: auto;
+  background: linear-gradient(
+    -45deg,
+    rgb(74, 74, 74) 0%,
+    rgb(62, 62, 62) 50%,
+    rgb(15, 15, 15) 100%
+  );
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
 
+  .close-button {
     position: absolute;
-    z-index: 1000;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    height: auto;
-    background: linear-gradient(-45deg, rgb(74, 74, 74) 0%, rgb(62, 62, 62) 50%, rgb(15, 15, 15) 100%);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
+    top: 1rem;
+    right: 1rem;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
 
-    .close-button {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        background-color: transparent;
-        border: none;
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
+  h2 {
+    margin: auto;
+    width: auto;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    background-color: var(--sunset1);
+    border-radius: 10px;
+    text-align: center;
+    padding: 0.7rem;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
+
+  h3 {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    thead {
+      background-color: rgb(90, 90, 90);
+      color: white;
+      th {
+        padding: 0.8rem;
+      }
     }
-
-    h2 {
-        margin: auto;
-        width: auto;
-        margin-left: 2rem;
-        margin-right: 2rem;
-        font-size: 1.3rem;
-        margin-bottom: 2rem;
-        background-color: var(--sunset1);
-        border-radius: 10px;
-        text-align: center;
-        padding: 0.7rem;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        -ms-border-radius: 10px;
-        -o-border-radius: 10px;
-}
-
-    h3 {
-        font-size: 0.9rem;
-        margin-bottom: 0.5rem;
-    }
-
-    h4 {
-        font-size: 1rem;
-        margin-bottom: 0.5rem;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        font-size: 0.9rem;
-        thead {
-            background-color: rgb(90, 90, 90);
-            color: white;
-            th {
-                padding: 0.8rem;
-            }
+    tbody {
+      tr {
+        border-bottom: 1px solid rgb(40, 40, 40);
+        td {
+          padding: 0.8rem;
         }
-        tbody {
-            tr {
-                border-bottom: 1px solid rgb(40, 40, 40);
-                td {
-                    padding: 0.8rem;
-                
-                }
-            }
-        }
+      }
     }
+  }
 
-    p {
-        font-size: 1rem;
-        margin-top: 1rem;
-    }
-
+  p {
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
 }

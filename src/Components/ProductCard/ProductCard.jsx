@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./style.module.scss";
 import Swal from "sweetalert2";
 import Aos from "aos";
-import { logos } from "../../Pages/Shop/Product/LogosData";
+import { logos } from "../../templates/Shop/Product/LogosData";
 import { BASE_URL } from "../../url";
 
 const ProductCard = ({
@@ -60,7 +60,7 @@ const ProductCard = ({
             product.name,
             product.price,
             product.ref,
-            product.image
+            product.image,
           );
         }
 
@@ -96,9 +96,11 @@ const ProductCard = ({
     if (userId && product.price && discount) {
       const discountedPrice = calculateDiscount(product.price, discount);
       return (
-        <div className={styles['card-prices']}>
-          <p className={styles['original-price']}>{product.price.toFixed(2)} € </p>
-          <p className={styles['discounted-price']}>
+        <div className={styles["card-prices"]}>
+          <p className={styles["original-price"]}>
+            {product.price.toFixed(2)} €{" "}
+          </p>
+          <p className={styles["discounted-price"]}>
             {discountedPrice.toFixed(2)} € <span>HT</span>{" "}
           </p>
         </div>
@@ -106,14 +108,14 @@ const ProductCard = ({
     } else {
       return (
         // Si l'utilisateur n'est pas authentifié ou si le produit n'a pas de prix remisé, afficher le prix normal
-        <span className={styles['card-price']}>
+        <span className={styles["card-price"]}>
           {product.price ? product.price.toFixed(2) : "00.00"} €<span> HT</span>
         </span>
       );
     }
   };
 
-// on crée une fonction pour ajouter un produit au panier
+  // on crée une fonction pour ajouter un produit au panier
   const handleAddToCartClick = async () => {
     if (userId) {
       const added = await addToCart(
@@ -123,7 +125,7 @@ const ProductCard = ({
         product.ref,
         (quantity = 1),
         product.price,
-        product.image
+        product.image,
       );
       if (added) {
         console.log("Produit ajouté au panier avec succès!");
@@ -147,43 +149,47 @@ const ProductCard = ({
   }, []);
 
   console.log("Marque du produit:", product.brand);
-  const brandLogo = logos.find(logo => logo.name.toLowerCase() === product.brand?.toLowerCase());
+  const brandLogo = logos.find(
+    (logo) => logo.name.toLowerCase() === product.brand?.toLowerCase(),
+  );
   console.log("Logo trouvé:", brandLogo);
 
   return (
-    <div className={styles['product-card']}>
-      {discount !== 0 && <span className={styles['discount-badge']}>-{discount}%</span>}
+    <div className={styles["product-card"]}>
+      {discount !== 0 && (
+        <span className={styles["discount-badge"]}>-{discount}%</span>
+      )}
       {product.image.startsWith("http") ? (
-        <img src={product.image} alt="" className={styles['product-img']} />
+        <img src={product.image} alt="" className={styles["product-img"]} />
       ) : (
         <img
           src={`${BASE_URL}${product.image}`}
           alt=""
-          className={styles['product-img']}
+          className={styles["product-img"]}
         />
       )}
 
-      <div className={styles['card-title']}>
+      <div className={styles["card-title"]}>
         <Link to={`/boutique/produit/${product._id}`}>
           <h2>{product.name}</h2>
         </Link>
       </div>
-      <div className={styles['card-brand']}>
+      <div className={styles["card-brand"]}>
         {/* <p className="card-brand">{product.brand}</p> */}
         {brandLogo && (
           <img
             src={brandLogo.logo}
             alt={brandLogo.name}
-            className={styles['brand-logo']}
+            className={styles["brand-logo"]}
           />
         )}
       </div>
-      <div className={styles['card-bottom']}>
+      <div className={styles["card-bottom"]}>
         {calculateDiscountedPrice()}
-        <div className={styles['CTA']}>
+        <div className={styles["CTA"]}>
           <p
             data-aos="zoom-in-down"
-            className={styles['heart']}
+            className={styles["heart"]}
             onClick={handleToggleFavoritesClick}
             style={{ cursor: "pointer" }}
           >
@@ -192,7 +198,7 @@ const ProductCard = ({
               style={{ color: isInFavorites ? "#ed3f3f" : "#838485" }}
             ></i>
           </p>
-          <p data-aos="zoom-in-down" className={styles['cart']}>
+          <p data-aos="zoom-in-down" className={styles["cart"]}>
             <i
               className="fa-solid fa-cart-plus"
               onClick={handleAddToCartClick}

@@ -14,7 +14,7 @@ const ShopHeroCarousel = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     fade: true,
-  cssEase: 'linear'
+    cssEase: "linear",
   };
 
   const heroImages = [

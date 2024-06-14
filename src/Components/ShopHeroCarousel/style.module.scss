@@ -8,13 +8,12 @@
     max-height: 50vh;
     object-fit: cover;
   }
+}
+// media queries
 
-  }
-  // media queries
-
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
   .shop_hero_carousel_container {
     width: 90%;
     margin: auto;
   }
-    }
+}

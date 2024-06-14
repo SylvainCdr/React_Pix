@@ -1,0 +1,56 @@
+.admin-orders {
+  margin: 7rem auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 1440px;
+  align-items: center;
+
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--sunset1);
+    font-weight: 500;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+    background-color: #464646;
+
+    thead {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    th,
+    td {
+      text-align: center;
+      padding: 0.7rem; /* Ajoutez un padding uniforme aux cellules */
+    }
+
+    th {
+      font-size: 1.2rem;
+    }
+
+    td {
+      vertical-align: middle;
+    }
+
+    tr:nth-child(even) {
+      background-color: #333;
+    }
+
+    tr:hover {
+      background-color: #555;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+    }
+    .modify-btn {
+      background-color: rgb(226, 100, 16);
+    }
+  }
+}

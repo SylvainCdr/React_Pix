@@ -1,0 +1,335 @@
+.expertise-container {
+  margin-top: 5em;
+
+  .hero {
+    height: 65vh;
+    background: linear-gradient(
+        90deg,
+        #1c1c1cfb 10%,
+        rgba(10, 17, 30, 0.87) 35%,
+        rgba(59, 97, 167, 0.192),
+        60%,
+        rgba(122, 122, 122, 0.055) 94%
+      ),
+      url("../../../public/assets/us.jpeg");
+    // url("https://as2.ftcdn.net/v2/jpg/04/99/27/49/1000_F_499274941_tQTJ92Wf8vAtvYGOGhgx0YuqYqGRV2Zl.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    align-items: center;
+    display: flex;
+    margin-bottom: 2rem;
+    width: 100%;
+
+    .title {
+      width: 40%;
+      padding-left: 4%;
+
+      h1 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 3rem;
+        color: var(--sunset1);
+        font-weight: 500;
+        line-height: 3rem;
+        margin-bottom: 1.5rem;
+      }
+
+      h2 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2rem;
+        color: #fff;
+        font-weight: 400;
+        line-height: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .description {
+        width: 100%;
+        color: rgb(254, 254, 254);
+        font-size: 1.1rem;
+        line-height: 1.8rem;
+      }
+    }
+  }
+  .forces {
+    max-width: 1440px;
+    margin: 6em auto;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    i {
+      text-align: center;
+      width: 10%;
+      color: #03dac8;
+      font-size: 3rem;
+      margin-right: 0.5em;
+    }
+    li {
+      width: 90%;
+      font-size: 1rem;
+      font-weight: 500;
+
+      color: #c0c0c0;
+      line-height: 1.3rem;
+      list-style: none;
+      display: inline-block;
+      align-items: center;
+      margin-right: 0.5em;
+    }
+  }
+
+  .slides-section {
+    max-width: 1440px;
+    margin: 2em auto;
+    padding: 8em 2em 2em 2em;
+
+    h2 {
+      width: 30%;
+      margin: auto;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.1rem;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #efefef;
+      border-top: 1px solid #2ab1ff;
+      border-bottom: 1px solid #2ab1ff;
+      padding: 0.8rem 0;
+    }
+
+    .slide-container {
+      text-align: center;
+      width: 100%;
+      margin: auto;
+      display: flex;
+      flex-direction: inline-block;
+      justify-content: space-between;
+
+      .slide {
+        width: 30%;
+
+        img {
+          width: 15rem;
+          object-fit: cover;
+          border-radius: 50%;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          -ms-border-radius: 50%;
+          -o-border-radius: 50%;
+        }
+
+        h4 {
+          font-family: "Barlow Condensed", sans-serif;
+          font-size: 2rem;
+          font-weight: 500;
+          margin-top: 1rem;
+          color: #2ab1ff;
+        }
+
+        h3 {
+          font-family: "Barlow Condensed", sans-serif;
+          font-size: 1.5rem;
+          font-weight: 400;
+          margin-top: 1rem;
+          color: #efefef;
+        }
+
+        p {
+          font-size: 1rem;
+          font-weight: 400;
+          margin-top: 1rem;
+          color: #c0c0c0;
+          line-height: 1.5rem;
+        }
+      }
+    }
+  }
+
+  // media queries
+  @media (max-width: 1024px) {
+    .hero {
+      height: 55vh;
+
+      .title {
+        width: 56%;
+
+        h1 {
+          font-size: 2rem;
+          line-height: 2.3rem;
+        }
+
+        h2 {
+          font-size: 1.4rem;
+          line-height: 1.5rem;
+        }
+
+        .description {
+          font-size: 1rem;
+          line-height: 1.5rem;
+        }
+      }
+    }
+
+    .forces {
+      display: inline-block;
+      margin: 2em auto;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+      align-self: center;
+
+      i {
+        width: 10%;
+        font-size: 2rem;
+
+        margin-top: 1em;
+        margin-left: 0.3em;
+      }
+
+      li {
+        width: 80%;
+
+        margin-top: 1em;
+      }
+    }
+
+    .slides-section {
+      padding: 0 2em;
+
+      h2 {
+        width: 80%;
+        font-size: 1.5rem;
+        border-top: 0.5px solid #2ab1ff;
+        border-bottom: 0.5px solid #2ab1ff;
+        padding: 0.5rem 0;
+      }
+
+      .slide-container {
+        flex-direction: column;
+        padding: 2em 0;
+
+        .slide {
+          width: 100%;
+          margin-bottom: 2em;
+
+          img {
+            width: 10rem;
+          }
+
+          h4 {
+            font-size: 1.5rem;
+          }
+
+          h3 {
+            font-size: 1.2rem;
+          }
+
+          p {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      height: 45vh;
+      background: linear-gradient(
+          90deg,
+          #1c1c1cfb 10%,
+          rgba(10, 17, 30, 0.87) 35%,
+          rgba(59, 97, 167, 0.192),
+          60%,
+          rgba(122, 122, 122, 0.055) 94%
+        ),
+        url("https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: top;
+      .title {
+        width: 50%;
+
+        h1 {
+          font-size: 1.6rem;
+          line-height: 1.8rem;
+        }
+
+        h2 {
+          font-size: 1.2rem;
+          line-height: 1.3rem;
+        }
+
+        .description {
+          font-size: 1rem;
+          line-height: 1.5rem;
+        }
+      }
+    }
+
+    .forces {
+      display: inline-block;
+      margin: 2em auto;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+      align-self: center;
+
+      i {
+        width: 10%;
+        font-size: 2rem;
+
+        margin-top: 1em;
+        margin-left: 0.3em;
+      }
+
+      li {
+        width: 80%;
+
+        margin-top: 1em;
+      }
+    }
+
+    .slides-section {
+      padding: 0 2em;
+
+      h2 {
+        width: 80%;
+        font-size: 1.5rem;
+        border-top: 0.5px solid #2ab1ff;
+        border-bottom: 0.5px solid #2ab1ff;
+        padding: 0.5rem 0;
+      }
+
+      .slide-container {
+        flex-direction: column;
+        padding: 2em 0;
+
+        .slide {
+          width: 100%;
+          margin-bottom: 2em;
+
+          img {
+            width: 10rem;
+          }
+
+          h4 {
+            font-size: 1.5rem;
+          }
+
+          h3 {
+            font-size: 1.2rem;
+          }
+
+          p {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
