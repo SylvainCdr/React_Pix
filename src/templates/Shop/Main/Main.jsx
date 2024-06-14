@@ -1,66 +1,27 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import Link  from "next/link";
 import styles from "./style.module.scss";
-import ShopNav from "../../../Components/ShopNav/ShopNav";
-import ShopSearch from "../../../Components/ShopSearch/ShopSearch";
+import ShopNav from "@/Components/ShopNav/ShopNav";
+import ShopSearch from "@/Components/ShopSearch/ShopSearch";
 import Aos from "aos";
 import "aos/dist/aos.css"; // Import des styles d'AOS
-import ShopProductsCarousel from "../../../Components/ShopProductsCarousel/ShopProductsCarousel";
-import ShopHeroCarousel from "../../../Components/ShopHeroCarousel/ShopHeroCarousel";
-import { BASE_URL } from "../../../url";
+import ShopProductsCarousel from "@/Components/ShopProductsCarousel/ShopProductsCarousel";
 
-function Catalogue() {
-  const [searchResults, setSearchResults] = useState([]);
-  const [carouselProducts, setCarouselProducts] = useState([]);
-  const [error, setError] = useState(null);
+
+function Catalogue({ products }) {
+  const carouselProducts = products?.filter((product) => product.brand === "Vivotek");
 
   useEffect(() => {
     Aos.init({ duration: 1500 });
   }, []);
 
-  useEffect(() => {
-    fetch(`${BASE_URL}/products`)
-      .then((res) => res.json())
-      .then((data) => {
-        const iproProducts = data.filter(
-          (product) => product.brand === "Vivotek",
-        );
-        setCarouselProducts(iproProducts);
-      })
-      .catch((err) => {
-        setError("Erreur lors du chargement des produits.");
-        console.error(err);
-      });
-  }, []);
-
-  useEffect(() => {
-    fetch(`${BASE_URL}/products`)
-      .then((res) => res.json())
-      .then((data) => {
-        const categories = data.map((product) => product.category);
-        const subcategories = data.map((product) => product.subcategory);
-        console.log(categories);
-        console.log(subcategories);
-      })
-      .catch((err) => {
-        setError("Erreur lors du chargement des produits.");
-        console.error(err);
-      });
-  }, []);
-
   return (
     <div className={styles["shop-container"]}>
       <ShopNav />
-      <ShopSearch setSearchResults={setSearchResults} />
-
-      {searchResults.length === 0 && (
-        <div className={styles["shop-hero-carousel"]}>
-          <ShopHeroCarousel />
-        </div>
-      )}
+      <ShopSearch />
 
       <div data-aos="fade-up" className={styles["shop-categories"]}>
-        <Link to="/boutique/Caméras">
+        <Link href="/boutique/Caméras">
           <div className={styles.category}>
             <h3>Caméras</h3>
             <img
@@ -70,7 +31,7 @@ function Catalogue() {
           </div>
         </Link>
 
-        <Link to="/boutique/Réseau">
+        <Link href="/boutique/Réseau">
           <div className={styles.category}>
             <h3>Réseaux</h3>
             <img
@@ -80,7 +41,7 @@ function Catalogue() {
           </div>
         </Link>
 
-        <Link to="/boutique/Logiciels">
+        <Link href="/boutique/Logiciels">
           <div className={styles.category}>
             <h3>Logiciels</h3>
             <img
@@ -90,7 +51,7 @@ function Catalogue() {
           </div>
         </Link>
 
-        <Link to="/boutique/Autres">
+        <Link href="/boutique/Autres">
           <div className={styles.category}>
             <h3>Autres</h3>
             <img
@@ -103,7 +64,7 @@ function Catalogue() {
 
       <div className={styles["products-carousel"]}>
         <h4>Découvrez nos produits Vivotek </h4>
-        <ShopProductsCarousel carouselProducts={carouselProducts} />
+         <ShopProductsCarousel carouselProducts={carouselProducts} />
       </div>
     </div>
   );

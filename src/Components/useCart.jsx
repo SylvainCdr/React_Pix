@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { BASE_URL } from "../url";
+import { useGetUser } from "./useGetUser";
 
 const useCart = () => {
   // États du panier
@@ -7,8 +8,9 @@ const useCart = () => {
   const [isCartFetched, setIsCartFetched] = useState(false); // Indique si le panier a été récupéré depuis le serveur
   const [isAddingToCart, setIsAddingToCart] = useState(false); // Indique si un produit est en cours d'ajout au panier
 
+  const user =  useGetUser();
   // Récupération de l'ID utilisateur depuis le stockage local
-  const userId = JSON.parse(localStorage.getItem("user"))?._id;
+  const userId = user?._id;
 
   // État du nombre total d'articles dans le panier
   const [cartItemsCount, setCartItemsCount] = useState(0);

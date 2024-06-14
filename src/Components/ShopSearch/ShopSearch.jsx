@@ -4,11 +4,12 @@ import ProductCard from "../ProductCard/ProductCard";
 import useFavorites from "../useFavorites";
 import useCart from "../useCart";
 import { BASE_URL } from "../../url";
+import ShopHeroCarousel from "../ShopHeroCarousel/ShopHeroCarousel";
 
-function ShopSearch({ setSearchResults }) {
+function ShopSearch() {
   const [search, setSearch] = useState("");
   const [searching, setSearching] = useState(false);
-  const [searchResultsLocal, setSearchResultsLocal] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   const { addToFavorites, removeFromFavorites, checkFavorite } = useFavorites();
   const { addToCart } = useCart();
@@ -24,19 +25,17 @@ function ShopSearch({ setSearchResults }) {
       fetch(`${BASE_URL}/search?query=${search}`)
         .then((res) => res.json())
         .then((data) => {
-          setSearchResultsLocal(data);
+          setSearchResults(data);
           setSearching(false);
           // Pass search results to the parent component
-          setSearchResults(data);
         })
         .catch((error) => {
           console.error("Erreur lors de la recherche de produits :", error);
           setSearching(false);
         });
     } else {
-      setSearchResultsLocal([]);
-      // Pass an empty array to the parent component when search is cleared
       setSearchResults([]);
+      // Pass an empty array to the parent component when search is cleared
     }
   };
 
@@ -47,6 +46,7 @@ function ShopSearch({ setSearchResults }) {
           <input
             type="text"
             placeholder="Rechercher un produit"
+            name="search"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -56,15 +56,22 @@ function ShopSearch({ setSearchResults }) {
 
       {searching && <p>Recherche en cours...</p>}
 
+
+      {searchResults.length === 0 && (
+        <div className={styles["shop-hero-carousel"]}>
+          <ShopHeroCarousel />
+        </div>
+      )}
+
       {/* si résultats de recherche locaux n'est pas vide, afficher les résultats */}
-      {searchResultsLocal.length > 0 && (
+      {searchResults.length > 0 && (
         <div className={styles["search-msg"]}>
-          <p>Résultats de recherche ({searchResultsLocal.length} produits) :</p>
+          <p>Résultats de recherche ({searchResults.length} produits) :</p>
         </div>
       )}
 
       <div className={styles["search-grid"]}>
-        {searchResultsLocal.map((result) => (
+        {searchResults?.map((result) => (
           <ProductCard
             key={result._id}
             product={result}

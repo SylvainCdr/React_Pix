@@ -1,9 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from "./style.module.scss";
+
+
+const heroImages = [
+  {
+    url: "https://i-pro.com/products_and_solutions/sites/default/files/2023-11/2880x720_X-series_0.jpg",
+  },
+  {
+    url: "https://www.zyxel.com/sites/zyxel/files/styles/homepage_hero/public/hero-banner/WBE660S-WIFI-WEB%20BANNERS-FR_Web%20banner_1920x1080.jpg?itok=ZoUfZ0gy",
+  },
+];
 
 const ShopHeroCarousel = () => {
   const settings = {
@@ -16,15 +25,6 @@ const ShopHeroCarousel = () => {
     fade: true,
     cssEase: "linear",
   };
-
-  const heroImages = [
-    {
-      url: "https://i-pro.com/products_and_solutions/sites/default/files/2023-11/2880x720_X-series_0.jpg",
-    },
-    {
-      url: "https://www.zyxel.com/sites/zyxel/files/styles/homepage_hero/public/hero-banner/WBE660S-WIFI-WEB%20BANNERS-FR_Web%20banner_1920x1080.jpg?itok=ZoUfZ0gy",
-    },
-  ];
 
   return (
     <div className={styles.shop_hero_carousel_container}>

@@ -10,7 +10,7 @@
     "next:dev": "next dev",
     "next:build": "next build",
     "next:start": "next start",
-    "format": "prettier . --write "
+    "format": "prettier . --write"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",

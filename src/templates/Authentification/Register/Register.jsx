@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import styles from "./style.module.scss";
-import { NavLink } from "react-router-dom";
+import Link  from "next/link";
 import Aos from "aos";
-import { BASE_URL } from "../../../url";
+import { BASE_URL } from "@/url";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -204,9 +204,9 @@ export default function Register() {
           <button>S'enregistrer</button>
 
           <span>――――― OU ―――――</span>
-          <NavLink to="/connexion">
+          <Link href="/connexion">
             <button> Se connecter</button>
-          </NavLink>
+          </Link>
         </form>
       </div>
 

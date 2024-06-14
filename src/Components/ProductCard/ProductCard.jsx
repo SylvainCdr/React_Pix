@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import  Link  from "next/link";
 import styles from "./style.module.scss";
 import Swal from "sweetalert2";
 import Aos from "aos";
 import { logos } from "../../templates/Shop/Product/LogosData";
 import { BASE_URL } from "../../url";
+import { useGetUser } from "../useGetUser";
 
 const ProductCard = ({
   product,
@@ -12,8 +13,6 @@ const ProductCard = ({
   removeFromFavorites,
   checkFavorite,
   addToCart,
-  id,
-  quantity,
 }) => {
   const [isInFavorites, setIsInFavorites] = useState(false);
 
@@ -81,9 +80,8 @@ const ProductCard = ({
   };
 
   // on récupère les données de l'utilisateur à partir du stockage local et on récupère la valeur discount
-  const userDataString = localStorage.getItem("user");
-  const userData = JSON.parse(userDataString) ? JSON.parse(userDataString) : "";
-  const discount = userData.discount ? userData.discount : 0;
+  const userData = useGetUser()
+  const discount = userData?.discount ? userData.discount : 0;
   console.log("Discount:", discount);
 
   // on crée une fonction pour calculer le prix après réduction
@@ -170,7 +168,7 @@ const ProductCard = ({
       )}
 
       <div className={styles["card-title"]}>
-        <Link to={`/boutique/produit/${product._id}`}>
+        <Link href={`/boutique/produit/${product._id}`}>
           <h2>{product.name}</h2>
         </Link>
       </div>

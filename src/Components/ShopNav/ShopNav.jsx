@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import Link  from "next/link";
 import styles from "./style.module.scss";
 import { BASE_URL } from "../../url";
 
@@ -91,7 +91,7 @@ function ShopNav() {
               {subcategoriesMap[category]?.map((subcategory) => (
                 <li key={subcategory}>
                   <Link
-                    to={`/boutique/${category}/${subcategory}`}
+                    href={`/boutique/${category}/${subcategory}`}
                     onClick={() => toggleSubcategory(subcategory)}
                     className={
                       openSubcategory === subcategory ? styles.active : ""
@@ -103,7 +103,7 @@ function ShopNav() {
               ))}
               {/* création d'une li pour tous les produits de chaque catégorie */}
               <li>
-                <Link to={`/boutique/${category}`}>Tous les produits</Link>
+                <Link href={`/boutique/${category}`}>Tous les produits</Link>
               </li>
             </ul>
           </li>

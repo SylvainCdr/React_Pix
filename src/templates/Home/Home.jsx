@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styles from "./style.module.scss";
 import HomepageCustomersSlider from "../../Components/HomepageCustomersSlider/HomepageCustomersSlider";
-import Hero from "../../Components/HomepageHero/HomepageHero";
+import Hero from "@/Components/HomepageHero/HomepageHero";
 import Link from "next/link";
 import AOS from "aos";
 import HomepageCountUp from "../../Components/HomepageCountUp/HomepageCountUp";

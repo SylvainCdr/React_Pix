@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -7,6 +6,7 @@ import styles from "./style.module.scss";
 import ProductCard from "../ProductCard/ProductCard";
 import useFavorites from "../useFavorites";
 import useCart from "../useCart";
+import { useGetUser } from "../useGetUser";
 
 const ShopProductsCarousel = ({ carouselProducts }) => {
   const settings = {
@@ -58,16 +58,12 @@ const ShopProductsCarousel = ({ carouselProducts }) => {
   const { addToFavorites, removeFromFavorites, checkFavorite } = useFavorites();
   const { addToCart } = useCart();
 
-  // Retrieve user data from local storage
-  const userDataString = localStorage.getItem("user");
-
-  // Parse the user data string to a JSON object
-  const userData = JSON.parse(userDataString) ? JSON.parse(userDataString) : "";
-  const userId = userData ? userData._id : null;
+  const user =  useGetUser();
+  const userId =  user?._id;
   console.log("ID de l'utilisateur:", userId);
 
   // Retrieve discount from user data
-  const discount = userData ? userData.discount : 0;
+  const discount = user ? user?.discount : 0;
   console.log("Discount:", discount);
 
   const calculateDiscount = (price, discount) => {
@@ -79,7 +75,7 @@ const ShopProductsCarousel = ({ carouselProducts }) => {
       {/* integration du composant ProductCard dans le composant ShopProductsCarousel */}
 
       <Slider {...settings}>
-        {carouselProducts.map((carouselProduct, index) => {
+        {carouselProducts?.map((carouselProduct, index) => {
           const discountedPrice = calculateDiscount(
             carouselProduct.price,
             discount,
