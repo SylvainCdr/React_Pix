@@ -125,7 +125,7 @@ export default function Order() {
     }
   };
 
-  const handleOrderSubmission = (e) => {
+  const handleOrderSubmission = async (e) => {
     e.preventDefault();
     if (
       !user.firstName ||
@@ -151,7 +151,13 @@ export default function Order() {
       });
       return;
     }
-    setIsPaymentVisible(true);
+
+    if (order.payment.method === "virement") {
+      // Soumettre la commande immédiatement pour le paiement par virement bancaire
+      await handlePaymentSuccess();
+    } else {
+      setIsPaymentVisible(true);
+    }
   };
 
   const handlePaymentSuccess = async () => {
@@ -180,7 +186,13 @@ export default function Order() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(order),
+          body: JSON.stringify({
+            ...order,
+            payment: {
+              ...order.payment,
+              paid: order.payment.method === "virement" ? false : true,
+            },
+          }),
         });
 
         if (response.ok) {
@@ -205,15 +217,9 @@ export default function Order() {
           });
 
           if (emailResponse.ok && resetCartResponse.ok) {
-            Swal.fire({
-              icon: "success",
-              title: "Commande validée",
-              text: "Un email de confirmation vous a été envoyé",
-              timer: 2000,
-            }).then(() => {
-              
+          
               window.location.href = "/mon-compte";
-            });
+            
           }
         }
       }
@@ -449,7 +455,7 @@ export default function Order() {
           </form>
         )}
 
-        {isPaymentVisible && (
+        {isPaymentVisible && order.payment.method === "carte" && (
           <>
             <h2>Etape finale : paiement </h2>
             <StripeWrapper totalAmount={totalAmount} onPaymentSuccess={handlePaymentSuccess} />

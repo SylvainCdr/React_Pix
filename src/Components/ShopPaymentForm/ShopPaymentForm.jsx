@@ -57,14 +57,16 @@ const PaymentForm = ({ totalAmount, onPaymentSuccess }) => {
       setError(null);
       setProcessing(false);
       setSucceeded(true);
-      onPaymentSuccess();
-
-
-
-   
+      Swal.fire({
+        icon: "success",
+        title: "Paiement réussi",
+        text: "Votre paiement a été effectué avec succès. Vous allez recevoir un email de confirmation.",
+        confirmButtonText: "OK",
+      }).then(() => {
+        onPaymentSuccess(); // Appelle la fonction de succès de paiement
+      });
     }
-  }
-
+  };
 
   return (
     <form id="payment-form" onSubmit={handleSubmit} className="paymentContainer">
