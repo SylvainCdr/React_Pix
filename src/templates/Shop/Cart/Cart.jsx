@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styles from "./style.module.scss"; // Import des styles CSS Modules
-import useCart from "../../../Components/useCart";
+import useCart from "@/Components/useCart";
 import { NavLink, useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import des styles d'AOS
-import ShopProductsCarousel from "../../../Components/ShopProductsCarousel/ShopProductsCarousel";
-import { BASE_URL } from "../../../url";
+import ShopProductsCarousel from "@/Components/ShopProductsCarousel/ShopProductsCarousel";
+import { BASE_URL } from "@/url";
 
 export default function Cart() {
   const { fetchCart, editQuantity, removeFromCart, cart } = useCart();
@@ -39,7 +39,7 @@ export default function Cart() {
       setSubTotal(calculatedSubTotal);
       setTax(calculatedSubTotal * 0.2);
       setTotalAmount(
-        calculatedSubTotal + calculatedSubTotal * 0.2 + shippingCost,
+        calculatedSubTotal + calculatedSubTotal * 0.2 + shippingCost
       );
     }
   }, [cart]);

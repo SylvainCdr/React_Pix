@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
 import styles from "./style.module.scss";
 import { NavLink, useNavigate } from "react-router-dom";
-import useFavorites from "../../../Components/useFavorites";
-import ProductCard from "../../../Components/ProductCard/ProductCard";
-import useCart from "../../../Components/useCart";
-import DeliveryTimeline from "../../../Components/DeliveryTimeline/DeliveryTimeline";
+import useFavorites from "@/Components/useFavorites";
+import ProductCard from "@/Components/ProductCard/ProductCard";
+import useCart from "@/Components/useCart";
+import DeliveryTimeline from "@/Components/DeliveryTimeline/DeliveryTimeline";
 import AOS from "aos";
-import { BASE_URL } from "../../../url";
+import { BASE_URL } from "@/url";
 
 export default function UserAccount() {
   const navigate = useNavigate();
@@ -54,17 +54,17 @@ export default function UserAccount() {
       if (userData) {
         try {
           const response = await fetch(
-            `${BASE_URL}/orders?userId=${userData._id}`,
+            `${BASE_URL}/orders?userId=${userData._id}`
           );
           const data = await response.json();
           const sortedOrders = data.sort(
-            (a, b) => new Date(b.orderDate) - new Date(a.orderDate),
+            (a, b) => new Date(b.orderDate) - new Date(a.orderDate)
           );
           setOrders(sortedOrders);
         } catch (error) {
           console.error(
             "Erreur lors de la récupération des commandes :",
-            error,
+            error
           );
         }
       }
@@ -175,7 +175,7 @@ export default function UserAccount() {
               {favorites.length > 0 ? (
                 favorites.map((favorite) => {
                   const product = products.find(
-                    (item) => item._id === favorite.product_id,
+                    (item) => item._id === favorite.product_id
                   );
 
                   return (
