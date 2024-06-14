@@ -6,7 +6,7 @@ import useCart from "../useCart";
 import { BASE_URL } from "../../url";
 import ShopHeroCarousel from "../ShopHeroCarousel/ShopHeroCarousel";
 
-function ShopSearch() {
+function ShopSearch({isHero = true}) {
   const [search, setSearch] = useState("");
   const [searching, setSearching] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
@@ -57,7 +57,7 @@ function ShopSearch() {
       {searching && <p>Recherche en cours...</p>}
 
 
-      {searchResults.length === 0 && (
+      {isHero && searchResults.length === 0 && (
         <div className={styles["shop-hero-carousel"]}>
           <ShopHeroCarousel />
         </div>

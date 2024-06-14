@@ -6,28 +6,18 @@ import Aos from "aos";
 import { logos } from "../../templates/Shop/Product/LogosData";
 import { BASE_URL } from "../../url";
 import { useGetUser } from "../useGetUser";
+import useFavorites from "../useFavorites";
+import useCart from "../useCart";
 
-const ProductCard = ({
-  product,
-  addToFavorites,
-  removeFromFavorites,
-  checkFavorite,
-  addToCart,
-}) => {
+const ProductCard = ({product}) => {
+  const { addToFavorites, removeFromFavorites, checkFavorite } = useFavorites();
+  const { addToCart } = useCart();
   const [isInFavorites, setIsInFavorites] = useState(false);
 
-  const [userId, setUserId] = useState("");
+  const user = useGetUser()
+  const discount =  user?.discount ?? 0;
+  const userId = user?.id
 
-  // on récupère l'id de l'utilisateur à partir du stockage local
-  useEffect(() => {
-    const userDataString = localStorage.getItem("user");
-    const userData = JSON.parse(userDataString);
-
-    if (userData && userData._id) {
-      setUserId(userData._id);
-      console.log("ID de l'utilisateur:", userData._id);
-    }
-  }, []);
 
   // on vérifie si le produit est dans les favoris de l'utilisateur
   useEffect(() => {
@@ -78,11 +68,6 @@ const ProductCard = ({
       console.error("Erreur lors de la gestion des favoris :", error);
     }
   };
-
-  // on récupère les données de l'utilisateur à partir du stockage local et on récupère la valeur discount
-  const userData = useGetUser()
-  const discount = userData?.discount ? userData.discount : 0;
-  console.log("Discount:", discount);
 
   // on crée une fonction pour calculer le prix après réduction
   const calculateDiscount = (price, discount) => {
@@ -146,11 +131,10 @@ const ProductCard = ({
     Aos.init({ duration: 1000 });
   }, []);
 
-  console.log("Marque du produit:", product.brand);
+
   const brandLogo = logos.find(
     (logo) => logo.name.toLowerCase() === product.brand?.toLowerCase(),
   );
-  console.log("Logo trouvé:", brandLogo);
 
   return (
     <div className={styles["product-card"]}>

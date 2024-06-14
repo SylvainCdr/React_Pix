@@ -49,7 +49,7 @@ function App() {
               <Route path="/notre-expertise" element={<Expertise />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/a-propos" element={<AboutUs />} />
-              <Route path="/boutique/produit/:id" element={<Product />} />
+
               <Route path="/contact" element={<Contact />} />
               <Route path="/connexion" element={<Login />} />
               <Route path="/inscription" element={<Register />} />
@@ -88,14 +88,17 @@ function App() {
                   />
                 </>
               )}
-              <Route path="/boutique" element={<Catalogue />} />
+              {/* <Route path="/boutique" element={<Catalogue />} />
               <Route path="/boutique/:category" element={<Products />} />
               <Route
                 path="/boutique/:category/:subcategory"
                 element={<Products />}
-              />
+              /> */}
+
+              <Route path="/boutique/produit/:id" element={<Product />} />
               <Route path="/panier" element={<Cart />} />
               <Route path="/panier/commande" element={<Order />} />
+
               <Route path="/mon-compte" element={<UserAccount />} />
               <Route
                 path="/mon-compte/commande/:id"

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Link  from "next/link";
+import Link from "next/link";
 import styles from "./style.module.scss";
 import ShopNav from "@/Components/ShopNav/ShopNav";
 import ShopSearch from "@/Components/ShopSearch/ShopSearch";
