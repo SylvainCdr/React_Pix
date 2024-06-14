@@ -211,6 +211,7 @@ export default function Order() {
               text: "Un email de confirmation vous a été envoyé",
               timer: 2000,
             }).then(() => {
+              
               window.location.href = "/mon-compte";
             });
           }
