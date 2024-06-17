@@ -8,6 +8,8 @@ export default function Document() {
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
+      <link href="https://fonts.cdnfonts.com/css/barlow" rel="stylesheet"/>
+      <link href="https://fonts.cdnfonts.com/css/barlow-condensed" rel="stylesheet"/>
       <body>
         <Main />
         <NextScript />

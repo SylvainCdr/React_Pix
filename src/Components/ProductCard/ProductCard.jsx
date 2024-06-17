@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import  Link  from "next/link";
+import Link from "next/link";
 import styles from "./style.module.scss";
 import Swal from "sweetalert2";
 import Aos from "aos";
@@ -9,15 +9,14 @@ import { useGetUser } from "../useGetUser";
 import useFavorites from "../useFavorites";
 import useCart from "../useCart";
 
-const ProductCard = ({product}) => {
+const ProductCard = ({ product }) => {
   const { addToFavorites, removeFromFavorites, checkFavorite } = useFavorites();
   const { addToCart } = useCart();
   const [isInFavorites, setIsInFavorites] = useState(false);
 
-  const user = useGetUser()
-  const discount =  user?.discount ?? 0;
-  const userId = user?.id
-
+  const user = useGetUser();
+  const discount = user?.discount ?? 0;
+  const userId = user?._id;
 
   // on vérifie si le produit est dans les favoris de l'utilisateur
   useEffect(() => {
@@ -106,7 +105,7 @@ const ProductCard = ({product}) => {
         product._id,
         product.name,
         product.ref,
-        (quantity = 1),
+        1, // fix for quantity assignment
         product.price,
         product.image,
       );
@@ -130,7 +129,6 @@ const ProductCard = ({product}) => {
   useEffect(() => {
     Aos.init({ duration: 1000 });
   }, []);
-
 
   const brandLogo = logos.find(
     (logo) => logo.name.toLowerCase() === product.brand?.toLowerCase(),
@@ -157,7 +155,6 @@ const ProductCard = ({product}) => {
         </Link>
       </div>
       <div className={styles["card-brand"]}>
-        {/* <p className="card-brand">{product.brand}</p> */}
         {brandLogo && (
           <img
             src={brandLogo.logo}

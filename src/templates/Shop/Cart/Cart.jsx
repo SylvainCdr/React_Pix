@@ -13,7 +13,7 @@ export default function Cart({ carouselProducts }) {
   const router = useRouter();
   const { fetchCart, editQuantity, removeFromCart, cart } = useCart();
   const user = useGetUser();
-  const userId = user?.id;
+  const userId = user?._id; // Assurez-vous d'utiliser _id car c'est probablement la clé correcte.
 
   // useEffect pour récupérer le panier de l'utilisateur grâce à son ID stocké dans le localStorage
   useEffect(() => {
@@ -31,6 +31,8 @@ export default function Cart({ carouselProducts }) {
     calculatedSubTotal + calculatedSubTotal * 0.2 + shippingCost;
   const discount = user?.discount;
 
+  const subTotal = calculatedSubTotal;
+
   const handleOrder = () => {
     router.push("/commande");
   };
@@ -41,18 +43,26 @@ export default function Cart({ carouselProducts }) {
 
   // Fonction pour modifier la quantité d'un produit dans le panier
   const handleQuantityChange = (product, newValue) => {
-    if (newValue >= 1) {
+    if (userId && newValue >= 1) {
       editQuantity(userId, product.product_id, newValue);
+    } else {
+      // Afficher une alerte ou un message d'erreur si userId est manquant
+      console.error("User ID is missing or invalid quantity");
     }
   };
 
   // Fonction pour supprimer un produit du panier
   const handleRemoveFromCart = (product) => {
-    removeFromCart(userId, product.product_id);
+    if (userId) {
+      removeFromCart(userId, product.product_id);
+    } else {
+      // Afficher une alerte ou un message d'erreur si userId est manquant
+      console.error("User ID is missing");
+    }
   };
 
   // Condition pour afficher un message si le panier est vide
-  if (cart.length === 0) {
+  if (!cart || cart.length === 0) {
     return (
       <div className={styles["cart-container"]}>
         <h1>Panier</h1>
@@ -105,17 +115,11 @@ export default function Cart({ carouselProducts }) {
               {discount > 0 && (
                 <div className={styles["discount-badge"]}>- {discount} %</div>
               )}
-              {discount > 0 ? (
-                <div className={styles["product-price"]}>
-                  <span className={styles["base-price"]}>
-                    {product.price?.toFixed(2)} €
-                  </span>
-                </div>
-              ) : (
-                <div className={styles["product-price"]}>
+              <div className={styles["product-price"]}>
+                <span className={styles["base-price"]}>
                   {product.price?.toFixed(2)} €
-                </div>
-              )}
+                </span>
+              </div>
               <div className={styles["product-quantity"]}>
                 <input
                   type="number"

@@ -24,10 +24,6 @@ export default function UserAccount() {
   const user = useGetUser();
   const userId = user?._id;
 
-  // useEffect(() => {
-  //   if (!user) router.push("/connexion"); // Redirigez vers la page de connexion si l'utilisateur n'est pas connecté
-  // }, [router, user]);
-
   useEffect(() => {
     async function fetchUserData() {
       if (!userId) return;
@@ -90,32 +86,32 @@ export default function UserAccount() {
       <div className={styles["user-menu"]}>
         <aside className={styles["user-account-nav"]}>
           <h2>Mon compte</h2>
-          <ul>
+         
             <button
               className={styles.active}
               onClick={() => handleTabClick("favoris")}
             >
-              <li>
+            
                 <i class="fa-solid fa-heart"></i>
-              </li>
+              
             </button>
             <button
               className={styles.active}
               onClick={() => handleTabClick("infos")}
             >
-              <li>
+           
                 <i class="fa-solid fa-user-pen"></i>
-              </li>
+              
             </button>
             <button
               className={styles.active}
               onClick={() => handleTabClick("commandes")}
             >
-              <li>
+            
                 <i class="fa-solid fa-basket-shopping"></i>
-              </li>
+             
             </button>
-          </ul>
+         
         </aside>
       </div>
 
@@ -240,9 +236,9 @@ export default function UserAccount() {
                         </td>
                         {/* <td>{order.status}</td> */}
                         <td>
-                          <NavLink to={`/mon-compte/commande/${order._id}`}>
+                          <Link href={`/mon-compte/commande/${order._id}`}>
                             <button>Voir</button>
-                          </NavLink>
+                          </Link>
                         </td>
                       </tr>
                       <tr>
@@ -257,9 +253,9 @@ export default function UserAccount() {
             ) : (
               <div className={styles["no-favorites-orders-msg"]}>
                 <p>Vous n'avez pas encore de commandes.</p>
-                <NavLink to="/boutique">
+                <Link href="/boutique">
                   <button>Visiter la boutique</button>
-                </NavLink>
+                </Link>
               </div>
             )}
           </div>

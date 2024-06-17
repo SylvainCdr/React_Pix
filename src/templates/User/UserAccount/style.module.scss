@@ -30,30 +30,23 @@
         color: var(--sunset1);
       }
 
-      li {
-        // list-style: none;
-        padding: 0.5rem;
+      button {
+        width: 100%;
+        padding: 2em 1em;
+        background-color: rgba(111, 111, 111, 0.39);
         color: white;
-        font-size: large;
+        border: none;
+        margin: 1.5em 0;
         cursor: pointer;
-        transition: 0.3s;
-        margin-top: 5rem;
-        text-align: center;
-
-        &:hover {
-          background-color: rgb(94, 91, 91);
-        }
-
-        i {
+        border-radius: 0px;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        -ms-border-radius: 0px;
+        -o-border-radius: 0px;
+        i
+{
           font-size: 2rem;
         }
-        &:hover {
-          scale: 1.1;
-        }
-      }
-      button {
-        text-decoration: none;
-        color: white;
       }
     }
   }

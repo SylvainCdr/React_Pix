@@ -18,7 +18,7 @@ export default function Product({ product, id, suggestions }) {
   const [quantity, setQuantity] = useState(1);
 
   const user = useGetUser();
-  const userId = user?.id;
+  const userId = user?._id;
   const discount = user?.discount ?? 0;
 
   const calculateDiscount = (price, discount) => {
@@ -29,7 +29,6 @@ export default function Product({ product, id, suggestions }) {
     (logo) => logo.name.toLowerCase() === product.brand?.toLowerCase()
   );
 
-  // Create a mapping object to map the product details keys to their corresponding labels
   const labelsMapping = {
     dimensions: "Dimensions",
     poids: "Poids",
@@ -95,7 +94,6 @@ export default function Product({ product, id, suggestions }) {
 
       setIsInFavorites(!isInFavorites);
     } else {
-      // Afficher un message SweetAlert indiquant à l'utilisateur de se connecter ou de s'inscrire
       Swal.fire({
         icon: "info",
         title:
@@ -105,7 +103,6 @@ export default function Product({ product, id, suggestions }) {
     }
   };
 
-  // ajout du panier en cliquant sur le bouton et en prenant compte de la quantité
   const handleAddToCartClick = async () => {
     if (userId) {
       const added = await addToCart(
@@ -123,7 +120,6 @@ export default function Product({ product, id, suggestions }) {
         console.error("Erreur lors de l'ajout du produit au panier");
       }
     } else {
-      // Afficher un message SweetAlert indiquant à l'utilisateur de se connecter ou de s'inscrire
       Swal.fire({
         icon: "info",
         title:
@@ -155,7 +151,6 @@ export default function Product({ product, id, suggestions }) {
     }
   };
 
-  // Initialiser AOS
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
@@ -207,7 +202,6 @@ export default function Product({ product, id, suggestions }) {
 
             <p className={styles.presentation}>{product.presentation}</p>
 
-            {/* TODO : Chercher l'etat du stock dans Axonaut */}
             <p className={styles.stock}>
               <i className="fa-solid fa-check"></i> Disponible sur commande
             </p>
@@ -227,7 +221,6 @@ export default function Product({ product, id, suggestions }) {
               />
             </div>
             <div className={styles["price-addToCart"]}>
-              {/* // bouton avec + - pour ajouter ou retirer des produits */}
               <div className={styles.price}>
                 <p className={styles.prices}>{calculateDiscountedPrice()}</p>
               </div>
@@ -263,12 +256,9 @@ export default function Product({ product, id, suggestions }) {
                 {product.details &&
                   Object.keys(product.details).map(
                     (key) =>
-                      // Vérifiez si la valeur n'est pas une chaîne vide avant d'afficher la ligne
                       product.details[key] !== "" && (
                         <tr key={key}>
-                          {/* Utilisez l'objet de correspondance pour obtenir le libellé correspondant à la clé */}
                           <td>{labelsMapping[key] || key}</td>
-                          {/* Affichez la valeur */}
                           <td>{product.details[key]}</td>
                         </tr>
                       )
@@ -293,7 +283,7 @@ export default function Product({ product, id, suggestions }) {
             <div className={styles["suggestions-grid"]}>
               {suggestions.map((item) => (
                 <ProductCard
-                  key={item.id}
+                  key={item._id}
                   product={item}
                   isInFavorites={isInFavorites}
                   addToFavorites={addToFavorites}
