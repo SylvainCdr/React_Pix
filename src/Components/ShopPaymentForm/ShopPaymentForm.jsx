@@ -7,7 +7,7 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import { BASE_URL } from "@/url";
-import Swal from "sweetalert2";
+import styles from "./style.module.scss";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
@@ -75,24 +75,24 @@ const PaymentForm = ({ totalAmount, onPaymentSuccess }) => {
     <form
       id="payment-form"
       onSubmit={handleSubmit}
-      className="paymentContainer"
+      className={styles.paymentContainer}
     >
       <CardElement id="card-element" onChange={handleChange} />
       <button disabled={processing || disabled || succeeded} id="submit">
         <span id="button-text">
           {processing ? (
-            <div className="spinner" id="spinner"></div>
+            <div className={styles.spinner} id="spinner"></div>
           ) : (
-            `Pay now ${totalAmount.toFixed(2)}€`
+            `Payer ${totalAmount.toFixed(2)}€`
           )}
         </span>
       </button>
       {error && (
-        <div className="card-error" role="alert">
+        <div className={styles.cardError} role="alert">
           {error}
         </div>
       )}
-      {succeeded && <p className="result-message">Payment succeeded</p>}
+      {succeeded && <p className={styles.resultMessage}>Payment succeeded</p>}
       <p>Use the following test card number for testing:</p>
       <ul>
         <li>Card Number: 4242 4242 4242 4242</li>
