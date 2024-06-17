@@ -9,7 +9,8 @@ export async function getServerSideProps({params}){
   return {
     props: {
       products,
-      category
+      category,
+
     }
   }
 }

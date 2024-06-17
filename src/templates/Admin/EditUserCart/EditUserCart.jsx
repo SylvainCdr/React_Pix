@@ -9,20 +9,14 @@ export default function EditUserCart() {
   const params = useParams();
   const userId = params?.id;
   const router = useRouter();
-  const {
-    cart,
-    addToCart,
-    fetchCart,
-    editQuantity,
-    editPrice,
-    removeFromCart,
-  } = useCart();
+  const { cart, addToCart, fetchCart, removeFromCart } = useCart();
 
   const [user, setUser] = useState({});
   const [availableProducts, setAvailableProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedProductId, setSelectedProductId] = useState("");
+  const [localCart, setLocalCart] = useState([]);
   const [totalWithTaxAndShipping, setTotalWithTaxAndShipping] = useState(0);
   const [totalHT, setTotalHT] = useState(0);
   const [tva, setTva] = useState(0);
@@ -57,10 +51,13 @@ export default function EditUserCart() {
     }
   }, [userId, fetchCart, loading]); // Dépendances du useEffect
 
-  // useEffect pour calculer le total TTC du panier
+  useEffect(() => {
+    setLocalCart(cart);
+  }, [cart]);
+
   useEffect(() => {
     const calculateTotals = () => {
-      const subtotal = cart.reduce(
+      const subtotal = localCart.reduce(
         (sum, product) => sum + product.price * product.quantity,
         0
       );
@@ -74,7 +71,7 @@ export default function EditUserCart() {
     };
 
     calculateTotals();
-  }, [cart]);
+  }, [localCart]);
 
   const handleAddProduct = () => {
     if (!selectedProductId) return;
@@ -83,28 +80,91 @@ export default function EditUserCart() {
       (product) => product._id === selectedProductId
     );
 
-    addToCart(
-      userId,
-      selectedProductId,
-      selectedProduct.name,
-      selectedProduct.ref,
-      1, // Quantity: you can set it to 1 or change it as needed
-      selectedProduct.price,
-      selectedProduct.image
+    const newProduct = {
+      ...selectedProduct,
+      quantity: 1,
+      product_id: selectedProductId,
+      isNew: true, // Ajout de cette propriété pour marquer le produit comme nouveau
+    };
+
+    setLocalCart([...localCart, newProduct]);
+  };
+
+  const handleQuantityChange = (productId, newValue) => {
+    if (newValue >= 1) {
+      const updatedCart = localCart.map((product) =>
+        product.product_id === productId
+          ? { ...product, quantity: newValue }
+          : product
+      );
+      setLocalCart(updatedCart);
+    }
+  };
+
+  const handlePriceChange = (productId, newValue) => {
+    if (newValue >= 0) {
+      const updatedCart = localCart.map((product) =>
+        product.product_id === productId ? { ...product, price: newValue } : product
+      );
+      setLocalCart(updatedCart);
+    }
+  };
+
+  const saveChangesToServer = async () => {
+    try {
+      for (const product of localCart) {
+        if (product.isNew) {
+          // Ajouter le nouveau produit au panier sur le serveur
+          const response = await fetch(`${BASE_URL}/users/${userId}/add-cart/${product.product_id}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              product_id: product.product_id,
+              name: product.name,
+              ref: product.ref,
+              quantity: product.quantity,
+              price: product.price,
+              image: product.image,
+            }),
+          });
+          if (!response.ok) {
+            throw new Error("Failed to add product to cart");
+          }
+        } else {
+          // Mettre à jour la quantité et le prix des produits existants
+          const response = await fetch(`${BASE_URL}/users/${userId}/edit-cart/${product.product_id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              quantity: product.quantity,
+              price: product.price,
+            }),
+          });
+          if (!response.ok) {
+            throw new Error("Failed to update cart");
+          }
+        }
+      }
+    } catch (error) {
+      console.error("Error saving changes:", error);
+      setError("Erreur lors de l'enregistrement des modifications");
+    }
+  };
+
+  const handleSaveChanges = async () => {
+    await saveChangesToServer();
+    router.push("/admin/paniers");
+  };
+
+  const handleRemoveProduct = (productId) => {
+    const updatedCart = localCart.filter(
+      (product) => product.product_id !== productId
     );
-  };
-
-  // Fonction pour modifier la quantité d'un produit dans le panier et ou le prix
-  const handleQuantityChange = (product, newValue) => {
-    if (newValue >= 1) {
-      editQuantity(userId, product.product_id, newValue);
-    }
-  };
-
-  const handlePriceChange = (product, newValue) => {
-    if (newValue >= 1) {
-      editPrice(userId, product.product_id, newValue);
-    }
+    setLocalCart(updatedCart);
   };
 
   if (loading) return <div>Chargement...</div>;
@@ -125,7 +185,7 @@ export default function EditUserCart() {
           </tr>
         </thead>
         <tbody>
-          {cart.map((product, index) => (
+          {localCart.map((product, index) => (
             <tr key={product.product_id || index}>
               <td>
                 <img src={product.image} alt="" />
@@ -136,7 +196,7 @@ export default function EditUserCart() {
                   type="number"
                   value={product.quantity}
                   onChange={(e) =>
-                    handleQuantityChange(product, e.target.value)
+                    handleQuantityChange(product.product_id, parseInt(e.target.value))
                   }
                 />
               </td>
@@ -145,17 +205,18 @@ export default function EditUserCart() {
                   type="number"
                   step="0.01"
                   value={product.price}
-                  onChange={(e) => handlePriceChange(product, e.target.value)}
+                  onChange={(e) =>
+                    handlePriceChange(product.product_id, parseFloat(e.target.value))
+                  }
                 />
               </td>
               <td>{(product.quantity * product.price).toFixed(2)} €</td>
               <td>
                 <button
-                  onClick={() => removeFromCart(userId, product.product_id)}
+                  onClick={() => handleRemoveProduct(product.product_id)}
                 >
                   Supprimer
-                </button>{" "}
-                {/* Utilisation de removeFromCart fourni par useCart */}
+                </button>
               </td>
             </tr>
           ))}
@@ -183,10 +244,7 @@ export default function EditUserCart() {
         </select>
         <button onClick={handleAddProduct}>Ajouter au panier</button>
       </div>
-      <button
-        onClick={() => router.push("/admin/paniers")}
-        className={styles["update-cart-btn"]}
-      >
+      <button onClick={handleSaveChanges} className={styles["update-cart-btn"]}>
         Enregistrer les modifications
       </button>
     </div>

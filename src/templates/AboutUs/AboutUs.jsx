@@ -104,6 +104,13 @@ export default function AboutUs() {
           </li>
           <li>
             <div className={styles.profile}>
+              <h2 className={styles["profile__name"]}>Fabien THOMAS</h2>
+              <p>Commerciale</p>
+              <img alt="Fabien THOMAS" src="assets/team/FABIEN_.jpg" />
+            </div>
+          </li>
+          <li>
+            <div className={styles.profile}>
               <h2 className={styles["profile__name"]}>Fabrice VALLEE</h2>
               <p>Commercial grands comptes</p>
               <img alt="Fabrice VALLEE" src="assets/team/FABRICE_.jpg" />
