@@ -45,7 +45,7 @@ export default function EditUser() {
           timer: 2000,
           timerProgressBar: true,
         }).then(() => {
-          window.location.href = "/admin/users";
+          window.location.href = "/admin/utilisateurs";
         });
       } else {
         Swal.fire({
