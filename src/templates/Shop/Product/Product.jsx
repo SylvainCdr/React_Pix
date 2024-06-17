@@ -17,7 +17,9 @@ export default function Product({ product, id, suggestions }) {
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
 
+  // Get the user and discount from the context
   const user = useGetUser();
+  // Destructure the user object to get the user ID and discount
   const userId = user?._id;
   const discount = user?.discount ?? 0;
 

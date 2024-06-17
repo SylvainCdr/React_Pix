@@ -2,7 +2,6 @@ import ShopNav from "@/Components/ShopNav/ShopNav";
 import ShopSearch from "@/Components/ShopSearch/ShopSearch";
 import ProductCard from "@/Components/ProductCard/ProductCard";
 import ShopAside from "@/Components/ShopAside/ShopAside";
-// Import the CSS module
 import styles from "./style.module.scss";
 
 // Destructure the products, category, and subcategory props

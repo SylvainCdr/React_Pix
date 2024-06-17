@@ -142,6 +142,7 @@ body {
 
   button {
     padding: 0.6em 1.5em;
+    margin : 0.1em;
     text-transform: uppercase;
     font-size: 1.3em;
     font-family: "Barlow Condensed", sans-serif;
@@ -165,12 +166,12 @@ body {
     }
   }
 }
-
-:root {
-  --sunset1: #009fe3;
-  --sunset2: #73c9ed;
-  --sunset3: #b4e1f2;
-  --sunset4: #e1f3f6;
-  --sunset5: #f7fcfb;
-  --sunset6: #ffffff;
-}
+  
+  :root {
+    --sunset1: #009fe3;
+    --sunset2: #73c9ed;
+    --sunset3: #b4e1f2;
+    --sunset4: #e1f3f6;
+    --sunset5: #f7fcfb;
+    --sunset6: #ffffff;
+  }

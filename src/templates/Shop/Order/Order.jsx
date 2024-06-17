@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useCart from "@/Components/useCart";
 import Swal from "sweetalert2";
 import { BASE_URL } from "@/url";
 import styles from "./style.module.scss";
+import StripeWrapper from "@/Components/ShopPaymentForm/ShopPaymentForm";
 import { useGetUser } from "@/Components/useGetUser";
 
 export default function Order() {
   const user = useGetUser();
-  const { cart, totalAmount } = useCart();
-
-  // Définir les champs de l'adresse de facturation et du numéro de téléphone dans l'état local
+  const { cart } = useCart();
+  const [subTotal, setSubTotal] = useState(0);
+  const [tax, setTax] = useState(0);
+  const [shippingCost, setShippingCost] = useState(20);
+  const [totalAmount, setTotalAmount] = useState(0);
   const [billingAddress, setBillingAddress] = useState({
     street: "",
     zip: "",
@@ -19,13 +22,22 @@ export default function Order() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [company, setCompany] = useState("");
 
-  const order = {
-    user: user?._id,
+  useEffect(() => {
+    if (user) {
+      setOrder((prevOrder) => ({
+        ...prevOrder,
+        user: user._id,
+      }));
+    }
+  }, [user]);
+
+  const [order, setOrder] = useState({
+    user: "",
     deliveryAddress: { street: "", city: "", zip: "", country: "" },
     items: [],
     delivery: {
       method: "",
-      fee: "9.90",
+      fee: "20",
     },
     orderDate: new Date().toLocaleDateString(),
     status: "pending",
@@ -33,16 +45,33 @@ export default function Order() {
       method: "",
       paid: false,
     },
-    totalAmount,
-    items:
-      cart?.map((product) => ({
+    totalAmount: "",
+  });
+
+  const [isPaymentVisible, setIsPaymentVisible] = useState(false);
+
+  useEffect(() => {
+    const calculatedSubTotal = cart.reduce((acc, product) => {
+      const discountedPrice = product.price;
+      return acc + product.quantity * discountedPrice;
+    }, 0);
+    setSubTotal(calculatedSubTotal);
+    const calculatedTax = calculatedSubTotal * 0.2;
+    setTax(calculatedTax);
+    const calculatedTotalAmount = calculatedSubTotal + calculatedTax + shippingCost;
+    setTotalAmount(calculatedTotalAmount);
+    setOrder((prevOrder) => ({
+      ...prevOrder,
+      items: cart.map((product) => ({
         product: product._id,
         name: product.name,
         ref: product.ref,
         quantity: product.quantity,
         priceAtOrderTime: product.price,
-      })) ?? [],
-  };
+      })),
+      totalAmount: calculatedTotalAmount,
+    }));
+  }, [cart, shippingCost]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -72,24 +101,10 @@ export default function Order() {
       }));
     } else if (name === "phone") {
       setPhoneNumber(value);
-      // Mettre à jour l'état local user avec le numéro de téléphone
-      setUser((prevUser) => ({
-        ...prevUser,
-        phone: value,
-      }));
     } else if (name === "company") {
       setCompany(value);
-      // Mettre à jour l'état local user avec le nom de la société
-      setUser((prevUser) => ({
-        ...prevUser,
-        company: value,
-      }));
     } else {
-      setUser((prevUser) => ({
-        ...prevUser,
-        [name]: value,
-      }));
-      // Envoyer une requête PUT pour mettre à jour l'utilisateur sur le serveur
+      // Mise à jour des informations de l'utilisateur
       const updatedUser = { ...user, [name]: value };
       fetch(`${BASE_URL}/users/${user._id}`, {
         method: "PUT",
@@ -105,57 +120,58 @@ export default function Order() {
         })
         .catch((error) => {
           console.error("Error updating user:", error);
-          // Gérer l'erreur, peut-être afficher un message à l'utilisateur
         });
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleOrderSubmission = async (e) => {
     e.preventDefault();
-    try {
-      // Validation des champs obligatoires
-      if (
-        !user.firstName ||
-        !user.lastName ||
-        !user.email ||
-        !user.phone ||
-        !billingAddress.street ||
-        !billingAddress.zip ||
-        !billingAddress.city ||
-        !billingAddress.country ||
-        !order.deliveryAddress.street ||
-        !order.deliveryAddress.zip ||
-        !order.deliveryAddress.city ||
-        !order.deliveryAddress.country ||
-        !order.delivery.method ||
-        !order.payment.method
-      ) {
-        // alet sweetalert pour afficher un message d'erreur
-        Swal.fire({
-          icon: "error",
-          title: "Erreur",
-          text: "Veuillez remplir tous les champs obligatoires",
-          // confirmButtonText: "OK",
-          timer: 2000,
-        });
-      }
+    if (
+      !user?._id ||
+      !user?.firstName ||
+      !user?.lastName ||
+      !user?.email ||
+      !phoneNumber ||
+      !billingAddress.street ||
+      !billingAddress.zip ||
+      !billingAddress.city ||
+      !billingAddress.country ||
+      !order.deliveryAddress.street ||
+      !order.deliveryAddress.zip ||
+      !order.deliveryAddress.city ||
+      !order.deliveryAddress.country ||
+      !order.delivery.method ||
+      !order.payment.method
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Erreur",
+        text: "Veuillez remplir tous les champs obligatoires",
+        timer: 2000,
+      });
+      return;
+    }
 
-      // Mettre à jour l'objet utilisateur avec l'adresse de facturation et le numéro de téléphone
+    if (order.payment.method === "virement") {
+      // Soumettre la commande immédiatement pour le paiement par virement bancaire
+      await handlePaymentSuccess();
+    } else {
+      setIsPaymentVisible(true);
+    }
+  };
+
+  const handlePaymentSuccess = async () => {
+    try {
       const updatedUser = {
         ...user,
         billingAddress: billingAddress,
-        // Vérifiez si le numéro de téléphone est renseigné dans le formulaire, sinon gardez la valeur existante
         phone: phoneNumber || user.phone,
-        // Vérifiez si le nom de la société est renseigné dans le formulaire, sinon gardez la valeur existante
         company: user.company || company,
-        // Conserver les valeurs existantes pour les autres champs de l'utilisateur
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
-        // Ajoutez d'autres champs de l'utilisateur si nécessaire
       };
 
-      // Envoyer une requête pour mettre à jour l'utilisateur sur le serveur
       const updateUserResponse = await fetch(`${BASE_URL}/users/${user._id}`, {
         method: "PUT",
         headers: {
@@ -165,17 +181,21 @@ export default function Order() {
       });
 
       if (updateUserResponse.ok) {
-        // Ensuite, envoyer la commande avec les détails mis à jour de l'utilisateur
         const response = await fetch(`${BASE_URL}/orders`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(order),
+          body: JSON.stringify({
+            ...order,
+            payment: {
+              ...order.payment,
+              paid: order.payment.method === "virement" ? false : true,
+            },
+          }),
         });
 
         if (response.ok) {
-          // Supprimer le panier de l'utilisateur une fois la commande soumise avec succès
           const resetCartResponse = await fetch(
             `${BASE_URL}/users/${user._id}/reset-cart`,
             {
@@ -183,273 +203,274 @@ export default function Order() {
             }
           );
 
-          // Envoi d'un email de confirmation de commande
           const emailResponse = await fetch(`${BASE_URL}/order-confirmation`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              clientEmail: user.email, // Utiliser user.email comme clientEmail
-              orderDetails: order, // Utiliser order comme orderDetails
-              userFirstName: user.firstName, // Utiliser user.firstName comme userFirstName
-              userLastName: user.lastName, // Utiliser user.lastName comme userLastName
+              clientEmail: user.email,
+              orderDetails: order,
+              userFirstName: user.firstName,
+              userLastName: user.lastName,
             }),
           });
 
-          if (resetCartResponse.ok) {
-            // Afficher le message SweetAlert une fois la commande soumise et le panier réinitialisé avec succès
+          if (emailResponse.ok && resetCartResponse.ok) {
             Swal.fire({
               icon: "success",
-              title: "Commande validée avec succès !",
-              text: "Un email de confirmation de commande a été envoyé.",
+              title: "Commande validée",
+              text: "Votre commande a été validée avec succès.",
               confirmButtonText: "OK",
             }).then(() => {
-              // Rediriger vers la page de compte utilisateur
-              window.location.href = "/mon-compte"; // Modifiez l'URL de redirection selon votre structure de routage
+              window.location.href = "/mon-compte";
             });
-          } else {
-            throw new Error("Failed to reset cart");
           }
-        } else {
-          throw new Error("Failed to submit order");
         }
-      } else {
-        alert("Échec de la commande. Veuillez réessayer.");
       }
     } catch (error) {
-      console.error("Erreur lors de la soumission de la commande :", error);
+      console.error("Error validating order:", error);
     }
   };
 
-  if (!user) return null;
+  if (!user) {
+    return <div>Chargement...</div>;
+  }
+
+
   return (
     <div className={styles["order-container"]}>
       <div className={styles["order-page"]}>
         <h1>Commande</h1>
 
-        <form onSubmit={handleSubmit}>
-          <h2>
-            {" "}
-            <i className="fa-solid fa-user"></i> ETAPE 1 : Informations
-            personnelles
-          </h2>
-          <div className={styles["customer-infos"]}>
-            <div className={styles.details}>
-              Prénom :{" "}
-              <input
-                type="text"
-                name="firstName"
-                placeholder="Prénom"
-                value={user.firstName}
-              />
-              Nom :{" "}
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Nom"
-                value={user.lastName}
-              />
-              Entreprise:{" "}
-              <input
-                type="text"
-                name="company"
-                placeholder="Entreprise"
-                value={user.company}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className={styles.contact}>
-              Email :{" "}
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={user.email}
-              />
-              Téléphone :{" "}
-              <input
-                type="text"
-                name="phone"
-                placeholder="A renseigner"
-                // si la valeur phone est "non renseigné" alors on affiche un placeholer à renseigner
-                value={user.phone === "non renseigné" ? "" : user.phone}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
-
-          <h2>
-            {" "}
-            <i className="fa-solid fa-house"></i> ETAPE 2 : Adresses
-          </h2>
-          <div className={styles["address-details"]}>
-            <div className={styles["billing-address"]}>
-              <p>Adresse de facturation : </p>
-              <input
-                type="text"
-                name="street"
-                placeholder="Numéro et Rue"
-                value={billingAddress.street}
-                onChange={(e) =>
-                  setBillingAddress({
-                    ...billingAddress,
-                    street: e.target.value,
-                  })
-                }
-              />
-              <input
-                type="text"
-                name="zip"
-                placeholder="Code Postal"
-                value={billingAddress.zip}
-                onChange={(e) =>
-                  setBillingAddress({ ...billingAddress, zip: e.target.value })
-                }
-              />
-              <input
-                type="text"
-                name="city"
-                placeholder="Ville"
-                value={billingAddress.city}
-                onChange={(e) =>
-                  setBillingAddress({ ...billingAddress, city: e.target.value })
-                }
-              />
-
-              <select
-                name="country"
-                value={billingAddress.country}
-                onChange={(e) =>
-                  setBillingAddress({
-                    ...billingAddress,
-                    country: e.target.value,
-                  })
-                }
-              >
-                <option value="">Sélectionnez votre pays</option>
-                <option value="france">France</option>
-                <option value="belgique">Belgique</option>
-                <option value="suisse">Suisse</option>
-                <option value="luxembourg">Luxembourg</option>
-              </select>
-
-              <div className={styles["same-address"]}>
+        {!isPaymentVisible && (
+          <form onSubmit={handleOrderSubmission}>
+            <h2>
+              <i className="fa-solid fa-user"></i> ETAPE 1 : Informations personnelles
+            </h2>
+            <div className={styles["customer-infos"]}>
+              <div className={styles.details}>
+                Prénom :{" "}
                 <input
-                  type="checkbox"
-                  id="same-address"
-                  name="same-address"
-                  className={styles.checkbox}
-                  onChange={(e) => {
-                    if (e.target.checked) {
-                      setOrder((prev) => ({
-                        ...prev,
-                        deliveryAddress: { ...billingAddress },
-                      }));
-                    } else {
-                      setOrder((prev) => ({
-                        ...prev,
-                        deliveryAddress: {
-                          street: "",
-                          city: "",
-                          zip: "",
-                          country: "",
-                        },
-                      }));
-                    }
-                  }}
+                  type="text"
+                  name="firstName"
+                  placeholder="Prénom"
+                  value={user.firstName || ""}
+                  onChange={handleChange}
                 />
-                <label htmlFor="same-address">
-                  Adresse de livraison identique
-                </label>
+                Nom :{" "}
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder="Nom"
+                  value={user.lastName || ""}
+                  onChange={handleChange}
+                />
+                Entreprise:{" "}
+                <input
+                  type="text"
+                  name="company"
+                  placeholder="Entreprise"
+                  value={company || ""}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className={styles.contact}>
+                Email :{" "}
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={user.email || ""}
+                  onChange={handleChange}
+                />
+                Téléphone :{" "}
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="A renseigner"
+                  value={phoneNumber || ""}
+                  onChange={handleChange}
+                />
               </div>
             </div>
 
-            <div className={styles["delivery-address"]}>
-              <p>Adresse de livraison : </p>
-              <input
-                type="text"
-                name="street"
-                placeholder="Numéro et Rue"
-                value={order.deliveryAddress.street}
-                onChange={handleChange}
-              />
-              <input
-                type="text"
-                name="zip"
-                placeholder="Code Postal"
-                value={order.deliveryAddress.zip}
-                onChange={handleChange}
-              />
-              <input
-                type="text"
-                name="city"
-                placeholder="Ville"
-                value={order.deliveryAddress.city}
-                onChange={handleChange}
-              />
+            <h2>
+              <i className="fa-solid fa-house"></i> ETAPE 2 : Adresses
+            </h2>
+            <div className={styles["address-details"]}>
+              <div className={styles["billing-address"]}>
+                <p>Adresse de facturation : </p>
+                <input
+                  type="text"
+                  name="street"
+                  placeholder="Numéro et Rue"
+                  value={billingAddress.street}
+                  onChange={(e) =>
+                    setBillingAddress({
+                      ...billingAddress,
+                      street: e.target.value,
+                    })
+                  }
+                />
+                <input
+                  type="text"
+                  name="zip"
+                  placeholder="Code Postal"
+                  value={billingAddress.zip}
+                  onChange={(e) =>
+                    setBillingAddress({ ...billingAddress, zip: e.target.value })
+                  }
+                />
+                <input
+                  type="text"
+                  name="city"
+                  placeholder="Ville"
+                  value={billingAddress.city}
+                  onChange={(e) =>
+                    setBillingAddress({ ...billingAddress, city: e.target.value })
+                  }
+                />
 
-              <select
-                name="country"
-                value={order.deliveryAddress.country}
-                onChange={handleChange}
-              >
-                <option value="">Sélectionnez votre pays</option>
-                <option value="france">France</option>
-                <option value="belgique">Belgique</option>
-                <option value="suisse">Suisse</option>
-                <option value="luxembourg">Luxembourg</option>
-              </select>
+                <select
+                  name="country"
+                  value={billingAddress.country}
+                  onChange={(e) =>
+                    setBillingAddress({
+                      ...billingAddress,
+                      country: e.target.value,
+                    })
+                  }
+                >
+                  <option value="">Sélectionnez votre pays</option>
+                  <option value="france">France</option>
+                  <option value="belgique">Belgique</option>
+                  <option value="suisse">Suisse</option>
+                  <option value="luxembourg">Luxembourg</option>
+                </select>
+
+                <div className={styles["same-address"]}>
+                  <input
+                    type="checkbox"
+                    id="same-address"
+                    name="same-address"
+                    className={styles.checkbox}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setOrder((prev) => ({
+                          ...prev,
+                          deliveryAddress: { ...billingAddress },
+                        }));
+                      } else {
+                        setOrder((prev) => ({
+                          ...prev,
+                          deliveryAddress: {
+                            street: "",
+                            city: "",
+                            zip: "",
+                            country: "",
+                          },
+                        }));
+                      }
+                    }}
+                  />
+                  <label htmlFor="same-address">
+                    Adresse de livraison identique
+                  </label>
+                </div>
+              </div>
+
+              <div className={styles["delivery-address"]}>
+                <p>Adresse de livraison : </p>
+                <input
+                  type="text"
+                  name="street"
+                  placeholder="Numéro et Rue"
+                  value={order.deliveryAddress.street}
+                  onChange={handleChange}
+                />
+                <input
+                  type="text"
+                  name="zip"
+                  placeholder="Code Postal"
+                  value={order.deliveryAddress.zip}
+                  onChange={handleChange}
+                />
+                <input
+                  type="text"
+                  name="city"
+                  placeholder="Ville"
+                  value={order.deliveryAddress.city}
+                  onChange={handleChange}
+                />
+
+                <select
+                  name="country"
+                  value={order.deliveryAddress.country}
+                  onChange={handleChange}
+                >
+                  <option value="">Sélectionnez votre pays</option>
+                  <option value="france">France</option>
+                  <option value="belgique">Belgique</option>
+                  <option value="suisse">Suisse</option>
+                  <option value="luxembourg">Luxembourg</option>
+                </select>
+              </div>
             </div>
-          </div>
 
-          <div className={styles.deliveryAndPayment}>
-            <div className={styles["delivery-options"]}>
-              <h2>
-                <i className="fa-solid fa-truck"></i> ETAPE 3 : Mode de
-                livraison{" "}
-              </h2>
-              <select
-                name="deliveryMethod"
-                value={order.delivery.method}
-                onChange={handleChange}
-              >
-                <option value="">Sélectionnez le mode de livraison</option>
-                <option value="dhl">DHL</option>
-                <option value="chronopost">chronopost</option>
-              </select>
-              <img
-                src="https://www.chronopost.fr/sites/chronopost/themes/custom/chronopost/images/chronopost_logo.png"
-                className={styles.chrono}
-                alt="chronopost"
-              />
-              <img
-                src="https://www.dhl.com/content/dam/dhl/global/core/images/logos/dhl-logo.svg"
-                alt="DHL"
-              />
+            <div className={styles.deliveryAndPayment}>
+              <div className={styles["delivery-options"]}>
+                <h2>
+                  <i className="fa-solid fa-truck"></i> ETAPE 3 : Mode de livraison
+                </h2>
+                <select
+                  name="deliveryMethod"
+                  value={order.delivery.method}
+                  onChange={handleChange}
+                >
+                  <option value="">Sélectionnez le mode de livraison</option>
+                  <option value="dhl">DHL</option>
+                  <option value="chronopost">Chronopost</option>
+                </select>
+                <img
+                  src="https://www.chronopost.fr/sites/chronopost/themes/custom/chronopost/images/chronopost_logo.png"
+                  className={styles.chrono}
+                  alt="chronopost"
+                />
+                <img
+                  src="https://www.dhl.com/content/dam/dhl/global/core/images/logos/dhl-logo.svg"
+                  alt="DHL"
+                />
+              </div>
+
+              <div className={styles["payment-options"]}>
+                <h2>
+                  <i className="fa-regular fa-credit-card"></i> ETAPE 4 : Options de paiement
+                </h2>
+
+                <select
+                  name="paymentMethod"
+                  value={order.payment.method}
+                  onChange={handleChange}
+                >
+                  <option value="">Sélectionnez le mode de paiement</option>
+                  <option value="carte">Carte</option>
+                  <option value="virement">Virement</option>
+                </select>
+              </div>
             </div>
 
-            <div className={styles["payment-options"]}>
-              <h2>
-                <i className="fa-regular fa-credit-card"></i> ETAPE 4 : Options
-                de paiement
-              </h2>
+            <button type="submit">Passer au paiement</button>
+          </form>
+        )}
 
-              <select
-                name="paymentMethod"
-                value={order.payment.method}
-                onChange={handleChange}
-              >
-                <option value="">Sélectionnez le mode de paiement</option>
-                <option value="carte">Carte</option>
-                <option value="virement">Virement</option>
-              </select>
-            </div>
-          </div>
-
-          <button type="submit">Passer au paiement</button>
-        </form>
+        {isPaymentVisible && order.payment.method === "carte" && (
+          <>
+            <h2>Etape finale : paiement </h2>
+            <StripeWrapper totalAmount={totalAmount} onPaymentSuccess={handlePaymentSuccess} />
+          </>
+        )}
       </div>
     </div>
   );
