@@ -11,34 +11,15 @@ import styles from "./style.module.scss";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
-const PaymentForm = ({ totalAmount, onPaymentSuccess }) => {
+const PaymentForm = ({ totalAmount, clientSecret, onPaymentSuccess }) => {
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState("");
   const [disabled, setDisabled] = useState(true);
-  const [clientSecret, setClientSecret] = useState("");
+  const [cardholderName, setCardholderName] = useState("");
 
   const stripe = useStripe();
   const elements = useElements();
-
-  useEffect(() => {
-    const userId = JSON.parse(localStorage.getItem("user"))._id;
-    fetch(`${BASE_URL}/create-payment-intent`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userId,
-        amount: Math.round(totalAmount * 100),
-        currency: "eur",
-      }), // Multiplie par 100 pour convertir en centimes
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Client Secret:", data.clientSecret);
-        setClientSecret(data.clientSecret);
-      })
-      .catch((error) => console.error("Error:", error));
-  }, [totalAmount]);
 
   const handleChange = async (event) => {
     setDisabled(event.empty);
@@ -56,6 +37,9 @@ const PaymentForm = ({ totalAmount, onPaymentSuccess }) => {
     const payload = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
         card: elements.getElement(CardElement),
+        billing_details: {
+          name: cardholderName,
+        },
       },
     });
 
@@ -77,8 +61,38 @@ const PaymentForm = ({ totalAmount, onPaymentSuccess }) => {
       onSubmit={handleSubmit}
       className={styles.paymentContainer}
     >
-      <CardElement id="card-element" onChange={handleChange} />
-      <button disabled={processing || disabled || succeeded} id="submit">
+      <input
+        type="text"
+        id="cardholder-name"
+        placeholder="Nom sur la carte"
+        value={cardholderName}
+        onChange={(e) => setCardholderName(e.target.value)}
+        className={styles.input}
+        required
+      />
+      <CardElement 
+        id="card-element" 
+        onChange={handleChange} 
+        options={{
+          style: {
+            base: {
+              color: "#30313d",
+              fontFamily: 'Ideal Sans, system-ui, sans-serif',
+              fontSmoothing: "antialiased",
+              fontSize: "16px",
+              "::placeholder": {
+                color: "#aab7c4"
+              }
+            },
+            invalid: {
+              color: "#df1b41",
+              iconColor: "#df1b41"
+            }
+          },
+          hidePostalCode: true // Option to hide the postal code field
+        }} 
+      />
+      <button disabled={processing || disabled || succeeded} id="submit" className={styles.submitButton}>
         <span id="button-text">
           {processing ? (
             <div className={styles.spinner} id="spinner"></div>
@@ -105,13 +119,60 @@ const PaymentForm = ({ totalAmount, onPaymentSuccess }) => {
 };
 
 const StripeWrapper = ({ totalAmount, onPaymentSuccess }) => {
+  const [clientSecret, setClientSecret] = useState("");
+
+  useEffect(() => {
+    const userId = JSON.parse(localStorage.getItem("user"))._id;
+    fetch(`${BASE_URL}/create-payment-intent`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId,
+        amount: Math.round(totalAmount * 100),
+        currency: "eur",
+      }), // Multiplie par 100 pour convertir en centimes
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Client Secret:", data.clientSecret);
+        setClientSecret(data.clientSecret);
+      })
+      .catch((error) => console.error("Error:", error));
+  }, [totalAmount]);
+
+  const appearance = {
+    theme: 'stripe',
+    variables: {
+      colorPrimary: '#0570de',
+      colorBackground: '#ffffff',
+      colorText: '#30313d',
+      colorDanger: '#df1b41',
+      fontFamily: 'Ideal Sans, system-ui, sans-serif',
+      spacingUnit: '2px',
+      borderRadius: '4px',
+    },
+    rules: {
+      '.Label': {
+        color: '#30313d',
+      },
+    },
+  };
+
+  const options = {
+    clientSecret,
+    appearance,
+  };
+
   return (
-    <Elements stripe={stripePromise}>
-      <PaymentForm
-        totalAmount={totalAmount}
-        onPaymentSuccess={onPaymentSuccess}
-      />
-    </Elements>
+    clientSecret && (
+      <Elements stripe={stripePromise} options={options}>
+        <PaymentForm
+          totalAmount={totalAmount}
+          clientSecret={clientSecret}
+          onPaymentSuccess={onPaymentSuccess}
+        />
+      </Elements>
+    )
   );
 };
 
